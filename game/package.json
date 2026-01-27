@@ -1,0 +1,17 @@
+{
+  "name": "game-server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "partykit dev --live",
+    "deploy": "partykit deploy"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
+    "partysocket": "^1.0.2"
+  },
+  "devDependencies": {
+    "partykit": "^0.0.110",
+    "typescript": "^5.5.4"
+  }
+}

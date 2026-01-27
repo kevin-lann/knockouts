@@ -1,0 +1,163 @@
+CREATE EXTENSION IF NOT EXISTS pg_cron;
+/d borderpass
+CREATE EXTENSION IF NOT EXISTS pg_cron;
+;
+-d postgres
+;
+CREATE EXTENSION IF NOT EXISTS pg_cron;
+CREATE EXTENSION pg_cron;
+CREATE EXTENSION pg_cron;
+/d
+d
+;
+\l;
+/l;
+/l
+;
+\l
+SELECT current_database();
+ SELECT current_database();
+SELECT cron.schedule(
+  'delete_old_job_search_result_instances',
+  '0 3 * * *',         !-- every day at 3 AM
+  $$DELETE FROM JobSearchResults
+    WHERE created_at < NOW() - INTERVAL '1 month';$$,
+  'borderpass'
+);
+SELECT cron.schedule(
+  'delete_old_job_search_result_instances',
+  '0 3 * * *',         !-- every day at 3 AM
+  $$DELETE FROM JobSearchResults
+    WHERE created_at < NOW() - INTERVAL '1 month';$$,
+  'borderpass'
+);SELECT cron.schedule(
+  'delete_old_job_search_result_instances',
+  '0 3 * * *',     
+  $$DELETE FROM JobSearchResults
+    WHERE created_at < NOW() - INTERVAL '1 month';$$,
+  'borderpass'
+);
+SELECT cron.schedule(
+  'delete_old_job_search_result_instances',
+  '0 3 * * *',     
+  $$DELETE FROM JobSearchResults
+    WHERE created_at < NOW() - INTERVAL '1 month';$$,
+  'borderpass'
+);
+CREATE EXTENSION pg_cron;
+SELECT cron.schedule(
+  'delete_old_job_search_result_instances',
+  '0 3 * * *',     
+  $$DELETE FROM JobSearchResults
+    WHERE created_at < NOW() - INTERVAL '1 month';$$,
+  'borderpass'
+);
+SELECT extversion FROM pg_extension WHERE extname = 'pg_cron';
+\c borderpass
+CREATE EXTENSION pg_cron;
+\c postgres
+cron.database_name = borderpass
+SELECT cron.schedule(
+  'delete_old_job_search_result_instances',
+  '0 3 * * *',     
+  $$DELETE FROM JobSearchResults
+    WHERE created_at < NOW() - INTERVAL '1 month';$$'
+);
+
+;
+'
+''
+)
+exit
+\q
+\c borderpass
+CREATE EXTENSION pg_cron;
+SELECT cron.schedule(
+  'delete_old_job_search_result_instances',
+  '0 3 * * *',
+  $$DELETE FROM "JobSearchResults"
+    WHERE created_at < NOW() - INTERVAL '1 month';$$
+);
+SELECT *
+FROM cron.job
+ORDER BY jobid;
+SHOW timezone;
+\q
+\c borderpass
+CREATE EXTENSION pg_cron;
+SELECT cron.schedule(
+  'delete_old_job_search_result_instances',
+  '0 3 * * *',
+  $$DELETE FROM "JobSearchResults"
+    WHERE created_at < NOW() - INTERVAL '1 month';$$
+);
+SELECT *
+FROM cron.job
+ORDER BY jobid;
+\q
+\c borderpass
+SELECT cron.schedule(
+  'delete_old_job_search_result_instances',
+  '0 3 * * *',
+  $$DELETE FROM "JobSearchResults"
+    WHERE createdAt < NOW() - INTERVAL '1 month';$$
+);
+\q
+\c borderpass
+SELECT cron.schedule(
+  'delete_old_job_search_result_instances',
+  '0 3 * * *',
+  $$DELETE FROM "JobSearchResults"
+    WHERE createdAt < NOW() - INTERVAL '1 month';$$
+);
+\q
+\c borderpass
+SELECT cron.schedule(
+  'delete_old_job_search_result_instances',
+  '0 3 * * *',
+  $$DELETE FROM "JobSearchResults"
+    WHERE "createdAt" < NOW() - INTERVAL '1 month';$$
+);
+\c borderpass
+SELECT cron.schedule(
+  'delete_old_job_search_result_instances',
+  '0 3 * * *',
+  $$DELETE FROM "JobSearchResults"
+    WHERE "createdAt" < NOW() - INTERVAL '1 month';$$
+);
+\c borderpass
+\c borderpass
+\d
+SELECT cron.schedule(
+  'delete_old_job_search_result_instances',
+  '0 3 * * *',
+  $$DELETE FROM "JobSearchResults"
+    WHERE "createdAt" < NOW() - INTERVAL '1 month';$$
+);
+CREATE EXTENSION pg_cron;
+\c postgres
+cron.database_name = borderpass
+;
+\c borderpass
+CREATE EXTENSION pg_cron;
+SELECT cron.schedule(
+  'delete_old_job_search_result_instances',
+  '0 3 * * *',
+  $$DELETE FROM "JobSearchResults"
+    WHERE "createdAt" < NOW() - INTERVAL '1 month';$$
+);\
+SELECT cron.schedule(
+  'delete_old_job_search_result_instances',
+  '0 3 * * *',
+  $$DELETE FROM "JobSearchResults"
+    WHERE "createdAt" < NOW() - INTERVAL '1 month';$$
+);
+\c borderpass
+CREATE EXTENSION pg_cron;
+/d
+;
+\d
+\l
+\c
+\d
+\s answers

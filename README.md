@@ -1,0 +1,91 @@
+# Knockouts - Party Game
+
+A real-time multiplayer trivia game built with PartyKit, Next.js, and Tailwind CSS.
+
+## Architecture
+
+- **Frontend**: Next.js 16 with Tailwind CSS v4
+- **Backend**: PartyKit (Cloudflare Workers / Durable Objects)
+- **Database**: Neon PostgreSQL (serverless)
+
+## Setup
+
+### Prerequisites
+
+- Node.js 18+
+- Neon database account
+- PartyKit account (for deployment)
+
+### Installation
+
+1. **Server Setup**:
+```bash
+cd game
+npm install
+cp .env.example .env
+# Add your DATABASE_URL to .env
+```
+
+2. **Frontend Setup**:
+```bash
+cd web
+npm install
+cp .env.example .env.local
+# Add NEXT_PUBLIC_PARTYKIT_HOST to .env.local
+```
+
+### Database Migration
+
+Run the migration script against your Neon database:
+
+```bash
+psql 'your-connection-string' < game/migrations/001_initial_schema.sql
+```
+
+### Development
+
+**Start PartyKit server**:
+```bash
+cd game
+npm run dev
+```
+
+**Start Next.js frontend**:
+```bash
+cd web
+npm run dev
+```
+
+Visit `http://localhost:3000` to play.
+
+### Deployment
+
+**Deploy PartyKit server**:
+```bash
+cd game
+npm run deploy
+```
+
+**Deploy Next.js frontend**:
+```bash
+cd web
+vercel deploy
+```
+
+## Project Structure
+
+```
+knockouts/
+├── game/              # PartyKit server
+│   ├── src/
+│   │   ├── server.ts  # Game state machine
+│   │   ├── db.ts      # Database queries
+│   │   ├── validation.ts
+│   │   └── types.ts
+│   └── migrations/
+└── web/               # Next.js frontend
+    ├── app/
+    ├── components/
+    ├── hooks/
+    └── lib/
+```

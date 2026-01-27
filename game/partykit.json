@@ -1,0 +1,13 @@
+{
+  "$schema": "https://www.partykit.io/schema.json",
+  "name": "game-server",
+  "main": "src/server.ts",
+  "compatibilityDate": "2026-01-26",
+  "parties": {
+    "registry": "src/registry.ts"
+  },
+  "serve": {
+    "path": "public",
+    "build": "src/client.ts"
+  }
+}
