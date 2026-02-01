@@ -1,0 +1,16 @@
+THEMES = [
+    'MOVIES_AND_TV',
+    'MUSIC',
+    'VIDEO_GAMES',
+    'BOOKS',
+    'INTERNET_AND_SOCIAL_MEDIA',
+    'TECH',
+    'BRANDS_AND_BUSINESSES',
+    'FOOD_AND_DRINK',
+    'SPORTS',
+    'GEOGRAPHY',
+    'HISTORY',
+    'SCIENCE_AND_NATURE',
+    'ANIMALS',
+    'LANGUAGE_AND_WORDS'
+]

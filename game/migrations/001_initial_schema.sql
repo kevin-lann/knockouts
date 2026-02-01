@@ -31,18 +31,26 @@ CREATE INDEX IF NOT EXISTS idx_answers_popularity ON answers(popularity_rank);
 
 -- Sample data
 INSERT INTO themes (slug, display_name) VALUES
-  ('geography', 'Geography'),
-  ('pop-culture', 'Pop Culture'),
-  ('movies', 'Movies & TV'),
-  ('sports', 'Sports'),
-  ('science', 'Science')
+  ('MOVIES_AND_TV', 'Movies & TV'),
+  ('MUSIC', 'Music'),
+  ('VIDEO_GAMES', 'Video Games'),
+  ('BOOKS', 'Books'),
+  ('INTERNET_AND_SOCIAL_MEDIA', 'Internet & Social Media'),
+  ('TECH', 'Tech'),
+  ('BRANDS_AND_BUSINESSES', 'Brands & Businesses'),
+  ('FOOD_AND_DRINK', 'Food & Drink'),
+  ('SPORTS', 'Sports'),
+  ('GEOGRAPHY', 'Geography'),
+  ('HISTORY', 'History'),
+  ('SCIENCE_AND_NATURE', 'Science & Nature'),
+  ('ANIMALS', 'Animals'),
+  ('LANGUAGE_AND_WORDS', 'Language & Words')
 ON CONFLICT (slug) DO NOTHING;
 
 -- Sample questions
 INSERT INTO questions (theme_slug, prompt, difficulty, answer_count_cache) VALUES
   ('geography', 'Name a country that has the letter J in its name', 2, 5),
   ('geography', 'Name a country in North America', 1, 3),
-  ('pop-culture', 'Name a famous mathematician', 3, 4)
 ON CONFLICT DO NOTHING;
 
 -- Sample answers
