@@ -1,7 +1,7 @@
 import type { Answer } from "./types";
 import levenshtein from "js-levenshtein";
 
-const LEVENSHTEIN_THRESHOLD = 2;
+const LEVENSHTEIN_THRESHOLD = 3;
 
 /**
  * Normalize input string for comparison
