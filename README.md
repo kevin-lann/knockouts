@@ -89,3 +89,20 @@ knockouts/
     ├── hooks/
     └── lib/
 ```
+
+## Automation scripts
+
+### Generate questions
+python3.11 generate_questions.py <mode=all|test> <theme> <difficulty> [count]
+
+### Backfill questions
+```
+python3.11 backfill_questions.py ../generate-questions/results/questions_HISTORY_None_1.json     
+--dry-run
+```
+
+Optional flags:
+
+`--replace-answers` to delete existing answers for matched questions and reinsert
+`--dry-run` to validate JSON only
+`--database-url` to override env

@@ -50,7 +50,7 @@ export async function fetchQuestion(
     HAVING COUNT(a.id) > 0
   `;
 
-  const rows = (await sql(query as any, params as any)) as any[];
+  const rows = (await sql.query(query, params)) as any[];
 
   if (rows.length === 0) {
     throw new Error("No questions found matching criteria");
@@ -151,17 +151,17 @@ export async function getBotAnswer(
     LIMIT 1
   `;
 
-  const rows = (await sql(query as any, params as any)) as any[];
+  const rows = (await sql.query(query, params)) as any[];
 
   if (rows.length === 0) {
     // Fallback: get any answer if no match
-    const fallbackRows = (await sql(
+    const fallbackRows = (await sql.query(
       `SELECT id, question_id, display_text, variants, popularity_rank
        FROM answers
        WHERE question_id = $1
        ORDER BY RANDOM()
-       LIMIT 1` as any,
-      [questionId] as any
+       LIMIT 1`,
+      [questionId]
     )) as any[];
     if (fallbackRows.length === 0) {
       throw new Error(`No answers found for question ${questionId}`);

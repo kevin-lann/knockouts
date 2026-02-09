@@ -15,6 +15,7 @@ export interface Player {
   score: number;
   isHost: boolean;
   isBot: boolean;
+  isEliminated: boolean;
   currentAnswer?: string;
   hasSubmitted: boolean;
 }

@@ -1,10 +1,16 @@
 import type { Answer } from "./types";
+import levenshtein from "js-levenshtein";
+
+const LEVENSHTEIN_THRESHOLD = 2;
 
 /**
  * Normalize input string for comparison
  */
 export function normalize(input: string): string {
-  return input.toLowerCase().replace(/[^a-z0-9]/g, "").trim();
+  return input
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, "")
+    .trim();
 }
 
 /**
@@ -17,9 +23,20 @@ export function validateAnswer(
 ): Answer | null {
   const normalizedInput = normalize(userInput);
 
+  console.log('>>> userInput', userInput);
+  console.log('>>> normalizedInput', normalizedInput);
+
   return (
-    validAnswers.find((answer) =>
-      answer.variants.some((variant) => normalize(variant) === normalizedInput)
+    validAnswers.find(
+      (answer) =>
+        answer.variants.some(
+          (variant) => normalize(variant) === normalizedInput
+        ) ||
+        validAnswers.find(
+          (answer) =>
+            levenshtein(normalizedInput, answer.display_text) <=
+            LEVENSHTEIN_THRESHOLD
+        )
     ) || null
   );
 }
@@ -30,7 +47,7 @@ export function validateAnswer(
  */
 export function findDuplicates(
   submissions: Map<string, string>,
-  validAnswers: Answer[]
+  _validAnswers: Answer[]
 ): Set<string> {
   const duplicates = new Set<string>();
   const normalizedAnswers = new Map<string, string[]>();
@@ -45,14 +62,8 @@ export function findDuplicates(
   }
 
   // Mark players with duplicates (2+ players with same answer)
-  for (const [normalized, playerIds] of normalizedAnswers.entries()) {
-    // Check if this normalized answer matches a valid answer
-    const isValid = validAnswers.some((answer) =>
-      answer.variants.some((variant) => normalize(variant) === normalized)
-    );
-
-    if (isValid && playerIds.length > 1) {
-      // All players with this duplicate answer get marked
+  for (const playerIds of normalizedAnswers.values()) {
+    if (playerIds.length > 1) {
       for (const playerId of playerIds) {
         duplicates.add(playerId);
       }

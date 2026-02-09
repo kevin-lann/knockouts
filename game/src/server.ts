@@ -177,6 +177,7 @@ export default class GameServer implements Party.Server {
       score: 0,
       isHost: isFirstPlayer,
       isBot: false,
+      isEliminated: false,
       hasSubmitted: false,
     };
 
@@ -229,7 +230,7 @@ export default class GameServer implements Party.Server {
     }
 
     const player = this.players.get(sender.id);
-    if (!player || player.isBot) {
+    if (!player || player.isBot || player.isEliminated) {
       return;
     }
 
@@ -240,7 +241,9 @@ export default class GameServer implements Party.Server {
     this.broadcastPlayerUpdate();
 
     // Check if all players have submitted
-    const alivePlayers = Array.from(this.players.values()).filter((p) => !p.isBot);
+    const alivePlayers = Array.from(this.players.values()).filter(
+      (p) => !p.isBot && !p.isEliminated
+    );
     if (alivePlayers.every((p) => p.hasSubmitted)) {
       // All submitted, process immediately
       this.processRound();
@@ -271,7 +274,9 @@ export default class GameServer implements Party.Server {
     this.round++;
 
     try {
-      const alivePlayers = Array.from(this.players.values()).filter((p) => !p.isBot);
+      const alivePlayers = Array.from(this.players.values()).filter(
+        (p) => !p.isBot && !p.isEliminated
+      );
       const { question, answers } = await fetchQuestion(
         alivePlayers.length,
         this.round,
@@ -283,7 +288,7 @@ export default class GameServer implements Party.Server {
 
       // Reset player submission states
       for (const player of this.players.values()) {
-        if (!player.isBot) {
+        if (!player.isBot && !player.isEliminated) {
           player.hasSubmitted = false;
           player.currentAnswer = undefined;
         }
@@ -379,6 +384,7 @@ export default class GameServer implements Party.Server {
           score: 0,
           isHost: false,
           isBot: true,
+          isEliminated: false,
           currentAnswer: botAnswer.display_text,
           hasSubmitted: true,
         };
@@ -418,6 +424,10 @@ export default class GameServer implements Party.Server {
       const points = isValid && !isDuplicate ? 1 : 0;
 
       player.score += points;
+
+      if (!player.isBot && isDuplicate) {
+        player.isEliminated = true;
+      }
 
       results.push({
         playerId,
