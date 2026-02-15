@@ -29,6 +29,7 @@ interface LockedIdentity {
   name: string
   avatarId: AvatarId
 }
+
 export default class GameServer implements Party.Server {
   // Core state
   gameState: GameState = GameState.LOBBY
@@ -56,6 +57,9 @@ export default class GameServer implements Party.Server {
 
   constructor(readonly room: Party.Room) {}
 
+  /**
+   * Notify registry server about room state
+   */
   private async notifyRegistry() {
     // Only notify registry for public rooms
     if (!this.isPublic) {
@@ -303,7 +307,7 @@ export default class GameServer implements Party.Server {
     console.log(
       `Player ${sender.id} (${identity.name}) joined. Total players: ${this.players.size}`
     )
-    console.log(`Room has ${this.room.connections.size} active connections`)
+    console.log(`Room has ${Array.from(this.room.getConnections()).length} active connections`)
 
     // Send SYNC to the new player first (includes them in the player list)
     // This ensures they see themselves immediately
@@ -442,6 +446,9 @@ export default class GameServer implements Party.Server {
     this.gameState = GameState.COUNTDOWN
     this.countdownTimer = 3
 
+    // Update to countdown gamestate
+    this.broadcastSync()
+
     const countdownInterval = setInterval(() => {
       this.countdownTimer--
       this.room.broadcast(
@@ -451,7 +458,7 @@ export default class GameServer implements Party.Server {
         } as ServerMessage)
       )
 
-      if (this.countdownTimer <= 0) {
+      if (this.countdownTimer < 0) {
         clearInterval(countdownInterval)
         this.startPlaying()
       }
@@ -663,10 +670,26 @@ export default class GameServer implements Party.Server {
       `Broadcasting PLAYER_UPDATE to all connections. Players: ${playerList.length}`,
       playerList.map((p) => p.name)
     )
-    console.log(`Room connections count: ${this.room.connections.size}`)
+    console.log(`Room connections count: ${Array.from(this.room.getConnections()).length}`)
 
     // Broadcast to all connections in the room (includes all connected clients)
     this.room.broadcast(message)
+  }
+
+  /**
+   * Broadcast the current room state to all connections in the room.
+   */
+  private broadcastSync() {
+    this.room.broadcast(
+      JSON.stringify({
+        type: ServerMessageType.SYNC,
+        state: this.gameState,
+        players: Array.from(this.players.values()),
+        timer: this.countdownTimer,
+        question: this.currentQuestion || undefined,
+        round: this.round,
+      } as ServerMessage)
+    )
   }
 }
 

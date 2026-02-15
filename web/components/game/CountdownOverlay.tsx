@@ -6,8 +6,10 @@ import { motion, AnimatePresence } from "framer-motion"
 export default function CountdownOverlay() {
   const { timer } = useGameStore()
 
+  console.log('CountdownOverlay rendered')
+
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50">
+    <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-500">
       <AnimatePresence mode="wait">
         <motion.div
           key={timer}
