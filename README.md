@@ -93,7 +93,9 @@ knockouts/
 ## Automation scripts
 
 ### Generate questions
+```
 python3.11 generate_questions.py <mode=all|test> <theme> <difficulty> [count]
+```
 
 ### Backfill questions
 ```
