@@ -1,17 +1,12 @@
 "use client"
 
-import { useState } from "react"
 import { useGameStore } from "@/lib/store"
-import {
-  BotDifficulty,
-  ClientMessageType,
-  type ClientMessage,
-  type RoomSettings,
-} from "@/lib/types"
+import { ClientMessageType, type ClientMessage } from "@/lib/types"
 import PlayerList from "./PlayerList"
 import RoomSettingsPanel from "./RoomSettingsPanel"
 import { toast } from "react-hot-toast"
 import LeaveRoomButton from "../room/LeaveRoomButton"
+import { useRoomSettings } from "@/hooks/useRoomSettings"
 
 interface LobbyViewProps {
   roomId: string
@@ -20,13 +15,8 @@ interface LobbyViewProps {
 
 export default function LobbyView({ roomId, send }: LobbyViewProps) {
   const { players, playerId } = useGameStore()
+  const { settings, setSettings } = useRoomSettings()
   const isCurrentPlayerHost = players.find((p) => p.id === playerId)?.isHost
-  const [settings, setSettings] = useState<RoomSettings>({
-    botEnabled: true,
-    botDifficulty: BotDifficulty.MEDIUM,
-    theme: null,
-    speedMultiplier: 1.0,
-  })
 
   // Ensure players is always an array
   const playersArray = Array.isArray(players) ? players : []

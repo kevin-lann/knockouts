@@ -592,6 +592,20 @@ export default class GameServer implements Party.Server {
       this.players.delete("bot")
     }
 
+    // If all players are eliminated, end the game
+    if (this.isGameEnded()) {
+      this.handleGameEnded()
+      this.notifyRegistry()
+      this.room.broadcast(
+        JSON.stringify({
+          type: ServerMessageType.GAME_ENDED,
+          results,
+          correctAnswers,
+        } as ServerMessage)
+      )
+      return
+    }
+
     // Reset submission states
     for (const player of this.players.values()) {
       player.hasSubmitted = false
@@ -609,6 +623,27 @@ export default class GameServer implements Party.Server {
     )
 
     this.broadcastPlayerUpdate()
+  }
+
+  private isGameEnded(): boolean {
+    const alivePlayers = Array.from(this.players.values()).filter(
+      (p) => !p.isBot && !p.isEliminated
+    )
+    return alivePlayers.length === 0
+  }
+
+  /** 
+   * Clear all player states and reset the game
+   */
+  private async handleGameEnded() {
+    for (const player of this.players.values()) {
+      player.isEliminated = false
+      player.hasSubmitted = false
+      player.currentAnswer = undefined
+      player.score = 0
+    }
+    this.round = 0
+    this.gameState = GameState.GAME_ENDED
   }
 
   private sendSync(conn: Party.Connection) {

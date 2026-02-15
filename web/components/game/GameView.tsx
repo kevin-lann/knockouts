@@ -13,13 +13,15 @@ interface GameViewProps {
 }
 
 export default function GameView({ send }: GameViewProps) {
-  const { question, timer, players, currentInput, hasSubmitted, setInput } =
+  const { question, timer, players, currentInput, hasSubmitted, setInput, playerId } =
     useGameStore()
 
   const handleSubmit = () => {
     if (!currentInput.trim() || hasSubmitted) return
     send({ type: ClientMessageType.SUBMIT, answer: currentInput.trim() })
   }
+
+  const isEliminated = players.find((p) => p.id === playerId)?.isEliminated ?? false
 
   return (
     <div className="min-h-screen p-8">
@@ -49,8 +51,9 @@ export default function GameView({ send }: GameViewProps) {
                 value={currentInput}
                 onChange={setInput}
                 onSubmit={handleSubmit}
-                disabled={hasSubmitted}
+                disabled={hasSubmitted || isEliminated}
                 submitted={hasSubmitted}
+                isEliminated={isEliminated}
               />
             </div>
           )}

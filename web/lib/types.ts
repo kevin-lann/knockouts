@@ -8,6 +8,7 @@ export enum GameState {
   PLAYING = "PLAYING",
   PROCESSING = "PROCESSING",
   SCOREBOARD = "SCOREBOARD",
+  GAME_ENDED = "GAME_ENDED",
 }
 
 // Player object
@@ -18,6 +19,7 @@ export interface Player {
   score: number;
   isHost: boolean;
   isBot: boolean;
+  isEliminated: boolean;
   currentAnswer?: string;
   hasSubmitted: boolean;
 }
@@ -95,6 +97,7 @@ export enum ServerMessageType {
   ROUND_START = "ROUND_START",
   ROUND_END = "ROUND_END",
   ERROR = "ERROR",
+  GAME_ENDED = "GAME_ENDED",
 }
 
 // Client -> Server messages
@@ -123,4 +126,5 @@ export type ServerMessage =
   | { type: ServerMessageType.TICK; time: number }
   | { type: ServerMessageType.ROUND_START; question: Question; answerCount: number }
   | { type: ServerMessageType.ROUND_END; results: RoundResult[]; correctAnswers: string[] }
-  | { type: ServerMessageType.ERROR; message: string };
+  | { type: ServerMessageType.ERROR; message: string }
+  | { type: ServerMessageType.GAME_ENDED; results: RoundResult[]; correctAnswers: string[] };

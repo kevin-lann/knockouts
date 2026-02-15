@@ -9,6 +9,7 @@ import GameView from "@/components/game/GameView"
 import ScoreboardView from "@/components/scoreboard/ScoreboardView"
 import CountdownOverlay from "@/components/game/CountdownOverlay"
 import ProcessingView from "@/components/game/ProcessingView"
+import GameEndView from "@/components/game/GameEndView"
 import JoinRoomForm from "@/components/room/JoinRoomForm"
 import { ClientMessageType, GameState } from "@/lib/types"
 import {
@@ -140,6 +141,9 @@ export default function RoomPage() {
       {gameState === GameState.PROCESSING && <ProcessingView />}
       {gameState === GameState.SCOREBOARD && (
         <ScoreboardView roomId={roomId} send={send} />
+      )}
+      {gameState === GameState.GAME_ENDED && (
+        <GameEndView roomId={roomId} send={send} />
       )}
     </div>
   )
