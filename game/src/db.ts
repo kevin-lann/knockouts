@@ -1,8 +1,8 @@
-import { neon } from "@neondatabase/serverless";
-import type { Question, Answer } from "./types";
-import { MEAN_END_MULTIPLIER, MEAN_START_MULTIPLIER, ROUNDS_UNTIL_MEAN_END } from "./constants/magic-numbers";
+import { neon } from "@neondatabase/serverless"
+import type { Question, Answer } from "./types"
+import { MEAN_END_MULTIPLIER, MEAN_START_MULTIPLIER, ROUNDS_UNTIL_MEAN_END } from "./constants/magic-numbers"
 
-const sql = neon(process.env.DATABASE_URL!);
+const sql = neon(process.env.DATABASE_URL!)
 
 export interface QuestionWithAnswers {
   question: Question;
@@ -36,65 +36,65 @@ export async function fetchQuestion(
     FROM questions q
     LEFT JOIN answers a ON q.id = a.question_id
     WHERE q.answer_count_cache >= $1
-  `;
+  `
 
-  const params: (string | number)[] = [alivePlayerCount];
+  const params: (string | number)[] = [alivePlayerCount]
 
   if (theme) {
-    query += ` AND q.theme_slug = $2`;
-    params.push(theme);
+    query += ` AND q.theme_slug = $2`
+    params.push(theme)
   }
 
   query += `
     GROUP BY q.id
     HAVING COUNT(a.id) > 0
-  `;
+  `
 
-  const rows = (await sql.query(query, params)) as any[];
+  const rows = (await sql.query(query, params)) as any[]
 
   if (rows.length === 0) {
-    throw new Error("No questions found matching criteria");
+    throw new Error("No questions found matching criteria")
   }
 
   // Calculate target answer count using normal distribution
   // Mean starts at 6x players, shifts to 2x players over rounds
-  const meanStart = MEAN_START_MULTIPLIER * alivePlayerCount;
-  const meanEnd = MEAN_END_MULTIPLIER * alivePlayerCount;
-  const progress = Math.min(round / ROUNDS_UNTIL_MEAN_END, 1);
-  const targetMean = meanStart - (meanStart - meanEnd) * progress;
+  const meanStart = MEAN_START_MULTIPLIER * alivePlayerCount
+  const meanEnd = MEAN_END_MULTIPLIER * alivePlayerCount
+  const progress = Math.min(round / ROUNDS_UNTIL_MEAN_END, 1)
+  const targetMean = meanStart - (meanStart - meanEnd) * progress
 
   // Weight questions by how close they are to target mean
   const weightedQuestions = rows.map((row: any) => {
-    const answerCount = row.answer_count_cache;
-    const distance = Math.abs(answerCount - targetMean);
+    const answerCount = row.answer_count_cache
+    const distance = Math.abs(answerCount - targetMean)
     // Higher weight for questions closer to target
-    const weight = 1 / (1 + distance / alivePlayerCount);
-    return { ...row, weight };
-  });
+    const weight = 1 / (1 + distance / alivePlayerCount)
+    return { ...row, weight }
+  })
 
   // Select randomly weighted by distance to target
   const totalWeight = weightedQuestions.reduce(
     (sum: number, q: any) => sum + q.weight,
     0
-  );
-  let random = Math.random() * totalWeight;
-  let selected = weightedQuestions[0];
+  )
+  let random = Math.random() * totalWeight
+  let selected = weightedQuestions[0]
 
   for (const q of weightedQuestions) {
-    random -= q.weight;
+    random -= q.weight
     if (random <= 0) {
-      selected = q;
-      break;
+      selected = q
+      break
     }
   }
 
   // Parse answers - handle both array and JSONB formats
-  let answersArray = selected.answers;
+  let answersArray = selected.answers
   if (typeof answersArray === "string") {
-    answersArray = JSON.parse(answersArray);
+    answersArray = JSON.parse(answersArray)
   }
   if (!Array.isArray(answersArray)) {
-    answersArray = [];
+    answersArray = []
   }
 
   return {
@@ -112,7 +112,7 @@ export async function fetchQuestion(
       variants: Array.isArray(a.variants) ? a.variants : [],
       popularity_rank: a.popularity_rank,
     })),
-  };
+  }
 }
 
 /**
@@ -122,25 +122,25 @@ export async function getBotAnswer(
   questionId: string,
   difficulty: "easy" | "medium" | "chaos"
 ): Promise<Answer> {
-  let rankFilter = "";
-  const params: (string | number)[] = [questionId];
+  let rankFilter = ""
+  const params: (string | number)[] = [questionId]
 
   switch (difficulty) {
     case "easy":
       // Popular answers (rank 20-50)
-      rankFilter = "AND popularity_rank BETWEEN $2 AND $3";
-      params.push(20, 50);
-      break;
+      rankFilter = "AND popularity_rank BETWEEN $2 AND $3"
+      params.push(20, 50)
+      break
     case "medium":
       // Medium popularity (rank 5-20)
-      rankFilter = "AND popularity_rank BETWEEN $2 AND $3";
-      params.push(5, 20);
-      break;
+      rankFilter = "AND popularity_rank BETWEEN $2 AND $3"
+      params.push(5, 20)
+      break
     case "chaos":
       // Most common answer (rank 1)
-      rankFilter = "AND popularity_rank = $2";
-      params.push(1);
-      break;
+      rankFilter = "AND popularity_rank = $2"
+      params.push(1)
+      break
   }
 
   const query = `
@@ -149,9 +149,9 @@ export async function getBotAnswer(
     WHERE question_id = $1 ${rankFilter}
     ORDER BY RANDOM()
     LIMIT 1
-  `;
+  `
 
-  const rows = (await sql.query(query, params)) as any[];
+  const rows = (await sql.query(query, params)) as any[]
 
   if (rows.length === 0) {
     // Fallback: get any answer if no match
@@ -162,26 +162,26 @@ export async function getBotAnswer(
        ORDER BY RANDOM()
        LIMIT 1`,
       [questionId]
-    )) as any[];
+    )) as any[]
     if (fallbackRows.length === 0) {
-      throw new Error(`No answers found for question ${questionId}`);
+      throw new Error(`No answers found for question ${questionId}`)
     }
-    const row = fallbackRows[0];
+    const row = fallbackRows[0]
     return {
       id: row.id,
       question_id: row.question_id,
       display_text: row.display_text,
       variants: Array.isArray(row.variants) ? row.variants : [],
       popularity_rank: row.popularity_rank,
-    };
+    }
   }
 
-  const row = rows[0];
+  const row = rows[0]
   return {
     id: row.id,
     question_id: row.question_id,
     display_text: row.display_text,
     variants: Array.isArray(row.variants) ? row.variants : [],
     popularity_rank: row.popularity_rank,
-  };
+  }
 }

@@ -1,29 +1,29 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { AVATARS } from "@/app/constants/avatars";
+import { useState } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
+import { AVATARS } from "@/app/constants/avatars"
 
 interface JoinRoomFormProps {
-  roomId: string;
+  roomId: string
 }
 
 export default function JoinRoomForm({ roomId }: JoinRoomFormProps) {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState(AVATARS[0]);
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const [name, setName] = useState("")
+  const [avatar, setAvatar] = useState(AVATARS[0])
 
   const handleJoin = () => {
-    if (!name.trim()) return;
+    if (!name.trim()) return
 
     // Preserve existing query params (like private=true) and add name/avatar
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("name", name.trim());
-    params.set("avatar", avatar);
+    const params = new URLSearchParams(searchParams.toString())
+    params.set("name", name.trim())
+    params.set("avatar", avatar)
 
-    router.push(`/room/${roomId}?${params.toString()}`);
-  };
+    router.push(`/room/${roomId}?${params.toString()}`)
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
@@ -41,7 +41,7 @@ export default function JoinRoomForm({ roomId }: JoinRoomFormProps) {
             onChange={(e) => setName(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === "Enter" && name.trim()) {
-                handleJoin();
+                handleJoin()
               }
             }}
             placeholder="Enter your name"
@@ -78,5 +78,5 @@ export default function JoinRoomForm({ roomId }: JoinRoomFormProps) {
         </button>
       </div>
     </div>
-  );
+  )
 }

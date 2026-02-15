@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import { KeyboardEvent } from "react";
+import { KeyboardEvent } from "react"
 
 interface AnswerInputProps {
   value: string;
@@ -19,9 +19,9 @@ export default function AnswerInput({
 }: AnswerInputProps) {
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && !disabled && value.trim()) {
-      onSubmit();
+      onSubmit()
     }
-  };
+  }
 
   if (submitted) {
     return (
@@ -33,7 +33,7 @@ export default function AnswerInput({
           You can modify your answer until time runs out
         </p>
       </div>
-    );
+    )
   }
 
   return (
@@ -56,5 +56,5 @@ export default function AnswerInput({
         Submit Answer
       </button>
     </div>
-  );
+  )
 }

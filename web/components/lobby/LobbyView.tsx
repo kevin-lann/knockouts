@@ -1,10 +1,16 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { useGameStore } from "@/lib/store";
-import type { ClientMessage, RoomSettings } from "@/lib/types";
-import PlayerList from "./PlayerList";
-import RoomSettingsPanel from "./RoomSettingsPanel";
+import { useState } from "react"
+import { useGameStore } from "@/lib/store"
+import {
+  BotDifficulty,
+  ClientMessageType,
+  type ClientMessage,
+  type RoomSettings,
+} from "@/lib/types"
+import PlayerList from "./PlayerList"
+import RoomSettingsPanel from "./RoomSettingsPanel"
+import { useRouter } from "next/navigation"
 
 interface LobbyViewProps {
   roomId: string;
@@ -13,30 +19,36 @@ interface LobbyViewProps {
 }
 
 export default function LobbyView({ roomId, isHost, send }: LobbyViewProps) {
-  const { players } = useGameStore();
+  const router = useRouter()
+  const { players } = useGameStore()
   const [settings, setSettings] = useState<RoomSettings>({
     botEnabled: true,
-    botDifficulty: "medium",
+    botDifficulty: BotDifficulty.MEDIUM,
     theme: null,
     speedMultiplier: 1.0,
-  });
+  })
 
   // Ensure players is always an array
-  const playersArray = Array.isArray(players) ? players : [];
+  const playersArray = Array.isArray(players) ? players : []
 
   const handleStartGame = () => {
     if (playersArray.length < 2) {
-      alert("Need at least 2 players to start");
-      return;
+      alert("Need at least 2 players to start")
+      return
     }
-    send({ type: "START_GAME", settings });
-  };
+    send({ type: ClientMessageType.START_GAME, settings })
+  }
+
+  const handleLeaveRoom = () => {
+    send({ type: ClientMessageType.LEAVE_ROOM })
+    router.push("/")
+  }
 
   const copyRoomLink = () => {
-    const url = `${window.location.origin}/room/${roomId}`;
-    navigator.clipboard.writeText(url);
-    alert("Room link copied!");
-  };
+    const url = `${window.location.origin}/room/${roomId}`
+    navigator.clipboard.writeText(url)
+    alert("Room link copied!")
+  }
 
   return (
     <div className="min-h-screen p-8">
@@ -44,12 +56,20 @@ export default function LobbyView({ roomId, isHost, send }: LobbyViewProps) {
         <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8">
           <div className="flex justify-between items-center mb-8">
             <h1 className="text-3xl font-bold text-white">Room: {roomId}</h1>
-            <button
-              onClick={copyRoomLink}
-              className="px-4 py-2 bg-white/20 text-white rounded-lg hover:bg-white/30 transition-all"
-            >
-              Copy Link
-            </button>
+            <div className="flex gap-2">
+              <button
+                onClick={copyRoomLink}
+                className="px-4 py-2 bg-white/20 text-white rounded-lg hover:bg-white/30 transition-all cursor-pointer"
+              >
+                Copy Link
+              </button>
+              <button
+                onClick={handleLeaveRoom}
+                className="px-4 py-2 bg-red-400 text-white rounded-lg hover:bg-red-500 transition-all cursor-pointer"
+              >
+                Leave Room
+              </button>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -64,7 +84,9 @@ export default function LobbyView({ roomId, isHost, send }: LobbyViewProps) {
               {/* Debug info */}
               {process.env.NODE_ENV === "development" && (
                 <p className="text-xs text-white/50 mt-2">
-                  Debug: players array length = {playersArray.length}, type = {typeof playersArray.length}, isArray = {Array.isArray(players).toString()}
+                  Debug: players array length = {playersArray.length}, type ={" "}
+                  {typeof playersArray.length}, isArray ={" "}
+                  {Array.isArray(players).toString()}
                 </p>
               )}
             </div>
@@ -74,10 +96,7 @@ export default function LobbyView({ roomId, isHost, send }: LobbyViewProps) {
                 <h2 className="text-xl font-semibold text-white mb-4">
                   Settings
                 </h2>
-                <RoomSettingsPanel
-                  settings={settings}
-                  onChange={setSettings}
-                />
+                <RoomSettingsPanel settings={settings} onChange={setSettings} />
                 <button
                   onClick={handleStartGame}
                   disabled={playersArray.length < 2}
@@ -102,5 +121,5 @@ export default function LobbyView({ roomId, isHost, send }: LobbyViewProps) {
         </div>
       </div>
     </div>
-  );
+  )
 }

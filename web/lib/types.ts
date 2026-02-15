@@ -1,12 +1,14 @@
 // Shared types - duplicated from game/src/types.ts for client use
+
 // Game states
-export type GameState =
-  | "LOBBY"
-  | "FETCH_ROUND"
-  | "COUNTDOWN"
-  | "PLAYING"
-  | "PROCESSING"
-  | "SCOREBOARD";
+export enum GameState {
+  LOBBY = "LOBBY",
+  FETCH_ROUND = "FETCH_ROUND",
+  COUNTDOWN = "COUNTDOWN",
+  PLAYING = "PLAYING",
+  PROCESSING = "PROCESSING",
+  SCOREBOARD = "SCOREBOARD",
+}
 
 // Player object
 export interface Player {
@@ -20,10 +22,16 @@ export interface Player {
   hasSubmitted: boolean;
 }
 
+export enum BotDifficulty {
+  EASY = "easy",
+  MEDIUM = "medium",
+  CHAOS = "chaos",
+}
+
 // Room settings
 export interface RoomSettings {
   botEnabled: boolean;
-  botDifficulty: "easy" | "medium" | "chaos";
+  botDifficulty: BotDifficulty;
   theme: string | null;
   speedMultiplier: number; // 0.5 - 2.0
 }
@@ -61,25 +69,43 @@ export interface RoundResult {
   points: number;
 }
 
+export enum ClientMessageType {
+  JOIN_ROOM = "JOIN_ROOM",
+  LEAVE_ROOM = "LEAVE_ROOM",
+  START_GAME = "START_GAME",
+  SUBMIT = "SUBMIT",
+  NEXT_ROUND = "NEXT_ROUND",
+}
+
+export enum ServerMessageType {
+  SYNC = "SYNC",
+  PLAYER_UPDATE = "PLAYER_UPDATE",
+  TICK = "TICK",
+  ROUND_START = "ROUND_START",
+  ROUND_END = "ROUND_END",
+  ERROR = "ERROR",
+}
+
 // Client -> Server messages
 export type ClientMessage =
-  | { type: "JOIN_ROOM"; name: string; avatar: string; isPublic?: boolean }
-  | { type: "START_GAME"; settings: RoomSettings }
-  | { type: "SUBMIT"; answer: string }
-  | { type: "NEXT_ROUND" };
+  | { type: ClientMessageType.JOIN_ROOM; name: string; avatar: string; isPublic?: boolean }
+  | { type: ClientMessageType.LEAVE_ROOM }
+  | { type: ClientMessageType.START_GAME; settings: RoomSettings }
+  | { type: ClientMessageType.SUBMIT; answer: string }
+  | { type: ClientMessageType.NEXT_ROUND };
 
 // Server -> Client messages
 export type ServerMessage =
   | {
-      type: "SYNC";
+      type: ServerMessageType.SYNC;
       state: GameState;
       players: Player[];
       timer: number;
       question?: Question;
       round: number;
     }
-  | { type: "PLAYER_UPDATE"; players: Player[] }
-  | { type: "TICK"; time: number }
-  | { type: "ROUND_START"; question: Question; answerCount: number }
-  | { type: "ROUND_END"; results: RoundResult[]; correctAnswers: string[] }
-  | { type: "ERROR"; message: string };
+  | { type: ServerMessageType.PLAYER_UPDATE; players: Player[] }
+  | { type: ServerMessageType.TICK; time: number }
+  | { type: ServerMessageType.ROUND_START; question: Question; answerCount: number }
+  | { type: ServerMessageType.ROUND_END; results: RoundResult[]; correctAnswers: string[] }
+  | { type: ServerMessageType.ERROR; message: string };

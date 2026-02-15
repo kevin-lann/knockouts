@@ -1,53 +1,60 @@
-"use client";
+"use client"
 
-import { useEffect, useRef } from "react";
-import { useParams, useSearchParams } from "next/navigation";
-import { usePartySocket } from "@/hooks/usePartySocket";
-import { useGameStore } from "@/lib/store";
-import LobbyView from "@/components/lobby/LobbyView";
-import GameView from "@/components/game/GameView";
-import ScoreboardView from "@/components/scoreboard/ScoreboardView";
-import CountdownOverlay from "@/components/game/CountdownOverlay";
-import ProcessingView from "@/components/game/ProcessingView";
-import JoinRoomForm from "@/components/room/JoinRoomForm";
+import { useEffect, useRef } from "react"
+import { useParams, useSearchParams } from "next/navigation"
+import { usePartySocket } from "@/hooks/usePartySocket"
+import { useGameStore } from "@/lib/store"
+import LobbyView from "@/components/lobby/LobbyView"
+import GameView from "@/components/game/GameView"
+import ScoreboardView from "@/components/scoreboard/ScoreboardView"
+import CountdownOverlay from "@/components/game/CountdownOverlay"
+import ProcessingView from "@/components/game/ProcessingView"
+import JoinRoomForm from "@/components/room/JoinRoomForm"
 
 export default function RoomPage() {
-  const params = useParams();
-  const searchParams = useSearchParams();
-  const roomId = params.roomId as string;
-  const name = searchParams.get("name");
-  const avatar = searchParams.get("avatar");
-  const isHost = searchParams.get("host") === "true";
+  const params = useParams()
+  const searchParams = useSearchParams()
+  const roomId = params.roomId as string
+  const name = searchParams.get("name")
+  const avatar = searchParams.get("avatar")
+  const isHost = searchParams.get("host") === "true"
   // If private=true is present, it's a private room
   // Otherwise, it's a public room (found via registry or newly created)
-  const isPublic = searchParams.get("private") !== "true";
+  const isPublic = searchParams.get("private") !== "true"
 
-  const { send } = usePartySocket(roomId);
-  const { gameState, setRoomId } = useGameStore();
-  const hasJoinedRef = useRef(false);
+  const { send } = usePartySocket(roomId)
+  const { gameState, setRoomId, connected, playerId } = useGameStore()
+  const joinedConnectionIdRef = useRef<string | null>(null)
 
   useEffect(() => {
     if (name && avatar) {
-      setRoomId(roomId);
+      setRoomId(roomId)
     }
-  }, [name, avatar, roomId, setRoomId]);
+  }, [name, avatar, roomId, setRoomId])
 
   useEffect(() => {
-    if (!hasJoinedRef.current && name && avatar && send) {
-      console.log("Sending JOIN_ROOM:", { name, avatar, isPublic });
-      send({
-        type: "JOIN_ROOM",
-        name,
-        avatar,
-        isPublic,
-      });
-      hasJoinedRef.current = true;
+    if (!connected || !playerId || !name || !avatar || !send) {
+      return
     }
-  }, [name, avatar, send, isPublic]);
+
+    // Re-join when socket connection changes (e.g. dev Strict Mode remounts/reconnects)
+    if (joinedConnectionIdRef.current === playerId) {
+      return
+    }
+
+    console.log("Sending JOIN_ROOM:", { name, avatar, isPublic })
+    send({
+      type: "JOIN_ROOM",
+      name,
+      avatar,
+      isPublic,
+    })
+    joinedConnectionIdRef.current = playerId
+  }, [connected, playerId, name, avatar, send, isPublic])
 
   // Show join form if name/avatar not provided
   if (!name || !avatar) {
-    return <JoinRoomForm roomId={roomId} />;
+    return <JoinRoomForm roomId={roomId} />
   }
 
   return (
@@ -62,5 +69,5 @@ export default function RoomPage() {
         <ScoreboardView roomId={roomId} isHost={isHost} send={send} />
       )}
     </div>
-  );
+  )
 }

@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import type { Player } from "@/lib/types";
+import type { Player } from "@/lib/types"
 
 interface PlayerListProps {
   players: Player[];
@@ -34,5 +34,5 @@ export default function PlayerList({ players }: PlayerListProps) {
         </div>
       ))}
     </div>
-  );
+  )
 }

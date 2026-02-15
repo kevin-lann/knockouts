@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 export default function ProcessingView() {
   return (
@@ -8,5 +8,5 @@ export default function ProcessingView() {
         <p className="text-white text-xl">Processing answers...</p>
       </div>
     </div>
-  );
+  )
 }

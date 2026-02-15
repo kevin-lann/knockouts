@@ -1,10 +1,10 @@
-"use client";
+"use client"
 
-import { useGameStore } from "@/lib/store";
-import type { ClientMessage } from "@/lib/types";
-import Timer from "./Timer";
-import AnswerInput from "./AnswerInput";
-import PlayerList from "../lobby/PlayerList";
+import { useGameStore } from "@/lib/store"
+import type { ClientMessage } from "@/lib/types"
+import Timer from "./Timer"
+import AnswerInput from "./AnswerInput"
+import PlayerList from "../lobby/PlayerList"
 
 interface GameViewProps {
   send: (message: ClientMessage) => void;
@@ -12,12 +12,12 @@ interface GameViewProps {
 
 export default function GameView({ send }: GameViewProps) {
   const { question, timer, players, currentInput, hasSubmitted, setInput } =
-    useGameStore();
+    useGameStore()
 
   const handleSubmit = () => {
-    if (!currentInput.trim() || hasSubmitted) return;
-    send({ type: "SUBMIT", answer: currentInput.trim() });
-  };
+    if (!currentInput.trim() || hasSubmitted) return
+    send({ type: "SUBMIT", answer: currentInput.trim() })
+  }
 
   return (
     <div className="min-h-screen p-8">
@@ -58,5 +58,5 @@ export default function GameView({ send }: GameViewProps) {
         </div>
       </div>
     </div>
-  );
+  )
 }

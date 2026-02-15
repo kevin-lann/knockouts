@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import type { RoomSettings } from "@/lib/types";
+import type { BotDifficulty, RoomSettings } from "@/lib/types"
 
 interface RoomSettingsPanelProps {
   settings: RoomSettings;
@@ -38,7 +38,7 @@ export default function RoomSettingsPanel({
             onChange={(e) =>
               onChange({
                 ...settings,
-                botDifficulty: e.target.value as "easy" | "medium" | "chaos",
+                botDifficulty: e.target.value as BotDifficulty,
               })
             }
             className="w-full px-3 py-2 bg-white/20 text-white rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50"
@@ -70,5 +70,5 @@ export default function RoomSettingsPanel({
         />
       </div>
     </div>
-  );
+  )
 }

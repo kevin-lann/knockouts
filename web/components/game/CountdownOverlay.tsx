@@ -1,10 +1,10 @@
-"use client";
+"use client"
 
-import { useGameStore } from "@/lib/store";
-import { motion, AnimatePresence } from "framer-motion";
+import { useGameStore } from "@/lib/store"
+import { motion, AnimatePresence } from "framer-motion"
 
 export default function CountdownOverlay() {
-  const { timer } = useGameStore();
+  const { timer } = useGameStore()
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50">
@@ -21,5 +21,5 @@ export default function CountdownOverlay() {
         </motion.div>
       </AnimatePresence>
     </div>
-  );
+  )
 }

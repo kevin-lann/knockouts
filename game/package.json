@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "partykit dev --live",
-    "deploy": "partykit deploy"
+    "deploy": "partykit deploy",
+    "lint": "eslint"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.2",
@@ -13,7 +14,9 @@
   },
   "devDependencies": {
     "@types/js-levenshtein": "^1.1.3",
+    "eslint": "^9.39.2",
     "partykit": "^0.0.110",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.55.0"
   }
 }

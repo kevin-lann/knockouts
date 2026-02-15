@@ -1,63 +1,63 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { nanoid } from "nanoid";
-import { AVATARS } from "@/app/constants/avatars";
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { nanoid } from "nanoid"
+import { AVATARS } from "@/app/constants/avatars"
 
 export default function LandingPage() {
-  const [activeTab, setActiveTab] = useState<"public" | "private">("public");
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState(AVATARS[0]);
-  const [roomCode, setRoomCode] = useState("");
-  const [isSearching, setIsSearching] = useState(false);
-  const router = useRouter();
+  const [activeTab, setActiveTab] = useState<"public" | "private">("public")
+  const [name, setName] = useState("")
+  const [avatar, setAvatar] = useState(AVATARS[0])
+  const [roomCode, setRoomCode] = useState("")
+  const [isSearching, setIsSearching] = useState(false)
+  const router = useRouter()
 
   const handlePublicPlay = async () => {
-    if (!name.trim()) return;
-    setIsSearching(true);
+    if (!name.trim()) return
+    setIsSearching(true)
 
     try {
-      const response = await fetch("/api/find-room");
-      const data = await response.json();
+      const response = await fetch("/api/find-room")
+      const data = await response.json()
       // Public room - no host=true param
       router.push(
         `/room/${data.roomId}?name=${encodeURIComponent(
           name
         )}&avatar=${encodeURIComponent(avatar)}`
-      );
+      )
     } catch (error) {
-      console.error("Error finding room:", error);
+      console.error("Error finding room:", error)
       // Fallback to creating a new room (still public)
-      const randomRoomId = nanoid(8);
+      const randomRoomId = nanoid(8)
       router.push(
         `/room/${randomRoomId}?name=${encodeURIComponent(
           name
         )}&avatar=${encodeURIComponent(avatar)}`
-      );
+      )
     } finally {
-      setIsSearching(false);
+      setIsSearching(false)
     }
-  };
+  }
 
   const handleCreatePrivate = () => {
-    if (!name.trim()) return;
-    const roomId = nanoid(8);
+    if (!name.trim()) return
+    const roomId = nanoid(8)
     router.push(
       `/room/${roomId}?name=${encodeURIComponent(
         name
       )}&avatar=${encodeURIComponent(avatar)}&host=true&private=true`
-    );
-  };
+    )
+  }
 
   const handleJoinPrivate = () => {
-    if (!name.trim() || !roomCode.trim()) return;
+    if (!name.trim() || !roomCode.trim()) return
     router.push(
       `/room/${roomCode}?name=${encodeURIComponent(
         name
       )}&avatar=${encodeURIComponent(avatar)}&private=true`
-    );
-  };
+    )
+  }
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4">
@@ -157,5 +157,5 @@ export default function LandingPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }

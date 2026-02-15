@@ -1,8 +1,8 @@
-"use client";
+"use client"
 
-import { useGameStore } from "@/lib/store";
-import type { ClientMessage } from "@/lib/types";
-import PlayerList from "../lobby/PlayerList";
+import { useGameStore } from "@/lib/store"
+import type { ClientMessage } from "@/lib/types"
+import PlayerList from "../lobby/PlayerList"
 
 interface ScoreboardViewProps {
   roomId: string;
@@ -15,11 +15,11 @@ export default function ScoreboardView({
   isHost,
   send,
 }: ScoreboardViewProps) {
-  const { roundResults, correctAnswers, players, round } = useGameStore();
+  const { roundResults, correctAnswers, players, round } = useGameStore()
 
   const handleNextRound = () => {
-    send({ type: "NEXT_ROUND" });
-  };
+    send({ type: "NEXT_ROUND" })
+  }
 
   return (
     <div className="min-h-screen p-8">
@@ -31,9 +31,7 @@ export default function ScoreboardView({
 
           {roundResults && (
             <div className="mb-8">
-              <h2 className="text-xl font-semibold text-white mb-4">
-                Answers
-              </h2>
+              <h2 className="text-xl font-semibold text-white mb-4">Answers</h2>
               <div className="space-y-2">
                 {roundResults.map((result, index) => (
                   <div
@@ -119,5 +117,5 @@ export default function ScoreboardView({
         </div>
       </div>
     </div>
-  );
+  )
 }

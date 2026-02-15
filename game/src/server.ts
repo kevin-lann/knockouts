@@ -1,51 +1,59 @@
-import type * as Party from "partykit/server";
-import type {
+import type * as Party from "partykit/server"
+import {
+  type Player,
+  type RoomSettings,
+  type ClientMessage,
+  type ServerMessage,
+  type Question,
+  type Answer,
+  type RoundResult,
+} from "./types"
+import {
   GameState,
-  Player,
-  RoomSettings,
-  ClientMessage,
-  ServerMessage,
-  Question,
-  Answer,
-  RoundResult,
-} from "./types";
-import { fetchQuestion, getBotAnswer } from "./db";
-import { validateAnswer, findDuplicates } from "./validation";
-import { DEFAULT_ROUND_DURATION, MAX_PLAYERS as MAX_PLAYERS_CONSTANT } from "./constants/magic-numbers";
+  ServerMessageType,
+  BotDifficulty,
+  ClientMessageType,
+} from "./types"
+import { fetchQuestion, getBotAnswer } from "./db"
+import { validateAnswer, findDuplicates } from "./validation"
+import {
+  DEFAULT_ROUND_DURATION,
+  MAX_PLAYERS as MAX_PLAYERS_CONSTANT,
+} from "./constants/magic-numbers"
 export default class GameServer implements Party.Server {
   // Core state
-  gameState: GameState = "LOBBY";
-  players: Map<string, Player> = new Map();
-  isPublic: boolean = false; // Track if room is public or private
+  gameState: GameState = GameState.LOBBY
+  players: Map<string, Player> = new Map()
+  isPublic: boolean = false // Track if room is public or private
   settings: RoomSettings = {
     botEnabled: true,
-    botDifficulty: "easy",
+    botDifficulty: BotDifficulty.EASY,
     theme: null,
     speedMultiplier: 1.0,
-  };
+  }
 
   // Round state
-  currentQuestion: Question | null = null;
-  currentAnswers: Answer[] = [];
-  timer: number = 0;
-  round: number = 0;
-  countdownTimer: number = 3;
-  timerInterval: ReturnType<typeof setInterval> | null = null;
+  currentQuestion: Question | null = null
+  currentAnswers: Answer[] = []
+  timer: number = 0
+  round: number = 0
+  countdownTimer: number = 3
+  timerInterval: ReturnType<typeof setInterval> | null = null
 
-  private static readonly MAX_PLAYERS = MAX_PLAYERS_CONSTANT;
+  private static readonly MAX_PLAYERS = MAX_PLAYERS_CONSTANT
 
   constructor(readonly room: Party.Room) {}
 
   private async notifyRegistry() {
     // Only notify registry for public rooms
     if (!this.isPublic) {
-      return;
+      return
     }
 
     try {
-      const registryParty = this.room.context.parties.registry;
-      const registryRoom = registryParty.get("main");
-      
+      const registryParty = this.room.context.parties.registry
+      const registryRoom = registryParty.get("main")
+
       await registryRoom.fetch({
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -55,10 +63,10 @@ export default class GameServer implements Party.Server {
           maxPlayers: GameServer.MAX_PLAYERS,
           gameState: this.gameState,
         }),
-      });
+      })
     } catch (error) {
       // Silently fail - registry might not be available in dev
-      console.error("Failed to notify registry:", error);
+      console.error("Failed to notify registry:", error)
     }
   }
 
@@ -66,7 +74,8 @@ export default class GameServer implements Party.Server {
     if (request.method === "GET") {
       // Check if room is available for public joining
       const isAvailable =
-        this.gameState === "LOBBY" && this.players.size < GameServer.MAX_PLAYERS;
+        this.gameState === GameState.LOBBY &&
+        this.players.size < GameServer.MAX_PLAYERS
       return new Response(
         JSON.stringify({
           available: isAvailable,
@@ -77,97 +86,111 @@ export default class GameServer implements Party.Server {
         {
           headers: { "Content-Type": "application/json" },
         }
-      );
+      )
     }
-    return new Response("Method not allowed", { status: 405 });
+    return new Response("Method not allowed", { status: 405 })
   }
 
-  onConnect(conn: Party.Connection, ctx: Party.ConnectionContext) {
-    console.log(`Player connected: ${conn.id} to room ${this.room.id}, current players: ${this.players.size}`);
+  onConnect(conn: Party.Connection, _ctx: Party.ConnectionContext) {
+    console.log(
+      `Player connected: ${conn.id} to room ${this.room.id}, current players: ${this.players.size}`
+    )
     // Don't send SYNC here - wait for JOIN_ROOM message to be processed
     // The JOIN_ROOM handler will send SYNC after adding the player to ensure they see themselves
   }
 
   onClose(conn: Party.Connection) {
-    console.log(`Player disconnected: ${conn.id}`);
-    const player = this.players.get(conn.id);
+    console.log(`Player disconnected: ${conn.id}`)
+    const player = this.players.get(conn.id)
     if (player) {
-      this.players.delete(conn.id);
+      this.players.delete(conn.id)
 
       // If host left, assign new host
       if (player.isHost && this.players.size > 0) {
-        const newHost = Array.from(this.players.values())[0];
-        newHost.isHost = true;
+        const newHost = Array.from(this.players.values())[0]
+        newHost.isHost = true
       }
 
       // If in lobby and no players left, reset
-      if (this.players.size === 0 && this.gameState === "LOBBY") {
-        this.gameState = "LOBBY";
-        this.round = 0;
+      if (this.players.size === 0 && this.gameState === GameState.LOBBY) {
+        this.gameState = GameState.LOBBY
+        this.round = 0
       }
 
-      this.broadcastPlayerUpdate();
-      this.notifyRegistry(); // Player count changed
+      this.broadcastPlayerUpdate()
+      this.notifyRegistry() // Player count changed
     }
   }
 
   onMessage(message: string, sender: Party.Connection) {
     try {
-      const msg: ClientMessage = JSON.parse(message);
-      this.handleMessage(msg, sender);
+      const msg: ClientMessage = JSON.parse(message)
+      this.handleMessage(msg, sender)
     } catch (error) {
-      console.error("Error parsing message:", error);
+      console.error("Error parsing message:", error)
       sender.send(
         JSON.stringify({
           type: "ERROR",
           message: "Invalid message format",
         } as ServerMessage)
-      );
+      )
     }
   }
 
   private handleMessage(msg: ClientMessage, sender: Party.Connection) {
     switch (msg.type) {
       case "JOIN_ROOM":
-        this.handleJoinRoom(msg, sender);
-        break;
+        this.handleJoinRoom(msg, sender)
+        break
       case "START_GAME":
-        this.handleStartGame(msg, sender);
-        break;
+        this.handleStartGame(msg, sender)
+        break
       case "SUBMIT":
-        this.handleSubmit(msg, sender);
-        break;
+        this.handleSubmit(msg, sender)
+        break
       case "NEXT_ROUND":
-        this.handleNextRound(msg, sender);
-        break;
+        this.handleNextRound(msg, sender)
+        break
+      case "LEAVE_ROOM":
+        this.handleLeaveRoom(sender)
+        break
     }
   }
 
-  private handleJoinRoom(msg: Extract<ClientMessage, { type: "JOIN_ROOM" }>, sender: Party.Connection) {
-    if (this.gameState !== "LOBBY") {
+  private handleLeaveRoom(sender: Party.Connection) {
+    this.players.delete(sender.id)
+    this.broadcastPlayerUpdate()
+    this.notifyRegistry()
+  }
+
+  private handleJoinRoom(
+    msg: Extract<ClientMessage, { type: ClientMessageType.JOIN_ROOM }>,
+    sender: Party.Connection
+  ) {
+    if (this.gameState !== GameState.LOBBY) {
       sender.send(
         JSON.stringify({
-          type: "ERROR",
+          type: ServerMessageType.ERROR,
           message: "Game already in progress",
         } as ServerMessage)
-      );
-      return;
+      )
+      return
     }
 
     if (this.players.size >= GameServer.MAX_PLAYERS) {
       sender.send(
         JSON.stringify({
-          type: "ERROR",
+          type: ServerMessageType.ERROR,
           message: "Room is full",
         } as ServerMessage)
-      );
-      return;
+      )
+      return
     }
 
     // Set room type on first player join (defaults to public if not specified)
-    const isFirstPlayer = this.players.size === 0;
+    const isFirstPlayer = this.players.size === 0
     if (isFirstPlayer) {
-      this.isPublic = msg.isPublic ?? true; // Default to public for backwards compatibility
+      this.isPublic = msg.isPublic ?? true // Default to public for backwards compatibility
     }
 
     const player: Player = {
@@ -179,195 +202,207 @@ export default class GameServer implements Party.Server {
       isBot: false,
       isEliminated: false,
       hasSubmitted: false,
-    };
+    }
 
-    this.players.set(sender.id, player);
-    console.log(`Player ${sender.id} (${msg.name}) joined. Total players: ${this.players.size}`);
-    console.log(`Room has ${this.room.connections.size} active connections`);
-    
+    this.players.set(sender.id, player)
+    console.log(
+      `Player ${sender.id} (${msg.name}) joined. Total players: ${this.players.size}`
+    )
+    console.log(`Room has ${this.room.connections.size} active connections`)
+
     // Send SYNC to the new player first (includes them in the player list)
     // This ensures they see themselves immediately
-    this.sendSync(sender);
-    
+    this.sendSync(sender)
+
     // Then broadcast PLAYER_UPDATE to ALL connections (including the new one)
     // This ensures everyone sees the updated player list
-    this.broadcastPlayerUpdate();
-    
-    this.notifyRegistry();
+    this.broadcastPlayerUpdate()
+
+    this.notifyRegistry()
   }
 
-  private handleStartGame(msg: Extract<ClientMessage, { type: "START_GAME" }>, sender: Party.Connection) {
-    const player = this.players.get(sender.id);
+  private handleStartGame(
+    msg: Extract<ClientMessage, { type: ClientMessageType.START_GAME }>,
+    sender: Party.Connection
+  ) {
+    const player = this.players.get(sender.id)
     if (!player?.isHost) {
       sender.send(
         JSON.stringify({
-          type: "ERROR",
+          type: ServerMessageType.ERROR,
           message: "Only host can start the game",
         } as ServerMessage)
-      );
-      return;
+      )
+      return
     }
 
     if (this.players.size < 2) {
       sender.send(
         JSON.stringify({
-          type: "ERROR",
+          type: ServerMessageType.ERROR,
           message: "Need at least 2 players to start",
         } as ServerMessage)
-      );
-      return;
+      )
+      return
     }
 
-    this.settings = msg.settings;
-    this.round = 0;
-    this.startGame();
-    this.notifyRegistry(); // Game starting - room no longer available
+    this.settings = msg.settings
+    this.round = 0
+    this.startGame()
+    this.notifyRegistry() // Game starting - room no longer available
   }
 
-  private handleSubmit(msg: Extract<ClientMessage, { type: "SUBMIT" }>, sender: Party.Connection) {
-    if (this.gameState !== "PLAYING") {
-      return;
+  private handleSubmit(
+    msg: Extract<ClientMessage, { type: ClientMessageType.SUBMIT }>,
+    sender: Party.Connection
+  ) {
+    if (this.gameState !== GameState.PLAYING) {
+      return
     }
 
-    const player = this.players.get(sender.id);
+    const player = this.players.get(sender.id)
     if (!player || player.isBot || player.isEliminated) {
-      return;
+      return
     }
 
     // Allow modification - update answer and mark as submitted
-    player.currentAnswer = msg.answer;
-    player.hasSubmitted = true;
+    player.currentAnswer = msg.answer
+    player.hasSubmitted = true
 
-    this.broadcastPlayerUpdate();
+    this.broadcastPlayerUpdate()
 
     // Check if all players have submitted
     const alivePlayers = Array.from(this.players.values()).filter(
       (p) => !p.isBot && !p.isEliminated
-    );
+    )
     if (alivePlayers.every((p) => p.hasSubmitted)) {
       // All submitted, process immediately
-      this.processRound();
+      this.processRound()
     }
   }
 
-  private handleNextRound(msg: Extract<ClientMessage, { type: "NEXT_ROUND" }>, sender: Party.Connection) {
-    const player = this.players.get(sender.id);
+  private handleNextRound(
+    msg: Extract<ClientMessage, { type: ClientMessageType.NEXT_ROUND }>,
+    sender: Party.Connection
+  ) {
+    const player = this.players.get(sender.id)
     if (!player?.isHost) {
       sender.send(
         JSON.stringify({
-          type: "ERROR",
+          type: ServerMessageType.ERROR,
           message: "Only host can start next round",
         } as ServerMessage)
-      );
-      return;
+      )
+      return
     }
 
-    if (this.gameState !== "SCOREBOARD") {
-      return;
+    if (this.gameState !== GameState.SCOREBOARD) {
+      return
     }
 
-    this.startGame();
+    this.startGame()
   }
 
   private async startGame() {
-    this.gameState = "FETCH_ROUND";
-    this.round++;
+    this.gameState = GameState.FETCH_ROUND
+    this.round++
 
     try {
       const alivePlayers = Array.from(this.players.values()).filter(
         (p) => !p.isBot && !p.isEliminated
-      );
+      )
       const { question, answers } = await fetchQuestion(
         alivePlayers.length,
         this.round,
         this.settings.theme || undefined
-      );
+      )
 
-      this.currentQuestion = question;
-      this.currentAnswers = answers;
+      this.currentQuestion = question
+      this.currentAnswers = answers
 
       // Reset player submission states
       for (const player of this.players.values()) {
         if (!player.isBot && !player.isEliminated) {
-          player.hasSubmitted = false;
-          player.currentAnswer = undefined;
+          player.hasSubmitted = false
+          player.currentAnswer = undefined
         }
       }
 
       // Start countdown
-      this.startCountdown();
+      this.startCountdown()
     } catch (error) {
-      console.error("Error fetching question:", error);
+      console.error("Error fetching question:", error)
       this.room.broadcast(
         JSON.stringify({
-          type: "ERROR",
+          type: ServerMessageType.ERROR,
           message: "Failed to fetch question",
         } as ServerMessage)
-      );
-      this.gameState = "LOBBY";
-      this.notifyRegistry(); // Back to lobby - room available again
+      )
+      this.gameState = GameState.LOBBY
+      this.notifyRegistry() // Back to lobby - room available again
     }
   }
 
   private startCountdown() {
-    this.gameState = "COUNTDOWN";
-    this.countdownTimer = 3;
+    this.gameState = GameState.COUNTDOWN
+    this.countdownTimer = 3
 
     const countdownInterval = setInterval(() => {
-      this.countdownTimer--;
+      this.countdownTimer--
       this.room.broadcast(
         JSON.stringify({
-          type: "TICK",
+          type: ServerMessageType.TICK,
           time: this.countdownTimer,
         } as ServerMessage)
-      );
+      )
 
       if (this.countdownTimer <= 0) {
-        clearInterval(countdownInterval);
-        this.startPlaying();
+        clearInterval(countdownInterval)
+        this.startPlaying()
       }
-    }, 1000);
+    }, 1000)
   }
 
   private startPlaying() {
-    this.gameState = "PLAYING";
-    const roundDuration = DEFAULT_ROUND_DURATION * this.settings.speedMultiplier; 
-    this.timer = Math.ceil(roundDuration);
+    this.gameState = GameState.PLAYING
+    const roundDuration =
+      DEFAULT_ROUND_DURATION * this.settings.speedMultiplier
+    this.timer = Math.ceil(roundDuration)
 
     this.room.broadcast(
       JSON.stringify({
-        type: "ROUND_START",
+        type: ServerMessageType.ROUND_START,
         question: this.currentQuestion!,
         answerCount: this.currentQuestion!.answer_count_cache,
       } as ServerMessage)
-    );
+    )
 
     this.timerInterval = setInterval(() => {
-      this.timer--;
+      this.timer--
       this.room.broadcast(
         JSON.stringify({
-          type: "TICK",
+          type: ServerMessageType.TICK,
           time: this.timer,
         } as ServerMessage)
-      );
+      )
 
       if (this.timer <= 0) {
         if (this.timerInterval) {
-          clearInterval(this.timerInterval);
-          this.timerInterval = null;
+          clearInterval(this.timerInterval)
+          this.timerInterval = null
         }
-        this.processRound();
+        this.processRound()
       }
-    }, 1000);
+    }, 1000)
   }
 
   private async processRound() {
     if (this.timerInterval) {
-      clearInterval(this.timerInterval);
-      this.timerInterval = null;
+      clearInterval(this.timerInterval)
+      this.timerInterval = null
     }
 
-    this.gameState = "PROCESSING";
+    this.gameState = GameState.PROCESSING
 
     // Inject bot answer if enabled
     if (this.settings.botEnabled && this.currentQuestion) {
@@ -375,7 +410,7 @@ export default class GameServer implements Party.Server {
         const botAnswer = await getBotAnswer(
           this.currentQuestion.id,
           this.settings.botDifficulty
-        );
+        )
 
         const botPlayer: Player = {
           id: "bot",
@@ -387,46 +422,49 @@ export default class GameServer implements Party.Server {
           isEliminated: false,
           currentAnswer: botAnswer.display_text,
           hasSubmitted: true,
-        };
+        }
 
         // Add bot to players temporarily for scoring
-        this.players.set("bot", botPlayer);
+        this.players.set("bot", botPlayer)
       } catch (error) {
-        console.error("Error getting bot answer:", error);
+        console.error("Error getting bot answer:", error)
       }
     }
 
     // Collect all submissions
-    const submissions = new Map<string, string>();
+    const submissions = new Map<string, string>()
     for (const [playerId, player] of this.players.entries()) {
       if (player.currentAnswer) {
-        submissions.set(playerId, player.currentAnswer);
+        submissions.set(playerId, player.currentAnswer)
       }
     }
 
     // Validate answers
-    const validatedAnswers = new Map<string, Answer | null>();
+    const validatedAnswers = new Map<string, Answer | null>()
     for (const [playerId, answer] of submissions.entries()) {
-      validatedAnswers.set(playerId, validateAnswer(answer, this.currentAnswers));
+      validatedAnswers.set(
+        playerId,
+        validateAnswer(answer, this.currentAnswers)
+      )
     }
 
     // Find duplicates
-    const duplicates = findDuplicates(submissions, this.currentAnswers);
+    const duplicates = findDuplicates(submissions, this.currentAnswers)
 
     // Calculate scores and build results
-    const results: RoundResult[] = [];
-    const correctAnswers = this.currentAnswers.map((a) => a.display_text);
+    const results: RoundResult[] = []
+    const correctAnswers = this.currentAnswers.map((a) => a.display_text)
 
     for (const [playerId, player] of this.players.entries()) {
-      const validated = validatedAnswers.get(playerId);
-      const isDuplicate = duplicates.has(playerId);
-      const isValid = validated !== null;
-      const points = isValid && !isDuplicate ? 1 : 0;
+      const validated = validatedAnswers.get(playerId)
+      const isDuplicate = duplicates.has(playerId)
+      const isValid = validated !== null
+      const points = isValid && !isDuplicate ? 1 : 0
 
-      player.score += points;
+      player.score += points
 
       if (!player.isBot && isDuplicate) {
-        player.isEliminated = true;
+        player.isEliminated = true
       }
 
       results.push({
@@ -436,59 +474,62 @@ export default class GameServer implements Party.Server {
         isValid,
         isDuplicate,
         points,
-      });
+      })
     }
 
     // Remove bot from players after scoring
     if (this.settings.botEnabled) {
-      this.players.delete("bot");
+      this.players.delete("bot")
     }
 
     // Reset submission states
     for (const player of this.players.values()) {
-      player.hasSubmitted = false;
-      player.currentAnswer = undefined;
+      player.hasSubmitted = false
+      player.currentAnswer = undefined
     }
 
-    this.gameState = "SCOREBOARD";
+    this.gameState = GameState.SCOREBOARD
 
     this.room.broadcast(
       JSON.stringify({
-        type: "ROUND_END",
+        type: ServerMessageType.ROUND_END,
         results,
         correctAnswers,
       } as ServerMessage)
-    );
+    )
 
-    this.broadcastPlayerUpdate();
+    this.broadcastPlayerUpdate()
   }
 
   private sendSync(conn: Party.Connection) {
     conn.send(
       JSON.stringify({
-        type: "SYNC",
+        type: ServerMessageType.SYNC,
         state: this.gameState,
         players: Array.from(this.players.values()),
         timer: this.timer,
         question: this.currentQuestion || undefined,
         round: this.round,
       } as ServerMessage)
-    );
+    )
   }
 
   private broadcastPlayerUpdate() {
-    const playerList = Array.from(this.players.values());
+    const playerList = Array.from(this.players.values())
     const message = JSON.stringify({
-      type: "PLAYER_UPDATE",
+      type: ServerMessageType.PLAYER_UPDATE,
       players: playerList,
-    } as ServerMessage);
-    
-    console.log(`Broadcasting PLAYER_UPDATE to all connections. Players: ${playerList.length}`, playerList.map(p => p.name));
-    console.log(`Room connections count: ${this.room.connections.size}`);
-    
+    } as ServerMessage)
+
+    console.log(
+      `Broadcasting PLAYER_UPDATE to all connections. Players: ${playerList.length}`,
+      playerList.map((p) => p.name)
+    )
+    console.log(`Room connections count: ${this.room.connections.size}`)
+
     // Broadcast to all connections in the room (includes all connected clients)
-    this.room.broadcast(message);
+    this.room.broadcast(message)
   }
 }
 
-GameServer satisfies Party.Worker;
+GameServer satisfies Party.Worker
