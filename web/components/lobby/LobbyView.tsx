@@ -13,14 +13,14 @@ import RoomSettingsPanel from "./RoomSettingsPanel"
 import { useRouter } from "next/navigation"
 
 interface LobbyViewProps {
-  roomId: string;
-  isHost: boolean;
-  send: (message: ClientMessage) => void;
+  roomId: string
+  send: (message: ClientMessage) => void
 }
 
-export default function LobbyView({ roomId, isHost, send }: LobbyViewProps) {
+export default function LobbyView({ roomId, send }: LobbyViewProps) {
   const router = useRouter()
-  const { players } = useGameStore()
+  const { players, playerId } = useGameStore()
+  const isCurrentPlayerHost = players.find((p) => p.id === playerId)?.isHost
   const [settings, setSettings] = useState<RoomSettings>({
     botEnabled: true,
     botDifficulty: BotDifficulty.MEDIUM,
@@ -91,7 +91,7 @@ export default function LobbyView({ roomId, isHost, send }: LobbyViewProps) {
               )}
             </div>
 
-            {isHost && (
+            {isCurrentPlayerHost && (
               <div>
                 <h2 className="text-xl font-semibold text-white mb-4">
                   Settings
@@ -107,7 +107,7 @@ export default function LobbyView({ roomId, isHost, send }: LobbyViewProps) {
               </div>
             )}
 
-            {!isHost && (
+            {!isCurrentPlayerHost && (
               <div>
                 <h2 className="text-xl font-semibold text-white mb-4">
                   Waiting for host to start...

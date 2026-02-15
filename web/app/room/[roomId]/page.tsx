@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useParams, useSearchParams } from "next/navigation"
 import { usePartySocket } from "@/hooks/usePartySocket"
 import { useGameStore } from "@/lib/store"
@@ -10,6 +10,9 @@ import ScoreboardView from "@/components/scoreboard/ScoreboardView"
 import CountdownOverlay from "@/components/game/CountdownOverlay"
 import ProcessingView from "@/components/game/ProcessingView"
 import JoinRoomForm from "@/components/room/JoinRoomForm"
+import { ClientMessageType, GameState } from "@/lib/types"
+
+const CLIENT_ID_STORAGE_KEY = "knockouts-client-id"
 
 export default function RoomPage() {
   const params = useParams()
@@ -17,10 +20,23 @@ export default function RoomPage() {
   const roomId = params.roomId as string
   const name = searchParams.get("name")
   const avatar = searchParams.get("avatar")
-  const isHost = searchParams.get("host") === "true"
   // If private=true is present, it's a private room
   // Otherwise, it's a public room (found via registry or newly created)
   const isPublic = searchParams.get("private") !== "true"
+  const [clientId] = useState<string | null>(() => {
+    if (typeof window === "undefined") {
+      return null
+    }
+
+    const existingClientId = window.sessionStorage.getItem(CLIENT_ID_STORAGE_KEY)
+    if (existingClientId) {
+      return existingClientId
+    }
+
+    const newClientId = crypto.randomUUID()
+    window.sessionStorage.setItem(CLIENT_ID_STORAGE_KEY, newClientId)
+    return newClientId
+  })
 
   const { send } = usePartySocket(roomId)
   const { gameState, setRoomId, connected, playerId } = useGameStore()
@@ -33,7 +49,7 @@ export default function RoomPage() {
   }, [name, avatar, roomId, setRoomId])
 
   useEffect(() => {
-    if (!connected || !playerId || !name || !avatar || !send) {
+    if (!connected || !playerId || !name || !avatar || !send || !clientId) {
       return
     }
 
@@ -44,13 +60,14 @@ export default function RoomPage() {
 
     console.log("Sending JOIN_ROOM:", { name, avatar, isPublic })
     send({
-      type: "JOIN_ROOM",
+      type: ClientMessageType.JOIN_ROOM,
       name,
       avatar,
+      clientId,
       isPublic,
     })
     joinedConnectionIdRef.current = playerId
-  }, [connected, playerId, name, avatar, send, isPublic])
+  }, [connected, playerId, name, avatar, send, isPublic, clientId])
 
   // Show join form if name/avatar not provided
   if (!name || !avatar) {
@@ -59,14 +76,14 @@ export default function RoomPage() {
 
   return (
     <div className="min-h-screen">
-      {gameState === "LOBBY" && (
-        <LobbyView roomId={roomId} isHost={isHost} send={send} />
+      {gameState === GameState.LOBBY && (
+        <LobbyView roomId={roomId} send={send} />
       )}
-      {gameState === "COUNTDOWN" && <CountdownOverlay />}
-      {gameState === "PLAYING" && <GameView send={send} />}
-      {gameState === "PROCESSING" && <ProcessingView />}
-      {gameState === "SCOREBOARD" && (
-        <ScoreboardView roomId={roomId} isHost={isHost} send={send} />
+      {gameState === GameState.COUNTDOWN && <CountdownOverlay />}
+      {gameState === GameState.PLAYING && <GameView send={send} />}
+      {gameState === GameState.PROCESSING && <ProcessingView />}
+      {gameState === GameState.SCOREBOARD && (
+        <ScoreboardView roomId={roomId} send={send} />
       )}
     </div>
   )

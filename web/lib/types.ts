@@ -88,7 +88,13 @@ export enum ServerMessageType {
 
 // Client -> Server messages
 export type ClientMessage =
-  | { type: ClientMessageType.JOIN_ROOM; name: string; avatar: string; isPublic?: boolean }
+  | {
+      type: ClientMessageType.JOIN_ROOM
+      name: string
+      avatar: string
+      clientId: string
+      isPublic?: boolean
+    }
   | { type: ClientMessageType.LEAVE_ROOM }
   | { type: ClientMessageType.START_GAME; settings: RoomSettings }
   | { type: ClientMessageType.SUBMIT; answer: string }

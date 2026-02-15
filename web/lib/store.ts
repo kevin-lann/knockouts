@@ -1,12 +1,13 @@
 "use client"
 
 import { create } from "zustand"
-import type {
+import {
+ServerMessageType,
   GameState,
-  Player,
-  Question,
-  RoundResult,
-  ServerMessage,
+  type Player,
+  type Question,
+  type RoundResult,
+  type ServerMessage,
 } from "./types"
 import { DEFAULT_ROUND_DURATION } from "@/app/constants/magic-numbers"
 
@@ -69,7 +70,7 @@ export const useGameStore = create<GameStore>((set) => ({
 
   handleServerMessage: (msg) => {
     switch (msg.type) {
-      case "SYNC":
+      case ServerMessageType.SYNC:
         console.log("SYNC received:", msg.players?.length, "players")
         set({
           gameState: msg.state,
@@ -79,7 +80,7 @@ export const useGameStore = create<GameStore>((set) => ({
           round: msg.round,
         })
         break
-      case "PLAYER_UPDATE":
+      case ServerMessageType.PLAYER_UPDATE:
         console.log("PLAYER_UPDATE received:", msg.players?.length, "players", msg.players)
         if (!Array.isArray(msg.players)) {
           console.error("PLAYER_UPDATE: players is not an array:", msg.players)
@@ -92,12 +93,12 @@ export const useGameStore = create<GameStore>((set) => ({
           set({ hasSubmitted: currentPlayer.hasSubmitted })
         }
         break
-      case "TICK":
+      case ServerMessageType.TICK:
         set({ timer: msg.time })
         break
-      case "ROUND_START":
+      case ServerMessageType.ROUND_START:
         set({
-          gameState: "PLAYING",
+          gameState: GameState.PLAYING,
           question: msg.question,
           answerCount: msg.answerCount,
           timer: DEFAULT_ROUND_DURATION,
@@ -107,14 +108,14 @@ export const useGameStore = create<GameStore>((set) => ({
           correctAnswers: null,
         })
         break
-      case "ROUND_END":
+      case ServerMessageType.ROUND_END:
         set({
-          gameState: "SCOREBOARD",
+          gameState: GameState.SCOREBOARD,
           roundResults: msg.results,
           correctAnswers: msg.correctAnswers,
         })
         break
-      case "ERROR":
+      case ServerMessageType.ERROR:
         console.error("Server error:", msg.message)
         break
     }

@@ -1,7 +1,8 @@
 "use client"
 
 import { useGameStore } from "@/lib/store"
-import type { ClientMessage } from "@/lib/types"
+import { ClientMessageType,
+type ClientMessage } from "@/lib/types"
 import Timer from "./Timer"
 import AnswerInput from "./AnswerInput"
 import PlayerList from "../lobby/PlayerList"
@@ -16,7 +17,7 @@ export default function GameView({ send }: GameViewProps) {
 
   const handleSubmit = () => {
     if (!currentInput.trim() || hasSubmitted) return
-    send({ type: "SUBMIT", answer: currentInput.trim() })
+    send({ type: ClientMessageType.SUBMIT, answer: currentInput.trim() })
   }
 
   return (

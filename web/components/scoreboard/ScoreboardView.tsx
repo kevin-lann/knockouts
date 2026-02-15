@@ -1,24 +1,22 @@
 "use client"
 
 import { useGameStore } from "@/lib/store"
-import type { ClientMessage } from "@/lib/types"
+import { ClientMessageType, type ClientMessage } from "@/lib/types"
 import PlayerList from "../lobby/PlayerList"
 
 interface ScoreboardViewProps {
-  roomId: string;
-  isHost: boolean;
-  send: (message: ClientMessage) => void;
+  roomId: string
+  send: (message: ClientMessage) => void
 }
 
 export default function ScoreboardView({
-  roomId,
-  isHost,
   send,
 }: ScoreboardViewProps) {
-  const { roundResults, correctAnswers, players, round } = useGameStore()
+  const { roundResults, correctAnswers, players, round, playerId } = useGameStore()
+  const isCurrentPlayerHost = players.find((player) => player.id === playerId)?.isHost
 
   const handleNextRound = () => {
-    send({ type: "NEXT_ROUND" })
+    send({ type: ClientMessageType.NEXT_ROUND })
   }
 
   return (
@@ -100,7 +98,7 @@ export default function ScoreboardView({
             <PlayerList players={players.sort((a, b) => b.score - a.score)} />
           </div>
 
-          {isHost && (
+          {isCurrentPlayerHost && (
             <button
               onClick={handleNextRound}
               className="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all"
@@ -109,7 +107,7 @@ export default function ScoreboardView({
             </button>
           )}
 
-          {!isHost && (
+          {!isCurrentPlayerHost && (
             <p className="text-white/70 text-center">
               Waiting for host to start next round...
             </p>

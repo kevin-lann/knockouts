@@ -24,6 +24,8 @@ export default class GameServer implements Party.Server {
   // Core state
   gameState: GameState = GameState.LOBBY
   players: Map<string, Player> = new Map()
+  connectionClientIds: Map<string, string> = new Map()
+  hostClientId: string | null = null
   isPublic: boolean = false // Track if room is public or private
   settings: RoomSettings = {
     botEnabled: true,
@@ -101,20 +103,17 @@ export default class GameServer implements Party.Server {
 
   onClose(conn: Party.Connection) {
     console.log(`Player disconnected: ${conn.id}`)
+    this.connectionClientIds.delete(conn.id)
     const player = this.players.get(conn.id)
     if (player) {
       this.players.delete(conn.id)
-
-      // If host left, assign new host
-      if (player.isHost && this.players.size > 0) {
-        const newHost = Array.from(this.players.values())[0]
-        newHost.isHost = true
-      }
+      this.ensureConnectedHost()
 
       // If in lobby and no players left, reset
       if (this.players.size === 0 && this.gameState === GameState.LOBBY) {
         this.gameState = GameState.LOBBY
         this.round = 0
+        this.hostClientId = null
       }
 
       this.broadcastPlayerUpdate()
@@ -158,7 +157,10 @@ export default class GameServer implements Party.Server {
   }
 
   private handleLeaveRoom(sender: Party.Connection) {
+    const leavingPlayer = this.players.get(sender.id)
+    this.connectionClientIds.delete(sender.id)
     this.players.delete(sender.id)
+    this.ensureConnectedHost(leavingPlayer?.isHost ?? false)
     this.broadcastPlayerUpdate()
     this.notifyRegistry()
   }
@@ -193,12 +195,29 @@ export default class GameServer implements Party.Server {
       this.isPublic = msg.isPublic ?? true // Default to public for backwards compatibility
     }
 
+    this.connectionClientIds.set(sender.id, msg.clientId)
+
+    const existingHostConnectionId = Array.from(this.players.entries()).find(
+      ([, p]) => p.isHost
+    )?.[0]
+    const shouldBeHost =
+      this.hostClientId === msg.clientId ||
+      (!existingHostConnectionId &&
+        (this.hostClientId === null || this.players.size === 0))
+
+    if (shouldBeHost) {
+      this.hostClientId = msg.clientId
+      for (const existingPlayer of this.players.values()) {
+        existingPlayer.isHost = false
+      }
+    }
+
     const player: Player = {
       id: sender.id,
       name: msg.name,
       avatar: msg.avatar,
       score: 0,
-      isHost: isFirstPlayer,
+      isHost: shouldBeHost,
       isBot: false,
       isEliminated: false,
       hasSubmitted: false,
@@ -514,6 +533,49 @@ export default class GameServer implements Party.Server {
     )
   }
 
+  /**
+   * If a player reconnects and is the room's original host, they should be promoted back to host.
+   */
+  private ensureConnectedHost(forceFallback = false) {
+    if (this.players.size === 0) {
+      this.hostClientId = null
+      return
+    }
+
+    const currentHost = Array.from(this.players.values()).find((p) => p.isHost)
+    if (currentHost) {
+      const hostClientId = this.connectionClientIds.get(currentHost.id)
+      if (hostClientId) {
+        this.hostClientId = hostClientId
+      }
+      return
+    }
+
+    const hostReconnectedEntry = Array.from(this.players.entries()).find(
+      ([connId]) => this.connectionClientIds.get(connId) === this.hostClientId
+    )
+
+    if (hostReconnectedEntry) {
+      const [, hostPlayer] = hostReconnectedEntry
+      hostPlayer.isHost = true
+      return
+    }
+
+    if (!forceFallback && this.hostClientId !== null) {
+      return
+    }
+
+    const [fallbackConnId, fallbackHost] = Array.from(this.players.entries())[0]
+    for (const player of this.players.values()) {
+      player.isHost = false
+    }
+    fallbackHost.isHost = true
+    this.hostClientId = this.connectionClientIds.get(fallbackConnId) ?? null
+  }
+
+  /**
+   * Broadcast the current player list to all connections in the room.
+   */
   private broadcastPlayerUpdate() {
     const playerList = Array.from(this.players.values())
     const message = JSON.stringify({
