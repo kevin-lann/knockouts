@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { nanoid } from "nanoid"
+import { createPublicRoomId } from "@/lib/roomId"
 
 const PARTYKIT_HOST =
   typeof process.env.NEXT_PUBLIC_PARTYKIT_HOST !== "undefined"
@@ -7,13 +7,13 @@ const PARTYKIT_HOST =
     : "localhost:1999"
 
 interface RegistryRoom {
-  roomId: string;
-  playerCount: number;
-  maxPlayers: number;
+  roomId: string
+  playerCount: number
+  maxPlayers: number
 }
 
 interface RegistryResponse {
-  rooms: RegistryRoom[];
+  rooms: RegistryRoom[]
 }
 
 export async function GET() {
@@ -48,7 +48,7 @@ export async function GET() {
   }
 
   // No available room found in registry, create a new one
-  const newRoomId = nanoid(8)
+  const newRoomId = createPublicRoomId()
   return NextResponse.json({
     roomId: newRoomId,
     available: true,

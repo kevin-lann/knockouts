@@ -27,6 +27,17 @@ export enum BotDifficulty {
   CHAOS = "chaos",
 }
 
+export enum AvatarId {
+  GRIN = "GRIN",
+  COOL = "COOL",
+  NERD = "NERD",
+  SMILE = "SMILE",
+  PARTY = "PARTY",
+  ROBOT = "ROBOT",
+  ALIEN = "ALIEN",
+  GAMEPAD = "GAMEPAD",
+}
+
 // Room settings
 export interface RoomSettings {
   botEnabled: boolean;
@@ -89,10 +100,8 @@ export enum ServerMessageType {
 export type ClientMessage =
   | {
       type: ClientMessageType.JOIN_ROOM
-      name: string
-      avatar: string
       clientId: string
-      isPublic?: boolean
+      joinToken: string
     }
   | { type: ClientMessageType.LEAVE_ROOM }
   | { type: ClientMessageType.START_GAME; settings: RoomSettings }
