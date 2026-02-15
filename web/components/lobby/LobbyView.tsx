@@ -10,8 +10,8 @@ import {
 } from "@/lib/types"
 import PlayerList from "./PlayerList"
 import RoomSettingsPanel from "./RoomSettingsPanel"
-import { useRouter } from "next/navigation"
 import { toast } from "react-hot-toast"
+import LeaveRoomButton from "../room/LeaveRoomButton"
 
 interface LobbyViewProps {
   roomId: string
@@ -19,7 +19,6 @@ interface LobbyViewProps {
 }
 
 export default function LobbyView({ roomId, send }: LobbyViewProps) {
-  const router = useRouter()
   const { players, playerId } = useGameStore()
   const isCurrentPlayerHost = players.find((p) => p.id === playerId)?.isHost
   const [settings, setSettings] = useState<RoomSettings>({
@@ -38,11 +37,6 @@ export default function LobbyView({ roomId, send }: LobbyViewProps) {
       return
     }
     send({ type: ClientMessageType.START_GAME, settings })
-  }
-
-  const handleLeaveRoom = () => {
-    send({ type: ClientMessageType.LEAVE_ROOM })
-    router.push("/")
   }
 
   const copyRoomLink = () => {
@@ -64,12 +58,7 @@ export default function LobbyView({ roomId, send }: LobbyViewProps) {
               >
                 Copy Link
               </button>
-              <button
-                onClick={handleLeaveRoom}
-                className="px-4 py-2 bg-red-400 text-white rounded-lg hover:bg-red-500 transition-all cursor-pointer"
-              >
-                Leave Room
-              </button>
+              <LeaveRoomButton send={send} />
             </div>
           </div>
 

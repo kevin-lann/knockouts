@@ -6,6 +6,7 @@ type ClientMessage } from "@/lib/types"
 import Timer from "./Timer"
 import AnswerInput from "./AnswerInput"
 import PlayerList from "../lobby/PlayerList"
+import LeaveRoomButton from "../room/LeaveRoomButton"
 
 interface GameViewProps {
   send: (message: ClientMessage) => void;
@@ -23,9 +24,14 @@ export default function GameView({ send }: GameViewProps) {
   return (
     <div className="min-h-screen p-8">
       <div className="max-w-4xl mx-auto">
-        <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8">
+        <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 relative">
           <div className="text-center mb-8">
             <Timer time={timer} />
+          </div>
+          <div>
+            <div className="absolute top-4 right-4">
+              <LeaveRoomButton send={send} />
+            </div>
           </div>
 
           {question && (

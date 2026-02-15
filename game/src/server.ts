@@ -218,7 +218,9 @@ export default class GameServer implements Party.Server {
       this.isPublic = isPublicRoomId(this.room.id)
     }
 
-    const existingClientIdForConnection = this.connectionClientIds.get(sender.id)
+    const existingClientIdForConnection = this.connectionClientIds.get(
+      sender.id
+    )
     if (
       existingClientIdForConnection &&
       existingClientIdForConnection !== msg.clientId
@@ -307,7 +309,11 @@ export default class GameServer implements Party.Server {
     console.log(
       `Player ${sender.id} (${identity.name}) joined. Total players: ${this.players.size}`
     )
-    console.log(`Room has ${Array.from(this.room.getConnections()).length} active connections`)
+    console.log(
+      `Room has ${
+        Array.from(this.room.getConnections()).length
+      } active connections`
+    )
 
     // Send SYNC to the new player first (includes them in the player list)
     // This ensures they see themselves immediately
@@ -427,8 +433,11 @@ export default class GameServer implements Party.Server {
         }
       }
 
-      // Start countdown
-      this.startCountdown()
+      if (this.round === 1) {
+        this.startCountdown()
+      } else {
+        this.startPlaying()
+      }
     } catch (error) {
       console.error("Error fetching question:", error)
       this.room.broadcast(
@@ -467,8 +476,7 @@ export default class GameServer implements Party.Server {
 
   private startPlaying() {
     this.gameState = GameState.PLAYING
-    const roundDuration =
-      DEFAULT_ROUND_DURATION * this.settings.speedMultiplier
+    const roundDuration = DEFAULT_ROUND_DURATION * this.settings.speedMultiplier
     this.timer = Math.ceil(roundDuration)
 
     this.room.broadcast(
@@ -670,7 +678,9 @@ export default class GameServer implements Party.Server {
       `Broadcasting PLAYER_UPDATE to all connections. Players: ${playerList.length}`,
       playerList.map((p) => p.name)
     )
-    console.log(`Room connections count: ${Array.from(this.room.getConnections()).length}`)
+    console.log(
+      `Room connections count: ${Array.from(this.room.getConnections()).length}`
+    )
 
     // Broadcast to all connections in the room (includes all connected clients)
     this.room.broadcast(message)

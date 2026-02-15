@@ -3,6 +3,7 @@
 import { useGameStore } from "@/lib/store"
 import { ClientMessageType, type ClientMessage } from "@/lib/types"
 import PlayerList from "../lobby/PlayerList"
+import LeaveRoomButton from "../room/LeaveRoomButton"
 
 interface ScoreboardViewProps {
   roomId: string
@@ -22,10 +23,13 @@ export default function ScoreboardView({
   return (
     <div className="min-h-screen p-8">
       <div className="max-w-4xl mx-auto">
-        <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8">
+        <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 relative">
           <h1 className="text-3xl font-bold text-white mb-2 text-center">
             Round {round} Results
           </h1>
+          <div className="absolute top-4 right-4">
+            <LeaveRoomButton send={send} />
+          </div>
 
           {roundResults && (
             <div className="mb-8">
