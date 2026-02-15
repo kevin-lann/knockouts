@@ -11,6 +11,7 @@ import {
 import PlayerList from "./PlayerList"
 import RoomSettingsPanel from "./RoomSettingsPanel"
 import { useRouter } from "next/navigation"
+import { toast } from "react-hot-toast"
 
 interface LobbyViewProps {
   roomId: string
@@ -33,7 +34,7 @@ export default function LobbyView({ roomId, send }: LobbyViewProps) {
 
   const handleStartGame = () => {
     if (playersArray.length < 2) {
-      alert("Need at least 2 players to start")
+      toast.error("Need at least 2 players to start")
       return
     }
     send({ type: ClientMessageType.START_GAME, settings })
@@ -47,7 +48,7 @@ export default function LobbyView({ roomId, send }: LobbyViewProps) {
   const copyRoomLink = () => {
     const url = `${window.location.origin}/room/${roomId}`
     navigator.clipboard.writeText(url)
-    alert("Room link copied!")
+    toast.success("Room link copied!")
   }
 
   return (
