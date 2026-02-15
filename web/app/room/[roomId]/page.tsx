@@ -1,7 +1,7 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import { useParams, useSearchParams } from "next/navigation"
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react"
+import { useParams } from "next/navigation"
 import { usePartySocket } from "@/hooks/usePartySocket"
 import { useGameStore } from "@/lib/store"
 import LobbyView from "@/components/lobby/LobbyView"
@@ -11,20 +11,38 @@ import CountdownOverlay from "@/components/game/CountdownOverlay"
 import ProcessingView from "@/components/game/ProcessingView"
 import JoinRoomForm from "@/components/room/JoinRoomForm"
 import { ClientMessageType, GameState } from "@/lib/types"
+import {
+  getStoredPlayerProfile,
+  setStoredPlayerProfile,
+  type PlayerProfile,
+} from "@/lib/playerProfile"
 
 const CLIENT_ID_STORAGE_KEY = "knockouts-client-id"
 
 export default function RoomPage() {
   const params = useParams()
-  const searchParams = useSearchParams()
   const roomId = params.roomId as string
-  const name = searchParams.get("name")
-  const avatar = searchParams.get("avatar")
-  // If private=true is present, it's a private room
-  // Otherwise, it's a public room (found via registry or newly created)
-  const isPublic = searchParams.get("private") !== "true"
-  const [clientId] = useState<string | null>(() => {
-    if (typeof window === "undefined") {
+  const [joinedProfile, setJoinedProfile] = useState<PlayerProfile | null>(null)
+  // use this as a hack to ensure the component is hydrated
+  const hydrated = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  )
+  // only when component is hydrated we should access session storage. This is to
+  // avoid SSCR/CSR hydration issues since session storage differs between server and client.
+  const storedProfile = useMemo(() => {
+    if (!hydrated) {
+      return null
+    }
+    return getStoredPlayerProfile()
+  }, [hydrated])
+
+  const profile = joinedProfile ?? storedProfile
+
+  // Same here, only when component is hydrated we should access session storage.
+  const clientId = useMemo(() => {
+    if (!hydrated) {
       return null
     }
 
@@ -36,20 +54,20 @@ export default function RoomPage() {
     const newClientId = crypto.randomUUID()
     window.sessionStorage.setItem(CLIENT_ID_STORAGE_KEY, newClientId)
     return newClientId
-  })
+  }, [hydrated])
 
   const { send } = usePartySocket(roomId)
   const { gameState, setRoomId, connected, playerId } = useGameStore()
   const joinedConnectionIdRef = useRef<string | null>(null)
 
   useEffect(() => {
-    if (name && avatar) {
+    if (profile) {
       setRoomId(roomId)
     }
-  }, [name, avatar, roomId, setRoomId])
+  }, [profile, roomId, setRoomId])
 
   useEffect(() => {
-    if (!connected || !playerId || !name || !avatar || !send || !clientId) {
+    if (!connected || !playerId || !profile || !send || !clientId) {
       return
     }
 
@@ -58,20 +76,58 @@ export default function RoomPage() {
       return
     }
 
-    console.log("Sending JOIN_ROOM:", { name, avatar, isPublic })
-    send({
-      type: ClientMessageType.JOIN_ROOM,
-      name,
-      avatar,
-      clientId,
-      isPublic,
-    })
-    joinedConnectionIdRef.current = playerId
-  }, [connected, playerId, name, avatar, send, isPublic, clientId])
+    const sendJoin = async () => {
+      try {
+        const response = await fetch("/api/join-token", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            roomId,
+            clientId,
+            name: profile.name,
+            avatarId: profile.avatarId,
+          }),
+        })
 
-  // Show join form if name/avatar not provided
-  if (!name || !avatar) {
-    return <JoinRoomForm roomId={roomId} />
+        if (!response.ok) {
+          console.error("Failed to fetch join token")
+          return
+        }
+
+        const data = (await response.json()) as { joinToken?: string }
+        if (!data.joinToken) {
+          console.error("Join token missing in response")
+          return
+        }
+
+        send({
+          type: ClientMessageType.JOIN_ROOM,
+          clientId,
+          joinToken: data.joinToken,
+        })
+        joinedConnectionIdRef.current = playerId
+      } catch (error) {
+        console.error("Failed to join room:", error)
+      }
+    }
+
+    void sendJoin()
+  }, [connected, playerId, profile, send, clientId, roomId])
+
+  const handleJoin = (nextProfile: PlayerProfile) => {
+    setStoredPlayerProfile(nextProfile)
+    setJoinedProfile(nextProfile)
+  }
+
+  if (!hydrated) {
+    return <div className="min-h-screen" />
+  }
+
+  // Show join form if no stored profile is available
+  if (!profile) {
+    return <JoinRoomForm roomId={roomId} initialProfile={null} onJoin={handleJoin} />
   }
 
   return (

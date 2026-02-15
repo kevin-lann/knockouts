@@ -5,8 +5,24 @@ import { MEAN_END_MULTIPLIER, MEAN_START_MULTIPLIER, ROUNDS_UNTIL_MEAN_END } fro
 const sql = neon(process.env.DATABASE_URL!)
 
 export interface QuestionWithAnswers {
-  question: Question;
-  answers: Answer[];
+  question: Question
+  answers: Answer[]
+}
+
+interface QuestionDbRow extends Question {
+  answers: Answer[] | string
+}
+
+interface AnswerDbRow {
+  id: string
+  question_id: string
+  display_text: string
+  variants: string[] | unknown
+  popularity_rank: number
+}
+
+interface WeightedQuestion extends QuestionDbRow {
+  weight: number
 }
 
 /**
@@ -50,7 +66,7 @@ export async function fetchQuestion(
     HAVING COUNT(a.id) > 0
   `
 
-  const rows = (await sql.query(query, params)) as any[]
+  const rows = (await sql.query(query, params)) as QuestionDbRow[]
 
   if (rows.length === 0) {
     throw new Error("No questions found matching criteria")
@@ -64,7 +80,7 @@ export async function fetchQuestion(
   const targetMean = meanStart - (meanStart - meanEnd) * progress
 
   // Weight questions by how close they are to target mean
-  const weightedQuestions = rows.map((row: any) => {
+  const weightedQuestions = rows.map((row: QuestionDbRow): WeightedQuestion => {
     const answerCount = row.answer_count_cache
     const distance = Math.abs(answerCount - targetMean)
     // Higher weight for questions closer to target
@@ -74,7 +90,7 @@ export async function fetchQuestion(
 
   // Select randomly weighted by distance to target
   const totalWeight = weightedQuestions.reduce(
-    (sum: number, q: any) => sum + q.weight,
+    (sum: number, q: WeightedQuestion) => sum + q.weight,
     0
   )
   let random = Math.random() * totalWeight
@@ -105,7 +121,7 @@ export async function fetchQuestion(
       difficulty: selected.difficulty,
       answer_count_cache: selected.answer_count_cache,
     },
-    answers: answersArray.map((a: any) => ({
+    answers: answersArray.map((a: AnswerDbRow) => ({
       id: a.id,
       question_id: a.question_id,
       display_text: a.display_text,
@@ -151,7 +167,7 @@ export async function getBotAnswer(
     LIMIT 1
   `
 
-  const rows = (await sql.query(query, params)) as any[]
+  const rows = (await sql.query(query, params)) as AnswerDbRow[]
 
   if (rows.length === 0) {
     // Fallback: get any answer if no match
@@ -162,7 +178,7 @@ export async function getBotAnswer(
        ORDER BY RANDOM()
        LIMIT 1`,
       [questionId]
-    )) as any[]
+    )) as AnswerDbRow[]
     if (fallbackRows.length === 0) {
       throw new Error(`No answers found for question ${questionId}`)
     }

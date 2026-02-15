@@ -1,28 +1,33 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter, useSearchParams } from "next/navigation"
-import { AVATARS } from "@/app/constants/avatars"
+import { AVATAR_OPTIONS, DEFAULT_AVATAR_ID } from "@/app/constants/avatars"
+import { AvatarId } from "@/lib/types"
+import type { PlayerProfile } from "@/lib/playerProfile"
 
 interface JoinRoomFormProps {
   roomId: string
+  initialProfile: PlayerProfile | null
+  onJoin: (profile: PlayerProfile) => void
 }
 
-export default function JoinRoomForm({ roomId }: JoinRoomFormProps) {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const [name, setName] = useState("")
-  const [avatar, setAvatar] = useState(AVATARS[0])
+export default function JoinRoomForm({
+  roomId,
+  initialProfile,
+  onJoin,
+}: JoinRoomFormProps) {
+  const [name, setName] = useState(initialProfile?.name ?? "")
+  const [avatarId, setAvatarId] = useState<AvatarId>(
+    initialProfile?.avatarId ?? DEFAULT_AVATAR_ID
+  )
 
   const handleJoin = () => {
     if (!name.trim()) return
 
-    // Preserve existing query params (like private=true) and add name/avatar
-    const params = new URLSearchParams(searchParams.toString())
-    params.set("name", name.trim())
-    params.set("avatar", avatar)
-
-    router.push(`/room/${roomId}?${params.toString()}`)
+    onJoin({
+      name: name.trim(),
+      avatarId,
+    })
   }
 
   return (
@@ -53,17 +58,17 @@ export default function JoinRoomForm({ roomId }: JoinRoomFormProps) {
         <div className="mb-6">
           <label className="block text-white mb-2">Choose Avatar</label>
           <div className="flex gap-2 flex-wrap">
-            {AVATARS.map((av) => (
+            {AVATAR_OPTIONS.map((option) => (
               <button
-                key={av}
-                onClick={() => setAvatar(av)}
+                key={option.id}
+                onClick={() => setAvatarId(option.id)}
                 className={`text-3xl p-2 rounded-lg transition-all ${
-                  avatar === av
+                  avatarId === option.id
                     ? "bg-white/30 scale-110 ring-2 ring-white"
                     : "bg-white/10 hover:bg-white/20"
                 }`}
               >
-                {av}
+                {option.avatar}
               </button>
             ))}
           </div>

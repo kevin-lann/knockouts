@@ -13,18 +13,28 @@ import {
   ServerMessageType,
   BotDifficulty,
   ClientMessageType,
+  AvatarId,
 } from "./types"
 import { fetchQuestion, getBotAnswer } from "./db"
-import { validateAnswer, findDuplicates } from "./validation"
+import { validateAnswer, findDuplicates } from "./utils/validation"
 import {
   DEFAULT_ROUND_DURATION,
   MAX_PLAYERS as MAX_PLAYERS_CONSTANT,
 } from "./constants/magic-numbers"
+import { isPublicRoomId } from "./utils/roomId"
+import { getAvatarById } from "./utils/avatar"
+import { verifyJoinToken } from "./utils/joinToken"
+
+interface LockedIdentity {
+  name: string
+  avatarId: AvatarId
+}
 export default class GameServer implements Party.Server {
   // Core state
   gameState: GameState = GameState.LOBBY
   players: Map<string, Player> = new Map()
   connectionClientIds: Map<string, string> = new Map()
+  clientIdentities: Map<string, LockedIdentity> = new Map()
   hostClientId: string | null = null
   isPublic: boolean = false // Track if room is public or private
   settings: RoomSettings = {
@@ -124,7 +134,15 @@ export default class GameServer implements Party.Server {
   onMessage(message: string, sender: Party.Connection) {
     try {
       const msg: ClientMessage = JSON.parse(message)
-      this.handleMessage(msg, sender)
+      void this.handleMessage(msg, sender).catch((error) => {
+        console.error("Error handling message:", error)
+        sender.send(
+          JSON.stringify({
+            type: ServerMessageType.ERROR,
+            message: "Failed to process message",
+          } as ServerMessage)
+        )
+      })
     } catch (error) {
       console.error("Error parsing message:", error)
       sender.send(
@@ -136,21 +154,21 @@ export default class GameServer implements Party.Server {
     }
   }
 
-  private handleMessage(msg: ClientMessage, sender: Party.Connection) {
+  private async handleMessage(msg: ClientMessage, sender: Party.Connection) {
     switch (msg.type) {
-      case "JOIN_ROOM":
-        this.handleJoinRoom(msg, sender)
+      case ClientMessageType.JOIN_ROOM:
+        await this.handleJoinRoom(msg, sender)
         break
-      case "START_GAME":
+      case ClientMessageType.START_GAME:
         this.handleStartGame(msg, sender)
         break
-      case "SUBMIT":
+      case ClientMessageType.SUBMIT:
         this.handleSubmit(msg, sender)
         break
-      case "NEXT_ROUND":
+      case ClientMessageType.NEXT_ROUND:
         this.handleNextRound(msg, sender)
         break
-      case "LEAVE_ROOM":
+      case ClientMessageType.LEAVE_ROOM:
         this.handleLeaveRoom(sender)
         break
     }
@@ -161,11 +179,12 @@ export default class GameServer implements Party.Server {
     this.connectionClientIds.delete(sender.id)
     this.players.delete(sender.id)
     this.ensureConnectedHost(leavingPlayer?.isHost ?? false)
+
     this.broadcastPlayerUpdate()
     this.notifyRegistry()
   }
 
-  private handleJoinRoom(
+  private async handleJoinRoom(
     msg: Extract<ClientMessage, { type: ClientMessageType.JOIN_ROOM }>,
     sender: Party.Connection
   ) {
@@ -189,13 +208,70 @@ export default class GameServer implements Party.Server {
       return
     }
 
-    // Set room type on first player join (defaults to public if not specified)
+    // Set room type on first player join from room ID, not client input
     const isFirstPlayer = this.players.size === 0
     if (isFirstPlayer) {
-      this.isPublic = msg.isPublic ?? true // Default to public for backwards compatibility
+      this.isPublic = isPublicRoomId(this.room.id)
+    }
+
+    const existingClientIdForConnection = this.connectionClientIds.get(sender.id)
+    if (
+      existingClientIdForConnection &&
+      existingClientIdForConnection !== msg.clientId
+    ) {
+      sender.send(
+        JSON.stringify({
+          type: ServerMessageType.ERROR,
+          message: "Connection identity is locked",
+        } as ServerMessage)
+      )
+      return
+    }
+
+    const joinClaims = await verifyJoinToken(msg.joinToken)
+    if (
+      !joinClaims ||
+      joinClaims.roomId !== this.room.id ||
+      joinClaims.clientId !== msg.clientId
+    ) {
+      sender.send(
+        JSON.stringify({
+          type: ServerMessageType.ERROR,
+          message: "Invalid join token",
+        } as ServerMessage)
+      )
+      return
+    }
+
+    const existingPlayer = this.players.get(sender.id)
+    if (existingPlayer) {
+      this.sendSync(sender)
+      return
     }
 
     this.connectionClientIds.set(sender.id, msg.clientId)
+    const lockedIdentity = this.clientIdentities.get(msg.clientId)
+    if (
+      lockedIdentity &&
+      (lockedIdentity.name !== joinClaims.name ||
+        lockedIdentity.avatarId !== joinClaims.avatarId)
+    ) {
+      sender.send(
+        JSON.stringify({
+          type: ServerMessageType.ERROR,
+          message: "Identity is locked for this room",
+        } as ServerMessage)
+      )
+      return
+    }
+
+    const identity = lockedIdentity ?? {
+      name: joinClaims.name,
+      avatarId: joinClaims.avatarId,
+    }
+    if (!lockedIdentity) {
+      this.clientIdentities.set(msg.clientId, identity)
+    }
 
     const existingHostConnectionId = Array.from(this.players.entries()).find(
       ([, p]) => p.isHost
@@ -214,8 +290,8 @@ export default class GameServer implements Party.Server {
 
     const player: Player = {
       id: sender.id,
-      name: msg.name,
-      avatar: msg.avatar,
+      name: identity.name,
+      avatar: getAvatarById(identity.avatarId),
       score: 0,
       isHost: shouldBeHost,
       isBot: false,
@@ -225,7 +301,7 @@ export default class GameServer implements Party.Server {
 
     this.players.set(sender.id, player)
     console.log(
-      `Player ${sender.id} (${msg.name}) joined. Total players: ${this.players.size}`
+      `Player ${sender.id} (${identity.name}) joined. Total players: ${this.players.size}`
     )
     console.log(`Room has ${this.room.connections.size} active connections`)
 

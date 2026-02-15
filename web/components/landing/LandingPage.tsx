@@ -2,39 +2,41 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { nanoid } from "nanoid"
-import { AVATARS } from "@/app/constants/avatars"
+import { AVATAR_OPTIONS, DEFAULT_AVATAR_ID } from "@/app/constants/avatars"
+import { createPrivateRoomId, createPublicRoomId } from "@/lib/roomId"
+import { AvatarId } from "@/lib/types"
+import { setStoredPlayerProfile } from "@/lib/playerProfile"
 
 export default function LandingPage() {
   const [activeTab, setActiveTab] = useState<"public" | "private">("public")
   const [name, setName] = useState("")
-  const [avatar, setAvatar] = useState(AVATARS[0])
+  const [avatarId, setAvatarId] = useState<AvatarId>(DEFAULT_AVATAR_ID)
   const [roomCode, setRoomCode] = useState("")
   const [isSearching, setIsSearching] = useState(false)
   const router = useRouter()
 
+  const persistProfile = () => {
+    setStoredPlayerProfile({
+      name,
+      avatarId,
+    })
+  }
+
   const handlePublicPlay = async () => {
     if (!name.trim()) return
+    persistProfile()
     setIsSearching(true)
 
     try {
       const response = await fetch("/api/find-room")
       const data = await response.json()
       // Public room - no host=true param
-      router.push(
-        `/room/${data.roomId}?name=${encodeURIComponent(
-          name
-        )}&avatar=${encodeURIComponent(avatar)}`
-      )
+      router.push(`/room/${data.roomId}`)
     } catch (error) {
       console.error("Error finding room:", error)
       // Fallback to creating a new room (still public)
-      const randomRoomId = nanoid(8)
-      router.push(
-        `/room/${randomRoomId}?name=${encodeURIComponent(
-          name
-        )}&avatar=${encodeURIComponent(avatar)}`
-      )
+      const randomRoomId = createPublicRoomId()
+      router.push(`/room/${randomRoomId}`)
     } finally {
       setIsSearching(false)
     }
@@ -42,21 +44,15 @@ export default function LandingPage() {
 
   const handleCreatePrivate = () => {
     if (!name.trim()) return
-    const roomId = nanoid(8)
-    router.push(
-      `/room/${roomId}?name=${encodeURIComponent(
-        name
-      )}&avatar=${encodeURIComponent(avatar)}&host=true&private=true`
-    )
+    persistProfile()
+    const roomId = createPrivateRoomId()
+    router.push(`/room/${roomId}`)
   }
 
   const handleJoinPrivate = () => {
     if (!name.trim() || !roomCode.trim()) return
-    router.push(
-      `/room/${roomCode}?name=${encodeURIComponent(
-        name
-      )}&avatar=${encodeURIComponent(avatar)}&private=true`
-    )
+    persistProfile()
+    router.push(`/room/${roomCode}`)
   }
 
   return (
@@ -79,17 +75,17 @@ export default function LandingPage() {
         <div className="mb-6">
           <label className="block text-white mb-2">Choose Avatar</label>
           <div className="flex gap-2 flex-wrap">
-            {AVATARS.map((av) => (
+            {AVATAR_OPTIONS.map((option) => (
               <button
-                key={av}
-                onClick={() => setAvatar(av)}
+                key={option.id}
+                onClick={() => setAvatarId(option.id)}
                 className={`text-3xl p-2 rounded-lg transition-all ${
-                  avatar === av
+                  avatarId === option.id
                     ? "bg-white/30 scale-110 ring-2 ring-white"
                     : "bg-white/10 hover:bg-white/20"
                 }`}
               >
-                {av}
+                {option.avatar}
               </button>
             ))}
           </div>
