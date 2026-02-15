@@ -1,6 +1,7 @@
 import { neon } from "@neondatabase/serverless"
 import type { Question, Answer } from "./types"
 import { MEAN_END_MULTIPLIER, MEAN_START_MULTIPLIER, ROUNDS_UNTIL_MEAN_END } from "./constants/magic-numbers"
+import { BotDifficulty } from "./types"
 
 const sql = neon(process.env.DATABASE_URL!)
 
@@ -136,23 +137,23 @@ export async function fetchQuestion(
  */
 export async function getBotAnswer(
   questionId: string,
-  difficulty: "easy" | "medium" | "chaos"
+  difficulty: BotDifficulty
 ): Promise<Answer> {
   let rankFilter = ""
   const params: (string | number)[] = [questionId]
 
   switch (difficulty) {
-    case "easy":
+    case BotDifficulty.EASY:
       // Popular answers (rank 20-50)
       rankFilter = "AND popularity_rank BETWEEN $2 AND $3"
       params.push(20, 50)
       break
-    case "medium":
+    case BotDifficulty.MEDIUM:
       // Medium popularity (rank 5-20)
       rankFilter = "AND popularity_rank BETWEEN $2 AND $3"
       params.push(5, 20)
       break
-    case "chaos":
+    case BotDifficulty.CHAOS:
       // Most common answer (rank 1)
       rankFilter = "AND popularity_rank = $2"
       params.push(1)

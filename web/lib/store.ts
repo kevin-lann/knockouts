@@ -2,14 +2,16 @@
 
 import { create } from "zustand"
 import {
-ServerMessageType,
+  ServerMessageType,
   GameState,
   type Player,
   type Question,
+  type RoomSettings,
   type RoundResult,
   type ServerMessage,
 } from "./types"
 import { DEFAULT_ROUND_DURATION } from "@/app/constants/magic-numbers"
+import { DEFAULT_SETTINGS } from "@/app/constants/settings"
 
 interface GameStore {
   // Connection state
@@ -32,6 +34,7 @@ interface GameStore {
   // Local UI state
   currentInput: string;
   hasSubmitted: boolean;
+  roomSettings: RoomSettings;
 
   // Actions
   setConnected: (connected: boolean) => void;
@@ -39,9 +42,13 @@ interface GameStore {
   setPlayerId: (playerId: string) => void;
   setInput: (input: string) => void;
   setSubmitted: (submitted: boolean) => void;
+  setRoomSettings: (settings: RoomSettings) => void;
+  resetRoomSettings: () => void;
   handleServerMessage: (msg: ServerMessage) => void;
   reset: () => void;
 }
+
+const cloneDefaultSettings = (): RoomSettings => ({ ...DEFAULT_SETTINGS })
 
 const initialState = {
   connected: false,
@@ -57,16 +64,28 @@ const initialState = {
   correctAnswers: null,
   currentInput: "",
   hasSubmitted: false,
+  roomSettings: cloneDefaultSettings(),
 }
 
 export const useGameStore = create<GameStore>((set) => ({
   ...initialState,
 
   setConnected: (connected) => set({ connected }),
-  setRoomId: (roomId) => set({ roomId }),
+  setRoomId: (roomId) =>
+    set((state) => {
+      if (state.roomId === roomId) {
+        return { roomId }
+      }
+      return {
+        roomId,
+        roomSettings: cloneDefaultSettings(),
+      }
+    }),
   setPlayerId: (playerId) => set({ playerId }),
   setInput: (input) => set({ currentInput: input }),
   setSubmitted: (submitted) => set({ hasSubmitted: submitted }),
+  setRoomSettings: (settings) => set({ roomSettings: settings }),
+  resetRoomSettings: () => set({ roomSettings: cloneDefaultSettings() }),
 
   handleServerMessage: (msg) => {
     switch (msg.type) {
@@ -111,6 +130,13 @@ export const useGameStore = create<GameStore>((set) => ({
       case ServerMessageType.ROUND_END:
         set({
           gameState: GameState.SCOREBOARD,
+          roundResults: msg.results,
+          correctAnswers: msg.correctAnswers,
+        })
+        break
+      case ServerMessageType.GAME_ENDED:
+        set({
+          gameState: GameState.GAME_ENDED,
           roundResults: msg.results,
           correctAnswers: msg.correctAnswers,
         })

@@ -8,6 +8,7 @@ interface AnswerInputProps {
   onSubmit: () => void;
   disabled: boolean;
   submitted: boolean;
+  isEliminated: boolean;
 }
 
 export default function AnswerInput({
@@ -16,6 +17,7 @@ export default function AnswerInput({
   onSubmit,
   disabled,
   submitted,
+  isEliminated,
 }: AnswerInputProps) {
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && !disabled && value.trim()) {
@@ -43,9 +45,9 @@ export default function AnswerInput({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onKeyPress={handleKeyPress}
-        placeholder="Type your answer..."
+        placeholder={isEliminated ? "You are eliminated, you can only spectate" : "Type your answer..."}
         disabled={disabled}
-        className="w-full px-6 py-4 text-lg bg-white/20 text-white placeholder-white/60 rounded-lg border-2 border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 disabled:opacity-50"
+        className={`w-full px-6 py-4 text-lg bg-white/20 text-white placeholder-white/60 rounded-lg border-2 border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 disabled:opacity-50 ${isEliminated ? "opacity-50 cursor-not-allowed" : ""}`}
         autoFocus
       />
       <button

@@ -12,7 +12,7 @@ export default function PlayerList({ players }: PlayerListProps) {
       {players.map((player) => (
         <div
           key={player.id}
-          className="flex items-center gap-3 p-3 bg-white/10 rounded-lg"
+          className={`flex items-center gap-3 p-3 bg-white/10 rounded-lg ${player.isEliminated ? "opacity-50" : ""}`}
         >
           <span className="text-2xl">{player.avatar}</span>
           <div className="flex-1">
@@ -21,6 +21,11 @@ export default function PlayerList({ players }: PlayerListProps) {
               {player.isHost && (
                 <span className="text-xs bg-yellow-500/30 text-yellow-200 px-2 py-1 rounded">
                   Host
+                </span>
+              )}
+              {player.isEliminated && (
+                <span className="text-xs bg-gray-500/30 text-gray-200 px-2 py-1 rounded">
+                  Eliminated
                 </span>
               )}
               {player.isBot && (
