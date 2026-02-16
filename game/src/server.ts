@@ -568,7 +568,7 @@ export default class GameServer implements Party.Server {
     for (const [playerId, player] of this.players.entries()) {
       const validated = validatedAnswers.get(playerId)
       const isDuplicate = duplicates.has(playerId)
-      const isValid = validated !== null
+      const isValid = validated !== null && validated !== undefined
       const points = isValid && !isDuplicate ? 1 : 0
 
       player.score += points
