@@ -1,8 +1,6 @@
 import type { Answer } from "../types"
 import levenshtein from "js-levenshtein"
 
-const LEVENSHTEIN_THRESHOLD = 3
-
 /**
  * Normalize input string for comparison
  */
@@ -11,6 +9,10 @@ export function normalize(input: string): string {
     .toLowerCase()
     .replace(/[^a-z0-9]/g, "")
     .trim()
+}
+
+export function getLevenshteinThreshold(input: string): number {
+  return Math.floor(input.length * 0.3)
 }
 
 /**
@@ -31,8 +33,8 @@ export function validateAnswer(
         ) ||
         validAnswers.find(
           (answer) =>
-            levenshtein(normalizedInput, answer.display_text) <=
-            LEVENSHTEIN_THRESHOLD
+            levenshtein(normalizedInput, normalize(answer.display_text)) <=
+            getLevenshteinThreshold(normalize(answer.display_text))
         )
     ) || null
   )
