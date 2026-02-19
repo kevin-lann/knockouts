@@ -21,22 +21,20 @@ export function getLevenshteinThreshold(input: string): number {
  */
 export function validateAnswer(
   userInput: string,
-  validAnswers: Answer[]
+  validAnswers: Answer[],
 ): Answer | null {
   const normalizedInput = normalize(userInput)
 
   return (
+    validAnswers.find((answer) =>
+      answer.variants.some((variant) => normalize(variant) === normalizedInput),
+    ) ||
     validAnswers.find(
       (answer) =>
-        answer.variants.some(
-          (variant) => normalize(variant) === normalizedInput
-        ) ||
-        validAnswers.find(
-          (answer) =>
-            levenshtein(normalizedInput, normalize(answer.display_text)) <=
-            getLevenshteinThreshold(normalize(answer.display_text))
-        )
-    ) || null
+        levenshtein(normalizedInput, normalize(answer.display_text)) <=
+        getLevenshteinThreshold(normalize(answer.display_text)),
+    ) ||
+    null
   )
 }
 
@@ -45,23 +43,28 @@ export function validateAnswer(
  * Returns Set of player IDs who submitted duplicate answers
  */
 export function findDuplicates(
-  submissions: Map<string, string>,
-  _validAnswers: Answer[]
+  validatedAnswers: Map<string, Answer | null>,
 ): Set<string> {
+  // NOTE: duplicate answers that are not correct will not be flagged
   const duplicates = new Set<string>()
-  const normalizedAnswers = new Map<string, string[]>()
+  const answers = new Map<string, string[]>()
 
-  // Group players by normalized answer
-  for (const [playerId, answer] of submissions.entries()) {
-    const normalized = normalize(answer)
-    if (!normalizedAnswers.has(normalized)) {
-      normalizedAnswers.set(normalized, [])
+  // Group players by validated answer
+  for (const [playerId, answer] of validatedAnswers) {
+    let answer_text = answer?.display_text
+    if (!answer_text) continue
+
+    console.log(`DEBUG ${playerId} guessed ${answer_text}`)
+
+    if (!answers.has(answer_text)) {
+      answers.set(answer_text, [])
     }
-    normalizedAnswers.get(normalized)!.push(playerId)
+    answers.get(answer_text)!.push(playerId)
   }
 
   // Mark players with duplicates (2+ players with same answer)
-  for (const playerIds of normalizedAnswers.values()) {
+  for (const playerIds of answers.values()) {
+    console.log(`DEBUG playerIds = ${playerIds.length}`)
     if (playerIds.length > 1) {
       for (const playerId of playerIds) {
         duplicates.add(playerId)
