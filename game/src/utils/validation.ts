@@ -54,8 +54,6 @@ export function findDuplicates(
     let answer_text = answer?.display_text
     if (!answer_text) continue
 
-    console.log(`DEBUG ${playerId} guessed ${answer_text}`)
-
     if (!answers.has(answer_text)) {
       answers.set(answer_text, [])
     }
@@ -64,7 +62,6 @@ export function findDuplicates(
 
   // Mark players with duplicates (2+ players with same answer)
   for (const playerIds of answers.values()) {
-    console.log(`DEBUG playerIds = ${playerIds.length}`)
     if (playerIds.length > 1) {
       for (const playerId of playerIds) {
         duplicates.add(playerId)
