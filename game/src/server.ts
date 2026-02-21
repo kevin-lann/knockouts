@@ -559,7 +559,7 @@ export default class GameServer implements Party.Server {
     }
 
     // Find duplicates
-    const duplicates = findDuplicates(submissions, this.currentAnswers)
+    const duplicates = findDuplicates(validatedAnswers)
 
     // Calculate scores and build results
     const results: RoundResult[] = []
