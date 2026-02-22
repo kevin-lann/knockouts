@@ -302,6 +302,7 @@ export default class GameServer implements Party.Server {
       isHost: shouldBeHost,
       isBot: false,
       isEliminated: false,
+      hasHighestScore: false,
       hasSubmitted: false,
     }
 
@@ -530,6 +531,7 @@ export default class GameServer implements Party.Server {
           isHost: false,
           isBot: true,
           isEliminated: false,
+          hasHighestScore: false,
           currentAnswer: botAnswer.display_text,
           hasSubmitted: true,
         }
@@ -606,6 +608,13 @@ export default class GameServer implements Party.Server {
       return
     }
 
+    // Update player with highest score (for ties, those joining the room earlier are prioritized)
+
+    let firstPlace = this.getFirstPlacePlayer()
+    if (firstPlace != null) {
+      firstPlace.hasHighestScore = true
+    }
+
     // Reset submission states
     for (const player of this.players.values()) {
       player.hasSubmitted = false
@@ -632,11 +641,35 @@ export default class GameServer implements Party.Server {
     return alivePlayers.length === 0
   }
 
-  /** 
+  /**
+   * Resets hasHighestScore flag for each player
+   * score value
+   * @returns Player with highest score value that is not a bot or eliminated,
+   *          or null if no players have > 0 score / no players found
+   */
+  private getFirstPlacePlayer(): Player | null {
+    let first = null
+    let highestScore = 0
+    for (const player of this.players.values()) {
+      player.hasHighestScore = false
+      if (
+        player.score > highestScore &&
+        !player.isBot &&
+        !player.isEliminated
+      ) {
+        highestScore = player.score
+        first = player
+      }
+    }
+    return first
+  }
+
+  /**
    * Clear all player states and reset the game
    */
   private async handleGameEnded() {
     for (const player of this.players.values()) {
+      player.hasHighestScore = false
       player.isEliminated = false
       player.hasSubmitted = false
       player.currentAnswer = undefined

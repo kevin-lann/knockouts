@@ -1,6 +1,7 @@
 "use client"
 
 import type { Player } from "@/lib/types"
+import { getIconById } from "../../lib/icon"
 
 interface PlayerListProps {
   players: Player[];
@@ -18,6 +19,7 @@ export default function PlayerList({ players }: PlayerListProps) {
           <div className="flex-1">
             <div className="flex items-center gap-2">
               <span className="text-white font-medium">{player.name}</span>
+              {player.hasHighestScore && getIconById("CROWN")}
               {player.isHost && (
                 <span className="text-xs bg-yellow-500/30 text-yellow-200 px-2 py-1 rounded">
                   Host

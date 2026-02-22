@@ -18,6 +18,7 @@ export interface Player {
   isHost: boolean;
   isBot: boolean;
   isEliminated: boolean;
+  hasHighestScore: boolean;
   currentAnswer?: string;
   hasSubmitted: boolean;
 }
@@ -37,6 +38,11 @@ export enum AvatarId {
   ROBOT = "ROBOT",
   ALIEN = "ALIEN",
   GAMEPAD = "GAMEPAD",
+}
+
+export enum IconId {
+  CROWN = "CROWN",
+  ERROR = "ERROR"
 }
 
 // Room settings
