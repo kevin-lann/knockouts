@@ -648,7 +648,16 @@ export default class GameServer implements Party.Server {
    */
   private getHighestScoringPlayers(): Player[] {
     let leadingPlayers: Player[] = []
-    let highestScore = 0
+    let highestScore = 1
+
+    const alivePlayers = Array.from(this.players.values()).filter(
+      (p) => !p.isBot && !p.isEliminated
+    )
+
+    if (alivePlayers.length == 1) {
+      return alivePlayers
+    }
+
     for (const player of this.players.values()) {
       player.hasHighestScore = false
 
