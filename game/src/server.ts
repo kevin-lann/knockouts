@@ -24,6 +24,7 @@ import {
 import { isPublicRoomId } from "./utils/roomId"
 import { getAvatarById } from "./utils/avatar"
 import { verifyJoinToken } from "./utils/joinToken"
+import { getHighestScoringPlayers } from "./utils/playerRanking"
 
 interface LockedIdentity {
   name: string
@@ -609,7 +610,7 @@ export default class GameServer implements Party.Server {
     }
 
     // Update players with the highest score
-    const leadingPlayers = this.getHighestScoringPlayers()
+    const leadingPlayers = getHighestScoringPlayers(this.players)
     for (const player of leadingPlayers) {
       player.hasHighestScore = true
     }
@@ -638,41 +639,6 @@ export default class GameServer implements Party.Server {
       (p) => !p.isBot && !p.isEliminated
     )
     return alivePlayers.length === 0
-  }
-
-  /**
-   * Resets hasHighestScore flag for each player and determines highest
-   * scoring player
-   * @returns Player with highest score value that is not a bot or eliminated,
-   *          or null if no players have > 0 score / no players found
-   */
-  private getHighestScoringPlayers(): Player[] {
-    let leadingPlayers: Player[] = []
-    let highestScore = 1
-
-    const alivePlayers = Array.from(this.players.values()).filter(
-      (p) => !p.isBot && !p.isEliminated
-    )
-
-    if (alivePlayers.length == 1) {
-      return alivePlayers
-    }
-
-    for (const player of this.players.values()) {
-      player.hasHighestScore = false
-
-      if (player.isBot || player.isEliminated) {
-        continue
-      }
-
-      if (player.score > highestScore) {
-        highestScore = player.score
-        leadingPlayers = [player]
-      } else if (player.score == highestScore) {
-        leadingPlayers.push(player)
-      }
-    }
-    return leadingPlayers
   }
 
   /**
