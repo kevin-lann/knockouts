@@ -608,11 +608,10 @@ export default class GameServer implements Party.Server {
       return
     }
 
-    // Update player with highest score (for ties, those joining the room earlier are prioritized)
-
-    const firstPlace = this.getFirstPlacePlayer()
-    if (firstPlace != null) {
-      firstPlace.hasHighestScore = true
+    // Update players with the highest score
+    const leadingPlayers = this.getHighestScoringPlayers()
+    for (const player of leadingPlayers) {
+      player.hasHighestScore = true
     }
 
     // Reset submission states
@@ -642,26 +641,29 @@ export default class GameServer implements Party.Server {
   }
 
   /**
-   * Resets hasHighestScore flag for each player
-   * score value
+   * Resets hasHighestScore flag for each player and determines highest
+   * scoring player
    * @returns Player with highest score value that is not a bot or eliminated,
    *          or null if no players have > 0 score / no players found
    */
-  private getFirstPlacePlayer(): Player | null {
-    let first = null
+  private getHighestScoringPlayers(): Player[] {
+    let leadingPlayers: Player[] = []
     let highestScore = 0
     for (const player of this.players.values()) {
       player.hasHighestScore = false
-      if (
-        player.score > highestScore &&
-        !player.isBot &&
-        !player.isEliminated
-      ) {
+
+      if (player.isBot || player.isEliminated) {
+        continue
+      }
+
+      if (player.score > highestScore) {
         highestScore = player.score
-        first = player
+        leadingPlayers = [player]
+      } else if (player.score == highestScore) {
+        leadingPlayers.push(player)
       }
     }
-    return first
+    return leadingPlayers
   }
 
   /**
