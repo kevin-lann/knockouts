@@ -610,7 +610,7 @@ export default class GameServer implements Party.Server {
 
     // Update player with highest score (for ties, those joining the room earlier are prioritized)
 
-    let firstPlace = this.getFirstPlacePlayer()
+    const firstPlace = this.getFirstPlacePlayer()
     if (firstPlace != null) {
       firstPlace.hasHighestScore = true
     }
