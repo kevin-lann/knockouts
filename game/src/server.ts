@@ -24,6 +24,7 @@ import {
 import { isPublicRoomId } from "./utils/roomId"
 import { getAvatarById } from "./utils/avatar"
 import { verifyJoinToken } from "./utils/joinToken"
+import { getHighestScoringPlayers } from "./utils/playerRanking"
 
 interface LockedIdentity {
   name: string
@@ -302,6 +303,7 @@ export default class GameServer implements Party.Server {
       isHost: shouldBeHost,
       isBot: false,
       isEliminated: false,
+      hasHighestScore: false,
       hasSubmitted: false,
     }
 
@@ -530,6 +532,7 @@ export default class GameServer implements Party.Server {
           isHost: false,
           isBot: true,
           isEliminated: false,
+          hasHighestScore: false,
           currentAnswer: botAnswer.display_text,
           hasSubmitted: true,
         }
@@ -606,6 +609,12 @@ export default class GameServer implements Party.Server {
       return
     }
 
+    // Update players with the highest score
+    const leadingPlayers = getHighestScoringPlayers(this.players)
+    for (const player of leadingPlayers) {
+      player.hasHighestScore = true
+    }
+
     // Reset submission states
     for (const player of this.players.values()) {
       player.hasSubmitted = false
@@ -632,11 +641,12 @@ export default class GameServer implements Party.Server {
     return alivePlayers.length === 0
   }
 
-  /** 
+  /**
    * Clear all player states and reset the game
    */
   private async handleGameEnded() {
     for (const player of this.players.values()) {
+      player.hasHighestScore = false
       player.isEliminated = false
       player.hasSubmitted = false
       player.currentAnswer = undefined
