@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { AvatarId } from "@/lib/types"
+import { AvatarId } from "@shared/types"
 import { createJoinToken } from "@/lib/joinToken"
 
 function isAvatarId(value: string): value is AvatarId {

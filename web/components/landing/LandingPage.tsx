@@ -4,7 +4,7 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { AVATAR_OPTIONS, DEFAULT_AVATAR_ID } from "@/app/constants/avatars"
 import { createPrivateRoomId, createPublicRoomId } from "@/lib/roomId"
-import { AvatarId } from "@/lib/types"
+import { AvatarId } from "@shared/types"
 import { setStoredPlayerProfile } from "@/lib/playerProfile"
 
 export default function LandingPage() {

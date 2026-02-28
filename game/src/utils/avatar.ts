@@ -1,4 +1,4 @@
-import { AvatarId } from "../types"
+import { AvatarId } from "@shared/types"
 
 const AVATAR_BY_ID: Record<AvatarId, string> = {
   [AvatarId.GRIN]: "😀",

@@ -1,6 +1,6 @@
 "use client"
 
-import { BotDifficulty, type RoomSettings } from "@/lib/types"
+import { BotDifficulty, type RoomSettings } from "@shared/types"
 
 interface RoomSettingsPanelProps {
   settings: RoomSettings;

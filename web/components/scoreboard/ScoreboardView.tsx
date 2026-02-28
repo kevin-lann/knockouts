@@ -1,7 +1,7 @@
 "use client"
 
 import { useGameStore } from "@/lib/store"
-import { ClientMessageType, type ClientMessage } from "@/lib/types"
+import { ClientMessageType, type ClientMessage } from "@shared/types"
 import PlayerList from "../lobby/PlayerList"
 import LeaveRoomButton from "../room/LeaveRoomButton"
 

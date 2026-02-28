@@ -1,4 +1,4 @@
-import { ClientMessage, ClientMessageType } from "@/lib/types"
+import { ClientMessage, ClientMessageType } from "@shared/types"
 import { useRouter } from "next/navigation"
 
 

@@ -39,7 +39,9 @@ cp .env.example .env.local
 Run the migration script against your Neon database:
 
 ```bash
-psql 'your-connection-string' < game/migrations/001_initial_schema.sql
+cd game/migrations
+./migrate.sh # applies all migrations in order
+./migrate.sh one <name-of-migration> # applies a singular migration
 ```
 
 ### Development
@@ -76,12 +78,13 @@ vercel deploy
 
 ```
 knockouts/
+├── shared/            # Shared types used by web + game
+│   └── types.ts
 ├── game/              # PartyKit server
 │   ├── src/
 │   │   ├── server.ts  # Game state machine
 │   │   ├── db.ts      # Database queries
 │   │   ├── validation.ts
-│   │   └── types.ts
 │   └── migrations/
 └── web/               # Next.js frontend
     ├── app/

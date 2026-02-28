@@ -3,7 +3,7 @@
 import { useEffect, useRef, useCallback } from "react"
 import PartySocket from "partysocket"
 import { useGameStore } from "@/lib/store"
-import type { ClientMessage } from "@/lib/types"
+import type { ClientMessage } from "@shared/types"
 
 // PARTYKIT_HOST will be injected at build time or runtime
 declare global {

@@ -1,4 +1,4 @@
-import { AvatarId } from "@/lib/types"
+import { AvatarId } from "@shared/types"
 
 export interface JoinTokenPayload {
   roomId: string

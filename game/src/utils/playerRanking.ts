@@ -1,4 +1,4 @@
-import type { Player } from "../types"
+import type { Player } from "@shared/types"
 
 /**
  * Resets hasHighestScore flag for each player and determines highest

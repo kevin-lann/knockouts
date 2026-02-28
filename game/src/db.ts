@@ -1,7 +1,7 @@
 import { neon } from "@neondatabase/serverless"
-import type { Question, Answer } from "./types"
+import type { Question, Answer } from "@shared/types"
 import { MEAN_END_MULTIPLIER, MEAN_START_MULTIPLIER, ROUNDS_UNTIL_MEAN_END } from "./constants/magic-numbers"
-import { BotDifficulty } from "./types"
+import { BotDifficulty } from "@shared/types"
 
 const sql = neon(process.env.DATABASE_URL!)
 

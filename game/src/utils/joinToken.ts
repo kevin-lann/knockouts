@@ -1,4 +1,4 @@
-import { AvatarId } from "../types"
+import { AvatarId } from "@shared/types"
 
 interface JoinTokenHeader {
   typ: string

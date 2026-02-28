@@ -1,4 +1,4 @@
-import type { Answer } from "../types"
+import type { Answer } from "@shared/types"
 import levenshtein from "js-levenshtein"
 
 /**

@@ -2,7 +2,7 @@
 
 import { useGameStore } from "@/lib/store"
 import { ClientMessageType,
-type ClientMessage } from "@/lib/types"
+type ClientMessage } from "@shared/types"
 import Timer from "./Timer"
 import AnswerInput from "./AnswerInput"
 import PlayerList from "../lobby/PlayerList"

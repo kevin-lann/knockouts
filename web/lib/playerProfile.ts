@@ -1,4 +1,4 @@
-import { AvatarId } from "@/lib/types"
+import { AvatarId } from "@shared/types"
 import { isAvatarId } from "@/app/constants/avatars"
 
 const PLAYER_PROFILE_STORAGE_KEY = "knockouts-player-profile"

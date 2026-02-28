@@ -1,5 +1,5 @@
 import type * as Party from "partykit/server"
-import { GameState } from "./types"
+import { GameState } from "@shared/types"
 
 interface RoomInfo {
   roomId: string;

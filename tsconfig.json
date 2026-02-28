@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "*": ["./*"]
+    }
+  },
+  "files": [],
+  "references": [{ "path": "./game" }, { "path": "./web" }]
+}

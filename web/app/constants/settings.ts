@@ -1,4 +1,4 @@
-import { BotDifficulty, RoomSettings } from "@/lib/types"
+import { BotDifficulty, RoomSettings } from "@shared/types"
 
 export const DEFAULT_SETTINGS: RoomSettings = {
   botEnabled: true,

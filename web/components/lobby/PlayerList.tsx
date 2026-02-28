@@ -1,6 +1,6 @@
 "use client"
 
-import { IconId, type Player } from "@/lib/types"
+import { IconId, type Player } from "@shared/types"
 import { getIconById } from "../../lib/icon"
 
 interface PlayerListProps {

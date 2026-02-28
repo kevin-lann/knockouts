@@ -7,14 +7,14 @@ import {
   type Question,
   type Answer,
   type RoundResult,
-} from "./types"
+} from "@shared/types"
 import {
   GameState,
   ServerMessageType,
   BotDifficulty,
   ClientMessageType,
   AvatarId,
-} from "./types"
+} from "@shared/types"
 import { fetchQuestion, getBotAnswer } from "./db"
 import { validateAnswer, findDuplicates } from "./utils/validation"
 import {

@@ -1,4 +1,4 @@
-import { IconId } from "@/lib/types"
+import { IconId } from "@shared/types"
 
 const ICON_BY_ID: Record<IconId, string> = {
   [IconId.CROWN]: "👑",

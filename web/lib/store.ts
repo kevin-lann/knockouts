@@ -9,7 +9,7 @@ import {
   type RoomSettings,
   type RoundResult,
   type ServerMessage,
-} from "./types"
+} from "@shared/types"
 import { DEFAULT_ROUND_DURATION } from "@/app/constants/magic-numbers"
 import { DEFAULT_SETTINGS } from "@/app/constants/settings"
 

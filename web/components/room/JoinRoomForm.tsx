@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { AVATAR_OPTIONS, DEFAULT_AVATAR_ID } from "@/app/constants/avatars"
-import { AvatarId } from "@/lib/types"
+import { AvatarId } from "@shared/types"
 import type { PlayerProfile } from "@/lib/playerProfile"
 
 interface JoinRoomFormProps {

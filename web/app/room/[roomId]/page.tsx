@@ -11,7 +11,7 @@ import CountdownOverlay from "@/components/game/CountdownOverlay"
 import ProcessingView from "@/components/game/ProcessingView"
 import GameEndView from "@/components/game/GameEndView"
 import JoinRoomForm from "@/components/room/JoinRoomForm"
-import { ClientMessageType, GameState } from "@/lib/types"
+import { ClientMessageType, GameState } from "@shared/types"
 import {
   getStoredPlayerProfile,
   setStoredPlayerProfile,

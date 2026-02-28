@@ -1,4 +1,4 @@
-import { AvatarId } from "@/lib/types"
+import { AvatarId } from "@shared/types"
 
 export const AVATAR_BY_ID: Record<AvatarId, string> = {
   [AvatarId.GRIN]: "😀",
@@ -14,16 +14,8 @@ export const AVATAR_BY_ID: Record<AvatarId, string> = {
 export const AVATAR_OPTIONS: ReadonlyArray<{
   id: AvatarId
   avatar: string
-}> = [
-  { id: AvatarId.GRIN, avatar: AVATAR_BY_ID[AvatarId.GRIN] },
-  { id: AvatarId.COOL, avatar: AVATAR_BY_ID[AvatarId.COOL] },
-  { id: AvatarId.NERD, avatar: AVATAR_BY_ID[AvatarId.NERD] },
-  { id: AvatarId.SMILE, avatar: AVATAR_BY_ID[AvatarId.SMILE] },
-  { id: AvatarId.PARTY, avatar: AVATAR_BY_ID[AvatarId.PARTY] },
-  { id: AvatarId.ROBOT, avatar: AVATAR_BY_ID[AvatarId.ROBOT] },
-  { id: AvatarId.ALIEN, avatar: AVATAR_BY_ID[AvatarId.ALIEN] },
-  { id: AvatarId.GAMEPAD, avatar: AVATAR_BY_ID[AvatarId.GAMEPAD] },
-]
+}> = Object.entries(AVATAR_BY_ID).map(([id, avatar]) => ({ id: id as AvatarId, avatar }))
+
 
 export const DEFAULT_AVATAR_ID = AvatarId.GRIN
 
