@@ -2,7 +2,7 @@ import { AvatarId } from "@shared/types"
 
 export const AVATAR_BY_ID: Record<AvatarId, string> = {
   [AvatarId.GRIN]: "😀",
-  [AvatarId.COOL]: "😎",
+  [AvatarId.COOL]: "😎"
   [AvatarId.NERD]: "🤓",
   [AvatarId.SMILE]: "😊",
   [AvatarId.PARTY]: "🥳",
