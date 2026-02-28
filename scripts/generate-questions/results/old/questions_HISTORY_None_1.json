@@ -1,0 +1,524 @@
+[
+  {
+    "prompt": "Name a signer of the Declaration of Independence.",
+    "answers": [
+      {
+        "display_text": "John Hancock",
+        "variants": [
+          "john hancock",
+          "hancock",
+          "john"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "Benjamin Franklin",
+        "variants": [
+          "benjamin franklin",
+          "ben franklin",
+          "franklin",
+          "ben"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "Thomas Jefferson",
+        "variants": [
+          "thomas jefferson",
+          "jefferson",
+          "thomas"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "John Adams",
+        "variants": [
+          "john adams",
+          "adams",
+          "john"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "Samuel Adams",
+        "variants": [
+          "samuel adams",
+          "sam adams",
+          "adams",
+          "samuel",
+          "sam"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "Richard Henry Lee",
+        "variants": [
+          "richard henry lee",
+          "r h lee",
+          "lee",
+          "richard lee"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "Roger Sherman",
+        "variants": [
+          "roger sherman",
+          "sherman",
+          "roger"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "Benjamin Rush",
+        "variants": [
+          "benjamin rush",
+          "ben rush",
+          "rush"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "George Clymer",
+        "variants": [
+          "george clymer",
+          "clymer",
+          "george"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "Robert Morris",
+        "variants": [
+          "robert morris",
+          "morris",
+          "robert"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "John Witherspoon",
+        "variants": [
+          "john witherspoon",
+          "witherspoon",
+          "john"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "William Paca",
+        "variants": [
+          "william paca",
+          "paca",
+          "william"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "Stephen Hopkins",
+        "variants": [
+          "stephen hopkins",
+          "hopkins",
+          "stephen"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "Edward Rutledge",
+        "variants": [
+          "edward rutledge",
+          "rutledge",
+          "edward"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "Charles Carroll of Carrollton",
+        "variants": [
+          "charles carroll of carrollton",
+          "charles carroll",
+          "carroll"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "Caesar Rodney",
+        "variants": [
+          "caesar rodney",
+          "rodney",
+          "caesar"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "George Read",
+        "variants": [
+          "george read",
+          "read",
+          "george"
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "Thomas McKean",
+        "variants": [
+          "thomas mckean",
+          "mckean",
+          "thomas"
+        ],
+        "popularity_rank": 18
+      },
+      {
+        "display_text": "William Floyd",
+        "variants": [
+          "william floyd",
+          "floyd",
+          "william"
+        ],
+        "popularity_rank": 19
+      },
+      {
+        "display_text": "Philip Livingston",
+        "variants": [
+          "philip livingston",
+          "livingston",
+          "philip"
+        ],
+        "popularity_rank": 20
+      },
+      {
+        "display_text": "Francis Lewis",
+        "variants": [
+          "francis lewis",
+          "lewis",
+          "francis"
+        ],
+        "popularity_rank": 21
+      },
+      {
+        "display_text": "Lewis Morris",
+        "variants": [
+          "lewis morris",
+          "morris",
+          "lewis"
+        ],
+        "popularity_rank": 22
+      },
+      {
+        "display_text": "Richard Stockton",
+        "variants": [
+          "richard stockton",
+          "stockton",
+          "richard"
+        ],
+        "popularity_rank": 23
+      },
+      {
+        "display_text": "Francis Hopkinson",
+        "variants": [
+          "francis hopkinson",
+          "hopkinson",
+          "francis"
+        ],
+        "popularity_rank": 24
+      },
+      {
+        "display_text": "John Hart",
+        "variants": [
+          "john hart",
+          "hart",
+          "john"
+        ],
+        "popularity_rank": 25
+      },
+      {
+        "display_text": "Abraham Clark",
+        "variants": [
+          "abraham clark",
+          "clark",
+          "abraham"
+        ],
+        "popularity_rank": 26
+      },
+      {
+        "display_text": "John Morton",
+        "variants": [
+          "john morton",
+          "morton",
+          "john"
+        ],
+        "popularity_rank": 27
+      },
+      {
+        "display_text": "James Smith",
+        "variants": [
+          "james smith",
+          "smith",
+          "james"
+        ],
+        "popularity_rank": 28
+      },
+      {
+        "display_text": "George Taylor",
+        "variants": [
+          "george taylor",
+          "taylor",
+          "george"
+        ],
+        "popularity_rank": 29
+      },
+      {
+        "display_text": "James Wilson",
+        "variants": [
+          "james wilson",
+          "wilson",
+          "james"
+        ],
+        "popularity_rank": 30
+      },
+      {
+        "display_text": "George Ross",
+        "variants": [
+          "george ross",
+          "ross",
+          "george"
+        ],
+        "popularity_rank": 31
+      },
+      {
+        "display_text": "Samuel Chase",
+        "variants": [
+          "samuel chase",
+          "chase",
+          "samuel",
+          "sam"
+        ],
+        "popularity_rank": 32
+      },
+      {
+        "display_text": "Thomas Stone",
+        "variants": [
+          "thomas stone",
+          "stone",
+          "thomas"
+        ],
+        "popularity_rank": 33
+      },
+      {
+        "display_text": "George Wythe",
+        "variants": [
+          "george wythe",
+          "wythe",
+          "george"
+        ],
+        "popularity_rank": 34
+      },
+      {
+        "display_text": "Benjamin Harrison",
+        "variants": [
+          "benjamin harrison",
+          "ben harrison",
+          "harrison",
+          "ben"
+        ],
+        "popularity_rank": 35
+      },
+      {
+        "display_text": "Thomas Nelson Jr.",
+        "variants": [
+          "thomas nelson jr",
+          "thomas nelson junior",
+          "nelson",
+          "thomas nelson"
+        ],
+        "popularity_rank": 36
+      },
+      {
+        "display_text": "Francis Lightfoot Lee",
+        "variants": [
+          "francis lightfoot lee",
+          "f l lee",
+          "lee",
+          "francis lee"
+        ],
+        "popularity_rank": 37
+      },
+      {
+        "display_text": "Carter Braxton",
+        "variants": [
+          "carter braxton",
+          "braxton",
+          "carter"
+        ],
+        "popularity_rank": 38
+      },
+      {
+        "display_text": "William Hooper",
+        "variants": [
+          "william hooper",
+          "hooper",
+          "william"
+        ],
+        "popularity_rank": 39
+      },
+      {
+        "display_text": "Joseph Hewes",
+        "variants": [
+          "joseph hewes",
+          "hewes",
+          "joseph"
+        ],
+        "popularity_rank": 40
+      },
+      {
+        "display_text": "John Penn",
+        "variants": [
+          "john penn",
+          "penn",
+          "john"
+        ],
+        "popularity_rank": 41
+      },
+      {
+        "display_text": "Thomas Heyward Jr.",
+        "variants": [
+          "thomas heyward jr",
+          "thomas heyward junior",
+          "heyward",
+          "thomas heyward"
+        ],
+        "popularity_rank": 42
+      },
+      {
+        "display_text": "Thomas Lynch Jr.",
+        "variants": [
+          "thomas lynch jr",
+          "thomas lynch junior",
+          "lynch",
+          "thomas lynch"
+        ],
+        "popularity_rank": 43
+      },
+      {
+        "display_text": "Arthur Middleton",
+        "variants": [
+          "arthur middleton",
+          "middleton",
+          "arthur"
+        ],
+        "popularity_rank": 44
+      },
+      {
+        "display_text": "Button Gwinnett",
+        "variants": [
+          "button gwinnett",
+          "gwinnett",
+          "button"
+        ],
+        "popularity_rank": 45
+      },
+      {
+        "display_text": "Lyman Hall",
+        "variants": [
+          "lyman hall",
+          "hall",
+          "lyman"
+        ],
+        "popularity_rank": 46
+      },
+      {
+        "display_text": "George Walton",
+        "variants": [
+          "george walton",
+          "walton",
+          "george"
+        ],
+        "popularity_rank": 47
+      },
+      {
+        "display_text": "Josiah Bartlett",
+        "variants": [
+          "josiah bartlett",
+          "bartlett",
+          "josiah"
+        ],
+        "popularity_rank": 48
+      },
+      {
+        "display_text": "William Whipple",
+        "variants": [
+          "william whipple",
+          "whipple",
+          "william"
+        ],
+        "popularity_rank": 49
+      },
+      {
+        "display_text": "Matthew Thornton",
+        "variants": [
+          "matthew thornton",
+          "thornton",
+          "matthew"
+        ],
+        "popularity_rank": 50
+      },
+      {
+        "display_text": "Robert Treat Paine",
+        "variants": [
+          "robert treat paine",
+          "paine",
+          "robert paine"
+        ],
+        "popularity_rank": 51
+      },
+      {
+        "display_text": "Elbridge Gerry",
+        "variants": [
+          "elbridge gerry",
+          "gerry",
+          "elbridge"
+        ],
+        "popularity_rank": 52
+      },
+      {
+        "display_text": "William Ellery",
+        "variants": [
+          "william ellery",
+          "ellery",
+          "william"
+        ],
+        "popularity_rank": 53
+      },
+      {
+        "display_text": "Samuel Huntington",
+        "variants": [
+          "samuel huntington",
+          "huntington",
+          "samuel",
+          "sam"
+        ],
+        "popularity_rank": 54
+      },
+      {
+        "display_text": "William Williams",
+        "variants": [
+          "william williams",
+          "williams",
+          "william"
+        ],
+        "popularity_rank": 55
+      },
+      {
+        "display_text": "Oliver Wolcott",
+        "variants": [
+          "oliver wolcott",
+          "wolcott",
+          "oliver"
+        ],
+        "popularity_rank": 56
+      }
+    ],
+    "theme_slug": "HISTORY",
+    "answer_count_cache": 56
+  }
+]

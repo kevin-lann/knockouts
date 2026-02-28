@@ -1,0 +1,3174 @@
+[
+  {
+    "prompt": "Name a popular social media platform.",
+    "answers": [
+      {
+        "display_text": "Facebook",
+        "variants": [
+          "facebook",
+          "fb"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "Instagram",
+        "variants": [
+          "instagram",
+          "insta",
+          "ig"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "TikTok",
+        "variants": [
+          "tiktok",
+          "tik tok"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "YouTube",
+        "variants": [
+          "youtube",
+          "yt"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "X",
+        "variants": [
+          "x",
+          "twitter"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "Snapchat",
+        "variants": [
+          "snapchat",
+          "snap"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "Reddit",
+        "variants": [
+          "reddit"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "LinkedIn",
+        "variants": [
+          "linkedin",
+          "linked in"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "Pinterest",
+        "variants": [
+          "pinterest"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "WhatsApp",
+        "variants": [
+          "whatsapp",
+          "what's app"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "Discord",
+        "variants": [
+          "discord"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "Tumblr",
+        "variants": [
+          "tumblr"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "Messenger",
+        "variants": [
+          "messenger",
+          "facebook messenger",
+          "fb messenger"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "Twitch",
+        "variants": [
+          "twitch"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "Telegram",
+        "variants": [
+          "telegram"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "WeChat",
+        "variants": [
+          "wechat"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "Line",
+        "variants": [
+          "line"
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "Threads",
+        "variants": [
+          "threads",
+          "instagram threads"
+        ],
+        "popularity_rank": 18
+      },
+      {
+        "display_text": "Viber",
+        "variants": [
+          "viber"
+        ],
+        "popularity_rank": 19
+      },
+      {
+        "display_text": "MySpace",
+        "variants": [
+          "myspace"
+        ],
+        "popularity_rank": 20
+      },
+      {
+        "display_text": "Sina Weibo",
+        "variants": [
+          "sina weibo",
+          "weibo"
+        ],
+        "popularity_rank": 21
+      },
+      {
+        "display_text": "VK",
+        "variants": [
+          "vk",
+          "vkontakte"
+        ],
+        "popularity_rank": 22
+      },
+      {
+        "display_text": "Nextdoor",
+        "variants": [
+          "nextdoor"
+        ],
+        "popularity_rank": 23
+      },
+      {
+        "display_text": "Mastodon",
+        "variants": [
+          "mastodon"
+        ],
+        "popularity_rank": 24
+      },
+      {
+        "display_text": "Flickr",
+        "variants": [
+          "flickr"
+        ],
+        "popularity_rank": 25
+      },
+      {
+        "display_text": "Foursquare",
+        "variants": [
+          "foursquare",
+          "swarm"
+        ],
+        "popularity_rank": 26
+      },
+      {
+        "display_text": "Gab",
+        "variants": [
+          "gab"
+        ],
+        "popularity_rank": 27
+      },
+      {
+        "display_text": "Parler",
+        "variants": [
+          "parler"
+        ],
+        "popularity_rank": 28
+      },
+      {
+        "display_text": "Clubhouse",
+        "variants": [
+          "clubhouse"
+        ],
+        "popularity_rank": 29
+      },
+      {
+        "display_text": "BeReal",
+        "variants": [
+          "bereal"
+        ],
+        "popularity_rank": 30
+      },
+      {
+        "display_text": "BlueSky",
+        "variants": [
+          "bluesky"
+        ],
+        "popularity_rank": 31
+      },
+      {
+        "display_text": "Blogger",
+        "variants": [
+          "blogger",
+          "blogspot"
+        ],
+        "popularity_rank": 32
+      },
+      {
+        "display_text": "LiveJournal",
+        "variants": [
+          "livejournal"
+        ],
+        "popularity_rank": 33
+      },
+      {
+        "display_text": "QQ",
+        "variants": [
+          "qq"
+        ],
+        "popularity_rank": 34
+      },
+      {
+        "display_text": "Douyin",
+        "variants": [
+          "douyin"
+        ],
+        "popularity_rank": 35
+      }
+    ],
+    "theme_slug": "INTERNET_AND_SOCIAL_MEDIA",
+    "answer_count_cache": 35
+  },
+  {
+    "prompt": "Name a popular web browser.",
+    "answers": [
+      {
+        "display_text": "Google Chrome",
+        "variants": [
+          "google chrome",
+          "chrome"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "Safari",
+        "variants": [
+          "safari"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "Mozilla Firefox",
+        "variants": [
+          "mozilla firefox",
+          "firefox",
+          "fx"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "Microsoft Edge",
+        "variants": [
+          "microsoft edge",
+          "edge"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "Internet Explorer",
+        "variants": [
+          "internet explorer",
+          "ie",
+          "microsoft internet explorer"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "Opera",
+        "variants": [
+          "opera"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "Brave",
+        "variants": [
+          "brave"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "Vivaldi",
+        "variants": [
+          "vivaldi"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "DuckDuckGo Browser",
+        "variants": [
+          "duckduckgo browser",
+          "duckduckgo",
+          "ddg browser"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "Tor Browser",
+        "variants": [
+          "tor browser",
+          "tor"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "Netscape Navigator",
+        "variants": [
+          "netscape navigator",
+          "netscape"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "Samsung Internet",
+        "variants": [
+          "samsung internet",
+          "samsung browser"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "Yandex Browser",
+        "variants": [
+          "yandex browser",
+          "yandex"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "UC Browser",
+        "variants": [
+          "uc browser"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "Maxthon",
+        "variants": [
+          "maxthon"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "Puffin Browser",
+        "variants": [
+          "puffin browser",
+          "puffin"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "Konqueror",
+        "variants": [
+          "konqueror"
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "Lynx",
+        "variants": [
+          "lynx"
+        ],
+        "popularity_rank": 18
+      }
+    ],
+    "theme_slug": "INTERNET_AND_SOCIAL_MEDIA",
+    "answer_count_cache": 18
+  },
+  {
+    "prompt": "Name a popular messaging app.",
+    "answers": [
+      {
+        "display_text": "WhatsApp",
+        "variants": [
+          "whatsapp",
+          "what's app"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "Facebook Messenger",
+        "variants": [
+          "facebook messenger",
+          "messenger",
+          "fb messenger"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "iMessage",
+        "variants": [
+          "imessage",
+          "i message",
+          "apple message",
+          "apple messages"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "Telegram",
+        "variants": [
+          "telegram"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "Signal",
+        "variants": [
+          "signal"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "WeChat",
+        "variants": [
+          "wechat"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "Line",
+        "variants": [
+          "line"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "Skype",
+        "variants": [
+          "skype"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "Discord",
+        "variants": [
+          "discord"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "Snapchat",
+        "variants": [
+          "snapchat",
+          "snap"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "Instagram Direct Message",
+        "variants": [
+          "instagram direct message",
+          "instagram dm",
+          "ig dm",
+          "insta dm",
+          "instagram message"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "X Direct Message",
+        "variants": [
+          "x direct message",
+          "twitter direct message",
+          "twitter dm",
+          "x dm"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "Viber",
+        "variants": [
+          "viber"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "KakaoTalk",
+        "variants": [
+          "kakaotalk",
+          "kakao talk"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "QQ",
+        "variants": [
+          "qq"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "Slack",
+        "variants": [
+          "slack"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "Microsoft Teams",
+        "variants": [
+          "microsoft teams",
+          "teams"
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "Google Chat",
+        "variants": [
+          "google chat",
+          "google hangouts",
+          "hangouts"
+        ],
+        "popularity_rank": 18
+      },
+      {
+        "display_text": "RCS Messaging",
+        "variants": [
+          "rcs messaging",
+          "rcs chat",
+          "rich communication services"
+        ],
+        "popularity_rank": 19
+      },
+      {
+        "display_text": "Kik Messenger",
+        "variants": [
+          "kik messenger",
+          "kik"
+        ],
+        "popularity_rank": 20
+      },
+      {
+        "display_text": "GroupMe",
+        "variants": [
+          "groupme"
+        ],
+        "popularity_rank": 21
+      },
+      {
+        "display_text": "Zalo",
+        "variants": [
+          "zalo"
+        ],
+        "popularity_rank": 22
+      },
+      {
+        "display_text": "ICQ",
+        "variants": [
+          "icq"
+        ],
+        "popularity_rank": 23
+      },
+      {
+        "display_text": "AIM",
+        "variants": [
+          "aim",
+          "aol instant messenger"
+        ],
+        "popularity_rank": 24
+      },
+      {
+        "display_text": "Yahoo Messenger",
+        "variants": [
+          "yahoo messenger",
+          "ym"
+        ],
+        "popularity_rank": 25
+      },
+      {
+        "display_text": "Wire",
+        "variants": [
+          "wire"
+        ],
+        "popularity_rank": 26
+      },
+      {
+        "display_text": "Threema",
+        "variants": [
+          "threema"
+        ],
+        "popularity_rank": 27
+      }
+    ],
+    "theme_slug": "INTERNET_AND_SOCIAL_MEDIA",
+    "answer_count_cache": 27
+  },
+  {
+    "prompt": "Name a popular social media platform or messaging app.",
+    "answers": [
+      {
+        "display_text": "Facebook",
+        "variants": [
+          "facebook",
+          "fb"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "Instagram",
+        "variants": [
+          "instagram",
+          "insta",
+          "ig"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "YouTube",
+        "variants": [
+          "youtube",
+          "yt"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "TikTok",
+        "variants": [
+          "tiktok",
+          "tik tok"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "X",
+        "variants": [
+          "x",
+          "twitter"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "WhatsApp",
+        "variants": [
+          "whatsapp",
+          "wa"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "Snapchat",
+        "variants": [
+          "snapchat",
+          "snap"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "Reddit",
+        "variants": [
+          "reddit"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "LinkedIn",
+        "variants": [
+          "linkedin",
+          "li"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "Pinterest",
+        "variants": [
+          "pinterest"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "Twitch",
+        "variants": [
+          "twitch"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "Discord",
+        "variants": [
+          "discord"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "Telegram",
+        "variants": [
+          "telegram"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "Signal",
+        "variants": [
+          "signal"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "Tumblr",
+        "variants": [
+          "tumblr"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "Threads",
+        "variants": [
+          "threads"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "Bluesky",
+        "variants": [
+          "bluesky"
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "Mastodon",
+        "variants": [
+          "mastodon"
+        ],
+        "popularity_rank": 18
+      },
+      {
+        "display_text": "WeChat",
+        "variants": [
+          "wechat"
+        ],
+        "popularity_rank": 19
+      },
+      {
+        "display_text": "QQ",
+        "variants": [
+          "qq"
+        ],
+        "popularity_rank": 20
+      },
+      {
+        "display_text": "Line",
+        "variants": [
+          "line"
+        ],
+        "popularity_rank": 21
+      },
+      {
+        "display_text": "KakaoTalk",
+        "variants": [
+          "kakaotalk"
+        ],
+        "popularity_rank": 22
+      },
+      {
+        "display_text": "OnlyFans",
+        "variants": [
+          "onlyfans",
+          "of"
+        ],
+        "popularity_rank": 23
+      },
+      {
+        "display_text": "Vero",
+        "variants": [
+          "vero"
+        ],
+        "popularity_rank": 24
+      },
+      {
+        "display_text": "Gab",
+        "variants": [
+          "gab"
+        ],
+        "popularity_rank": 25
+      },
+      {
+        "display_text": "Flickr",
+        "variants": [
+          "flickr"
+        ],
+        "popularity_rank": 26
+      },
+      {
+        "display_text": "Vimeo",
+        "variants": [
+          "vimeo"
+        ],
+        "popularity_rank": 27
+      },
+      {
+        "display_text": "MySpace",
+        "variants": [
+          "myspace"
+        ],
+        "popularity_rank": 28
+      },
+      {
+        "display_text": "Vine",
+        "variants": [
+          "vine"
+        ],
+        "popularity_rank": 29
+      },
+      {
+        "display_text": "Periscope",
+        "variants": [
+          "periscope"
+        ],
+        "popularity_rank": 30
+      }
+    ],
+    "theme_slug": "INTERNET_AND_SOCIAL_MEDIA",
+    "answer_count_cache": 30
+  },
+  {
+    "prompt": "Name a common internet browser.",
+    "answers": [
+      {
+        "display_text": "Google Chrome",
+        "variants": [
+          "google chrome",
+          "chrome"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "Mozilla Firefox",
+        "variants": [
+          "mozilla firefox",
+          "firefox",
+          "ff"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "Apple Safari",
+        "variants": [
+          "apple safari",
+          "safari"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "Microsoft Edge",
+        "variants": [
+          "microsoft edge",
+          "edge"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "Opera",
+        "variants": [
+          "opera"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "Brave",
+        "variants": [
+          "brave"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "Vivaldi",
+        "variants": [
+          "vivaldi"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "Tor Browser",
+        "variants": [
+          "tor browser",
+          "tor"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "DuckDuckGo Browser",
+        "variants": [
+          "duckduckgo browser",
+          "duckduckgo"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "Samsung Internet",
+        "variants": [
+          "samsung internet",
+          "samsung browser"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "Internet Explorer",
+        "variants": [
+          "internet explorer",
+          "ie"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "Yandex Browser",
+        "variants": [
+          "yandex browser",
+          "yandex"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "UC Browser",
+        "variants": [
+          "uc browser"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "Dolphin Browser",
+        "variants": [
+          "dolphin browser",
+          "dolphin"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "Puffin Browser",
+        "variants": [
+          "puffin browser",
+          "puffin"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "Maxthon",
+        "variants": [
+          "maxthon"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "Midori",
+        "variants": [
+          "midori"
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "Epic Privacy Browser",
+        "variants": [
+          "epic privacy browser",
+          "epic browser",
+          "epic"
+        ],
+        "popularity_rank": 18
+      },
+      {
+        "display_text": "Pale Moon",
+        "variants": [
+          "pale moon"
+        ],
+        "popularity_rank": 19
+      },
+      {
+        "display_text": "SeaMonkey",
+        "variants": [
+          "seamonkey"
+        ],
+        "popularity_rank": 20
+      },
+      {
+        "display_text": "Netscape Navigator",
+        "variants": [
+          "netscape navigator",
+          "netscape"
+        ],
+        "popularity_rank": 21
+      },
+      {
+        "display_text": "Lynx",
+        "variants": [
+          "lynx"
+        ],
+        "popularity_rank": 22
+      },
+      {
+        "display_text": "Konqueror",
+        "variants": [
+          "konqueror"
+        ],
+        "popularity_rank": 23
+      },
+      {
+        "display_text": "GNOME Web",
+        "variants": [
+          "gnome web",
+          "epiphany"
+        ],
+        "popularity_rank": 24
+      }
+    ],
+    "theme_slug": "INTERNET_AND_SOCIAL_MEDIA",
+    "answer_count_cache": 24
+  },
+  {
+    "prompt": "Name a major internet streaming service (video or music).",
+    "answers": [
+      {
+        "display_text": "Netflix",
+        "variants": [
+          "netflix"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "Spotify",
+        "variants": [
+          "spotify"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "Disney+",
+        "variants": [
+          "disney plus",
+          "disney+"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "Amazon Prime Video",
+        "variants": [
+          "amazon prime video",
+          "prime video",
+          "amazon prime"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "Hulu",
+        "variants": [
+          "hulu"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "Max",
+        "variants": [
+          "max",
+          "hbo max",
+          "hbo"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "Apple Music",
+        "variants": [
+          "apple music"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "YouTube",
+        "variants": [
+          "youtube",
+          "yt"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "Apple TV+",
+        "variants": [
+          "apple tv plus",
+          "apple tv+"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "Peacock",
+        "variants": [
+          "peacock"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "Paramount+",
+        "variants": [
+          "paramount plus",
+          "paramount+",
+          "paramount",
+          "showtime"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "Pandora",
+        "variants": [
+          "pandora"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "Tidal",
+        "variants": [
+          "tidal"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "Deezer",
+        "variants": [
+          "deezer"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "YouTube Music",
+        "variants": [
+          "youtube music",
+          "yt music"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "SiriusXM",
+        "variants": [
+          "siriusxm",
+          "sirius xm"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "SoundCloud",
+        "variants": [
+          "soundcloud",
+          "sound cloud"
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "Twitch",
+        "variants": [
+          "twitch"
+        ],
+        "popularity_rank": 18
+      },
+      {
+        "display_text": "Tubi",
+        "variants": [
+          "tubi"
+        ],
+        "popularity_rank": 19
+      },
+      {
+        "display_text": "Pluto TV",
+        "variants": [
+          "pluto tv"
+        ],
+        "popularity_rank": 20
+      },
+      {
+        "display_text": "Crackle",
+        "variants": [
+          "crackle"
+        ],
+        "popularity_rank": 21
+      },
+      {
+        "display_text": "FuboTV",
+        "variants": [
+          "fubotv",
+          "fubo tv"
+        ],
+        "popularity_rank": 22
+      },
+      {
+        "display_text": "Sling TV",
+        "variants": [
+          "sling tv",
+          "sling"
+        ],
+        "popularity_rank": 23
+      },
+      {
+        "display_text": "YouTube TV",
+        "variants": [
+          "youtube tv",
+          "yt tv"
+        ],
+        "popularity_rank": 24
+      },
+      {
+        "display_text": "Crunchyroll",
+        "variants": [
+          "crunchyroll"
+        ],
+        "popularity_rank": 25
+      },
+      {
+        "display_text": "Shudder",
+        "variants": [
+          "shudder"
+        ],
+        "popularity_rank": 26
+      },
+      {
+        "display_text": "BritBox",
+        "variants": [
+          "britbox"
+        ],
+        "popularity_rank": 27
+      },
+      {
+        "display_text": "Discovery+",
+        "variants": [
+          "discovery plus",
+          "discovery+"
+        ],
+        "popularity_rank": 28
+      },
+      {
+        "display_text": "Starz",
+        "variants": [
+          "starz"
+        ],
+        "popularity_rank": 29
+      },
+      {
+        "display_text": "MGM+",
+        "variants": [
+          "mgm plus",
+          "mgm+",
+          "epix"
+        ],
+        "popularity_rank": 30
+      },
+      {
+        "display_text": "Vudu",
+        "variants": [
+          "vudu"
+        ],
+        "popularity_rank": 31
+      },
+      {
+        "display_text": "Freevee",
+        "variants": [
+          "freevee",
+          "imdb tv"
+        ],
+        "popularity_rank": 32
+      },
+      {
+        "display_text": "Acorn TV",
+        "variants": [
+          "acorn tv"
+        ],
+        "popularity_rank": 33
+      },
+      {
+        "display_text": "Bandcamp",
+        "variants": [
+          "bandcamp"
+        ],
+        "popularity_rank": 34
+      },
+      {
+        "display_text": "iHeartRadio",
+        "variants": [
+          "iheartradio",
+          "iheart radio"
+        ],
+        "popularity_rank": 35
+      },
+      {
+        "display_text": "Google Play Music",
+        "variants": [
+          "google play music",
+          "google music"
+        ],
+        "popularity_rank": 36
+      },
+      {
+        "display_text": "Xumo Play",
+        "variants": [
+          "xumo play",
+          "xumo"
+        ],
+        "popularity_rank": 37
+      },
+      {
+        "display_text": "Philo",
+        "variants": [
+          "philo"
+        ],
+        "popularity_rank": 38
+      },
+      {
+        "display_text": "Curiosity Stream",
+        "variants": [
+          "curiosity stream"
+        ],
+        "popularity_rank": 39
+      },
+      {
+        "display_text": "Mubi",
+        "variants": [
+          "mubi"
+        ],
+        "popularity_rank": 40
+      },
+      {
+        "display_text": "FilmStruck",
+        "variants": [
+          "filmstruck"
+        ],
+        "popularity_rank": 41
+      }
+    ],
+    "theme_slug": "INTERNET_AND_SOCIAL_MEDIA",
+    "answer_count_cache": 41
+  },
+  {
+    "prompt": "Name a social media platform.",
+    "answers": [
+      {
+        "display_text": "Facebook",
+        "variants": [
+          "fb",
+          "facebook"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "YouTube",
+        "variants": [
+          "youtube",
+          "yt"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "Instagram",
+        "variants": [
+          "insta",
+          "instagram",
+          "ig"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "X",
+        "variants": [
+          "x",
+          "twitter"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "TikTok",
+        "variants": [
+          "tiktok",
+          "tik tok"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "LinkedIn",
+        "variants": [
+          "linkedin",
+          "li"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "Snapchat",
+        "variants": [
+          "snapchat",
+          "snap"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "Reddit",
+        "variants": [
+          "reddit"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "Pinterest",
+        "variants": [
+          "pinterest"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "WhatsApp",
+        "variants": [
+          "whatsapp",
+          "wa"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "Discord",
+        "variants": [
+          "discord"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "Twitch",
+        "variants": [
+          "twitch"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "Tumblr",
+        "variants": [
+          "tumblr"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "Threads",
+        "variants": [
+          "threads"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "Bluesky",
+        "variants": [
+          "bluesky"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "Mastodon",
+        "variants": [
+          "mastodon"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "WeChat",
+        "variants": [
+          "wechat"
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "Sina Weibo",
+        "variants": [
+          "weibo",
+          "sina weibo"
+        ],
+        "popularity_rank": 18
+      },
+      {
+        "display_text": "VK",
+        "variants": [
+          "vk",
+          "vkontakte"
+        ],
+        "popularity_rank": 19
+      },
+      {
+        "display_text": "Telegram",
+        "variants": [
+          "telegram"
+        ],
+        "popularity_rank": 20
+      },
+      {
+        "display_text": "Flickr",
+        "variants": [
+          "flickr"
+        ],
+        "popularity_rank": 21
+      },
+      {
+        "display_text": "Quora",
+        "variants": [
+          "quora"
+        ],
+        "popularity_rank": 22
+      },
+      {
+        "display_text": "Stack Overflow",
+        "variants": [
+          "stackoverflow",
+          "stack exchange"
+        ],
+        "popularity_rank": 23
+      },
+      {
+        "display_text": "Yelp",
+        "variants": [
+          "yelp"
+        ],
+        "popularity_rank": 24
+      },
+      {
+        "display_text": "Goodreads",
+        "variants": [
+          "goodreads"
+        ],
+        "popularity_rank": 25
+      },
+      {
+        "display_text": "Nextdoor",
+        "variants": [
+          "nextdoor"
+        ],
+        "popularity_rank": 26
+      },
+      {
+        "display_text": "Meetup",
+        "variants": [
+          "meetup"
+        ],
+        "popularity_rank": 27
+      },
+      {
+        "display_text": "Vimeo",
+        "variants": [
+          "vimeo"
+        ],
+        "popularity_rank": 28
+      },
+      {
+        "display_text": "DeviantArt",
+        "variants": [
+          "deviantart",
+          "da"
+        ],
+        "popularity_rank": 29
+      },
+      {
+        "display_text": "MySpace",
+        "variants": [
+          "myspace"
+        ],
+        "popularity_rank": 30
+      },
+      {
+        "display_text": "Friendster",
+        "variants": [
+          "friendster"
+        ],
+        "popularity_rank": 31
+      },
+      {
+        "display_text": "Hi5",
+        "variants": [
+          "hi5"
+        ],
+        "popularity_rank": 32
+      },
+      {
+        "display_text": "Badoo",
+        "variants": [
+          "badoo"
+        ],
+        "popularity_rank": 33
+      },
+      {
+        "display_text": "Tinder",
+        "variants": [
+          "tinder"
+        ],
+        "popularity_rank": 34
+      },
+      {
+        "display_text": "Bumble",
+        "variants": [
+          "bumble"
+        ],
+        "popularity_rank": 35
+      },
+      {
+        "display_text": "Hinge",
+        "variants": [
+          "hinge"
+        ],
+        "popularity_rank": 36
+      },
+      {
+        "display_text": "Strava",
+        "variants": [
+          "strava"
+        ],
+        "popularity_rank": 37
+      },
+      {
+        "display_text": "Letterboxd",
+        "variants": [
+          "letterboxd"
+        ],
+        "popularity_rank": 38
+      },
+      {
+        "display_text": "Untappd",
+        "variants": [
+          "untappd"
+        ],
+        "popularity_rank": 39
+      }
+    ],
+    "theme_slug": "INTERNET_AND_SOCIAL_MEDIA",
+    "answer_count_cache": 39
+  },
+  {
+    "prompt": "Name a protocol or standard used to enable internet communication or services.",
+    "answers": [
+      {
+        "display_text": "HTTP",
+        "variants": [
+          "http"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "HTTPS",
+        "variants": [
+          "https",
+          "http secure"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "TCP",
+        "variants": [
+          "tcp",
+          "transmission control protocol"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "IP",
+        "variants": [
+          "ip",
+          "internet protocol"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "FTP",
+        "variants": [
+          "ftp",
+          "file transfer protocol"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "SMTP",
+        "variants": [
+          "smtp",
+          "simple mail transfer protocol"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "DNS",
+        "variants": [
+          "dns",
+          "domain name system"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "UDP",
+        "variants": [
+          "udp",
+          "user datagram protocol"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "POP3",
+        "variants": [
+          "pop3",
+          "post office protocol"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "IMAP",
+        "variants": [
+          "imap",
+          "internet message access protocol"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "SSH",
+        "variants": [
+          "ssh",
+          "secure shell"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "TLS",
+        "variants": [
+          "tls",
+          "transport layer security"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "SSL",
+        "variants": [
+          "ssl",
+          "secure sockets layer"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "DHCP",
+        "variants": [
+          "dhcp",
+          "dynamic host configuration protocol"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "ICMP",
+        "variants": [
+          "icmp",
+          "internet control message protocol"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "ARP",
+        "variants": [
+          "arp",
+          "address resolution protocol"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "SFTP",
+        "variants": [
+          "sftp",
+          "ssh file transfer protocol"
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "NTP",
+        "variants": [
+          "ntp",
+          "network time protocol"
+        ],
+        "popularity_rank": 18
+      },
+      {
+        "display_text": "SNMP",
+        "variants": [
+          "snmp",
+          "simple network management protocol"
+        ],
+        "popularity_rank": 19
+      },
+      {
+        "display_text": "IRC",
+        "variants": [
+          "irc",
+          "internet relay chat"
+        ],
+        "popularity_rank": 20
+      },
+      {
+        "display_text": "BGP",
+        "variants": [
+          "bgp",
+          "border gateway protocol"
+        ],
+        "popularity_rank": 21
+      },
+      {
+        "display_text": "OSPF",
+        "variants": [
+          "ospf",
+          "open shortest path first"
+        ],
+        "popularity_rank": 22
+      },
+      {
+        "display_text": "RIP",
+        "variants": [
+          "rip",
+          "routing information protocol"
+        ],
+        "popularity_rank": 23
+      },
+      {
+        "display_text": "Telnet",
+        "variants": [
+          "telnet"
+        ],
+        "popularity_rank": 24
+      },
+      {
+        "display_text": "Gopher",
+        "variants": [
+          "gopher"
+        ],
+        "popularity_rank": 25
+      },
+      {
+        "display_text": "NNTP",
+        "variants": [
+          "nntp",
+          "network news transfer protocol"
+        ],
+        "popularity_rank": 26
+      }
+    ],
+    "theme_slug": "INTERNET_AND_SOCIAL_MEDIA",
+    "answer_count_cache": 26
+  },
+  {
+    "prompt": "Name a common acronym or initialism used in internet or text communication.",
+    "answers": [
+      {
+        "display_text": "LOL",
+        "variants": [
+          "lol",
+          "laughing out loud"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "BRB",
+        "variants": [
+          "brb",
+          "be right back"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "BTW",
+        "variants": [
+          "btw",
+          "by the way"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "IMHO",
+        "variants": [
+          "imho",
+          "in my humble opinion"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "OMG",
+        "variants": [
+          "omg",
+          "oh my god",
+          "oh my gosh"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "AFK",
+        "variants": [
+          "afk",
+          "away from keyboard"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "NSFW",
+        "variants": [
+          "nsfw",
+          "not safe for work"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "ROFL",
+        "variants": [
+          "rofl",
+          "rolling on floor laughing"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "LMAO",
+        "variants": [
+          "lmao",
+          "laughing my ass off"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "SMH",
+        "variants": [
+          "smh",
+          "shaking my head"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "IMO",
+        "variants": [
+          "imo",
+          "in my opinion"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "IDK",
+        "variants": [
+          "idk",
+          "i don't know"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "IDC",
+        "variants": [
+          "idc",
+          "i don't care"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "FWIW",
+        "variants": [
+          "fwiw",
+          "for what it's worth"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "YOLO",
+        "variants": [
+          "yolo",
+          "you only live once"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "FOMO",
+        "variants": [
+          "fomo",
+          "fear of missing out"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "IIRC",
+        "variants": [
+          "iirc",
+          "if i recall correctly"
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "OMW",
+        "variants": [
+          "omw",
+          "on my way"
+        ],
+        "popularity_rank": 18
+      },
+      {
+        "display_text": "JK",
+        "variants": [
+          "jk",
+          "just kidding"
+        ],
+        "popularity_rank": 19
+      },
+      {
+        "display_text": "NVM",
+        "variants": [
+          "nvm",
+          "nevermind",
+          "never mind"
+        ],
+        "popularity_rank": 20
+      },
+      {
+        "display_text": "FYI",
+        "variants": [
+          "fyi",
+          "for your information"
+        ],
+        "popularity_rank": 21
+      },
+      {
+        "display_text": "IRL",
+        "variants": [
+          "irl",
+          "in real life"
+        ],
+        "popularity_rank": 22
+      },
+      {
+        "display_text": "TLDR",
+        "variants": [
+          "tldr",
+          "too long didn't read"
+        ],
+        "popularity_rank": 23
+      },
+      {
+        "display_text": "FTW",
+        "variants": [
+          "ftw",
+          "for the win"
+        ],
+        "popularity_rank": 24
+      },
+      {
+        "display_text": "BBL",
+        "variants": [
+          "bbl",
+          "be back later"
+        ],
+        "popularity_rank": 25
+      },
+      {
+        "display_text": "OOTD",
+        "variants": [
+          "ootd",
+          "outfit of the day"
+        ],
+        "popularity_rank": 26
+      },
+      {
+        "display_text": "MFW",
+        "variants": [
+          "mfw",
+          "my face when"
+        ],
+        "popularity_rank": 27
+      },
+      {
+        "display_text": "RN",
+        "variants": [
+          "rn",
+          "right now"
+        ],
+        "popularity_rank": 28
+      },
+      {
+        "display_text": "TBH",
+        "variants": [
+          "tbh",
+          "to be honest"
+        ],
+        "popularity_rank": 29
+      },
+      {
+        "display_text": "ASAP",
+        "variants": [
+          "asap",
+          "as soon as possible"
+        ],
+        "popularity_rank": 30
+      },
+      {
+        "display_text": "XOXO",
+        "variants": [
+          "xoxo",
+          "hugs and kisses"
+        ],
+        "popularity_rank": 31
+      },
+      {
+        "display_text": "G2G",
+        "variants": [
+          "g2g",
+          "got to go"
+        ],
+        "popularity_rank": 32
+      },
+      {
+        "display_text": "GTG",
+        "variants": [
+          "gtg",
+          "gotta go"
+        ],
+        "popularity_rank": 33
+      },
+      {
+        "display_text": "WTH",
+        "variants": [
+          "wth",
+          "what the hell",
+          "what the heck"
+        ],
+        "popularity_rank": 34
+      },
+      {
+        "display_text": "WTF",
+        "variants": [
+          "wtf",
+          "what the fuck"
+        ],
+        "popularity_rank": 35
+      },
+      {
+        "display_text": "HTH",
+        "variants": [
+          "hth",
+          "hope this helps"
+        ],
+        "popularity_rank": 36
+      },
+      {
+        "display_text": "TIA",
+        "variants": [
+          "tia",
+          "thanks in advance"
+        ],
+        "popularity_rank": 37
+      },
+      {
+        "display_text": "AFAIK",
+        "variants": [
+          "afaik",
+          "as far as i know"
+        ],
+        "popularity_rank": 38
+      },
+      {
+        "display_text": "TTYL",
+        "variants": [
+          "ttyl",
+          "talk to you later"
+        ],
+        "popularity_rank": 39
+      },
+      {
+        "display_text": "POV",
+        "variants": [
+          "pov",
+          "point of view"
+        ],
+        "popularity_rank": 40
+      },
+      {
+        "display_text": "GOAT",
+        "variants": [
+          "goat",
+          "greatest of all time"
+        ],
+        "popularity_rank": 41
+      },
+      {
+        "display_text": "OTP",
+        "variants": [
+          "otp",
+          "one true pairing"
+        ],
+        "popularity_rank": 42
+      },
+      {
+        "display_text": "BFF",
+        "variants": [
+          "bff",
+          "best friends forever"
+        ],
+        "popularity_rank": 43
+      },
+      {
+        "display_text": "ILY",
+        "variants": [
+          "ily",
+          "i love you"
+        ],
+        "popularity_rank": 44
+      },
+      {
+        "display_text": "GG",
+        "variants": [
+          "gg",
+          "good game"
+        ],
+        "popularity_rank": 45
+      },
+      {
+        "display_text": "GLHF",
+        "variants": [
+          "glhf",
+          "good luck have fun"
+        ],
+        "popularity_rank": 46
+      },
+      {
+        "display_text": "NP",
+        "variants": [
+          "np",
+          "no problem"
+        ],
+        "popularity_rank": 47
+      },
+      {
+        "display_text": "TY",
+        "variants": [
+          "ty",
+          "thank you"
+        ],
+        "popularity_rank": 48
+      },
+      {
+        "display_text": "TYVM",
+        "variants": [
+          "tyvm",
+          "thank you very much"
+        ],
+        "popularity_rank": 49
+      },
+      {
+        "display_text": "AKA",
+        "variants": [
+          "aka",
+          "also known as"
+        ],
+        "popularity_rank": 50
+      },
+      {
+        "display_text": "ETA",
+        "variants": [
+          "eta",
+          "estimated time of arrival"
+        ],
+        "popularity_rank": 51
+      },
+      {
+        "display_text": "FAQ",
+        "variants": [
+          "faq",
+          "frequently asked questions"
+        ],
+        "popularity_rank": 52
+      },
+      {
+        "display_text": "TMI",
+        "variants": [
+          "tmi",
+          "too much information"
+        ],
+        "popularity_rank": 53
+      },
+      {
+        "display_text": "BAE",
+        "variants": [
+          "bae",
+          "before anyone else"
+        ],
+        "popularity_rank": 54
+      },
+      {
+        "display_text": "FTFY",
+        "variants": [
+          "ftfy",
+          "fixed that for you"
+        ],
+        "popularity_rank": 55
+      },
+      {
+        "display_text": "SFW",
+        "variants": [
+          "sfw",
+          "safe for work"
+        ],
+        "popularity_rank": 56
+      },
+      {
+        "display_text": "TBD",
+        "variants": [
+          "tbd",
+          "to be determined",
+          "to be decided"
+        ],
+        "popularity_rank": 57
+      },
+      {
+        "display_text": "N/A",
+        "variants": [
+          "na",
+          "not applicable",
+          "not available"
+        ],
+        "popularity_rank": 58
+      },
+      {
+        "display_text": "PM",
+        "variants": [
+          "pm",
+          "private message"
+        ],
+        "popularity_rank": 59
+      },
+      {
+        "display_text": "DM",
+        "variants": [
+          "dm",
+          "direct message"
+        ],
+        "popularity_rank": 60
+      },
+      {
+        "display_text": "RT",
+        "variants": [
+          "rt",
+          "retweet"
+        ],
+        "popularity_rank": 61
+      },
+      {
+        "display_text": "HT",
+        "variants": [
+          "ht",
+          "hat tip"
+        ],
+        "popularity_rank": 62
+      },
+      {
+        "display_text": "ICYMI",
+        "variants": [
+          "icymi",
+          "in case you missed it"
+        ],
+        "popularity_rank": 63
+      },
+      {
+        "display_text": "ELI5",
+        "variants": [
+          "eli5",
+          "explain like i'm 5"
+        ],
+        "popularity_rank": 64
+      },
+      {
+        "display_text": "RN",
+        "variants": [
+          "rn",
+          "right now"
+        ],
+        "popularity_rank": 65
+      }
+    ],
+    "theme_slug": "INTERNET_AND_SOCIAL_MEDIA",
+    "answer_count_cache": 65
+  },
+  {
+    "prompt": "Name a major early social networking site (launched before 2005).",
+    "answers": [
+      {
+        "display_text": "MySpace",
+        "variants": [
+          "myspace"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "Facebook",
+        "variants": [
+          "facebook",
+          "fb"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "Friendster",
+        "variants": [
+          "friendster"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "LinkedIn",
+        "variants": [
+          "linkedin"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "LiveJournal",
+        "variants": [
+          "livejournal",
+          "lj"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "Six Degrees",
+        "variants": [
+          "six degrees",
+          "sixdegrees.com",
+          "sixdegrees"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "Orkut",
+        "variants": [
+          "orkut"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "Classmates.com",
+        "variants": [
+          "classmates.com",
+          "classmates"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "GeoCities",
+        "variants": [
+          "geocities"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "Xanga",
+        "variants": [
+          "xanga"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "Flickr",
+        "variants": [
+          "flickr"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "DeviantArt",
+        "variants": [
+          "deviantart",
+          "da"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "TheGlobe.com",
+        "variants": [
+          "theglobe.com",
+          "theglobe"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "Ryze",
+        "variants": [
+          "ryze"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "Tribe.net",
+        "variants": [
+          "tribe.net",
+          "tribe"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "BlackPlanet",
+        "variants": [
+          "blackplanet"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "AsianAvenue",
+        "variants": [
+          "asianavenue"
+        ],
+        "popularity_rank": 17
+      }
+    ],
+    "theme_slug": "INTERNET_AND_SOCIAL_MEDIA",
+    "answer_count_cache": 17
+  },
+  {
+    "prompt": "Name a social media platform primarily focused on short-form video content.",
+    "answers": [
+      {
+        "display_text": "TikTok",
+        "variants": [
+          "tiktok",
+          "tik tok"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "Vine",
+        "variants": [
+          "vine"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "Instagram Reels",
+        "variants": [
+          "instagram reels",
+          "reels",
+          "insta reels"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "YouTube Shorts",
+        "variants": [
+          "youtube shorts",
+          "shorts"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "Snapchat Spotlight",
+        "variants": [
+          "snapchat spotlight",
+          "spotlight"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "Triller",
+        "variants": [
+          "triller"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "Kwai",
+        "variants": [
+          "kwai"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "Likee",
+        "variants": [
+          "likee"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "Byte",
+        "variants": [
+          "byte"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "Lasso",
+        "variants": [
+          "lasso"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "Dubsmash",
+        "variants": [
+          "dubsmash"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "Clash",
+        "variants": [
+          "clash"
+        ],
+        "popularity_rank": 12
+      }
+    ],
+    "theme_slug": "INTERNET_AND_SOCIAL_MEDIA",
+    "answer_count_cache": 12
+  },
+  {
+    "prompt": "Name a major instant messaging application that is not primarily an SMS replacement or tied to an operating system's default messaging app.",
+    "answers": [
+      {
+        "display_text": "WhatsApp",
+        "variants": [
+          "whatsapp",
+          "whats app"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "Facebook Messenger",
+        "variants": [
+          "facebook messenger",
+          "messenger",
+          "fb messenger"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "Telegram",
+        "variants": [
+          "telegram"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "Discord",
+        "variants": [
+          "discord"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "WeChat",
+        "variants": [
+          "wechat"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "Line",
+        "variants": [
+          "line"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "Viber",
+        "variants": [
+          "viber"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "Skype",
+        "variants": [
+          "skype"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "Signal",
+        "variants": [
+          "signal"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "Google Chat",
+        "variants": [
+          "google chat",
+          "hangouts",
+          "google hangouts",
+          "gchat"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "QQ",
+        "variants": [
+          "qq",
+          "tencent qq"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "KakaoTalk",
+        "variants": [
+          "kakaotalk",
+          "kakao talk"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "ICQ",
+        "variants": [
+          "icq"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "Wire",
+        "variants": [
+          "wire"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "Threema",
+        "variants": [
+          "threema"
+        ],
+        "popularity_rank": 15
+      }
+    ],
+    "theme_slug": "INTERNET_AND_SOCIAL_MEDIA",
+    "answer_count_cache": 15
+  },
+  {
+    "prompt": "Name an early Internet protocol or service that was widely used before the advent of the World Wide Web, excluding FTP, HTTP, and Email related protocols (SMTP, POP, IMAP).",
+    "answers": [
+      {
+        "display_text": "Telnet",
+        "variants": [
+          "telnet"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "Usenet",
+        "variants": [
+          "usenet",
+          "newsgroup",
+          "newsgroups"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "IRC",
+        "variants": [
+          "irc",
+          "internet relay chat"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "Gopher",
+        "variants": [
+          "gopher"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "NTP",
+        "variants": [
+          "ntp",
+          "network time protocol"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "DNS",
+        "variants": [
+          "dns",
+          "domain name system"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "NNTP",
+        "variants": [
+          "nntp",
+          "network news transfer protocol"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "SNMP",
+        "variants": [
+          "snmp",
+          "simple network management protocol"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "Finger",
+        "variants": [
+          "finger"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "Archie",
+        "variants": [
+          "archie"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "WAIS",
+        "variants": [
+          "wais",
+          "wide area information server"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "Whois",
+        "variants": [
+          "whois"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "ARP",
+        "variants": [
+          "arp",
+          "address resolution protocol"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "NCP",
+        "variants": [
+          "ncp",
+          "network control program"
+        ],
+        "popularity_rank": 14
+      }
+    ],
+    "theme_slug": "INTERNET_AND_SOCIAL_MEDIA",
+    "answer_count_cache": 14
+  },
+  {
+    "prompt": "Name a social media platform or online community that launched before 2005 and is now largely defunct or completely shut down.",
+    "answers": [
+      {
+        "display_text": "MySpace",
+        "variants": [
+          "myspace",
+          "my space"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "Friendster",
+        "variants": [
+          "friendster"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "Geocities",
+        "variants": [
+          "geocities",
+          "geo cities"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "LiveJournal",
+        "variants": [
+          "livejournal",
+          "live journal",
+          "lj"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "Xanga",
+        "variants": [
+          "xanga"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "Six Degrees",
+        "variants": [
+          "six degrees",
+          "sixdegrees"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "Classmates.com",
+        "variants": [
+          "classmates",
+          "classmates.com"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "TheGlobe.com",
+        "variants": [
+          "theglobe",
+          "the globe",
+          "theglobe.com"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "Prodigy",
+        "variants": [
+          "prodigy"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "CompuServe",
+        "variants": [
+          "compuserve",
+          "compu serve"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "America Online",
+        "variants": [
+          "aol",
+          "america online"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "ICQ",
+        "variants": [
+          "icq"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "Hi5",
+        "variants": [
+          "hi5",
+          "hi 5"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "BlackPlanet",
+        "variants": [
+          "blackplanet",
+          "black planet"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "AsianAvenue",
+        "variants": [
+          "asianavenue",
+          "asian avenue"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "Delicious",
+        "variants": [
+          "delicious",
+          "del.icio.us"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "Digg",
+        "variants": [
+          "digg"
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "Gather",
+        "variants": [
+          "gather"
+        ],
+        "popularity_rank": 18
+      },
+      {
+        "display_text": "Talk City",
+        "variants": [
+          "talk city"
+        ],
+        "popularity_rank": 19
+      },
+      {
+        "display_text": "Makeoutclub",
+        "variants": [
+          "makeoutclub",
+          "make out club"
+        ],
+        "popularity_rank": 20
+      },
+      {
+        "display_text": "Weblogs.com",
+        "variants": [
+          "weblogs",
+          "weblogs.com"
+        ],
+        "popularity_rank": 21
+      },
+      {
+        "display_text": "Ryze",
+        "variants": [
+          "ryze"
+        ],
+        "popularity_rank": 22
+      }
+    ],
+    "theme_slug": "INTERNET_AND_SOCIAL_MEDIA",
+    "answer_count_cache": 22
+  },
+  {
+    "prompt": "Name a well-known internet meme or viral phenomenon that originated before 2005.",
+    "answers": [
+      {
+        "display_text": "Dancing Baby",
+        "variants": [
+          "dancing baby",
+          "baby cha cha",
+          "baby cha-cha",
+          "oofda baby"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "All Your Base Are Belong to Us",
+        "variants": [
+          "all your base",
+          "allyourbase",
+          "allyourbasearebelongtous",
+          "aybabtu"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "Badger Badger Badger",
+        "variants": [
+          "badger badger badger",
+          "badgers"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "Hampster Dance",
+        "variants": [
+          "hampster dance",
+          "hamster dance"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "Numa Numa Dance",
+        "variants": [
+          "numa numa",
+          "numa numa dance",
+          "numa numa guy"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "Star Wars Kid",
+        "variants": [
+          "star wars kid",
+          "sith lord kid"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "Peanut Butter Jelly Time",
+        "variants": [
+          "peanut butter jelly time",
+          "pbjt"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "O RLY?",
+        "variants": [
+          "o rly",
+          "o rly owl",
+          "o really"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "Lolcats",
+        "variants": [
+          "lolcats",
+          "i can haz cheezburger"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "The End of the World",
+        "variants": [
+          "the end of the world",
+          "doomed",
+          "end of the world"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "Mahir \u00c7a\u011fr\u0131",
+        "variants": [
+          "mahir cagri",
+          "mahir \u00e7a\u011fr\u0131",
+          "i kiss you"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "Bert is Evil",
+        "variants": [
+          "bert is evil"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "Bill Gates Dancing",
+        "variants": [
+          "bill gates dancing"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "Mr. T Ate My Balls",
+        "variants": [
+          "mr t ate my balls",
+          "mister t ate my balls"
+        ],
+        "popularity_rank": 14
+      }
+    ],
+    "theme_slug": "INTERNET_AND_SOCIAL_MEDIA",
+    "answer_count_cache": 14
+  }
+]

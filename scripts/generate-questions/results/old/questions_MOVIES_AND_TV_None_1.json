@@ -1,0 +1,59 @@
+[
+  {
+    "prompt": "Name an actor who has officially played James Bond in an EON Productions film.",
+    "answers": [
+      {
+        "display_text": "Sean Connery",
+        "variants": [
+          "sean connery",
+          "connery",
+          "sir sean connery"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "Roger Moore",
+        "variants": [
+          "roger moore",
+          "moore",
+          "sir roger moore"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "Daniel Craig",
+        "variants": [
+          "daniel craig",
+          "craig"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "Pierce Brosnan",
+        "variants": [
+          "pierce brosnan",
+          "brosnan"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "Timothy Dalton",
+        "variants": [
+          "timothy dalton",
+          "dalton"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "George Lazenby",
+        "variants": [
+          "george lazenby",
+          "lazenby"
+        ],
+        "popularity_rank": 6
+      }
+    ],
+    "theme_slug": "MOVIES_AND_TV",
+    "answer_count_cache": 6
+  }
+]

@@ -6,6 +6,8 @@ import os
 import sys
 import json
 import time
+import re
+from difflib import SequenceMatcher
 from ai import get_system_prompt, Question
 from constant import THEMES
 load_dotenv()
@@ -15,6 +17,25 @@ MAX_QUESTIONS_PER_REQUEST = 10
 MAX_OUTPUT_TOKENS = int(os.getenv("GEMINI_MAX_OUTPUT_TOKENS", "65536"))
 MAX_RETRIES = int(os.getenv("GEMINI_MAX_RETRIES", "5"))
 RETRY_BASE_DELAY_SECONDS = float(os.getenv("GEMINI_RETRY_BASE_DELAY_SECONDS", "2"))
+MAX_BATCH_ATTEMPTS = int(os.getenv("GEMINI_MAX_BATCH_ATTEMPTS", "8"))
+PROMPT_SIMILARITY_THRESHOLD = float(os.getenv("PROMPT_SIMILARITY_THRESHOLD", "0.9"))
+
+DIFFICULTY_TO_ANSWER_RANGE = {
+    1: (15, 100),
+    2: (10, 80),
+    3: (7, 55),
+    4: (4, 35),
+    5: (2, 25),
+}
+
+
+difficulty_to_count = {
+    1: 120,
+    2: 60,
+    3: 30,
+    4: 15,
+    5: 8,
+}
 
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
@@ -132,7 +153,40 @@ def save_questions_to_file(file_path: str, questions: list[Question]) -> None:
     with open(file_path, "w") as f:
         json.dump([q.model_dump() for q in questions], f, indent=2)
 
-def generate_questions(theme: str, difficulty: int, count: int = 1) -> list[Question]:
+def normalize_prompt_key(prompt: str) -> str:
+    lowered = prompt.lower().strip()
+    lowered = re.sub(r"[^a-z0-9\s]", " ", lowered)
+    lowered = re.sub(r"\s+", " ", lowered)
+    return lowered.strip()
+
+def is_prompt_unique(
+    prompt: str,
+    seen_prompt_keys: set[str],
+    seen_prompt_key_list: list[str]
+) -> bool:
+    normalized_prompt = normalize_prompt_key(prompt)
+    if normalized_prompt in seen_prompt_keys:
+        return False
+
+    for existing_prompt in seen_prompt_key_list:
+        similarity = SequenceMatcher(None, normalized_prompt, existing_prompt).ratio()
+        if similarity >= PROMPT_SIMILARITY_THRESHOLD:
+            return False
+    return True
+
+def is_question_difficulty_valid(question: Question, difficulty: int) -> bool:
+    if difficulty not in DIFFICULTY_TO_ANSWER_RANGE:
+        return True
+    answer_count = len(question.answers)
+    min_answers, max_answers = DIFFICULTY_TO_ANSWER_RANGE[difficulty]
+    return min_answers <= answer_count <= max_answers
+
+def generate_questions(
+    theme: str,
+    difficulty: int,
+    count: int = 1,
+    avoid_prompts: list[str] | None = None
+) -> list[Question]:
     """
     Generate one or more questions for the given theme and difficulty.
     
@@ -146,18 +200,7 @@ def generate_questions(theme: str, difficulty: int, count: int = 1) -> list[Ques
     """
     questions = []
 
-    # Prevent oversized responses that can be truncated by model output limits
-    if count > MAX_QUESTIONS_PER_REQUEST:
-        remaining = count
-        while remaining > 0:
-            batch_count = min(MAX_QUESTIONS_PER_REQUEST, remaining)
-            batch_questions = generate_questions(theme, difficulty, batch_count)
-            questions.extend(batch_questions)
-            remaining -= batch_count
-            print(f"Generated batch of {batch_count}, remaining: {remaining}")
-        return questions
-
-    prompt = get_system_prompt(theme, difficulty, count)
+    prompt = get_system_prompt(theme, difficulty, count, avoid_prompts)
     
     # For multiple questions, use array schema
     if count > 1:
@@ -212,6 +255,75 @@ def generate_questions(theme: str, difficulty: int, count: int = 1) -> list[Ques
     
     return questions
 
+def generate_constrained_batch(
+    theme: str,
+    difficulty: int,
+    count: int,
+    seen_prompt_keys: set[str],
+    seen_prompt_key_list: list[str],
+    seen_prompts_for_context: list[str]
+) -> tuple[list[Question], bool]:
+    accepted_questions: list[Question] = []
+    local_seen_keys: set[str] = set()
+    local_seen_key_list: list[str] = []
+    max_request_count = min(MAX_QUESTIONS_PER_REQUEST, count)
+
+    attempts = 0
+    while len(accepted_questions) < count and attempts < MAX_BATCH_ATTEMPTS:
+        remaining = count - len(accepted_questions)
+        request_count = min(max_request_count, remaining)
+        avoid_prompts = seen_prompts_for_context + [q.prompt for q in accepted_questions]
+
+        try:
+            generated_questions = generate_questions(
+                theme,
+                difficulty,
+                request_count,
+                avoid_prompts
+            )
+        except json.JSONDecodeError as error:
+            # Most common cause is output truncation at token ceiling.
+            # Back off request size and retry instead of failing the entire run.
+            max_request_count = max(1, request_count // 2)
+            attempts += 1
+            print(
+                f"JSON parse failed for difficulty {difficulty} with request_count={request_count}: {error}. "
+                f"Retrying with max_request_count={max_request_count}. "
+                f"Attempt {attempts}/{MAX_BATCH_ATTEMPTS}"
+            )
+            continue
+
+        newly_accepted = 0
+        for question in generated_questions:
+            if not is_question_difficulty_valid(question, difficulty):
+                continue
+
+            if not is_prompt_unique(question.prompt, seen_prompt_keys, seen_prompt_key_list):
+                continue
+
+            if not is_prompt_unique(question.prompt, local_seen_keys, local_seen_key_list):
+                continue
+
+            normalized_prompt = normalize_prompt_key(question.prompt)
+            local_seen_keys.add(normalized_prompt)
+            local_seen_key_list.append(normalized_prompt)
+            accepted_questions.append(question)
+            newly_accepted += 1
+
+            if len(accepted_questions) == count:
+                break
+
+        attempts += 1
+        if len(accepted_questions) < count:
+            print(
+                f"Accepted {newly_accepted}/{request_count} in constrained batch. "
+                f"Need {count - len(accepted_questions)} more. "
+                f"Attempt {attempts}/{MAX_BATCH_ATTEMPTS}"
+            )
+
+    is_complete = len(accepted_questions) == count
+    return accepted_questions, is_complete
+
 if __name__ == "__main__":
     if (len(sys.argv) > 5 or len(sys.argv) < 1 
         or sys.argv[1] not in ['all', 'test'] 
@@ -222,21 +334,11 @@ if __name__ == "__main__":
     mode = sys.argv[1]
     theme = sys.argv[2]
 
-    difficulty_to_count = {
-        1: 100,
-        2: 50,
-        3: 25,
-        4: 10,
-        5: 5,
-        # Test counts
-        # 1: 3,
-        # 2: 3,
-        # 3: 3,
-        # 4: 3,
-        # 5: 3,
-    }
-
     final_questions = []
+    failed_batches: list[str] = []
+    seen_prompt_keys: set[str] = set()
+    seen_prompt_key_list: list[str] = []
+    seen_prompts_for_context: list[str] = []
 
     if mode == 'all':
         output_path = f"results/questions_{theme}.json"
@@ -249,7 +351,14 @@ if __name__ == "__main__":
             while remaining > 0:
                 batch_count = min(MAX_QUESTIONS_PER_REQUEST, remaining)
                 try:
-                    questions = generate_questions(theme, difficulty, batch_count)
+                    questions, is_complete = generate_constrained_batch(
+                        theme,
+                        difficulty,
+                        batch_count,
+                        seen_prompt_keys,
+                        seen_prompt_key_list,
+                        seen_prompts_for_context
+                    )
                 except Exception as error:
                     save_questions_to_file(partial_output_path, final_questions)
                     print(f"Batch failed for difficulty {difficulty} with count {batch_count}: {error}")
@@ -257,26 +366,56 @@ if __name__ == "__main__":
                         f"Saved {len(final_questions)} partial questions to "
                         f"{partial_output_path}"
                     )
-                    sys.exit(1)
+                    failed_batches.append(
+                        f"difficulty={difficulty}, requested_batch={batch_count}, error={error}"
+                    )
+                    break
 
                 questions_with_difficulty = [
                     question.model_copy(update={'difficulty': difficulty})
                     for question in questions
                 ]
                 final_questions.extend(questions_with_difficulty)
-                remaining -= batch_count
-                print(f"Generated batch of {batch_count}, remaining: {remaining}")
+                for question in questions:
+                    normalized_prompt = normalize_prompt_key(question.prompt)
+                    seen_prompt_keys.add(normalized_prompt)
+                    seen_prompt_key_list.append(normalized_prompt)
+                    seen_prompts_for_context.append(question.prompt)
+
+                if not is_complete:
+                    failed_batches.append(
+                        "difficulty="
+                        f"{difficulty}, requested_batch={batch_count}, "
+                        f"accepted_batch={len(questions)}, "
+                        f"error=Could not fill constrained batch within attempts"
+                    )
+                    print(
+                        f"Batch underfilled for difficulty {difficulty}: "
+                        f"accepted {len(questions)}/{batch_count}. "
+                        "Keeping accepted questions and moving on."
+                    )
+                    remaining -= len(questions)
+                    if len(questions) == 0:
+                        break
+                else:
+                    remaining -= batch_count
+
+                print(f"Generated batch of {len(questions)}, remaining: {remaining}")
 
                 # Always checkpoint after successful batches
                 save_questions_to_file(partial_output_path, final_questions)
 
         print(f"Generated {len(final_questions)} questions")
+        if failed_batches:
+            print("Some batches failed but generation continued:")
+            for failed_batch in failed_batches:
+                print(f"- {failed_batch}")
 
         # export as json file
         save_questions_to_file(output_path, final_questions)
         if os.path.exists(partial_output_path):
             os.remove(partial_output_path)
-        if (final_questions.length == 0):
+        if len(final_questions) == 0 and os.path.exists(partial_output_path):
             os.remove(partial_output_path)
             print("No questions generated")
 
@@ -286,14 +425,24 @@ if __name__ == "__main__":
         difficulty = int(sys.argv[3]) if len(sys.argv) > 3 else None # optional
         count = int(sys.argv[4]) if len(sys.argv) > 4 else 1 # optional
         
-        final_questions = generate_questions(theme, difficulty, count)
+        final_questions, is_complete = generate_constrained_batch(
+            theme,
+            difficulty,
+            count,
+            seen_prompt_keys,
+            seen_prompt_key_list,
+            seen_prompts_for_context
+        )
+        if not is_complete:
+            print(
+                f"Requested {count} question(s), generated {len(final_questions)} after retries. "
+                "Keeping partial results."
+            )
         if difficulty is not None:
             final_questions = [
                 q.model_copy(update={'difficulty': difficulty})
                 for q in final_questions
             ]
-        for question in final_questions:
-            print(json.dumps(question.model_dump(), indent=2))
         
         print(f"Generated {len(final_questions)} questions")
         

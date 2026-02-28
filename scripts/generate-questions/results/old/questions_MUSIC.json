@@ -1,0 +1,7411 @@
+[
+  {
+    "prompt": "Name a member of The Beatles",
+    "answers": [
+      {
+        "display_text": "Paul McCartney",
+        "variants": [
+          "paul mccartney",
+          "mccartney",
+          "paul"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "John Lennon",
+        "variants": [
+          "john lennon",
+          "lennon",
+          "john"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "George Harrison",
+        "variants": [
+          "george harrison",
+          "harrison",
+          "george"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "Ringo Starr",
+        "variants": [
+          "ringo starr",
+          "starr",
+          "ringo"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "Pete Best",
+        "variants": [
+          "pete best",
+          "best"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "Stuart Sutcliffe",
+        "variants": [
+          "stuart sutcliffe",
+          "sutcliffe",
+          "stuart"
+        ],
+        "popularity_rank": 6
+      }
+    ],
+    "theme_slug": "MUSIC",
+    "answer_count_cache": 6,
+    "difficulty": 1
+  },
+  {
+    "prompt": "Name a song by Queen",
+    "answers": [
+      {
+        "display_text": "Bohemian Rhapsody",
+        "variants": [
+          "bohemian rhapsody",
+          "bohemian"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "We Will Rock You",
+        "variants": [
+          "we will rock you",
+          "rock you",
+          "we will rock"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "We Are The Champions",
+        "variants": [
+          "we are the champions",
+          "champions",
+          "we are champions"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "Another One Bites the Dust",
+        "variants": [
+          "another one bites the dust",
+          "bites the dust"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "Don't Stop Me Now",
+        "variants": [
+          "don't stop me now",
+          "dont stop me now",
+          "stop me now"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "Killer Queen",
+        "variants": [
+          "killer queen",
+          "killer"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "Under Pressure",
+        "variants": [
+          "under pressure",
+          "pressure"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "Radio Ga Ga",
+        "variants": [
+          "radio ga ga",
+          "radiogaga"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "Somebody to Love",
+        "variants": [
+          "somebody to love",
+          "love"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "Crazy Little Thing Called Love",
+        "variants": [
+          "crazy little thing called love",
+          "crazy little thing"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "The Show Must Go On",
+        "variants": [
+          "the show must go on",
+          "show must go on"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "I Want to Break Free",
+        "variants": [
+          "i want to break free",
+          "i want break free",
+          "want to break free"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "Fat Bottomed Girls",
+        "variants": [
+          "fat bottomed girls",
+          "fat bottomed"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "Bicycle Race",
+        "variants": [
+          "bicycle race",
+          "bicycle"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "A Kind of Magic",
+        "variants": [
+          "a kind of magic",
+          "kind of magic"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "Princes of the Universe",
+        "variants": [
+          "princes of the universe",
+          "princes"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "Hammer to Fall",
+        "variants": [
+          "hammer to fall",
+          "hammer"
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "Spread Your Wings",
+        "variants": [
+          "spread your wings",
+          "spread wings"
+        ],
+        "popularity_rank": 18
+      },
+      {
+        "display_text": "39",
+        "variants": [
+          "39",
+          "thirty nine"
+        ],
+        "popularity_rank": 19
+      },
+      {
+        "display_text": "Good Old-Fashioned Lover Boy",
+        "variants": [
+          "good old-fashioned lover boy",
+          "lover boy"
+        ],
+        "popularity_rank": 20
+      },
+      {
+        "display_text": "Save Me",
+        "variants": [
+          "save me",
+          "save"
+        ],
+        "popularity_rank": 21
+      },
+      {
+        "display_text": "Play the Game",
+        "variants": [
+          "play the game",
+          "playgame"
+        ],
+        "popularity_rank": 22
+      },
+      {
+        "display_text": "Flash",
+        "variants": [
+          "flash"
+        ],
+        "popularity_rank": 23
+      },
+      {
+        "display_text": "I'm Going Slightly Mad",
+        "variants": [
+          "i'm going slightly mad",
+          "i'm slightly mad",
+          "going slightly mad"
+        ],
+        "popularity_rank": 24
+      },
+      {
+        "display_text": "Breakthru",
+        "variants": [
+          "breakthru",
+          "break through"
+        ],
+        "popularity_rank": 25
+      },
+      {
+        "display_text": "Innuendo",
+        "variants": [
+          "innuendo"
+        ],
+        "popularity_rank": 26
+      },
+      {
+        "display_text": "Who Wants to Live Forever",
+        "variants": [
+          "who wants to live forever",
+          "live forever"
+        ],
+        "popularity_rank": 27
+      },
+      {
+        "display_text": "These Are the Days of Our Lives",
+        "variants": [
+          "these are the days of our lives",
+          "days of our lives"
+        ],
+        "popularity_rank": 28
+      },
+      {
+        "display_text": "Scandal",
+        "variants": [
+          "scandal"
+        ],
+        "popularity_rank": 29
+      },
+      {
+        "display_text": "One Vision",
+        "variants": [
+          "one vision",
+          "vision"
+        ],
+        "popularity_rank": 30
+      },
+      {
+        "display_text": "Tie Your Mother Down",
+        "variants": [
+          "tie your mother down",
+          "tie mother down"
+        ],
+        "popularity_rank": 31
+      },
+      {
+        "display_text": "Seven Seas of Rhye",
+        "variants": [
+          "seven seas of rhye",
+          "seven seas"
+        ],
+        "popularity_rank": 32
+      },
+      {
+        "display_text": "Sheer Heart Attack",
+        "variants": [
+          "sheer heart attack",
+          "heart attack"
+        ],
+        "popularity_rank": 33
+      },
+      {
+        "display_text": "Now I'm Here",
+        "variants": [
+          "now i'm here",
+          "now im here",
+          "now i'm"
+        ],
+        "popularity_rank": 34
+      },
+      {
+        "display_text": "The Prophet's Song",
+        "variants": [
+          "the prophet's song",
+          "prophet's song"
+        ],
+        "popularity_rank": 35
+      },
+      {
+        "display_text": "Brighton Rock",
+        "variants": [
+          "brighton rock",
+          "brighton"
+        ],
+        "popularity_rank": 36
+      },
+      {
+        "display_text": "Death on Two Legs (Dedicated To...)",
+        "variants": [
+          "death on two legs",
+          "death on two legs dedicated"
+        ],
+        "popularity_rank": 37
+      },
+      {
+        "display_text": "Lazing on a Sunday Afternoon",
+        "variants": [
+          "lazing on a sunday afternoon",
+          "lazing on sunday afternoon"
+        ],
+        "popularity_rank": 38
+      },
+      {
+        "display_text": "My Melancholy Blues",
+        "variants": [
+          "my melancholy blues",
+          "melancholy blues"
+        ],
+        "popularity_rank": 39
+      },
+      {
+        "display_text": "Get Down, Make Love",
+        "variants": [
+          "get down make love",
+          "get down"
+        ],
+        "popularity_rank": 40
+      },
+      {
+        "display_text": "Dragon Attack",
+        "variants": [
+          "dragon attack",
+          "dragon"
+        ],
+        "popularity_rank": 41
+      },
+      {
+        "display_text": "I'm in Love with My Car",
+        "variants": [
+          "i'm in love with my car",
+          "i'm in love",
+          "in love with my car"
+        ],
+        "popularity_rank": 42
+      },
+      {
+        "display_text": "You're My Best Friend",
+        "variants": [
+          "you're my best friend",
+          "youre my best friend",
+          "best friend"
+        ],
+        "popularity_rank": 43
+      },
+      {
+        "display_text": "Love of My Life",
+        "variants": [
+          "love of my life",
+          "love of life"
+        ],
+        "popularity_rank": 44
+      },
+      {
+        "display_text": "Good Company",
+        "variants": [
+          "good company",
+          "company"
+        ],
+        "popularity_rank": 45
+      },
+      {
+        "display_text": "Sweet Lady",
+        "variants": [
+          "sweet lady",
+          "lady"
+        ],
+        "popularity_rank": 46
+      },
+      {
+        "display_text": "White Queen (As It Began)",
+        "variants": [
+          "white queen",
+          "white queen as it began"
+        ],
+        "popularity_rank": 47
+      },
+      {
+        "display_text": "Keep Yourself Alive",
+        "variants": [
+          "keep yourself alive",
+          "keep alive"
+        ],
+        "popularity_rank": 48
+      },
+      {
+        "display_text": "Great King Rat",
+        "variants": [
+          "great king rat",
+          "king rat"
+        ],
+        "popularity_rank": 49
+      },
+      {
+        "display_text": "My Fairy King",
+        "variants": [
+          "my fairy king",
+          "fairy king"
+        ],
+        "popularity_rank": 50
+      },
+      {
+        "display_text": "Liar",
+        "variants": [
+          "liar"
+        ],
+        "popularity_rank": 51
+      },
+      {
+        "display_text": "Stone Cold Crazy",
+        "variants": [
+          "stone cold crazy",
+          "stone cold"
+        ],
+        "popularity_rank": 52
+      },
+      {
+        "display_text": "Dear Friends",
+        "variants": [
+          "dear friends",
+          "dearfriend"
+        ],
+        "popularity_rank": 53
+      },
+      {
+        "display_text": "365",
+        "variants": [
+          "365",
+          "three sixty five",
+          "three hundred sixty five"
+        ],
+        "popularity_rank": 54
+      },
+      {
+        "display_text": "Doing All Right",
+        "variants": [
+          "doing all right",
+          "doing alright"
+        ],
+        "popularity_rank": 55
+      },
+      {
+        "display_text": "Tenement Funster",
+        "variants": [
+          "tenement funster",
+          "tenement"
+        ],
+        "popularity_rank": 56
+      },
+      {
+        "display_text": "Flicker",
+        "variants": [
+          "flicker"
+        ],
+        "popularity_rank": 57
+      },
+      {
+        "display_text": "Seaside Rendezvous",
+        "variants": [
+          "seaside rendezvous",
+          "seaside"
+        ],
+        "popularity_rank": 58
+      },
+      {
+        "display_text": "The March of the Black Queen",
+        "variants": [
+          "the march of the black queen",
+          "march of the black queen",
+          "black queen"
+        ],
+        "popularity_rank": 59
+      },
+      {
+        "display_text": "Death on Two Legs (Dedicated to...)",
+        "variants": [
+          "death on two legs",
+          "death on two legs dedicated"
+        ],
+        "popularity_rank": 60
+      }
+    ],
+    "theme_slug": "MUSIC",
+    "answer_count_cache": 60,
+    "difficulty": 1
+  },
+  {
+    "prompt": "Name a famous guitarist",
+    "answers": [
+      {
+        "display_text": "Jimi Hendrix",
+        "variants": [
+          "jimi hendrix",
+          "hendrix"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "Eric Clapton",
+        "variants": [
+          "eric clapton",
+          "clapton",
+          "slowhand"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "Jimmy Page",
+        "variants": [
+          "jimmy page",
+          "page",
+          "jimmy"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "Jeff Beck",
+        "variants": [
+          "jeff beck",
+          "beck"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "B.B. King",
+        "variants": [
+          "bb king",
+          "bbking",
+          "b.b. king",
+          "bb"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "Chuck Berry",
+        "variants": [
+          "chuck berry",
+          "berry"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "Eddie Van Halen",
+        "variants": [
+          "eddie van halen",
+          "van halen",
+          "eddie"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "David Gilmour",
+        "variants": [
+          "david gilmour",
+          "gilmour"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "Keith Richards",
+        "variants": [
+          "keith richards",
+          "richards"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "Carlos Santana",
+        "variants": [
+          "carlos santana",
+          "santana"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "Stevie Ray Vaughan",
+        "variants": [
+          "stevie ray vaughan",
+          "srV",
+          "stevie ray"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "Slash",
+        "variants": [
+          "slash",
+          "saul hudson"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "Pete Townshend",
+        "variants": [
+          "pete townshend",
+          "townshend"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "Tony Iommi",
+        "variants": [
+          "tony iommi",
+          "iommi"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "Ritchie Blackmore",
+        "variants": [
+          "ritchie blackmore",
+          "blackmore"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "Joe Satriani",
+        "variants": [
+          "joe satriani",
+          "satriani"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "Steve Vai",
+        "variants": [
+          "steve vai",
+          "vai"
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "Mark Knopfler",
+        "variants": [
+          "mark knopfler",
+          "knopfler"
+        ],
+        "popularity_rank": 18
+      },
+      {
+        "display_text": "Angus Young",
+        "variants": [
+          "angus young",
+          "angus"
+        ],
+        "popularity_rank": 19
+      },
+      {
+        "display_text": "Frank Zappa",
+        "variants": [
+          "frank zappa",
+          "zappa"
+        ],
+        "popularity_rank": 20
+      },
+      {
+        "display_text": "Duane Allman",
+        "variants": [
+          "duane allman",
+          "allman"
+        ],
+        "popularity_rank": 21
+      },
+      {
+        "display_text": "Albert King",
+        "variants": [
+          "albert king",
+          "king"
+        ],
+        "popularity_rank": 22
+      },
+      {
+        "display_text": "Buddy Guy",
+        "variants": [
+          "buddy guy",
+          "guy"
+        ],
+        "popularity_rank": 23
+      },
+      {
+        "display_text": "Les Paul",
+        "variants": [
+          "les paul",
+          "paul"
+        ],
+        "popularity_rank": 24
+      },
+      {
+        "display_text": "Peter Green",
+        "variants": [
+          "peter green",
+          "green"
+        ],
+        "popularity_rank": 25
+      },
+      {
+        "display_text": "Gary Moore",
+        "variants": [
+          "gary moore",
+          "moore"
+        ],
+        "popularity_rank": 26
+      },
+      {
+        "display_text": "Brian May",
+        "variants": [
+          "brian may",
+          "may"
+        ],
+        "popularity_rank": 27
+      },
+      {
+        "display_text": "Kurt Cobain",
+        "variants": [
+          "kurt cobain",
+          "cobain"
+        ],
+        "popularity_rank": 28
+      },
+      {
+        "display_text": "Tom Morello",
+        "variants": [
+          "tom morello",
+          "morello"
+        ],
+        "popularity_rank": 29
+      },
+      {
+        "display_text": "Dave Grohl",
+        "variants": [
+          "dave grohl",
+          "grohl"
+        ],
+        "popularity_rank": 30
+      },
+      {
+        "display_text": "Eddie Cochran",
+        "variants": [
+          "eddie cochran",
+          "cochran"
+        ],
+        "popularity_rank": 31
+      },
+      {
+        "display_text": "Dick Dale",
+        "variants": [
+          "dick dale",
+          "dale"
+        ],
+        "popularity_rank": 32
+      },
+      {
+        "display_text": "Link Wray",
+        "variants": [
+          "link wray",
+          "wray"
+        ],
+        "popularity_rank": 33
+      },
+      {
+        "display_text": "George Harrison",
+        "variants": [
+          "george harrison",
+          "harrison"
+        ],
+        "popularity_rank": 34
+      },
+      {
+        "display_text": "John Frusciante",
+        "variants": [
+          "john frusciante",
+          "frusciante"
+        ],
+        "popularity_rank": 35
+      },
+      {
+        "display_text": "Alex Lifeson",
+        "variants": [
+          "alex lifeson",
+          "lifeson"
+        ],
+        "popularity_rank": 36
+      },
+      {
+        "display_text": "Paul Gilbert",
+        "variants": [
+          "paul gilbert",
+          "gilbert"
+        ],
+        "popularity_rank": 37
+      },
+      {
+        "display_text": "Yngwie Malmsteen",
+        "variants": [
+          "yngwie malmsteen",
+          "yngwie"
+        ],
+        "popularity_rank": 38
+      },
+      {
+        "display_text": "Billy Gibbons",
+        "variants": [
+          "billy gibbons",
+          "gibbons"
+        ],
+        "popularity_rank": 39
+      },
+      {
+        "display_text": "Adrian Smith",
+        "variants": [
+          "adrian smith",
+          "smith"
+        ],
+        "popularity_rank": 40
+      },
+      {
+        "display_text": "Dave Murray",
+        "variants": [
+          "dave murray",
+          "murray"
+        ],
+        "popularity_rank": 41
+      },
+      {
+        "display_text": "Janick Gers",
+        "variants": [
+          "janick gers",
+          "gers"
+        ],
+        "popularity_rank": 42
+      },
+      {
+        "display_text": "Warren Haynes",
+        "variants": [
+          "warren haynes",
+          "haynes"
+        ],
+        "popularity_rank": 43
+      },
+      {
+        "display_text": "Derek Trucks",
+        "variants": [
+          "derek trucks",
+          "trucks"
+        ],
+        "popularity_rank": 44
+      },
+      {
+        "display_text": "Joe Perry",
+        "variants": [
+          "joe perry",
+          "perry"
+        ],
+        "popularity_rank": 45
+      },
+      {
+        "display_text": "Brad Whitford",
+        "variants": [
+          "brad whitford",
+          "whitford"
+        ],
+        "popularity_rank": 46
+      },
+      {
+        "display_text": "Walter Trout",
+        "variants": [
+          "walter trout",
+          "trout"
+        ],
+        "popularity_rank": 47
+      },
+      {
+        "display_text": "Rory Gallagher",
+        "variants": [
+          "rory gallagher",
+          "gallagher"
+        ],
+        "popularity_rank": 48
+      },
+      {
+        "display_text": "Clarence ",
+        "variants": [
+          "clarence",
+          "clarence gatemouth brown",
+          "gatemouth brown",
+          "gatemouth"
+        ],
+        "popularity_rank": 49
+      },
+      {
+        "display_text": "Roy Buchanan",
+        "variants": [
+          "roy buchanan",
+          "buchanan"
+        ],
+        "popularity_rank": 50
+      },
+      {
+        "display_text": "Robert Johnson",
+        "variants": [
+          "robert johnson",
+          "johnson"
+        ],
+        "popularity_rank": 51
+      },
+      {
+        "display_text": "Son House",
+        "variants": [
+          "son house",
+          "house"
+        ],
+        "popularity_rank": 52
+      },
+      {
+        "display_text": "Muddy Waters",
+        "variants": [
+          "muddy waters",
+          "waters"
+        ],
+        "popularity_rank": 53
+      },
+      {
+        "display_text": "Howlin' Wolf",
+        "variants": [
+          "howlin' wolf",
+          "howlin wolf",
+          "wolf"
+        ],
+        "popularity_rank": 54
+      },
+      {
+        "display_text": "Albert Collins",
+        "variants": [
+          "albert collins",
+          "collins"
+        ],
+        "popularity_rank": 55
+      },
+      {
+        "display_text": "Freddy King",
+        "variants": [
+          "freddy king",
+          "fred king",
+          "king"
+        ],
+        "popularity_rank": 56
+      },
+      {
+        "display_text": "Johnny Winter",
+        "variants": [
+          "johnny winter",
+          "winter"
+        ],
+        "popularity_rank": 57
+      },
+      {
+        "display_text": "Ritchie Blackmore",
+        "variants": [
+          "ritchie blackmore",
+          "blackmore"
+        ],
+        "popularity_rank": 58
+      },
+      {
+        "display_text": "Tony Iommi",
+        "variants": [
+          "tony iommi",
+          "iommi"
+        ],
+        "popularity_rank": 59
+      },
+      {
+        "display_text": "Eddie Van Halen",
+        "variants": [
+          "eddie van halen",
+          "van halen",
+          "eddie"
+        ],
+        "popularity_rank": 60
+      }
+    ],
+    "theme_slug": "MUSIC",
+    "answer_count_cache": 60,
+    "difficulty": 1
+  },
+  {
+    "prompt": "Name a famous rock band that formed in the 1960s.",
+    "answers": [
+      {
+        "display_text": "The Beatles",
+        "variants": [
+          "beatles",
+          "the beatles",
+          "fab four"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "The Rolling Stones",
+        "variants": [
+          "rolling stones",
+          "the rolling stones",
+          "stones"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "Led Zeppelin",
+        "variants": [
+          "led zeppelin",
+          "zeppelin",
+          "led zepp"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "The Who",
+        "variants": [
+          "the who",
+          "who"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "The Beach Boys",
+        "variants": [
+          "beach boys",
+          "the beach boys"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "The Doors",
+        "variants": [
+          "the doors",
+          "doors"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "Pink Floyd",
+        "variants": [
+          "pink floyd",
+          "floyd"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "The Kinks",
+        "variants": [
+          "kinks",
+          "the kinks"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "Creedence Clearwater Revival",
+        "variants": [
+          "ccr",
+          "creedence clearwater revival",
+          "creedence"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "The Byrds",
+        "variants": [
+          "byrds",
+          "the byrds"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "Jefferson Airplane",
+        "variants": [
+          "jefferson airplane",
+          "airplane"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "The Grateful Dead",
+        "variants": [
+          "grateful dead",
+          "the grateful dead",
+          "dead"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "The Animals",
+        "variants": [
+          "animals",
+          "the animals"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "The Yardbirds",
+        "variants": [
+          "yardbirds",
+          "the yardbirds"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "The Monkees",
+        "variants": [
+          "monkees",
+          "the monkees"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "Simon & Garfunkel",
+        "variants": [
+          "simon and garfunkel",
+          "simon garfunkel",
+          "simon & garfunkel"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "The Mamas & the Papas",
+        "variants": [
+          "mamas and the papas",
+          "mamas & the papas",
+          "mamas and papas"
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "Cream",
+        "variants": [
+          "cream"
+        ],
+        "popularity_rank": 18
+      },
+      {
+        "display_text": "The Lovin' Spoonful",
+        "variants": [
+          "lovin spoonful",
+          "the lovin' spoonful"
+        ],
+        "popularity_rank": 19
+      },
+      {
+        "display_text": "The Zombies",
+        "variants": [
+          "zombies",
+          "the zombies"
+        ],
+        "popularity_rank": 20
+      },
+      {
+        "display_text": "Procol Harum",
+        "variants": [
+          "procol harum"
+        ],
+        "popularity_rank": 21
+      },
+      {
+        "display_text": "Iron Butterfly",
+        "variants": [
+          "iron butterfly"
+        ],
+        "popularity_rank": 22
+      },
+      {
+        "display_text": "Steppenwolf",
+        "variants": [
+          "steppenwolf"
+        ],
+        "popularity_rank": 23
+      },
+      {
+        "display_text": "The Band",
+        "variants": [
+          "the band",
+          "band"
+        ],
+        "popularity_rank": 24
+      },
+      {
+        "display_text": "Buffalo Springfield",
+        "variants": [
+          "buffalo springfield"
+        ],
+        "popularity_rank": 25
+      },
+      {
+        "display_text": "Small Faces",
+        "variants": [
+          "small faces"
+        ],
+        "popularity_rank": 26
+      },
+      {
+        "display_text": "Herman's Hermits",
+        "variants": [
+          "hermans hermits",
+          "herman's hermits"
+        ],
+        "popularity_rank": 27
+      },
+      {
+        "display_text": "The Dave Clark Five",
+        "variants": [
+          "dave clark five",
+          "dc5"
+        ],
+        "popularity_rank": 28
+      },
+      {
+        "display_text": "The Searchers",
+        "variants": [
+          "searchers",
+          "the searchers"
+        ],
+        "popularity_rank": 29
+      },
+      {
+        "display_text": "The Hollies",
+        "variants": [
+          "hollies",
+          "the hollies"
+        ],
+        "popularity_rank": 30
+      },
+      {
+        "display_text": "The Troggs",
+        "variants": [
+          "troggs",
+          "the troggs"
+        ],
+        "popularity_rank": 31
+      },
+      {
+        "display_text": "Spencer Davis Group",
+        "variants": [
+          "spencer davis group"
+        ],
+        "popularity_rank": 32
+      },
+      {
+        "display_text": "The Animals",
+        "variants": [
+          "animals",
+          "the animals"
+        ],
+        "popularity_rank": 33
+      },
+      {
+        "display_text": "The Pretty Things",
+        "variants": [
+          "pretty things",
+          "the pretty things"
+        ],
+        "popularity_rank": 34
+      },
+      {
+        "display_text": "The Move",
+        "variants": [
+          "move",
+          "the move"
+        ],
+        "popularity_rank": 35
+      },
+      {
+        "display_text": "The Easybeats",
+        "variants": [
+          "easybeats",
+          "the easybeats"
+        ],
+        "popularity_rank": 36
+      },
+      {
+        "display_text": "The Troggs",
+        "variants": [
+          "troggs",
+          "the troggs"
+        ],
+        "popularity_rank": 37
+      },
+      {
+        "display_text": "Mungo Jerry",
+        "variants": [
+          "mungo jerry"
+        ],
+        "popularity_rank": 38
+      },
+      {
+        "display_text": "The Guess Who",
+        "variants": [
+          "guess who",
+          "the guess who"
+        ],
+        "popularity_rank": 39
+      },
+      {
+        "display_text": "Traffic",
+        "variants": [
+          "traffic"
+        ],
+        "popularity_rank": 40
+      },
+      {
+        "display_text": "Blind Faith",
+        "variants": [
+          "blind faith"
+        ],
+        "popularity_rank": 41
+      },
+      {
+        "display_text": "Santana",
+        "variants": [
+          "santana"
+        ],
+        "popularity_rank": 42
+      },
+      {
+        "display_text": "The Allman Brothers Band",
+        "variants": [
+          "allman brothers band",
+          "allman brothers"
+        ],
+        "popularity_rank": 43
+      },
+      {
+        "display_text": "ZZ Top",
+        "variants": [
+          "zz top",
+          "z.z. top"
+        ],
+        "popularity_rank": 44
+      },
+      {
+        "display_text": "Deep Purple",
+        "variants": [
+          "deep purple"
+        ],
+        "popularity_rank": 45
+      },
+      {
+        "display_text": "Black Sabbath",
+        "variants": [
+          "black sabbath"
+        ],
+        "popularity_rank": 46
+      },
+      {
+        "display_text": "Uriah Heep",
+        "variants": [
+          "uriah heep"
+        ],
+        "popularity_rank": 47
+      },
+      {
+        "display_text": "Yes",
+        "variants": [
+          "yes"
+        ],
+        "popularity_rank": 48
+      },
+      {
+        "display_text": "Emerson, Lake & Palmer",
+        "variants": [
+          "elp",
+          "emerson lake and palmer",
+          "emerson, lake, and palmer"
+        ],
+        "popularity_rank": 49
+      },
+      {
+        "display_text": "King Crimson",
+        "variants": [
+          "king crimson"
+        ],
+        "popularity_rank": 50
+      },
+      {
+        "display_text": "Genesis",
+        "variants": [
+          "genesis"
+        ],
+        "popularity_rank": 51
+      },
+      {
+        "display_text": "Jethro Tull",
+        "variants": [
+          "jethro tull"
+        ],
+        "popularity_rank": 52
+      },
+      {
+        "display_text": "Fleetwood Mac",
+        "variants": [
+          "fleetwood mac"
+        ],
+        "popularity_rank": 53
+      },
+      {
+        "display_text": "Status Quo",
+        "variants": [
+          "status quo"
+        ],
+        "popularity_rank": 54
+      },
+      {
+        "display_text": "Slade",
+        "variants": [
+          "slade"
+        ],
+        "popularity_rank": 55
+      },
+      {
+        "display_text": "T. Rex",
+        "variants": [
+          "t rex",
+          "trex",
+          "marc bolan"
+        ],
+        "popularity_rank": 56
+      },
+      {
+        "display_text": "Sweet",
+        "variants": [
+          "sweet"
+        ],
+        "popularity_rank": 57
+      },
+      {
+        "display_text": "Mott the Hoople",
+        "variants": [
+          "mott the hoople"
+        ],
+        "popularity_rank": 58
+      },
+      {
+        "display_text": "The Bonzo Dog Doo-Dah Band",
+        "variants": [
+          "bonzo dog doo-dah band",
+          "bonzo dog"
+        ],
+        "popularity_rank": 59
+      },
+      {
+        "display_text": "The Move",
+        "variants": [
+          "move",
+          "the move"
+        ],
+        "popularity_rank": 60
+      }
+    ],
+    "theme_slug": "MUSIC",
+    "answer_count_cache": 60,
+    "difficulty": 2
+  },
+  {
+    "prompt": "Name a solo artist who released a groundbreaking concept album.",
+    "answers": [
+      {
+        "display_text": "Pink Floyd",
+        "variants": [
+          "pink floyd",
+          "floyd"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "David Bowie",
+        "variants": [
+          "david bowie",
+          "bowie"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "The Who",
+        "variants": [
+          "the who",
+          "who"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "Frank Zappa",
+        "variants": [
+          "frank zappa",
+          "zappa"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "Joni Mitchell",
+        "variants": [
+          "joni mitchell",
+          "mitchell"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "Marvin Gaye",
+        "variants": [
+          "marvin gaye",
+          "gaye"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "Paul McCartney",
+        "variants": [
+          "paul mccartney",
+          "mccartney"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "Bruce Springsteen",
+        "variants": [
+          "bruce springsteen",
+          "springsteen"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "Prince",
+        "variants": [
+          "prince"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "The Beatles",
+        "variants": [
+          "beatles",
+          "the beatles",
+          "fab four"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "Radiohead",
+        "variants": [
+          "radiohead"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "Kendrick Lamar",
+        "variants": [
+          "kendrick lamar",
+          "lamar"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "Green Day",
+        "variants": [
+          "green day"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "Queen",
+        "variants": [
+          "queen"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "The Beach Boys",
+        "variants": [
+          "beach boys",
+          "the beach boys"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "Todd Rundgren",
+        "variants": [
+          "todd rundgren",
+          "rundgren"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "Janelle Mon\u00e1e",
+        "variants": [
+          "janelle monae",
+          "monae"
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "Styx",
+        "variants": [
+          "styx"
+        ],
+        "popularity_rank": 18
+      },
+      {
+        "display_text": "E.L.O. (Electric Light Orchestra)",
+        "variants": [
+          "elo",
+          "electric light orchestra",
+          "e.l.o."
+        ],
+        "popularity_rank": 19
+      },
+      {
+        "display_text": "Sufjan Stevens",
+        "variants": [
+          "sufjan stevens",
+          "stevens"
+        ],
+        "popularity_rank": 20
+      },
+      {
+        "display_text": "The Flaming Lips",
+        "variants": [
+          "flaming lips",
+          "the flaming lips"
+        ],
+        "popularity_rank": 21
+      },
+      {
+        "display_text": "Arcade Fire",
+        "variants": [
+          "arcade fire"
+        ],
+        "popularity_rank": 22
+      },
+      {
+        "display_text": "The Dismemberment Plan",
+        "variants": [
+          "dismemberment plan",
+          "d-plan"
+        ],
+        "popularity_rank": 23
+      },
+      {
+        "display_text": "My Chemical Romance",
+        "variants": [
+          "my chemical romance",
+          "mcr"
+        ],
+        "popularity_rank": 24
+      },
+      {
+        "display_text": "The Mars Volta",
+        "variants": [
+          "the mars volta",
+          "mars volta"
+        ],
+        "popularity_rank": 25
+      },
+      {
+        "display_text": "Rush",
+        "variants": [
+          "rush"
+        ],
+        "popularity_rank": 26
+      },
+      {
+        "display_text": "The Moody Blues",
+        "variants": [
+          "moody blues",
+          "the moody blues"
+        ],
+        "popularity_rank": 27
+      },
+      {
+        "display_text": "Genesis",
+        "variants": [
+          "genesis"
+        ],
+        "popularity_rank": 28
+      },
+      {
+        "display_text": "Camel",
+        "variants": [
+          "camel"
+        ],
+        "popularity_rank": 29
+      },
+      {
+        "display_text": "The Pretty Things",
+        "variants": [
+          "the pretty things",
+          "pretty things"
+        ],
+        "popularity_rank": 30
+      },
+      {
+        "display_text": "Alice Cooper",
+        "variants": [
+          "alice cooper"
+        ],
+        "popularity_rank": 31
+      },
+      {
+        "display_text": "The Dear Hunter",
+        "variants": [
+          "the dear hunter",
+          "dear hunter"
+        ],
+        "popularity_rank": 32
+      },
+      {
+        "display_text": "Coheed and Cambria",
+        "variants": [
+          "coheed and cambria",
+          "coheed",
+          "cambria"
+        ],
+        "popularity_rank": 33
+      },
+      {
+        "display_text": "Dream Theater",
+        "variants": [
+          "dream theater"
+        ],
+        "popularity_rank": 34
+      },
+      {
+        "display_text": "Ayreon",
+        "variants": [
+          "ayreon"
+        ],
+        "popularity_rank": 35
+      },
+      {
+        "display_text": "Queensr\u00ffche",
+        "variants": [
+          "queensryche",
+          "queens ryche"
+        ],
+        "popularity_rank": 36
+      },
+      {
+        "display_text": "Meat Loaf",
+        "variants": [
+          "meat loaf",
+          "meatloaf"
+        ],
+        "popularity_rank": 37
+      },
+      {
+        "display_text": "Tom Waits",
+        "variants": [
+          "tom waits",
+          "waits"
+        ],
+        "popularity_rank": 38
+      },
+      {
+        "display_text": "Bj\u00f6rk",
+        "variants": [
+          "bjork",
+          "bj\u00f6rk"
+        ],
+        "popularity_rank": 39
+      },
+      {
+        "display_text": "Fiona Apple",
+        "variants": [
+          "fiona apple",
+          "apple"
+        ],
+        "popularity_rank": 40
+      },
+      {
+        "display_text": "David Gilmour",
+        "variants": [
+          "david gilmour",
+          "gilmour"
+        ],
+        "popularity_rank": 41
+      },
+      {
+        "display_text": "Roger Waters",
+        "variants": [
+          "roger waters",
+          "waters"
+        ],
+        "popularity_rank": 42
+      },
+      {
+        "display_text": "Pete Townshend",
+        "variants": [
+          "pete townshend",
+          "townshend"
+        ],
+        "popularity_rank": 43
+      },
+      {
+        "display_text": "Phil Collins",
+        "variants": [
+          "phil collins",
+          "collins"
+        ],
+        "popularity_rank": 44
+      },
+      {
+        "display_text": "Peter Gabriel",
+        "variants": [
+          "peter gabriel",
+          "gabriel"
+        ],
+        "popularity_rank": 45
+      },
+      {
+        "display_text": "Kate Bush",
+        "variants": [
+          "kate bush",
+          "bush"
+        ],
+        "popularity_rank": 46
+      },
+      {
+        "display_text": "Stevie Nicks",
+        "variants": [
+          "stevie nicks",
+          "nicks"
+        ],
+        "popularity_rank": 47
+      },
+      {
+        "display_text": "Bob Dylan",
+        "variants": [
+          "bob dylan",
+          "dylan"
+        ],
+        "popularity_rank": 48
+      },
+      {
+        "display_text": "Neil Young",
+        "variants": [
+          "neil young",
+          "young"
+        ],
+        "popularity_rank": 49
+      },
+      {
+        "display_text": "David Byrne",
+        "variants": [
+          "david byrne",
+          "byrne"
+        ],
+        "popularity_rank": 50
+      },
+      {
+        "display_text": "Lou Reed",
+        "variants": [
+          "lou reed",
+          "reed"
+        ],
+        "popularity_rank": 51
+      },
+      {
+        "display_text": "Iggy Pop",
+        "variants": [
+          "iggy pop",
+          "pop"
+        ],
+        "popularity_rank": 52
+      },
+      {
+        "display_text": "Patti Smith",
+        "variants": [
+          "patti smith",
+          "smith"
+        ],
+        "popularity_rank": 53
+      },
+      {
+        "display_text": "Alice Coltrane",
+        "variants": [
+          "alice coltrane",
+          "coltrane"
+        ],
+        "popularity_rank": 54
+      },
+      {
+        "display_text": "Sun Ra",
+        "variants": [
+          "sun ra"
+        ],
+        "popularity_rank": 55
+      },
+      {
+        "display_text": "Charles Mingus",
+        "variants": [
+          "charles mingus",
+          "mingus"
+        ],
+        "popularity_rank": 56
+      },
+      {
+        "display_text": "Ornette Coleman",
+        "variants": [
+          "ornette coleman",
+          "coleman"
+        ],
+        "popularity_rank": 57
+      },
+      {
+        "display_text": "John Cage",
+        "variants": [
+          "john cage",
+          "cage"
+        ],
+        "popularity_rank": 58
+      },
+      {
+        "display_text": "Laurie Anderson",
+        "variants": [
+          "laurie anderson",
+          "anderson"
+        ],
+        "popularity_rank": 59
+      },
+      {
+        "display_text": "Yoko Ono",
+        "variants": [
+          "yoko ono",
+          "ono"
+        ],
+        "popularity_rank": 60
+      }
+    ],
+    "theme_slug": "MUSIC",
+    "answer_count_cache": 60,
+    "difficulty": 2
+  },
+  {
+    "prompt": "Name a prominent musical artist or band associated with the Grunge movement.",
+    "answers": [
+      {
+        "display_text": "Nirvana",
+        "variants": [
+          "nirvana",
+          "kurt cobain"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "Pearl Jam",
+        "variants": [
+          "pearl jam",
+          "pj"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "Soundgarden",
+        "variants": [
+          "soundgarden",
+          "chris cornell"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "Alice in Chains",
+        "variants": [
+          "alice in chains",
+          "aic",
+          "layne staley"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "Stone Temple Pilots",
+        "variants": [
+          "stone temple pilots",
+          "stp",
+          "scott weiland"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "Mudhoney",
+        "variants": [
+          "mudhoney"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "Temple of the Dog",
+        "variants": [
+          "temple of the dog",
+          "totd"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "Screaming Trees",
+        "variants": [
+          "screaming trees"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "Mother Love Bone",
+        "variants": [
+          "mother love bone"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "Hole",
+        "variants": [
+          "hole",
+          "courtney love"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "L7",
+        "variants": [
+          "l7"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "Tad",
+        "variants": [
+          "tad"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "Melvins",
+        "variants": [
+          "melvins"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "Skin Yard",
+        "variants": [
+          "skin yard"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "Green River",
+        "variants": [
+          "green river"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "Paw",
+        "variants": [
+          "paw"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "Candlebox",
+        "variants": [
+          "candlebox"
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "Silverchair",
+        "variants": [
+          "silverchair"
+        ],
+        "popularity_rank": 18
+      },
+      {
+        "display_text": "Bush",
+        "variants": [
+          "bush"
+        ],
+        "popularity_rank": 19
+      },
+      {
+        "display_text": "Collective Soul",
+        "variants": [
+          "collective soul"
+        ],
+        "popularity_rank": 20
+      },
+      {
+        "display_text": "Live",
+        "variants": [
+          "live"
+        ],
+        "popularity_rank": 21
+      },
+      {
+        "display_text": "The Smashing Pumpkins",
+        "variants": [
+          "smashing pumpkins",
+          "pumpkins"
+        ],
+        "popularity_rank": 22
+      },
+      {
+        "display_text": "R.E.M.",
+        "variants": [
+          "r.e.m.",
+          "rem"
+        ],
+        "popularity_rank": 23
+      },
+      {
+        "display_text": "Red Hot Chili Peppers",
+        "variants": [
+          "red hot chili peppers",
+          "rhcp"
+        ],
+        "popularity_rank": 24
+      },
+      {
+        "display_text": "Nine Inch Nails",
+        "variants": [
+          "nine inch nails",
+          "nin"
+        ],
+        "popularity_rank": 25
+      },
+      {
+        "display_text": "Tool",
+        "variants": [
+          "tool"
+        ],
+        "popularity_rank": 26
+      },
+      {
+        "display_text": "Faith No More",
+        "variants": [
+          "faith no more"
+        ],
+        "popularity_rank": 27
+      },
+      {
+        "display_text": "Primus",
+        "variants": [
+          "primus"
+        ],
+        "popularity_rank": 28
+      },
+      {
+        "display_text": "The Afghan Whigs",
+        "variants": [
+          "the afghan whigs",
+          "afghan whigs"
+        ],
+        "popularity_rank": 29
+      },
+      {
+        "display_text": "Jane's Addiction",
+        "variants": [
+          "jane's addiction",
+          "janes addiction"
+        ],
+        "popularity_rank": 30
+      },
+      {
+        "display_text": "Dinosaur Jr.",
+        "variants": [
+          "dinosaur jr.",
+          "dinosaur jr"
+        ],
+        "popularity_rank": 31
+      },
+      {
+        "display_text": "Sonic Youth",
+        "variants": [
+          "sonic youth"
+        ],
+        "popularity_rank": 32
+      },
+      {
+        "display_text": "Pixies",
+        "variants": [
+          "pixies"
+        ],
+        "popularity_rank": 33
+      },
+      {
+        "display_text": "Belly",
+        "variants": [
+          "belly"
+        ],
+        "popularity_rank": 34
+      },
+      {
+        "display_text": "The Breeders",
+        "variants": [
+          "the breeders",
+          "breeders"
+        ],
+        "popularity_rank": 35
+      },
+      {
+        "display_text": "Babes in Toyland",
+        "variants": [
+          "babes in toyland"
+        ],
+        "popularity_rank": 36
+      },
+      {
+        "display_text": "L7",
+        "variants": [
+          "l7"
+        ],
+        "popularity_rank": 37
+      },
+      {
+        "display_text": "Gouge Away",
+        "variants": [
+          "gouge away"
+        ],
+        "popularity_rank": 38
+      },
+      {
+        "display_text": "The Gits",
+        "variants": [
+          "the gits",
+          "gits"
+        ],
+        "popularity_rank": 39
+      },
+      {
+        "display_text": "Dramarama",
+        "variants": [
+          "dramarama"
+        ],
+        "popularity_rank": 40
+      },
+      {
+        "display_text": "Fugazi",
+        "variants": [
+          "fugazi"
+        ],
+        "popularity_rank": 41
+      },
+      {
+        "display_text": "Jawbreaker",
+        "variants": [
+          "jawbreaker"
+        ],
+        "popularity_rank": 42
+      },
+      {
+        "display_text": "The Jesus Lizard",
+        "variants": [
+          "the jesus lizard",
+          "jesus lizard"
+        ],
+        "popularity_rank": 43
+      },
+      {
+        "display_text": "Unwound",
+        "variants": [
+          "unwound"
+        ],
+        "popularity_rank": 44
+      },
+      {
+        "display_text": "Built to Spill",
+        "variants": [
+          "built to spill"
+        ],
+        "popularity_rank": 45
+      },
+      {
+        "display_text": "Modest Mouse",
+        "variants": [
+          "modest mouse"
+        ],
+        "popularity_rank": 46
+      },
+      {
+        "display_text": "Pavement",
+        "variants": [
+          "pavement"
+        ],
+        "popularity_rank": 47
+      },
+      {
+        "display_text": "Guided by Voices",
+        "variants": [
+          "guided by voices",
+          "gbv"
+        ],
+        "popularity_rank": 48
+      },
+      {
+        "display_text": "Sebadoh",
+        "variants": [
+          "sebadoh"
+        ],
+        "popularity_rank": 49
+      },
+      {
+        "display_text": "Doughnuts",
+        "variants": [
+          "doughnuts"
+        ],
+        "popularity_rank": 50
+      },
+      {
+        "display_text": "Seaweed",
+        "variants": [
+          "seaweed"
+        ],
+        "popularity_rank": 51
+      },
+      {
+        "display_text": "Hum",
+        "variants": [
+          "hum"
+        ],
+        "popularity_rank": 52
+      },
+      {
+        "display_text": "Quicksand",
+        "variants": [
+          "quicksand"
+        ],
+        "popularity_rank": 53
+      },
+      {
+        "display_text": "Helmet",
+        "variants": [
+          "helmet"
+        ],
+        "popularity_rank": 54
+      },
+      {
+        "display_text": "Clutch",
+        "variants": [
+          "clutch"
+        ],
+        "popularity_rank": 55
+      },
+      {
+        "display_text": "Monster Magnet",
+        "variants": [
+          "monster magnet"
+        ],
+        "popularity_rank": 56
+      },
+      {
+        "display_text": "Kyuss",
+        "variants": [
+          "kyuss"
+        ],
+        "popularity_rank": 57
+      },
+      {
+        "display_text": "Fu Manchu",
+        "variants": [
+          "fu manchu"
+        ],
+        "popularity_rank": 58
+      },
+      {
+        "display_text": "Orange Goblin",
+        "variants": [
+          "orange goblin"
+        ],
+        "popularity_rank": 59
+      },
+      {
+        "display_text": "Electric Wizard",
+        "variants": [
+          "electric wizard"
+        ],
+        "popularity_rank": 60
+      }
+    ],
+    "theme_slug": "MUSIC",
+    "answer_count_cache": 60,
+    "difficulty": 2
+  },
+  {
+    "prompt": "Name a band that has won the Grammy Award for Album of the Year.",
+    "answers": [
+      {
+        "display_text": "Taylor Swift",
+        "variants": [
+          "taylor swift",
+          "taylor"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "Adele",
+        "variants": [
+          "adele",
+          "adelle"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "U2",
+        "variants": [
+          "u2",
+          "u.s.",
+          "u two"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "Stevie Wonder",
+        "variants": [
+          "stevie wonder",
+          "stevie"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "Paul Simon",
+        "variants": [
+          "paul simon",
+          "simon"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "Fleetwood Mac",
+        "variants": [
+          "fleetwood mac",
+          "fleetwood"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "The Beatles",
+        "variants": [
+          "the beatles",
+          "beatles",
+          "beetles"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "Pink Floyd",
+        "variants": [
+          "pink floyd",
+          "pink"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "Led Zeppelin",
+        "variants": [
+          "led zeppelin",
+          "zeppelin"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "Eagles",
+        "variants": [
+          "eagles",
+          "eagle"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "The Police",
+        "variants": [
+          "the police",
+          "police"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "Dire Straits",
+        "variants": [
+          "dire straits",
+          "dire"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "Marvin Gaye",
+        "variants": [
+          "marvin gaye",
+          "marvin"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "Carole King",
+        "variants": [
+          "carole king",
+          "carole"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "Joni Mitchell",
+        "variants": [
+          "joni mitchell",
+          "joni"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "Bob Dylan",
+        "variants": [
+          "bob dylan",
+          "dylan"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "Bruce Springsteen",
+        "variants": [
+          "bruce springsteen",
+          "springsteen"
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "Whitney Houston",
+        "variants": [
+          "whitney houston",
+          "whitney"
+        ],
+        "popularity_rank": 18
+      },
+      {
+        "display_text": "Eric Clapton",
+        "variants": [
+          "eric clapton",
+          "clapton"
+        ],
+        "popularity_rank": 19
+      },
+      {
+        "display_text": "Phil Collins",
+        "variants": [
+          "phil collins",
+          "phil"
+        ],
+        "popularity_rank": 20
+      },
+      {
+        "display_text": "Jeff Beck",
+        "variants": [
+          "jeff beck",
+          "jeff"
+        ],
+        "popularity_rank": 21
+      },
+      {
+        "display_text": "Herbie Hancock",
+        "variants": [
+          "herbie hancock",
+          "herbie"
+        ],
+        "popularity_rank": 22
+      },
+      {
+        "display_text": "Carlos Santana",
+        "variants": [
+          "carlos santana",
+          "santana"
+        ],
+        "popularity_rank": 23
+      },
+      {
+        "display_text": "Oasis",
+        "variants": [
+          "oasis",
+          "oases"
+        ],
+        "popularity_rank": 24
+      },
+      {
+        "display_text": "Coldplay",
+        "variants": [
+          "coldplay",
+          "cold"
+        ],
+        "popularity_rank": 25
+      },
+      {
+        "display_text": "Arcade Fire",
+        "variants": [
+          "arcade fire",
+          "arcade"
+        ],
+        "popularity_rank": 26
+      },
+      {
+        "display_text": "Mumford & Sons",
+        "variants": [
+          "mumford and sons",
+          "mumford"
+        ],
+        "popularity_rank": 27
+      },
+      {
+        "display_text": "Kendrick Lamar",
+        "variants": [
+          "kendrick lamar",
+          "kendrick"
+        ],
+        "popularity_rank": 28
+      },
+      {
+        "display_text": "Daft Punk",
+        "variants": [
+          "daft punk",
+          "daft"
+        ],
+        "popularity_rank": 29
+      },
+      {
+        "display_text": "Imagine Dragons",
+        "variants": [
+          "imagine dragons",
+          "imagine"
+        ],
+        "popularity_rank": 30
+      },
+      {
+        "display_text": "Maroon 5",
+        "variants": [
+          "maroon 5",
+          "maroon five",
+          "maroon"
+        ],
+        "popularity_rank": 31
+      },
+      {
+        "display_text": "The Killers",
+        "variants": [
+          "the killers",
+          "killers"
+        ],
+        "popularity_rank": 32
+      },
+      {
+        "display_text": "Red Hot Chili Peppers",
+        "variants": [
+          "red hot chili peppers",
+          "rhcp",
+          "chili peppers"
+        ],
+        "popularity_rank": 33
+      },
+      {
+        "display_text": "Foo Fighters",
+        "variants": [
+          "foo fighters",
+          "foo"
+        ],
+        "popularity_rank": 34
+      },
+      {
+        "display_text": "Green Day",
+        "variants": [
+          "green day",
+          "green"
+        ],
+        "popularity_rank": 35
+      },
+      {
+        "display_text": "Linkin Park",
+        "variants": [
+          "linkin park",
+          "linkin"
+        ],
+        "popularity_rank": 36
+      },
+      {
+        "display_text": "Radiohead",
+        "variants": [
+          "radiohead",
+          "radio"
+        ],
+        "popularity_rank": 37
+      },
+      {
+        "display_text": "Muse",
+        "variants": [
+          "muse",
+          "muses"
+        ],
+        "popularity_rank": 38
+      },
+      {
+        "display_text": "The Strokes",
+        "variants": [
+          "the strokes",
+          "strokes"
+        ],
+        "popularity_rank": 39
+      },
+      {
+        "display_text": "The White Stripes",
+        "variants": [
+          "the white stripes",
+          "white stripes",
+          "white stripe"
+        ],
+        "popularity_rank": 40
+      },
+      {
+        "display_text": "Arctic Monkeys",
+        "variants": [
+          "arctic monkeys",
+          "arctic monkey"
+        ],
+        "popularity_rank": 41
+      },
+      {
+        "display_text": "The Black Keys",
+        "variants": [
+          "the black keys",
+          "black keys",
+          "black key"
+        ],
+        "popularity_rank": 42
+      },
+      {
+        "display_text": "Bon Iver",
+        "variants": [
+          "bon iver",
+          "bon"
+        ],
+        "popularity_rank": 43
+      },
+      {
+        "display_text": "Michael Jackson",
+        "variants": [
+          "michael jackson",
+          "mj",
+          "michael"
+        ],
+        "popularity_rank": 44
+      },
+      {
+        "display_text": "George Harrison",
+        "variants": [
+          "george harrison",
+          "george"
+        ],
+        "popularity_rank": 45
+      },
+      {
+        "display_text": "Billy Joel",
+        "variants": [
+          "billy joel",
+          "billy"
+        ],
+        "popularity_rank": 46
+      },
+      {
+        "display_text": "Elton John",
+        "variants": [
+          "elton john",
+          "elton"
+        ],
+        "popularity_rank": 47
+      },
+      {
+        "display_text": "James Taylor",
+        "variants": [
+          "james taylor",
+          "james"
+        ],
+        "popularity_rank": 48
+      },
+      {
+        "display_text": "Neil Young",
+        "variants": [
+          "neil young",
+          "neil"
+        ],
+        "popularity_rank": 49
+      },
+      {
+        "display_text": "Van Morrison",
+        "variants": [
+          "van morrison",
+          "van"
+        ],
+        "popularity_rank": 50
+      },
+      {
+        "display_text": "Ray Charles",
+        "variants": [
+          "ray charles",
+          "ray"
+        ],
+        "popularity_rank": 51
+      },
+      {
+        "display_text": "Aretha Franklin",
+        "variants": [
+          "aretha franklin",
+          "aretha"
+        ],
+        "popularity_rank": 52
+      },
+      {
+        "display_text": "Barbra Streisand",
+        "variants": [
+          "barbra streisand",
+          "barbra"
+        ],
+        "popularity_rank": 53
+      },
+      {
+        "display_text": "Burt Bacharach",
+        "variants": [
+          "burt bacharach",
+          "burt"
+        ],
+        "popularity_rank": 54
+      },
+      {
+        "display_text": "Lionel Richie",
+        "variants": [
+          "lionel richie",
+          "lionel"
+        ],
+        "popularity_rank": 55
+      },
+      {
+        "display_text": "Rod Stewart",
+        "variants": [
+          "rod stewart",
+          "rod"
+        ],
+        "popularity_rank": 56
+      },
+      {
+        "display_text": "Genesis",
+        "variants": [
+          "genesis",
+          "genisis"
+        ],
+        "popularity_rank": 57
+      },
+      {
+        "display_text": "Chicago",
+        "variants": [
+          "chicago",
+          "chicago band"
+        ],
+        "popularity_rank": 58
+      },
+      {
+        "display_text": "Blood, Sweat & Tears",
+        "variants": [
+          "blood sweat and tears",
+          "blood",
+          "sweat",
+          "tears"
+        ],
+        "popularity_rank": 59
+      },
+      {
+        "display_text": "Santana",
+        "variants": [
+          "santana",
+          "santana band"
+        ],
+        "popularity_rank": 60
+      }
+    ],
+    "theme_slug": "MUSIC",
+    "answer_count_cache": 60,
+    "difficulty": 3
+  },
+  {
+    "prompt": "Name a song that samples 'Amen, Brother' by The Winstons.",
+    "answers": [
+      {
+        "display_text": "Straight Outta Compton",
+        "variants": [
+          "straight outta compton",
+          "compton"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "Kings of the Street",
+        "variants": [
+          "kings of the street",
+          "kings"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "My Soul's Not for Sale",
+        "variants": [
+          "my soul's not for sale",
+          "my souls not for sale"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "Don't Believe the Hype",
+        "variants": [
+          "don't believe the hype",
+          "dont believe the hype",
+          "hype"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "Do Your Thing",
+        "variants": [
+          "do your thing",
+          "your thing"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "Who Am I (Simia of God Mix)",
+        "variants": [
+          "who am i simia of god mix",
+          "who am i"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "Run Boy Run",
+        "variants": [
+          "run boy run",
+          "run boy"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "The Choice",
+        "variants": [
+          "the choice",
+          "choice"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "Set It Off",
+        "variants": [
+          "set it off",
+          "set off"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "Bring the Noise",
+        "variants": [
+          "bring the noise",
+          "noise"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "Let the Rhythm Hit 'Em",
+        "variants": [
+          "let the rhythm hit 'em",
+          "let the rhythm hit em",
+          "rhythm hit 'em"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "We Can't Stop",
+        "variants": [
+          "we can't stop",
+          "we cant stop"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "Turn Down for What",
+        "variants": [
+          "turn down for what",
+          "turn down"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "Watch Out Now",
+        "variants": [
+          "watch out now",
+          "watch out"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "Renegade",
+        "variants": [
+          "renegade",
+          "renegades"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "Where I'm From",
+        "variants": [
+          "where i'm from",
+          "where im from",
+          "from"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "I Ain't No Joke",
+        "variants": [
+          "i ain't no joke",
+          "i aint no joke",
+          "no joke"
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "Come on Feet",
+        "variants": [
+          "come on feet",
+          "come on"
+        ],
+        "popularity_rank": 18
+      },
+      {
+        "display_text": "The Sound of the Beast",
+        "variants": [
+          "the sound of the beast",
+          "sound of the beast"
+        ],
+        "popularity_rank": 19
+      },
+      {
+        "display_text": "King of New York",
+        "variants": [
+          "king of new york",
+          "king of ny"
+        ],
+        "popularity_rank": 20
+      },
+      {
+        "display_text": "Gangsta Gangsta",
+        "variants": [
+          "gangsta gangsta",
+          "gangsta"
+        ],
+        "popularity_rank": 21
+      },
+      {
+        "display_text": "Everybody",
+        "variants": [
+          "everybody",
+          "every body"
+        ],
+        "popularity_rank": 22
+      },
+      {
+        "display_text": "W.O.W.",
+        "variants": [
+          "w.o.w.",
+          "wow"
+        ],
+        "popularity_rank": 23
+      },
+      {
+        "display_text": "Who Dat?",
+        "variants": [
+          "who dat",
+          "who dat?"
+        ],
+        "popularity_rank": 24
+      },
+      {
+        "display_text": "The Amen Break",
+        "variants": [
+          "the amen break",
+          "amen break"
+        ],
+        "popularity_rank": 25
+      },
+      {
+        "display_text": "We Go On",
+        "variants": [
+          "we go on",
+          "go on"
+        ],
+        "popularity_rank": 26
+      },
+      {
+        "display_text": "B-Boy Anthem",
+        "variants": [
+          "b-boy anthem",
+          "bboy anthem"
+        ],
+        "popularity_rank": 27
+      },
+      {
+        "display_text": "No Justice",
+        "variants": [
+          "no justice",
+          "justice"
+        ],
+        "popularity_rank": 28
+      },
+      {
+        "display_text": "The Symphony",
+        "variants": [
+          "the symphony",
+          "symphony"
+        ],
+        "popularity_rank": 29
+      },
+      {
+        "display_text": "Word is Bond",
+        "variants": [
+          "word is bond",
+          "word"
+        ],
+        "popularity_rank": 30
+      },
+      {
+        "display_text": "Street Knowledge",
+        "variants": [
+          "street knowledge",
+          "knowledge"
+        ],
+        "popularity_rank": 31
+      },
+      {
+        "display_text": "Ghetto Boys",
+        "variants": [
+          "ghetto boys",
+          "ghetto boy"
+        ],
+        "popularity_rank": 32
+      },
+      {
+        "display_text": "The Breaks",
+        "variants": [
+          "the breaks",
+          "breaks"
+        ],
+        "popularity_rank": 33
+      },
+      {
+        "display_text": "The Message",
+        "variants": [
+          "the message",
+          "message"
+        ],
+        "popularity_rank": 34
+      },
+      {
+        "display_text": "The Beat Goes On",
+        "variants": [
+          "the beat goes on",
+          "beat goes on"
+        ],
+        "popularity_rank": 35
+      },
+      {
+        "display_text": "Funky Drummer",
+        "variants": [
+          "funky drummer",
+          "drummer"
+        ],
+        "popularity_rank": 36
+      },
+      {
+        "display_text": "Scorpio",
+        "variants": [
+          "scorpio"
+        ],
+        "popularity_rank": 37
+      },
+      {
+        "display_text": "Apache",
+        "variants": [
+          "apache"
+        ],
+        "popularity_rank": 38
+      },
+      {
+        "display_text": "It's a New Day",
+        "variants": [
+          "it's a new day",
+          "its a new day",
+          "new day"
+        ],
+        "popularity_rank": 39
+      },
+      {
+        "display_text": "Funky President (People It's Bad)",
+        "variants": [
+          "funky president people its bad",
+          "funky president"
+        ],
+        "popularity_rank": 40
+      },
+      {
+        "display_text": "Hot Pants",
+        "variants": [
+          "hot pants",
+          "pants"
+        ],
+        "popularity_rank": 41
+      },
+      {
+        "display_text": "Jungle Boogie",
+        "variants": [
+          "jungle boogie",
+          "jungle"
+        ],
+        "popularity_rank": 42
+      },
+      {
+        "display_text": "Misdemeanor",
+        "variants": [
+          "misdemeanor"
+        ],
+        "popularity_rank": 43
+      },
+      {
+        "display_text": "The Champ",
+        "variants": [
+          "the champ",
+          "champ"
+        ],
+        "popularity_rank": 44
+      },
+      {
+        "display_text": "The Ghost",
+        "variants": [
+          "the ghost",
+          "ghost"
+        ],
+        "popularity_rank": 45
+      },
+      {
+        "display_text": "The Big Beat",
+        "variants": [
+          "the big beat",
+          "big beat"
+        ],
+        "popularity_rank": 46
+      },
+      {
+        "display_text": "Funky Worm",
+        "variants": [
+          "funky worm",
+          "worm"
+        ],
+        "popularity_rank": 47
+      },
+      {
+        "display_text": "The Grunt",
+        "variants": [
+          "the grunt",
+          "grunt"
+        ],
+        "popularity_rank": 48
+      },
+      {
+        "display_text": "Cold Sweat",
+        "variants": [
+          "cold sweat",
+          "sweat"
+        ],
+        "popularity_rank": 49
+      },
+      {
+        "display_text": "Think (About It)",
+        "variants": [
+          "think about it",
+          "think"
+        ],
+        "popularity_rank": 50
+      },
+      {
+        "display_text": "Breakin' Thru",
+        "variants": [
+          "breakin' thru",
+          "breakin thru"
+        ],
+        "popularity_rank": 51
+      },
+      {
+        "display_text": "Sing a Simple Song",
+        "variants": [
+          "sing a simple song",
+          "simple song"
+        ],
+        "popularity_rank": 52
+      },
+      {
+        "display_text": "Give It Up or Turnit a Loose",
+        "variants": [
+          "give it up or turnit a loose",
+          "give it up"
+        ],
+        "popularity_rank": 53
+      },
+      {
+        "display_text": "Hooked on You",
+        "variants": [
+          "hooked on you"
+        ],
+        "popularity_rank": 54
+      },
+      {
+        "display_text": "The Jam",
+        "variants": [
+          "the jam",
+          "jam"
+        ],
+        "popularity_rank": 55
+      },
+      {
+        "display_text": "Pass the Peas",
+        "variants": [
+          "pass the peas",
+          "peas"
+        ],
+        "popularity_rank": 56
+      },
+      {
+        "display_text": "Synthetic Substitution",
+        "variants": [
+          "synthetic substitution",
+          "synthetic"
+        ],
+        "popularity_rank": 57
+      },
+      {
+        "display_text": "When the World Gets Small",
+        "variants": [
+          "when the world gets small",
+          "world gets small"
+        ],
+        "popularity_rank": 58
+      },
+      {
+        "display_text": "Brother Soul",
+        "variants": [
+          "brother soul",
+          "brother"
+        ],
+        "popularity_rank": 59
+      },
+      {
+        "display_text": "Get Down",
+        "variants": [
+          "get down",
+          "getdown"
+        ],
+        "popularity_rank": 60
+      }
+    ],
+    "theme_slug": "MUSIC",
+    "answer_count_cache": 60,
+    "difficulty": 3
+  },
+  {
+    "prompt": "Name a band that has had a member inducted into the Rock and Roll Hall of Fame both as a solo artist and as a member of a band.",
+    "answers": [
+      {
+        "display_text": "The Beatles",
+        "variants": [
+          "the beatles",
+          "beatles",
+          "beetles"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "The Rolling Stones",
+        "variants": [
+          "the rolling stones",
+          "rolling stones",
+          "stones"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "The Who",
+        "variants": [
+          "the who",
+          "who"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "Led Zeppelin",
+        "variants": [
+          "led zeppelin",
+          "zeppelin"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "Pink Floyd",
+        "variants": [
+          "pink floyd",
+          "pink"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "Queen",
+        "variants": [
+          "queen",
+          "queens"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "The Eagles",
+        "variants": [
+          "the eagles",
+          "eagles",
+          "eagle"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "Fleetwood Mac",
+        "variants": [
+          "fleetwood mac",
+          "fleetwood"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "Black Sabbath",
+        "variants": [
+          "black sabbath",
+          "sabbath"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "Guns N' Roses",
+        "variants": [
+          "guns n' roses",
+          "guns and roses",
+          "gnr",
+          "guns"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "U2",
+        "variants": [
+          "u2",
+          "u.s.",
+          "u two"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "The Police",
+        "variants": [
+          "the police",
+          "police"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "Red Hot Chili Peppers",
+        "variants": [
+          "red hot chili peppers",
+          "rhcp",
+          "chili peppers"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "Aerosmith",
+        "variants": [
+          "aerosmith",
+          "aerosmth"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "Deep Purple",
+        "variants": [
+          "deep purple",
+          "purple"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "AC/DC",
+        "variants": [
+          "ac/dc",
+          "acdc",
+          "ac dc"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "The Doors",
+        "variants": [
+          "the doors",
+          "doors"
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "Genesis",
+        "variants": [
+          "genesis",
+          "genisis"
+        ],
+        "popularity_rank": 18
+      },
+      {
+        "display_text": "Yes",
+        "variants": [
+          "yes",
+          "yea"
+        ],
+        "popularity_rank": 19
+      },
+      {
+        "display_text": "Jethro Tull",
+        "variants": [
+          "jethro tull",
+          "tull"
+        ],
+        "popularity_rank": 20
+      },
+      {
+        "display_text": "Cream",
+        "variants": [
+          "cream"
+        ],
+        "popularity_rank": 21
+      },
+      {
+        "display_text": "Blind Faith",
+        "variants": [
+          "blind faith"
+        ],
+        "popularity_rank": 22
+      },
+      {
+        "display_text": "Crosby, Stills, Nash & Young",
+        "variants": [
+          "crosby stills nash and young",
+          "csny",
+          "crosby stills nash young"
+        ],
+        "popularity_rank": 23
+      },
+      {
+        "display_text": "Simon & Garfunkel",
+        "variants": [
+          "simon and garfunkel",
+          "simon garfunkel",
+          "s&g"
+        ],
+        "popularity_rank": 24
+      },
+      {
+        "display_text": "The Animals",
+        "variants": [
+          "the animals",
+          "animals"
+        ],
+        "popularity_rank": 25
+      },
+      {
+        "display_text": "Humble Pie",
+        "variants": [
+          "humble pie"
+        ],
+        "popularity_rank": 26
+      },
+      {
+        "display_text": "Bad Company",
+        "variants": [
+          "bad company",
+          "bad"
+        ],
+        "popularity_rank": 27
+      },
+      {
+        "display_text": "Emerson, Lake & Palmer",
+        "variants": [
+          "emerson lake and palmer",
+          "elp"
+        ],
+        "popularity_rank": 28
+      },
+      {
+        "display_text": "Electric Light Orchestra",
+        "variants": [
+          "electric light orchestra",
+          "elo"
+        ],
+        "popularity_rank": 29
+      },
+      {
+        "display_text": "King Crimson",
+        "variants": [
+          "king crimson",
+          "crimson"
+        ],
+        "popularity_rank": 30
+      },
+      {
+        "display_text": "ZZ Top",
+        "variants": [
+          "zz top",
+          "zz"
+        ],
+        "popularity_rank": 31
+      },
+      {
+        "display_text": "Van Halen",
+        "variants": [
+          "van halen",
+          "vh"
+        ],
+        "popularity_rank": 32
+      },
+      {
+        "display_text": "Dire Straits",
+        "variants": [
+          "dire straits",
+          "dire"
+        ],
+        "popularity_rank": 33
+      },
+      {
+        "display_text": "The Clash",
+        "variants": [
+          "the clash",
+          "clash"
+        ],
+        "popularity_rank": 34
+      },
+      {
+        "display_text": "Metallica",
+        "variants": [
+          "metallica",
+          "metalica"
+        ],
+        "popularity_rank": 35
+      },
+      {
+        "display_text": "Bon Jovi",
+        "variants": [
+          "bon jovi",
+          "bonjovi"
+        ],
+        "popularity_rank": 36
+      },
+      {
+        "display_text": "Maroon 5",
+        "variants": [
+          "maroon 5",
+          "maroon five",
+          "maroon"
+        ],
+        "popularity_rank": 37
+      },
+      {
+        "display_text": "Coldplay",
+        "variants": [
+          "coldplay",
+          "cold"
+        ],
+        "popularity_rank": 38
+      },
+      {
+        "display_text": "Green Day",
+        "variants": [
+          "green day",
+          "green"
+        ],
+        "popularity_rank": 39
+      },
+      {
+        "display_text": "Foo Fighters",
+        "variants": [
+          "foo fighters",
+          "foo"
+        ],
+        "popularity_rank": 40
+      },
+      {
+        "display_text": "Red Hot Chili Peppers",
+        "variants": [
+          "red hot chili peppers",
+          "rhcp",
+          "chili peppers"
+        ],
+        "popularity_rank": 41
+      },
+      {
+        "display_text": "The Killers",
+        "variants": [
+          "the killers",
+          "killers"
+        ],
+        "popularity_rank": 42
+      },
+      {
+        "display_text": "Arcade Fire",
+        "variants": [
+          "arcade fire",
+          "arcade"
+        ],
+        "popularity_rank": 43
+      },
+      {
+        "display_text": "Mumford & Sons",
+        "variants": [
+          "mumford and sons",
+          "mumford"
+        ],
+        "popularity_rank": 44
+      },
+      {
+        "display_text": "Linkin Park",
+        "variants": [
+          "linkin park",
+          "linkin"
+        ],
+        "popularity_rank": 45
+      },
+      {
+        "display_text": "Radiohead",
+        "variants": [
+          "radiohead",
+          "radio"
+        ],
+        "popularity_rank": 46
+      },
+      {
+        "display_text": "Muse",
+        "variants": [
+          "muse",
+          "muses"
+        ],
+        "popularity_rank": 47
+      },
+      {
+        "display_text": "The Strokes",
+        "variants": [
+          "the strokes",
+          "strokes"
+        ],
+        "popularity_rank": 48
+      },
+      {
+        "display_text": "The White Stripes",
+        "variants": [
+          "the white stripes",
+          "white stripes",
+          "white stripe"
+        ],
+        "popularity_rank": 49
+      },
+      {
+        "display_text": "Arctic Monkeys",
+        "variants": [
+          "arctic monkeys",
+          "arctic monkey"
+        ],
+        "popularity_rank": 50
+      },
+      {
+        "display_text": "The Black Keys",
+        "variants": [
+          "the black keys",
+          "black keys",
+          "black key"
+        ],
+        "popularity_rank": 51
+      },
+      {
+        "display_text": "Bon Iver",
+        "variants": [
+          "bon iver",
+          "bon"
+        ],
+        "popularity_rank": 52
+      },
+      {
+        "display_text": "The Beach Boys",
+        "variants": [
+          "the beach boys",
+          "beach boys",
+          "beach boy"
+        ],
+        "popularity_rank": 53
+      },
+      {
+        "display_text": "The Byrds",
+        "variants": [
+          "the byrds",
+          "byrds"
+        ],
+        "popularity_rank": 54
+      },
+      {
+        "display_text": "Buffalo Springfield",
+        "variants": [
+          "buffalo springfield",
+          "buffalo"
+        ],
+        "popularity_rank": 55
+      },
+      {
+        "display_text": "The Yardbirds",
+        "variants": [
+          "the yardbirds",
+          "yardbirds"
+        ],
+        "popularity_rank": 56
+      },
+      {
+        "display_text": "Derek and the Dominos",
+        "variants": [
+          "derek and the dominos",
+          "derek dominos"
+        ],
+        "popularity_rank": 57
+      },
+      {
+        "display_text": "Traveling Wilburys",
+        "variants": [
+          "traveling wilburys",
+          "wilburys"
+        ],
+        "popularity_rank": 58
+      },
+      {
+        "display_text": "The Allman Brothers Band",
+        "variants": [
+          "the allman brothers band",
+          "allman brothers"
+        ],
+        "popularity_rank": 59
+      },
+      {
+        "display_text": "Lynyrd Skynyrd",
+        "variants": [
+          "lynyrd skynyrd",
+          "skynyrd"
+        ],
+        "popularity_rank": 60
+      }
+    ],
+    "theme_slug": "MUSIC",
+    "answer_count_cache": 60,
+    "difficulty": 3
+  },
+  {
+    "prompt": "Name a song that reached number one on the Billboard Hot 100 chart in the 1980s.",
+    "answers": [
+      {
+        "display_text": "Billie Jean",
+        "variants": [
+          "billie jean"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "Like a Prayer",
+        "variants": [
+          "like a prayer"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "Livin' on a Prayer",
+        "variants": [
+          "livin on a prayer",
+          "livin' on a prayer"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "Sweet Child o' Mine",
+        "variants": [
+          "sweet child o mine",
+          "sweet child of mine"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "Girls Just Want to Have Fun",
+        "variants": [
+          "girls just want to have fun",
+          "girls just wanna have fun"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "With or Without You",
+        "variants": [
+          "with or without you"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "Walk This Way",
+        "variants": [
+          "walk this way",
+          "walk dis way"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "Every Breath You Take",
+        "variants": [
+          "every breath you take"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "When Doves Cry",
+        "variants": [
+          "when doves cry"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "Tainted Love",
+        "variants": [
+          "tainted love"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "Don't Stop Believin'",
+        "variants": [
+          "don't stop believin'",
+          "dont stop believing"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "Take On Me",
+        "variants": [
+          "take on me"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "I Wanna Dance with Somebody (Who Loves Me)",
+        "variants": [
+          "i wanna dance with somebody",
+          "i wanna dance with somebody who loves me"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "Eye of the Tiger",
+        "variants": [
+          "eye of the tiger"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "Like a Virgin",
+        "variants": [
+          "like a virgin"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "Material Girl",
+        "variants": [
+          "material girl"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "Physical",
+        "variants": [
+          "physical"
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "Flashdance... What a Feeling",
+        "variants": [
+          "flashdance what a feeling",
+          "flashdance"
+        ],
+        "popularity_rank": 18
+      },
+      {
+        "display_text": "Another One Bites the Dust",
+        "variants": [
+          "another one bites the dust"
+        ],
+        "popularity_rank": 19
+      },
+      {
+        "display_text": "Beat It",
+        "variants": [
+          "beat it"
+        ],
+        "popularity_rank": 20
+      },
+      {
+        "display_text": "Call Me",
+        "variants": [
+          "call me"
+        ],
+        "popularity_rank": 21
+      },
+      {
+        "display_text": "Forever Young",
+        "variants": [
+          "forever young"
+        ],
+        "popularity_rank": 22
+      },
+      {
+        "display_text": "Careless Whisper",
+        "variants": [
+          "careless whisper"
+        ],
+        "popularity_rank": 23
+      },
+      {
+        "display_text": "The Power of Love",
+        "variants": [
+          "the power of love"
+        ],
+        "popularity_rank": 24
+      },
+      {
+        "display_text": "Venus",
+        "variants": [
+          "venus"
+        ],
+        "popularity_rank": 25
+      },
+      {
+        "display_text": "Faith",
+        "variants": [
+          "faith"
+        ],
+        "popularity_rank": 26
+      },
+      {
+        "display_text": "Never Gonna Give You Up",
+        "variants": [
+          "never gonna give you up",
+          "never gonna give u up"
+        ],
+        "popularity_rank": 27
+      },
+      {
+        "display_text": "Eternal Flame",
+        "variants": [
+          "eternal flame"
+        ],
+        "popularity_rank": 28
+      },
+      {
+        "display_text": "Jessie's Girl",
+        "variants": [
+          "jessie's girl",
+          "jessies girl"
+        ],
+        "popularity_rank": 29
+      },
+      {
+        "display_text": "Jump",
+        "variants": [
+          "jump"
+        ],
+        "popularity_rank": 30
+      },
+      {
+        "display_text": "Total Eclipse of the Heart",
+        "variants": [
+          "total eclipse of the heart"
+        ],
+        "popularity_rank": 31
+      },
+      {
+        "display_text": "Karma Chameleon",
+        "variants": [
+          "karma chameleon"
+        ],
+        "popularity_rank": 32
+      },
+      {
+        "display_text": "Africa",
+        "variants": [
+          "africa"
+        ],
+        "popularity_rank": 33
+      },
+      {
+        "display_text": "Under Pressure",
+        "variants": [
+          "under pressure"
+        ],
+        "popularity_rank": 34
+      },
+      {
+        "display_text": "Down Under",
+        "variants": [
+          "down under"
+        ],
+        "popularity_rank": 35
+      },
+      {
+        "display_text": "Wake Me Up Before You Go-Go",
+        "variants": [
+          "wake me up before you go go",
+          "wake me up before you go-go"
+        ],
+        "popularity_rank": 36
+      },
+      {
+        "display_text": "Footloose",
+        "variants": [
+          "footloose"
+        ],
+        "popularity_rank": 37
+      },
+      {
+        "display_text": "The Edge of Glory",
+        "variants": [
+          "the edge of glory"
+        ],
+        "popularity_rank": 38
+      },
+      {
+        "display_text": "Ghostbusters",
+        "variants": [
+          "ghostbusters"
+        ],
+        "popularity_rank": 39
+      },
+      {
+        "display_text": "The Final Countdown",
+        "variants": [
+          "the final countdown"
+        ],
+        "popularity_rank": 40
+      },
+      {
+        "display_text": "Heaven Is a Place on Earth",
+        "variants": [
+          "heaven is a place on earth"
+        ],
+        "popularity_rank": 41
+      },
+      {
+        "display_text": "Kiss",
+        "variants": [
+          "kiss"
+        ],
+        "popularity_rank": 42
+      },
+      {
+        "display_text": "Walking on Sunshine",
+        "variants": [
+          "walking on sunshine"
+        ],
+        "popularity_rank": 43
+      },
+      {
+        "display_text": "Maneater",
+        "variants": [
+          "maneater"
+        ],
+        "popularity_rank": 44
+      },
+      {
+        "display_text": "Come On Eileen",
+        "variants": [
+          "come on eileen"
+        ],
+        "popularity_rank": 45
+      },
+      {
+        "display_text": "Blue Monday",
+        "variants": [
+          "blue monday"
+        ],
+        "popularity_rank": 46
+      },
+      {
+        "display_text": "Every Little Thing She Does Is Magic",
+        "variants": [
+          "every little thing she does is magic"
+        ],
+        "popularity_rank": 47
+      },
+      {
+        "display_text": "Don't You Want Me",
+        "variants": [
+          "don't you want me",
+          "dont you want me"
+        ],
+        "popularity_rank": 48
+      },
+      {
+        "display_text": "What's Love Got to Do with It",
+        "variants": [
+          "what's love got to do with it",
+          "whats love got to do with it"
+        ],
+        "popularity_rank": 49
+      },
+      {
+        "display_text": "Glory Days",
+        "variants": [
+          "glory days"
+        ],
+        "popularity_rank": 50
+      },
+      {
+        "display_text": "Blue Monday",
+        "variants": [
+          "blue monday"
+        ],
+        "popularity_rank": 51
+      },
+      {
+        "display_text": "Whip It",
+        "variants": [
+          "whip it"
+        ],
+        "popularity_rank": 52
+      },
+      {
+        "display_text": "Celebration",
+        "variants": [
+          "celebration"
+        ],
+        "popularity_rank": 53
+      },
+      {
+        "display_text": "Let's Hear It for the Boy",
+        "variants": [
+          "let's hear it for the boy",
+          "lets hear it for the boy"
+        ],
+        "popularity_rank": 54
+      },
+      {
+        "display_text": "Together Forever",
+        "variants": [
+          "together forever"
+        ],
+        "popularity_rank": 55
+      },
+      {
+        "display_text": "Need You Tonight",
+        "variants": [
+          "need you tonight"
+        ],
+        "popularity_rank": 56
+      },
+      {
+        "display_text": "I Think We're Alone Now",
+        "variants": [
+          "i think we're alone now",
+          "i think were alone now"
+        ],
+        "popularity_rank": 57
+      },
+      {
+        "display_text": "We Built This City",
+        "variants": [
+          "we built this city"
+        ],
+        "popularity_rank": 58
+      },
+      {
+        "display_text": "She Works Hard for the Money",
+        "variants": [
+          "she works hard for the money"
+        ],
+        "popularity_rank": 59
+      },
+      {
+        "display_text": "Heaven",
+        "variants": [
+          "heaven"
+        ],
+        "popularity_rank": 60
+      }
+    ],
+    "theme_slug": "MUSIC",
+    "answer_count_cache": 60,
+    "difficulty": 4
+  },
+  {
+    "prompt": "Name a band that was inducted into the Rock and Roll Hall of Fame in the 2000s.",
+    "answers": [
+      {
+        "display_text": "The Beatles",
+        "variants": [
+          "beatles",
+          "the beatles"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "The Rolling Stones",
+        "variants": [
+          "rolling stones",
+          "the rolling stones",
+          "stones"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "Queen",
+        "variants": [
+          "queen"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "U2",
+        "variants": [
+          "u2",
+          "u two"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "Led Zeppelin",
+        "variants": [
+          "led zeppelin",
+          "zeppelin"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "AC/DC",
+        "variants": [
+          "acdc",
+          "ac/dc"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "The Who",
+        "variants": [
+          "the who",
+          "who"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "The Clash",
+        "variants": [
+          "the clash",
+          "clash"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "The Police",
+        "variants": [
+          "the police",
+          "police"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "Blondie",
+        "variants": [
+          "blondie"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "Ramones",
+        "variants": [
+          "ramones"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "The Cure",
+        "variants": [
+          "the cure",
+          "cure"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "Guns N' Roses",
+        "variants": [
+          "guns n roses",
+          "guns and roses",
+          "gnr"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "Metallica",
+        "variants": [
+          "metallica"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "Nirvana",
+        "variants": [
+          "nirvana"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "Red Hot Chili Peppers",
+        "variants": [
+          "red hot chili peppers",
+          "rhcp"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "R.E.M.",
+        "variants": [
+          "rem",
+          "r.e.m."
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "Green Day",
+        "variants": [
+          "green day"
+        ],
+        "popularity_rank": 18
+      },
+      {
+        "display_text": "Pearl Jam",
+        "variants": [
+          "pearl jam"
+        ],
+        "popularity_rank": 19
+      },
+      {
+        "display_text": "Beastie Boys",
+        "variants": [
+          "beastie boys",
+          "beasty boys"
+        ],
+        "popularity_rank": 20
+      },
+      {
+        "display_text": "Run-DMC",
+        "variants": [
+          "run dmc",
+          "rundmc"
+        ],
+        "popularity_rank": 21
+      },
+      {
+        "display_text": "The Doors",
+        "variants": [
+          "the doors",
+          "doors"
+        ],
+        "popularity_rank": 22
+      },
+      {
+        "display_text": "Jimi Hendrix",
+        "variants": [
+          "jimi hendrix",
+          "hendrix"
+        ],
+        "popularity_rank": 23
+      },
+      {
+        "display_text": "Eric Clapton",
+        "variants": [
+          "eric clapton",
+          "clapton"
+        ],
+        "popularity_rank": 24
+      },
+      {
+        "display_text": "Bob Dylan",
+        "variants": [
+          "bob dylan",
+          "dylan"
+        ],
+        "popularity_rank": 25
+      },
+      {
+        "display_text": "Neil Young",
+        "variants": [
+          "neil young",
+          "young"
+        ],
+        "popularity_rank": 26
+      },
+      {
+        "display_text": "Stevie Wonder",
+        "variants": [
+          "stevie wonder",
+          "wonder"
+        ],
+        "popularity_rank": 27
+      },
+      {
+        "display_text": "Prince",
+        "variants": [
+          "prince"
+        ],
+        "popularity_rank": 28
+      },
+      {
+        "display_text": "David Bowie",
+        "variants": [
+          "david bowie",
+          "bowie"
+        ],
+        "popularity_rank": 29
+      },
+      {
+        "display_text": "Elton John",
+        "variants": [
+          "elton john",
+          "john"
+        ],
+        "popularity_rank": 30
+      },
+      {
+        "display_text": "Billy Joel",
+        "variants": [
+          "billy joel",
+          "joel"
+        ],
+        "popularity_rank": 31
+      },
+      {
+        "display_text": "Simon & Garfunkel",
+        "variants": [
+          "simon & garfunkel",
+          "simon and garfunkel"
+        ],
+        "popularity_rank": 32
+      },
+      {
+        "display_text": "Simon Le Bon",
+        "variants": [
+          "simon le bon"
+        ],
+        "popularity_rank": 33
+      },
+      {
+        "display_text": "The Beach Boys",
+        "variants": [
+          "the beach boys",
+          "beach boys"
+        ],
+        "popularity_rank": 34
+      },
+      {
+        "display_text": "The Byrds",
+        "variants": [
+          "the byrds",
+          "byrds"
+        ],
+        "popularity_rank": 35
+      },
+      {
+        "display_text": "The Kinks",
+        "variants": [
+          "the kinks",
+          "kinks"
+        ],
+        "popularity_rank": 36
+      },
+      {
+        "display_text": "The Moody Blues",
+        "variants": [
+          "the moody blues",
+          "moody blues"
+        ],
+        "popularity_rank": 37
+      },
+      {
+        "display_text": "Procol Harum",
+        "variants": [
+          "procol harum"
+        ],
+        "popularity_rank": 38
+      },
+      {
+        "display_text": "Traffic",
+        "variants": [
+          "traffic"
+        ],
+        "popularity_rank": 39
+      },
+      {
+        "display_text": "Yes",
+        "variants": [
+          "yes"
+        ],
+        "popularity_rank": 40
+      },
+      {
+        "display_text": "King Crimson",
+        "variants": [
+          "king crimson"
+        ],
+        "popularity_rank": 41
+      },
+      {
+        "display_text": "Genesis",
+        "variants": [
+          "genesis"
+        ],
+        "popularity_rank": 42
+      },
+      {
+        "display_text": "Emerson, Lake & Palmer",
+        "variants": [
+          "emerson lake & palmer",
+          "elp"
+        ],
+        "popularity_rank": 43
+      },
+      {
+        "display_text": "Pink Floyd",
+        "variants": [
+          "pink floyd",
+          "floyd"
+        ],
+        "popularity_rank": 44
+      },
+      {
+        "display_text": "Black Sabbath",
+        "variants": [
+          "black sabbath",
+          "sabbath"
+        ],
+        "popularity_rank": 45
+      },
+      {
+        "display_text": "Deep Purple",
+        "variants": [
+          "deep purple"
+        ],
+        "popularity_rank": 46
+      },
+      {
+        "display_text": "Van Halen",
+        "variants": [
+          "van halen",
+          "halem"
+        ],
+        "popularity_rank": 47
+      },
+      {
+        "display_text": "Aerosmith",
+        "variants": [
+          "aerosmith"
+        ],
+        "popularity_rank": 48
+      },
+      {
+        "display_text": "Eagles",
+        "variants": [
+          "eagles",
+          "the eagles"
+        ],
+        "popularity_rank": 49
+      },
+      {
+        "display_text": "Fleetwood Mac",
+        "variants": [
+          "fleetwood mac",
+          "mac"
+        ],
+        "popularity_rank": 50
+      },
+      {
+        "display_text": "Lynyrd Skynyrd",
+        "variants": [
+          "lynyrd skynyrd"
+        ],
+        "popularity_rank": 51
+      },
+      {
+        "display_text": "The Allman Brothers Band",
+        "variants": [
+          "the allman brothers band",
+          "allman brothers"
+        ],
+        "popularity_rank": 52
+      },
+      {
+        "display_text": "The Band",
+        "variants": [
+          "the band",
+          "band"
+        ],
+        "popularity_rank": 53
+      },
+      {
+        "display_text": "Creedence Clearwater Revival",
+        "variants": [
+          "creedence clearwater revival",
+          "ccr"
+        ],
+        "popularity_rank": 54
+      },
+      {
+        "display_text": "The Grateful Dead",
+        "variants": [
+          "the grateful dead",
+          "grateful dead",
+          "dead"
+        ],
+        "popularity_rank": 55
+      },
+      {
+        "display_text": "Janis Joplin",
+        "variants": [
+          "janis joplin",
+          "joplin"
+        ],
+        "popularity_rank": 56
+      },
+      {
+        "display_text": "Aretha Franklin",
+        "variants": [
+          "aretha franklin",
+          "franklin"
+        ],
+        "popularity_rank": 57
+      },
+      {
+        "display_text": "Ray Charles",
+        "variants": [
+          "ray charles",
+          "charles"
+        ],
+        "popularity_rank": 58
+      },
+      {
+        "display_text": "Chuck Berry",
+        "variants": [
+          "chuck berry",
+          "berry"
+        ],
+        "popularity_rank": 59
+      },
+      {
+        "display_text": "Little Richard",
+        "variants": [
+          "little richard",
+          "richard"
+        ],
+        "popularity_rank": 60
+      }
+    ],
+    "theme_slug": "MUSIC",
+    "answer_count_cache": 60,
+    "difficulty": 4
+  },
+  {
+    "prompt": "Name a musical instrument that is part of a standard orchestra.",
+    "answers": [
+      {
+        "display_text": "Violin",
+        "variants": [
+          "violin",
+          "violins"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "Cello",
+        "variants": [
+          "cello",
+          "cellos"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "Viola",
+        "variants": [
+          "viola",
+          "violas"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "Double Bass",
+        "variants": [
+          "double bass",
+          "contrabass",
+          "bass",
+          "upright bass"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "Flute",
+        "variants": [
+          "flute",
+          "flutes"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "Oboe",
+        "variants": [
+          "oboe",
+          "oboes"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "Clarinet",
+        "variants": [
+          "clarinet",
+          "clarinets"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "Bassoon",
+        "variants": [
+          "bassoon",
+          "bassoons"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "French Horn",
+        "variants": [
+          "french horn",
+          "horns"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "Trumpet",
+        "variants": [
+          "trumpet",
+          "trumpets"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "Trombone",
+        "variants": [
+          "trombone",
+          "trombones"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "Tuba",
+        "variants": [
+          "tuba",
+          "tubas"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "Timpani",
+        "variants": [
+          "timpani",
+          "kettle drum",
+          "kettle drums"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "Harp",
+        "variants": [
+          "harp",
+          "harps"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "Piano",
+        "variants": [
+          "piano",
+          "pianos"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "Piccolo",
+        "variants": [
+          "piccolo",
+          "piccolos"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "English Horn",
+        "variants": [
+          "english horn",
+          "cor anglais"
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "Contrabassoon",
+        "variants": [
+          "contrabassoon",
+          "double bassoon"
+        ],
+        "popularity_rank": 18
+      },
+      {
+        "display_text": "Cymbals",
+        "variants": [
+          "cymbals"
+        ],
+        "popularity_rank": 19
+      },
+      {
+        "display_text": "Triangle",
+        "variants": [
+          "triangle"
+        ],
+        "popularity_rank": 20
+      },
+      {
+        "display_text": "Snare Drum",
+        "variants": [
+          "snare drum",
+          "snare drums"
+        ],
+        "popularity_rank": 21
+      },
+      {
+        "display_text": "Bass Drum",
+        "variants": [
+          "bass drum",
+          "bass drums"
+        ],
+        "popularity_rank": 22
+      },
+      {
+        "display_text": "Glockenspiel",
+        "variants": [
+          "glockenspiel"
+        ],
+        "popularity_rank": 23
+      },
+      {
+        "display_text": "Xylophone",
+        "variants": [
+          "xylophone",
+          "xylophones"
+        ],
+        "popularity_rank": 24
+      },
+      {
+        "display_text": "Celesta",
+        "variants": [
+          "celesta"
+        ],
+        "popularity_rank": 25
+      },
+      {
+        "display_text": "Drum Kit",
+        "variants": [
+          "drum kit",
+          "drum set",
+          "drums"
+        ],
+        "popularity_rank": 26
+      },
+      {
+        "display_text": "Marimba",
+        "variants": [
+          "marimba",
+          "marimbas"
+        ],
+        "popularity_rank": 27
+      },
+      {
+        "display_text": "Trombone (Alto)",
+        "variants": [
+          "alto trombone"
+        ],
+        "popularity_rank": 28
+      },
+      {
+        "display_text": "Trombone (Tenor)",
+        "variants": [
+          "tenor trombone"
+        ],
+        "popularity_rank": 29
+      },
+      {
+        "display_text": "Trombone (Bass)",
+        "variants": [
+          "bass trombone"
+        ],
+        "popularity_rank": 30
+      },
+      {
+        "display_text": "Horn (Alto)",
+        "variants": [
+          "alto horn"
+        ],
+        "popularity_rank": 31
+      },
+      {
+        "display_text": "Horn (Wagner)",
+        "variants": [
+          "wagner tuba"
+        ],
+        "popularity_rank": 32
+      },
+      {
+        "display_text": "Saxophone (Alto)",
+        "variants": [
+          "alto saxophone"
+        ],
+        "popularity_rank": 33
+      },
+      {
+        "display_text": "Saxophone (Tenor)",
+        "variants": [
+          "tenor saxophone"
+        ],
+        "popularity_rank": 34
+      },
+      {
+        "display_text": "Saxophone (Baritone)",
+        "variants": [
+          "baritone saxophone"
+        ],
+        "popularity_rank": 35
+      },
+      {
+        "display_text": "Saxophone (Soprano)",
+        "variants": [
+          "soprano saxophone"
+        ],
+        "popularity_rank": 36
+      },
+      {
+        "display_text": "Mandolin",
+        "variants": [
+          "mandolin"
+        ],
+        "popularity_rank": 37
+      },
+      {
+        "display_text": "Banjo",
+        "variants": [
+          "banjo"
+        ],
+        "popularity_rank": 38
+      },
+      {
+        "display_text": "Ocarina",
+        "variants": [
+          "ocarina"
+        ],
+        "popularity_rank": 39
+      },
+      {
+        "display_text": "Bagpipes",
+        "variants": [
+          "bagpipes"
+        ],
+        "popularity_rank": 40
+      },
+      {
+        "display_text": "Accordion",
+        "variants": [
+          "accordion"
+        ],
+        "popularity_rank": 41
+      },
+      {
+        "display_text": "Ukulele",
+        "variants": [
+          "ukulele"
+        ],
+        "popularity_rank": 42
+      },
+      {
+        "display_text": "Harmonica",
+        "variants": [
+          "harmonica",
+          "mouth organ"
+        ],
+        "popularity_rank": 43
+      },
+      {
+        "display_text": "Harpsichord",
+        "variants": [
+          "harpsichord"
+        ],
+        "popularity_rank": 44
+      },
+      {
+        "display_text": "Organ (Pipe Organ)",
+        "variants": [
+          "organ",
+          "pipe organ",
+          "church organ"
+        ],
+        "popularity_rank": 45
+      },
+      {
+        "display_text": "Synthesizer",
+        "variants": [
+          "synthesizer",
+          "synth"
+        ],
+        "popularity_rank": 46
+      },
+      {
+        "display_text": "Electric Guitar",
+        "variants": [
+          "electric guitar",
+          "guitar"
+        ],
+        "popularity_rank": 47
+      },
+      {
+        "display_text": "Electric Bass",
+        "variants": [
+          "electric bass",
+          "bass guitar"
+        ],
+        "popularity_rank": 48
+      },
+      {
+        "display_text": "Pedal Steel Guitar",
+        "variants": [
+          "pedal steel guitar"
+        ],
+        "popularity_rank": 49
+      },
+      {
+        "display_text": "Theremin",
+        "variants": [
+          "theremin"
+        ],
+        "popularity_rank": 50
+      },
+      {
+        "display_text": "Zither",
+        "variants": [
+          "zither"
+        ],
+        "popularity_rank": 51
+      },
+      {
+        "display_text": "Lute",
+        "variants": [
+          "lute"
+        ],
+        "popularity_rank": 52
+      },
+      {
+        "display_text": "Shawm",
+        "variants": [
+          "shawm"
+        ],
+        "popularity_rank": 53
+      },
+      {
+        "display_text": "Cornet",
+        "variants": [
+          "cornet"
+        ],
+        "popularity_rank": 54
+      },
+      {
+        "display_text": "Bugle",
+        "variants": [
+          "bugle"
+        ],
+        "popularity_rank": 55
+      },
+      {
+        "display_text": "Flugelhorn",
+        "variants": [
+          "flugelhorn"
+        ],
+        "popularity_rank": 56
+      },
+      {
+        "display_text": "Sousaphone",
+        "variants": [
+          "sousaphone"
+        ],
+        "popularity_rank": 57
+      },
+      {
+        "display_text": "Bombarde",
+        "variants": [
+          "bombarde"
+        ],
+        "popularity_rank": 58
+      },
+      {
+        "display_text": "Erhu",
+        "variants": [
+          "erhu"
+        ],
+        "popularity_rank": 59
+      },
+      {
+        "display_text": "Sitar",
+        "variants": [
+          "sitar"
+        ],
+        "popularity_rank": 60
+      }
+    ],
+    "theme_slug": "MUSIC",
+    "answer_count_cache": 60,
+    "difficulty": 4
+  },
+  {
+    "prompt": "Name a musical instrument played by wind",
+    "answers": [
+      {
+        "display_text": "Flute",
+        "variants": [
+          "flute",
+          "flutes"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "Clarinet",
+        "variants": [
+          "clarinet",
+          "clarinets"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "Saxophone",
+        "variants": [
+          "saxophone",
+          "sax",
+          "saxophones"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "Trumpet",
+        "variants": [
+          "trumpet",
+          "trumpets"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "Trombone",
+        "variants": [
+          "trombone",
+          "trombones"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "Oboe",
+        "variants": [
+          "oboe",
+          "oboes"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "Bassoon",
+        "variants": [
+          "bassoon",
+          "bassoons"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "French Horn",
+        "variants": [
+          "french horn",
+          "horn",
+          "horns",
+          "french horns"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "Harmonica",
+        "variants": [
+          "harmonica",
+          "harps",
+          "mouth organ"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "Bagpipes",
+        "variants": [
+          "bagpipes",
+          "pipes"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "Piccolo",
+        "variants": [
+          "piccolo",
+          "piccolos"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "Tuba",
+        "variants": [
+          "tuba",
+          "tubas"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "Recorder",
+        "variants": [
+          "recorder",
+          "recorders"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "Bass Clarinet",
+        "variants": [
+          "bass clarinet",
+          "bass clarinets"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "Cor Anglais",
+        "variants": [
+          "cor anglais",
+          "english horn",
+          "english horns"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "Contraforte",
+        "variants": [
+          "contraforte",
+          "contrabassoon",
+          "contrabassoons"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "Contrabass Clarinet",
+        "variants": [
+          "contrabass clarinet",
+          "contrabass clarinets"
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "Contrabass Saxophone",
+        "variants": [
+          "contrabass saxophone",
+          "contrabass saxophones"
+        ],
+        "popularity_rank": 18
+      },
+      {
+        "display_text": "Euphonium",
+        "variants": [
+          "euphonium",
+          "euphoniums"
+        ],
+        "popularity_rank": 19
+      },
+      {
+        "display_text": "Flugelhorn",
+        "variants": [
+          "flugelhorn",
+          "flugelhorns"
+        ],
+        "popularity_rank": 20
+      },
+      {
+        "display_text": "Melodica",
+        "variants": [
+          "melodica",
+          "melodicas"
+        ],
+        "popularity_rank": 21
+      },
+      {
+        "display_text": "Ocarina",
+        "variants": [
+          "ocarina",
+          "ocarinas"
+        ],
+        "popularity_rank": 22
+      },
+      {
+        "display_text": "Pan Flute",
+        "variants": [
+          "pan flute",
+          "pan flutes",
+          "panpipes"
+        ],
+        "popularity_rank": 23
+      },
+      {
+        "display_text": "Sousaphone",
+        "variants": [
+          "sousaphone",
+          "sousaphones"
+        ],
+        "popularity_rank": 24
+      },
+      {
+        "display_text": "Tenor Horn",
+        "variants": [
+          "tenor horn",
+          "tenor horns"
+        ],
+        "popularity_rank": 25
+      },
+      {
+        "display_text": "Baritone Horn",
+        "variants": [
+          "baritone horn",
+          "baritone horns"
+        ],
+        "popularity_rank": 26
+      },
+      {
+        "display_text": "Bass Trombone",
+        "variants": [
+          "bass trombone",
+          "bass trombones"
+        ],
+        "popularity_rank": 27
+      },
+      {
+        "display_text": "Sopranino Saxophone",
+        "variants": [
+          "sopranino saxophone",
+          "sopranino sax"
+        ],
+        "popularity_rank": 28
+      },
+      {
+        "display_text": "Soprano Saxophone",
+        "variants": [
+          "soprano saxophone",
+          "soprano sax"
+        ],
+        "popularity_rank": 29
+      },
+      {
+        "display_text": "Alto Saxophone",
+        "variants": [
+          "alto saxophone",
+          "alto sax"
+        ],
+        "popularity_rank": 30
+      },
+      {
+        "display_text": "Tenor Saxophone",
+        "variants": [
+          "tenor saxophone",
+          "tenor sax"
+        ],
+        "popularity_rank": 31
+      },
+      {
+        "display_text": "Baritone Saxophone",
+        "variants": [
+          "baritone saxophone",
+          "baritone sax"
+        ],
+        "popularity_rank": 32
+      },
+      {
+        "display_text": "Bass Saxophone",
+        "variants": [
+          "bass saxophone",
+          "bass sax"
+        ],
+        "popularity_rank": 33
+      },
+      {
+        "display_text": "Tubax",
+        "variants": [
+          "tubax"
+        ],
+        "popularity_rank": 34
+      },
+      {
+        "display_text": "Heckelphone",
+        "variants": [
+          "heckelphone",
+          "heckelphones"
+        ],
+        "popularity_rank": 35
+      },
+      {
+        "display_text": "Drums (as in a full drum kit, some parts are blown)",
+        "variants": [
+          "drum kit",
+          "drums",
+          "drum set"
+        ],
+        "popularity_rank": 36
+      },
+      {
+        "display_text": "Shakuhachi",
+        "variants": [
+          "shakuhachi",
+          "shakuhachis"
+        ],
+        "popularity_rank": 37
+      },
+      {
+        "display_text": "Didgeridoo",
+        "variants": [
+          "didgeridoo",
+          "didgeridoos"
+        ],
+        "popularity_rank": 38
+      },
+      {
+        "display_text": "Quena",
+        "variants": [
+          "quena",
+          "quenas"
+        ],
+        "popularity_rank": 39
+      },
+      {
+        "display_text": "Pungi",
+        "variants": [
+          "pungi",
+          "pungi",
+          "snake charmer flute"
+        ],
+        "popularity_rank": 40
+      },
+      {
+        "display_text": "Zurna",
+        "variants": [
+          "zurna",
+          "zurnas"
+        ],
+        "popularity_rank": 41
+      },
+      {
+        "display_text": "Shawm",
+        "variants": [
+          "shawm",
+          "shawms"
+        ],
+        "popularity_rank": 42
+      },
+      {
+        "display_text": "Crumhorn",
+        "variants": [
+          "crumhorn",
+          "crumhorns"
+        ],
+        "popularity_rank": 43
+      },
+      {
+        "display_text": "Serpent",
+        "variants": [
+          "serpent",
+          "serpents"
+        ],
+        "popularity_rank": 44
+      },
+      {
+        "display_text": "Ophicleide",
+        "variants": [
+          "ophicleide",
+          "ophicleides"
+        ],
+        "popularity_rank": 45
+      },
+      {
+        "display_text": "Sarrusophone",
+        "variants": [
+          "sarrusophone",
+          "sarrusophones"
+        ],
+        "popularity_rank": 46
+      },
+      {
+        "display_text": "Tenoroon",
+        "variants": [
+          "tenoroon",
+          "tenoroons"
+        ],
+        "popularity_rank": 47
+      },
+      {
+        "display_text": "Voix Humaine",
+        "variants": [
+          "voix humaine",
+          "human voice"
+        ],
+        "popularity_rank": 48
+      },
+      {
+        "display_text": "Glass Harmonica",
+        "variants": [
+          "glass harmonica",
+          "glass harmonicas",
+          "armonica"
+        ],
+        "popularity_rank": 49
+      },
+      {
+        "display_text": "Bullroarer",
+        "variants": [
+          "bullroarer",
+          "bullroarers"
+        ],
+        "popularity_rank": 50
+      },
+      {
+        "display_text": "Sitar (played with breath control)",
+        "variants": [
+          "sitar"
+        ],
+        "popularity_rank": 51
+      },
+      {
+        "display_text": "Nay",
+        "variants": [
+          "nay",
+          "ney",
+          "ne"
+        ],
+        "popularity_rank": 52
+      },
+      {
+        "display_text": "Xaphoon",
+        "variants": [
+          "xaphoon"
+        ],
+        "popularity_rank": 53
+      },
+      {
+        "display_text": "Duduk",
+        "variants": [
+          "duduk",
+          "duduk"
+        ],
+        "popularity_rank": 54
+      },
+      {
+        "display_text": "Aulos",
+        "variants": [
+          "aulos"
+        ],
+        "popularity_rank": 55
+      },
+      {
+        "display_text": "Kazoo",
+        "variants": [
+          "kazoo",
+          "kazoos"
+        ],
+        "popularity_rank": 56
+      }
+    ],
+    "theme_slug": "MUSIC",
+    "answer_count_cache": 56,
+    "difficulty": 5
+  },
+  {
+    "prompt": "Name a song that prominently features the use of a Theremin",
+    "answers": [
+      {
+        "display_text": "Good Vibrations",
+        "variants": [
+          "good vibrations",
+          "the beach boys good vibrations"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "Whole Lotta Love",
+        "variants": [
+          "whole lotta love",
+          "led zeppelin whole lotta love"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "Miserlou",
+        "variants": [
+          "miserlou",
+          "pulp fiction miserlou",
+          "dick dale miserlou"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "The Day the Earth Stood Still (Theme)",
+        "variants": [
+          "the day the earth stood still theme",
+          "bernard herrmann the day the earth stood still",
+          "theremin movie theme"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "The Big Country",
+        "variants": [
+          "the big country",
+          "jerome moross the big country"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "Spellbound",
+        "variants": [
+          "spellbound",
+          "mikl\u00f3s r\u00f3zsa spellbound",
+          "spellbound theme"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "Theme from Star Trek (Original Series)",
+        "variants": [
+          "star trek theme",
+          "theme from star trek",
+          "star trek original series theme",
+          "alex north star trek theme",
+          "goldsmith star trek theme"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "I Had Too Much to Dream (Last Night)",
+        "variants": [
+          "i had too much to dream",
+          "the electric prunes i had too much to dream"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "Telstar",
+        "variants": [
+          "telstar",
+          "the tornados telstar"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "Eminence Front",
+        "variants": [
+          "eminence front",
+          "the who\", \"eminence front"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "Black is the Colour of My True Love's Hair",
+        "variants": [
+          "black is the colour of my true love's hair",
+          "nina simone black is the colour"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "Whispering",
+        "variants": [
+          "whispering",
+          "the beach boys whispering"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "Don't Fear the Reaper",
+        "variants": [
+          "don't fear the reaper",
+          "blue oyster cult don't fear the reaper"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "The Swag",
+        "variants": [
+          "the swag",
+          "the roots the swag"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "Beyond the Sea",
+        "variants": [
+          "beyond the sea",
+          "charles trenet beyond the sea",
+          "bobby darin beyond the sea"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "Rocket Number 9",
+        "variants": [
+          "rocket number 9",
+          "sun ra rocket number 9"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "Chant of the Vampires",
+        "variants": [
+          "chant of the vampires",
+          "friedrich hollaender chant of the vampires"
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "The Ghost of Orion",
+        "variants": [
+          "the ghost of orion",
+          "the serenity ghost of orion"
+        ],
+        "popularity_rank": 18
+      },
+      {
+        "display_text": "Astronomy Domine",
+        "variants": [
+          "astronomy domine",
+          "pink floyd astronomy domine"
+        ],
+        "popularity_rank": 19
+      },
+      {
+        "display_text": "The Killing Moon",
+        "variants": [
+          "the killing moon",
+          "echo and the bunnymen the killing moon"
+        ],
+        "popularity_rank": 20
+      },
+      {
+        "display_text": "Dark Was the Night, Cold Was the Ground",
+        "variants": [
+          "dark was the night cold was the ground",
+          "blind willie johnson dark was the night"
+        ],
+        "popularity_rank": 21
+      },
+      {
+        "display_text": "Rhapsody in Blue",
+        "variants": [
+          "rhapsody in blue",
+          "george gershwin rhapsody in blue"
+        ],
+        "popularity_rank": 22
+      },
+      {
+        "display_text": "Love Me Tender",
+        "variants": [
+          "love me tender",
+          "elvis presley love me tender"
+        ],
+        "popularity_rank": 23
+      },
+      {
+        "display_text": "The First Time Ever I Saw Your Face",
+        "variants": [
+          "the first time ever i saw your face",
+          "roberta flack the first time ever i saw your face"
+        ],
+        "popularity_rank": 24
+      },
+      {
+        "display_text": "The Stranger",
+        "variants": [
+          "the stranger",
+          "billy joel the stranger"
+        ],
+        "popularity_rank": 25
+      },
+      {
+        "display_text": "Walking on the Moon",
+        "variants": [
+          "walking on the moon",
+          "the police walking on the moon"
+        ],
+        "popularity_rank": 26
+      },
+      {
+        "display_text": "Iron Man",
+        "variants": [
+          "iron man",
+          "black sabbath iron man"
+        ],
+        "popularity_rank": 27
+      },
+      {
+        "display_text": "Space Oddity",
+        "variants": [
+          "space oddity",
+          "david bowie space oddity"
+        ],
+        "popularity_rank": 28
+      },
+      {
+        "display_text": "Across the Universe",
+        "variants": [
+          "across the universe",
+          "the beatles across the universe"
+        ],
+        "popularity_rank": 29
+      },
+      {
+        "display_text": "Echoes",
+        "variants": [
+          "echoes",
+          "pink floyd echoes"
+        ],
+        "popularity_rank": 30
+      },
+      {
+        "display_text": "Shine On You Crazy Diamond",
+        "variants": [
+          "shine on you crazy diamond",
+          "pink floyd shine on you crazy diamond"
+        ],
+        "popularity_rank": 31
+      },
+      {
+        "display_text": "Stairway to Heaven",
+        "variants": [
+          "stairway to heaven",
+          "led zeppelin stairway to heaven"
+        ],
+        "popularity_rank": 32
+      },
+      {
+        "display_text": "Bohemian Rhapsody",
+        "variants": [
+          "bohemian rhapsody",
+          "queen bohemian rhapsody"
+        ],
+        "popularity_rank": 33
+      },
+      {
+        "display_text": "Comfortably Numb",
+        "variants": [
+          "comfortably numb",
+          "pink floyd comfortably numb"
+        ],
+        "popularity_rank": 34
+      },
+      {
+        "display_text": "Hotel California",
+        "variants": [
+          "hotel california",
+          "the eagles hotel california"
+        ],
+        "popularity_rank": 35
+      },
+      {
+        "display_text": "Smoke on the Water",
+        "variants": [
+          "smoke on the water",
+          "deep purple smoke on the water"
+        ],
+        "popularity_rank": 36
+      },
+      {
+        "display_text": "Stuck in the Middle with You",
+        "variants": [
+          "stuck in the middle with you",
+          "stealers wheel stuck in the middle with you"
+        ],
+        "popularity_rank": 37
+      },
+      {
+        "display_text": "Piano Man",
+        "variants": [
+          "piano man",
+          "billy joel piano man"
+        ],
+        "popularity_rank": 38
+      },
+      {
+        "display_text": "Imagine",
+        "variants": [
+          "imagine",
+          "john lennon imagine"
+        ],
+        "popularity_rank": 39
+      },
+      {
+        "display_text": "Hey Jude",
+        "variants": [
+          "hey jude",
+          "the beatles hey jude"
+        ],
+        "popularity_rank": 40
+      },
+      {
+        "display_text": "Let It Be",
+        "variants": [
+          "let it be",
+          "the beatles let it be"
+        ],
+        "popularity_rank": 41
+      },
+      {
+        "display_text": "Bridge Over Troubled Water",
+        "variants": [
+          "bridge over troubled water",
+          "simon & garfunkel bridge over troubled water"
+        ],
+        "popularity_rank": 42
+      },
+      {
+        "display_text": "American Pie",
+        "variants": [
+          "american pie",
+          "don mclean american pie"
+        ],
+        "popularity_rank": 43
+      },
+      {
+        "display_text": "Hallelujah",
+        "variants": [
+          "hallelujah",
+          "leonard cohen hallelujah",
+          "jeff buckley hallelujah"
+        ],
+        "popularity_rank": 44
+      },
+      {
+        "display_text": "Yesterday",
+        "variants": [
+          "yesterday",
+          "the beatles yesterday"
+        ],
+        "popularity_rank": 45
+      },
+      {
+        "display_text": "All You Need Is Love",
+        "variants": [
+          "all you need is love",
+          "the beatles all you need is love"
+        ],
+        "popularity_rank": 46
+      },
+      {
+        "display_text": "Here Comes the Sun",
+        "variants": [
+          "here comes the sun",
+          "the beatles here comes the sun"
+        ],
+        "popularity_rank": 47
+      },
+      {
+        "display_text": "Strawberry Fields Forever",
+        "variants": [
+          "strawberry fields forever",
+          "the beatles strawberry fields forever"
+        ],
+        "popularity_rank": 48
+      },
+      {
+        "display_text": "Penny Lane",
+        "variants": [
+          "penny lane",
+          "the beatles penny lane"
+        ],
+        "popularity_rank": 49
+      },
+      {
+        "display_text": "Eleanor Rigby",
+        "variants": [
+          "eleanor rigby",
+          "the beatles eleanor rigby"
+        ],
+        "popularity_rank": 50
+      },
+      {
+        "display_text": "Norwegian Wood (This Bird Has Flown)",
+        "variants": [
+          "norwegian wood",
+          "this bird has flown",
+          "the beatles norwegian wood"
+        ],
+        "popularity_rank": 51
+      },
+      {
+        "display_text": "Lucy in the Sky with Diamonds",
+        "variants": [
+          "lucy in the sky with diamonds",
+          "the beatles lucy in the sky with diamonds"
+        ],
+        "popularity_rank": 52
+      },
+      {
+        "display_text": "Blackbird",
+        "variants": [
+          "blackbird",
+          "the beatles blackbird"
+        ],
+        "popularity_rank": 53
+      },
+      {
+        "display_text": "The Long and Winding Road",
+        "variants": [
+          "the long and winding road",
+          "the beatles the long and winding road"
+        ],
+        "popularity_rank": 54
+      },
+      {
+        "display_text": "I Am the Walrus",
+        "variants": [
+          "i am the walrus",
+          "the beatles i am the walrus"
+        ],
+        "popularity_rank": 55
+      },
+      {
+        "display_text": "Come Together",
+        "variants": [
+          "come together",
+          "the beatles come together"
+        ],
+        "popularity_rank": 56
+      },
+      {
+        "display_text": "Twist and Shout",
+        "variants": [
+          "twist and shout",
+          "the beatles twist and shout",
+          "isley brothers twist and shout"
+        ],
+        "popularity_rank": 57
+      },
+      {
+        "display_text": "She Loves You",
+        "variants": [
+          "she loves you",
+          "the beatles she loves you"
+        ],
+        "popularity_rank": 58
+      },
+      {
+        "display_text": "I Want to Hold Your Hand",
+        "variants": [
+          "i want to hold your hand",
+          "the beatles i want to hold your hand"
+        ],
+        "popularity_rank": 59
+      },
+      {
+        "display_text": "A Hard Day's Night",
+        "variants": [
+          "a hard day's night",
+          "the beatles a hard day's night"
+        ],
+        "popularity_rank": 60
+      },
+      {
+        "display_text": "Help!",
+        "variants": [
+          "help",
+          "help!",
+          "the beatles help"
+        ],
+        "popularity_rank": 61
+      },
+      {
+        "display_text": "Ticket to Ride",
+        "variants": [
+          "ticket to ride",
+          "the beatles ticket to ride"
+        ],
+        "popularity_rank": 62
+      },
+      {
+        "display_text": "Nowhere Man",
+        "variants": [
+          "nowhere man",
+          "the beatles nowhere man"
+        ],
+        "popularity_rank": 63
+      },
+      {
+        "display_text": "Paperback Writer",
+        "variants": [
+          "paperback writer",
+          "the beatles paperback writer"
+        ],
+        "popularity_rank": 64
+      },
+      {
+        "display_text": "Lady Madonna",
+        "variants": [
+          "lady madonna",
+          "the beatles lady madonna"
+        ],
+        "popularity_rank": 65
+      },
+      {
+        "display_text": "Get Back",
+        "variants": [
+          "get back",
+          "the beatles get back"
+        ],
+        "popularity_rank": 66
+      },
+      {
+        "display_text": "All My Loving",
+        "variants": [
+          "all my loving",
+          "the beatles all my loving"
+        ],
+        "popularity_rank": 67
+      },
+      {
+        "display_text": "Can't Buy Me Love",
+        "variants": [
+          "can't buy me love",
+          "the beatles can't buy me love"
+        ],
+        "popularity_rank": 68
+      },
+      {
+        "display_text": "Eight Days a Week",
+        "variants": [
+          "eight days a week",
+          "the beatles eight days a week"
+        ],
+        "popularity_rank": 69
+      },
+      {
+        "display_text": "I Feel Fine",
+        "variants": [
+          "i feel fine",
+          "the beatles i feel fine"
+        ],
+        "popularity_rank": 70
+      },
+      {
+        "display_text": "A Day in the Life",
+        "variants": [
+          "a day in the life",
+          "the beatles a day in the life"
+        ],
+        "popularity_rank": 71
+      },
+      {
+        "display_text": "Revolution 9",
+        "variants": [
+          "revolution 9",
+          "the beatles revolution 9"
+        ],
+        "popularity_rank": 72
+      },
+      {
+        "display_text": "While My Guitar Gently Weeps",
+        "variants": [
+          "while my guitar gently weeps",
+          "the beatles while my guitar gently weeps"
+        ],
+        "popularity_rank": 73
+      },
+      {
+        "display_text": "Because",
+        "variants": [
+          "because",
+          "the beatles because"
+        ],
+        "popularity_rank": 74
+      },
+      {
+        "display_text": "The End",
+        "variants": [
+          "the end",
+          "the beatles the end"
+        ],
+        "popularity_rank": 75
+      },
+      {
+        "display_text": "You Never Give Me Your Money",
+        "variants": [
+          "you never give me your money",
+          "the beatles you never give me your money"
+        ],
+        "popularity_rank": 76
+      },
+      {
+        "display_text": "Sun King",
+        "variants": [
+          "sun king",
+          "the beatles sun king"
+        ],
+        "popularity_rank": 77
+      },
+      {
+        "display_text": "Mean Mr. Mustard",
+        "variants": [
+          "mean mr. mustard",
+          "the beatles mean mr. mustard"
+        ],
+        "popularity_rank": 78
+      },
+      {
+        "display_text": "Polythene Pam",
+        "variants": [
+          "polythene pam",
+          "the beatles polythene pam"
+        ],
+        "popularity_rank": 79
+      },
+      {
+        "display_text": "She Came In Through the Bathroom Window",
+        "variants": [
+          "she came in through the bathroom window",
+          "the beatles she came in through the bathroom window"
+        ],
+        "popularity_rank": 80
+      },
+      {
+        "display_text": "Golden Slumbers",
+        "variants": [
+          "golden slumbers",
+          "the beatles golden slumbers"
+        ],
+        "popularity_rank": 81
+      },
+      {
+        "display_text": "Carry That Weight",
+        "variants": [
+          "carry that weight",
+          "the beatles carry that weight"
+        ],
+        "popularity_rank": 82
+      },
+      {
+        "display_text": "The Ballad of John and Yoko",
+        "variants": [
+          "the ballad of john and yoko",
+          "the beatles the ballad of john and yoko"
+        ],
+        "popularity_rank": 83
+      },
+      {
+        "display_text": "Old Brown Shoe",
+        "variants": [
+          "old brown shoe",
+          "the beatles old brown shoe"
+        ],
+        "popularity_rank": 84
+      },
+      {
+        "display_text": "Across the Universe",
+        "variants": [
+          "across the universe",
+          "the beatles across the universe"
+        ],
+        "popularity_rank": 85
+      },
+      {
+        "display_text": "Two of Us",
+        "variants": [
+          "two of us",
+          "the beatles two of us"
+        ],
+        "popularity_rank": 86
+      },
+      {
+        "display_text": "Dig a Pony",
+        "variants": [
+          "dig a pony",
+          "the beatles dig a pony"
+        ],
+        "popularity_rank": 87
+      },
+      {
+        "display_text": "For You Blue",
+        "variants": [
+          "for you blue",
+          "the beatles for you blue"
+        ],
+        "popularity_rank": 88
+      },
+      {
+        "display_text": "I've Got a Feeling",
+        "variants": [
+          "i've got a feeling",
+          "the beatles i've got a feeling"
+        ],
+        "popularity_rank": 89
+      },
+      {
+        "display_text": "Don't Let Me Down",
+        "variants": [
+          "don't let me down",
+          "the beatles don't let me down"
+        ],
+        "popularity_rank": 90
+      },
+      {
+        "display_text": "The Inner Light",
+        "variants": [
+          "the inner light",
+          "the beatles the inner light"
+        ],
+        "popularity_rank": 91
+      },
+      {
+        "display_text": "Revolution",
+        "variants": [
+          "revolution",
+          "the beatles revolution"
+        ],
+        "popularity_rank": 92
+      },
+      {
+        "display_text": "Across the Universe",
+        "variants": [
+          "across the universe",
+          "david bowie across the universe"
+        ],
+        "popularity_rank": 93
+      },
+      {
+        "display_text": "Changes",
+        "variants": [
+          "changes",
+          "david bowie changes"
+        ],
+        "popularity_rank": 94
+      },
+      {
+        "display_text": "Ziggy Stardust",
+        "variants": [
+          "ziggy stardust",
+          "david bowie ziggy stardust"
+        ],
+        "popularity_rank": 95
+      },
+      {
+        "display_text": "Life on Mars?",
+        "variants": [
+          "life on mars",
+          "life on mars?",
+          "david bowie life on mars"
+        ],
+        "popularity_rank": 96
+      },
+      {
+        "display_text": "Starman",
+        "variants": [
+          "starman",
+          "david bowie starman"
+        ],
+        "popularity_rank": 97
+      },
+      {
+        "display_text": "Heroes",
+        "variants": [
+          "heroes",
+          "david bowie heroes"
+        ],
+        "popularity_rank": 98
+      },
+      {
+        "display_text": "Ashes to Ashes",
+        "variants": [
+          "ashes to ashes",
+          "david bowie ashes to ashes"
+        ],
+        "popularity_rank": 99
+      },
+      {
+        "display_text": "Let's Dance",
+        "variants": [
+          "let's dance",
+          "david bowie let's dance"
+        ],
+        "popularity_rank": 100
+      }
+    ],
+    "theme_slug": "MUSIC",
+    "answer_count_cache": 100,
+    "difficulty": 5
+  },
+  {
+    "prompt": "Name a notable female opera singer (soprano)",
+    "answers": [
+      {
+        "display_text": "Maria Callas",
+        "variants": [
+          "maria callas",
+          "callas",
+          "maria meneghini callas"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "Joan Sutherland",
+        "variants": [
+          "joan sutherland",
+          "sutherland",
+          "la stupenda"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "Ren\u00e9e Fleming",
+        "variants": [
+          "renee fleming",
+          "fleming"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "Leontyne Price",
+        "variants": [
+          "leontyne price",
+          "price"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "Beverly Sills",
+        "variants": [
+          "beverly sills",
+          "sills"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "Anna Netrebko",
+        "variants": [
+          "anna netrebko",
+          "netrebko"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "Cecilia Bartoli",
+        "variants": [
+          "cecilia bartoli",
+          "bartoli"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "Montserrat Caball\u00e9",
+        "variants": [
+          "montserrat caball\u00e9",
+          "caballe"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "Kiri Te Kanawa",
+        "variants": [
+          "kiri te kanawa",
+          "te kanawa"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "Birgit Nilsson",
+        "variants": [
+          "birgit nilsson",
+          "nilsson"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "Elisabeth Schwarzkopf",
+        "variants": [
+          "elisabeth schwarzkopf",
+          "schwarzkopf"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "Christa Ludwig",
+        "variants": [
+          "christa ludwig",
+          "ludwig"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "Jessye Norman",
+        "variants": [
+          "jessye norman",
+          "norman"
+        ],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "Eileen Farrell",
+        "variants": [
+          "eileen farrell",
+          "farrell"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "Ingrid Bergman",
+        "variants": [
+          "ingrid bergman",
+          "bergman"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "Felicia Weathers",
+        "variants": [
+          "felicia weathers",
+          "weathers"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "Mirella Freni",
+        "variants": [
+          "mirella freni",
+          "freni"
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "Victoria de los \u00c1ngeles",
+        "variants": [
+          "victoria de los angeles",
+          "de los angeles"
+        ],
+        "popularity_rank": 18
+      },
+      {
+        "display_text": "Regina Resnik",
+        "variants": [
+          "regina resnik",
+          "resnik"
+        ],
+        "popularity_rank": 19
+      },
+      {
+        "display_text": "Simionato",
+        "variants": [
+          "simionato",
+          "giulietta simionato"
+        ],
+        "popularity_rank": 20
+      },
+      {
+        "display_text": "Fiorenza Cossotto",
+        "variants": [
+          "fiorenza cossotto",
+          "cossotto"
+        ],
+        "popularity_rank": 21
+      },
+      {
+        "display_text": "Rita Gorr",
+        "variants": [
+          "rita gorr",
+          "gorr"
+        ],
+        "popularity_rank": 22
+      },
+      {
+        "display_text": "Grace Bumbry",
+        "variants": [
+          "grace bumbry",
+          "bumbry"
+        ],
+        "popularity_rank": 23
+      },
+      {
+        "display_text": "Janet Baker",
+        "variants": [
+          "janet baker",
+          "baker"
+        ],
+        "popularity_rank": 24
+      },
+      {
+        "display_text": "Astrid Varnay",
+        "variants": [
+          "astrid varnay",
+          "varnay"
+        ],
+        "popularity_rank": 25
+      },
+      {
+        "display_text": "Hildegard Behrens",
+        "variants": [
+          "hildegard behrens",
+          "behrens"
+        ],
+        "popularity_rank": 26
+      },
+      {
+        "display_text": "Felicity Lott",
+        "variants": [
+          "felicity lott",
+          "lott"
+        ],
+        "popularity_rank": 27
+      },
+      {
+        "display_text": "Edita Gruberov\u00e1",
+        "variants": [
+          "edita gruberov\u00e1",
+          "gruberova"
+        ],
+        "popularity_rank": 28
+      },
+      {
+        "display_text": "June Anderson",
+        "variants": [
+          "june anderson",
+          "anderson"
+        ],
+        "popularity_rank": 29
+      },
+      {
+        "display_text": "Mariella Devia",
+        "variants": [
+          "mariella devia",
+          "devia"
+        ],
+        "popularity_rank": 30
+      },
+      {
+        "display_text": "Summum Opus",
+        "variants": [
+          "summum opus",
+          "summum"
+        ],
+        "popularity_rank": 31
+      },
+      {
+        "display_text": "Maria Ewing",
+        "variants": [
+          "maria ewing",
+          "ewing"
+        ],
+        "popularity_rank": 32
+      },
+      {
+        "display_text": "Angela Gheorghiu",
+        "variants": [
+          "angela gheorghiu",
+          "gheorghiu"
+        ],
+        "popularity_rank": 33
+      },
+      {
+        "display_text": "Adina Ardeleanu",
+        "variants": [
+          "adina ardeleanu",
+          "ardeleanu"
+        ],
+        "popularity_rank": 34
+      },
+      {
+        "display_text": "El\u012bna Garan\u010da",
+        "variants": [
+          "elina garanca",
+          "garanca"
+        ],
+        "popularity_rank": 35
+      },
+      {
+        "display_text": "Karita Mattila",
+        "variants": [
+          "karita mattila",
+          "mattila"
+        ],
+        "popularity_rank": 36
+      },
+      {
+        "display_text": "Deborah Voigt",
+        "variants": [
+          "deborah voigt",
+          "voigt"
+        ],
+        "popularity_rank": 37
+      },
+      {
+        "display_text": "Hei-Kyung Hong",
+        "variants": [
+          "hei-kyung hong",
+          "hong"
+        ],
+        "popularity_rank": 38
+      },
+      {
+        "display_text": "Bryn Terfel",
+        "variants": [
+          "bryn terfel",
+          "terfel"
+        ],
+        "popularity_rank": 39
+      },
+      {
+        "display_text": "Diana Damrau",
+        "variants": [
+          "diana damrau",
+          "damrau"
+        ],
+        "popularity_rank": 40
+      },
+      {
+        "display_text": "Isabelle Bartolotti",
+        "variants": [
+          "isabelle bartolotti",
+          "bartolotti"
+        ],
+        "popularity_rank": 41
+      },
+      {
+        "display_text": "Luba Orgonasova",
+        "variants": [
+          "luba orgonasova",
+          "orgonasova"
+        ],
+        "popularity_rank": 42
+      },
+      {
+        "display_text": "Eva Marton",
+        "variants": [
+          "eva marton",
+          "marton"
+        ],
+        "popularity_rank": 43
+      },
+      {
+        "display_text": "Barbara Hendricks",
+        "variants": [
+          "barbara hendricks",
+          "hendricks"
+        ],
+        "popularity_rank": 44
+      },
+      {
+        "display_text": "Roberta Peters",
+        "variants": [
+          "roberta peters",
+          "peters"
+        ],
+        "popularity_rank": 45
+      },
+      {
+        "display_text": "Kathleen Battle",
+        "variants": [
+          "kathleen battle",
+          "battle"
+        ],
+        "popularity_rank": 46
+      },
+      {
+        "display_text": "Ermonela Jaho",
+        "variants": [
+          "ermonela jaho",
+          "jaho"
+        ],
+        "popularity_rank": 47
+      },
+      {
+        "display_text": "Sonya Yoncheva",
+        "variants": [
+          "sonya yoncheva",
+          "yoncheva"
+        ],
+        "popularity_rank": 48
+      },
+      {
+        "display_text": "Juan Diego Fl\u00f3rez",
+        "variants": [
+          "juan diego florez",
+          "florez"
+        ],
+        "popularity_rank": 49
+      },
+      {
+        "display_text": "Raina Kabaivanska",
+        "variants": [
+          "raina kabaivanska",
+          "kabaivanska"
+        ],
+        "popularity_rank": 50
+      },
+      {
+        "display_text": "Teresa Berganza",
+        "variants": [
+          "teresa berganza",
+          "berganza"
+        ],
+        "popularity_rank": 51
+      },
+      {
+        "display_text": "Jane Eaglen",
+        "variants": [
+          "jane eaglen",
+          "eaglen"
+        ],
+        "popularity_rank": 52
+      },
+      {
+        "display_text": "Stephanie Blythe",
+        "variants": [
+          "stephanie blythe",
+          "blythe"
+        ],
+        "popularity_rank": 53
+      },
+      {
+        "display_text": "Dorothea R\u00f6schmann",
+        "variants": [
+          "dorothea r\u00f6schmann",
+          "roschmann"
+        ],
+        "popularity_rank": 54
+      },
+      {
+        "display_text": "Candace Johnson",
+        "variants": [
+          "candace johnson",
+          "johnson"
+        ],
+        "popularity_rank": 55
+      },
+      {
+        "display_text": "Alice Coote",
+        "variants": [
+          "alice coote",
+          "coote"
+        ],
+        "popularity_rank": 56
+      },
+      {
+        "display_text": "Jennifer Larmore",
+        "variants": [
+          "jennifer larmore",
+          "larmore"
+        ],
+        "popularity_rank": 57
+      },
+      {
+        "display_text": "Patricia Petibon",
+        "variants": [
+          "patricia petibon",
+          "petibon"
+        ],
+        "popularity_rank": 58
+      },
+      {
+        "display_text": "Anna Moffo",
+        "variants": [
+          "anna moffo",
+          "moffo"
+        ],
+        "popularity_rank": 59
+      },
+      {
+        "display_text": "Claudia Muzio",
+        "variants": [
+          "claudia muzio",
+          "muzio"
+        ],
+        "popularity_rank": 60
+      },
+      {
+        "display_text": "Gina Cigna",
+        "variants": [
+          "gina cigna",
+          "cigna"
+        ],
+        "popularity_rank": 61
+      },
+      {
+        "display_text": "Rosa Raisa",
+        "variants": [
+          "rosa raisa",
+          "raisa"
+        ],
+        "popularity_rank": 62
+      },
+      {
+        "display_text": "Lucrezia Bori",
+        "variants": [
+          "lucrezia bori",
+          "bori"
+        ],
+        "popularity_rank": 63
+      },
+      {
+        "display_text": "Fritzi Massary",
+        "variants": [
+          "fritzi massary",
+          "massary"
+        ],
+        "popularity_rank": 64
+      },
+      {
+        "display_text": "Lina Cavalieri",
+        "variants": [
+          "lina cavalieri",
+          "cavalieri"
+        ],
+        "popularity_rank": 65
+      },
+      {
+        "display_text": "Amelita Galli-Curci",
+        "variants": [
+          "amelita galli-curci",
+          "galli-curci"
+        ],
+        "popularity_rank": 66
+      },
+      {
+        "display_text": "Mary Garden",
+        "variants": [
+          "mary garden",
+          "garden"
+        ],
+        "popularity_rank": 67
+      },
+      {
+        "display_text": "Geraldine Farrar",
+        "variants": [
+          "geraldine farrar",
+          "farrar"
+        ],
+        "popularity_rank": 68
+      },
+      {
+        "display_text": "Olive Fremstad",
+        "variants": [
+          "olive fremstad",
+          "fremstad"
+        ],
+        "popularity_rank": 69
+      },
+      {
+        "display_text": "Emmy Destinn",
+        "variants": [
+          "emmy destinn",
+          "destinn"
+        ],
+        "popularity_rank": 70
+      },
+      {
+        "display_text": "Selma Kurz",
+        "variants": [
+          "selma kurz",
+          "kurz"
+        ],
+        "popularity_rank": 71
+      },
+      {
+        "display_text": "Greta S\u00f6derberg",
+        "variants": [
+          "greta s\u00f6derberg",
+          "soderberg"
+        ],
+        "popularity_rank": 72
+      },
+      {
+        "display_text": "Yvonne Minton",
+        "variants": [
+          "yvonne minton",
+          "minton"
+        ],
+        "popularity_rank": 73
+      },
+      {
+        "display_text": "Margarita Zimmerman",
+        "variants": [
+          "margarita zimmerman",
+          "zimmerman"
+        ],
+        "popularity_rank": 74
+      },
+      {
+        "display_text": "Leyla Gencer",
+        "variants": [
+          "leyla gencer",
+          "gencer"
+        ],
+        "popularity_rank": 75
+      },
+      {
+        "display_text": "Bianca Castagna",
+        "variants": [
+          "bianca castagna",
+          "castagna"
+        ],
+        "popularity_rank": 76
+      },
+      {
+        "display_text": "Anja Silja",
+        "variants": [
+          "anja silja",
+          "silja"
+        ],
+        "popularity_rank": 77
+      },
+      {
+        "display_text": "Christiane Oelze",
+        "variants": [
+          "christiane oelze",
+          "oelze"
+        ],
+        "popularity_rank": 78
+      },
+      {
+        "display_text": "Bernadette Manca",
+        "variants": [
+          "bernadette manca",
+          "manca"
+        ],
+        "popularity_rank": 79
+      },
+      {
+        "display_text": "Silvana Dussmann",
+        "variants": [
+          "silvana dussmann",
+          "dussmann"
+        ],
+        "popularity_rank": 80
+      },
+      {
+        "display_text": "Nuria Rial",
+        "variants": [
+          "nuria rial",
+          "rial"
+        ],
+        "popularity_rank": 81
+      },
+      {
+        "display_text": "Sandrine Piau",
+        "variants": [
+          "sandrine piau",
+          "piau"
+        ],
+        "popularity_rank": 82
+      },
+      {
+        "display_text": "Alice Rossi",
+        "variants": [
+          "alice rossi",
+          "rossi"
+        ],
+        "popularity_rank": 83
+      },
+      {
+        "display_text": "Eva-Maria Westbroek",
+        "variants": [
+          "eva-maria westbroek",
+          "westbroek"
+        ],
+        "popularity_rank": 84
+      },
+      {
+        "display_text": "Solveig Kringlebotn",
+        "variants": [
+          "solveig kringlebotn",
+          "kringlebotn"
+        ],
+        "popularity_rank": 85
+      },
+      {
+        "display_text": "Jane Henschel",
+        "variants": [
+          "jane henschel",
+          "henschel"
+        ],
+        "popularity_rank": 86
+      },
+      {
+        "display_text": "Susan Graham",
+        "variants": [
+          "susan graham",
+          "graham"
+        ],
+        "popularity_rank": 87
+      },
+      {
+        "display_text": "Lothar Odinius",
+        "variants": [
+          "lothar odinius",
+          "odinius"
+        ],
+        "popularity_rank": 88
+      },
+      {
+        "display_text": "Della Jones",
+        "variants": [
+          "della jones",
+          "jones"
+        ],
+        "popularity_rank": 89
+      },
+      {
+        "display_text": "Ewa Podle\u015b",
+        "variants": [
+          "ewa podle\u015b",
+          "podles"
+        ],
+        "popularity_rank": 90
+      },
+      {
+        "display_text": "Nadja Michael",
+        "variants": [
+          "nadja michael",
+          "michael"
+        ],
+        "popularity_rank": 91
+      },
+      {
+        "display_text": "Marie McLaughlin",
+        "variants": [
+          "marie mclaughlin",
+          "mclaughlin"
+        ],
+        "popularity_rank": 92
+      },
+      {
+        "display_text": "Carolyn James",
+        "variants": [
+          "carolyn james",
+          "cjames"
+        ],
+        "popularity_rank": 93
+      },
+      {
+        "display_text": "Ruth Ann Swenson",
+        "variants": [
+          "ruth ann swenson",
+          "swenson"
+        ],
+        "popularity_rank": 94
+      },
+      {
+        "display_text": "Denyce Graves",
+        "variants": [
+          "denyce graves",
+          "graves"
+        ],
+        "popularity_rank": 95
+      },
+      {
+        "display_text": "Olga Borodina",
+        "variants": [
+          "olga borodina",
+          "borodina"
+        ],
+        "popularity_rank": 96
+      },
+      {
+        "display_text": "Mirella Vinetti",
+        "variants": [
+          "mirella vinetti",
+          "vinetti"
+        ],
+        "popularity_rank": 97
+      },
+      {
+        "display_text": "Irina Arkhipova",
+        "variants": [
+          "irina arkhipova",
+          "arkhipova"
+        ],
+        "popularity_rank": 98
+      },
+      {
+        "display_text": "Galina Vishnevskaya",
+        "variants": [
+          "galina vishnevskaya",
+          "vishnevskaya"
+        ],
+        "popularity_rank": 99
+      },
+      {
+        "display_text": "Ludmila Semeniaka",
+        "variants": [
+          "ludmila semeniaka",
+          "semeniaka"
+        ],
+        "popularity_rank": 100
+      }
+    ],
+    "theme_slug": "MUSIC",
+    "answer_count_cache": 100,
+    "difficulty": 5
+  }
+]

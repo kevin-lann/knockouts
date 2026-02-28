@@ -1,0 +1,686 @@
+[
+  {
+    "prompt": "Name a widely recognized music genre.",
+    "answers": [
+      {
+        "display_text": "Rock",
+        "variants": [
+          "rock music"
+        ],
+        "popularity_rank": 1
+      },
+      {
+        "display_text": "Pop",
+        "variants": [
+          "pop music"
+        ],
+        "popularity_rank": 2
+      },
+      {
+        "display_text": "Hip Hop",
+        "variants": [
+          "hiphop",
+          "hip-hop",
+          "rap",
+          "rap music"
+        ],
+        "popularity_rank": 3
+      },
+      {
+        "display_text": "R&B",
+        "variants": [
+          "rnb",
+          "rhythm and blues",
+          "rhythm & blues"
+        ],
+        "popularity_rank": 4
+      },
+      {
+        "display_text": "Country",
+        "variants": [
+          "country music"
+        ],
+        "popularity_rank": 5
+      },
+      {
+        "display_text": "Jazz",
+        "variants": [
+          "jazz music"
+        ],
+        "popularity_rank": 6
+      },
+      {
+        "display_text": "Blues",
+        "variants": [
+          "blues music"
+        ],
+        "popularity_rank": 7
+      },
+      {
+        "display_text": "Classical",
+        "variants": [
+          "classical music"
+        ],
+        "popularity_rank": 8
+      },
+      {
+        "display_text": "Electronic Dance Music",
+        "variants": [
+          "edm",
+          "dance",
+          "dance music",
+          "electronic music",
+          "electronica"
+        ],
+        "popularity_rank": 9
+      },
+      {
+        "display_text": "Folk",
+        "variants": [
+          "folk music"
+        ],
+        "popularity_rank": 10
+      },
+      {
+        "display_text": "Metal",
+        "variants": [
+          "heavy metal",
+          "metal music"
+        ],
+        "popularity_rank": 11
+      },
+      {
+        "display_text": "Soul",
+        "variants": [
+          "soul music"
+        ],
+        "popularity_rank": 12
+      },
+      {
+        "display_text": "Reggae",
+        "variants": [],
+        "popularity_rank": 13
+      },
+      {
+        "display_text": "Punk",
+        "variants": [
+          "punk rock"
+        ],
+        "popularity_rank": 14
+      },
+      {
+        "display_text": "Disco",
+        "variants": [
+          "disco music"
+        ],
+        "popularity_rank": 15
+      },
+      {
+        "display_text": "Funk",
+        "variants": [
+          "funk music"
+        ],
+        "popularity_rank": 16
+      },
+      {
+        "display_text": "Gospel",
+        "variants": [
+          "gospel music"
+        ],
+        "popularity_rank": 17
+      },
+      {
+        "display_text": "Latin",
+        "variants": [
+          "latin music"
+        ],
+        "popularity_rank": 18
+      },
+      {
+        "display_text": "K-Pop",
+        "variants": [
+          "kpop",
+          "korean pop"
+        ],
+        "popularity_rank": 19
+      },
+      {
+        "display_text": "Alternative",
+        "variants": [
+          "alternative rock",
+          "alt rock"
+        ],
+        "popularity_rank": 20
+      },
+      {
+        "display_text": "Indie",
+        "variants": [
+          "indie rock",
+          "independent music"
+        ],
+        "popularity_rank": 21
+      },
+      {
+        "display_text": "Techno",
+        "variants": [],
+        "popularity_rank": 22
+      },
+      {
+        "display_text": "House",
+        "variants": [
+          "house music"
+        ],
+        "popularity_rank": 23
+      },
+      {
+        "display_text": "Trance",
+        "variants": [
+          "trance music"
+        ],
+        "popularity_rank": 24
+      },
+      {
+        "display_text": "Dubstep",
+        "variants": [],
+        "popularity_rank": 25
+      },
+      {
+        "display_text": "Ska",
+        "variants": [],
+        "popularity_rank": 26
+      },
+      {
+        "display_text": "New Wave",
+        "variants": [
+          "newwave"
+        ],
+        "popularity_rank": 27
+      },
+      {
+        "display_text": "Grunge",
+        "variants": [],
+        "popularity_rank": 28
+      },
+      {
+        "display_text": "Opera",
+        "variants": [],
+        "popularity_rank": 29
+      },
+      {
+        "display_text": "Broadway",
+        "variants": [
+          "musical theater",
+          "musicals",
+          "show tunes"
+        ],
+        "popularity_rank": 30
+      },
+      {
+        "display_text": "Salsa",
+        "variants": [],
+        "popularity_rank": 31
+      },
+      {
+        "display_text": "Bossa Nova",
+        "variants": [
+          "bossa nova music"
+        ],
+        "popularity_rank": 32
+      },
+      {
+        "display_text": "Tango",
+        "variants": [],
+        "popularity_rank": 33
+      },
+      {
+        "display_text": "Samba",
+        "variants": [],
+        "popularity_rank": 34
+      },
+      {
+        "display_text": "Bluegrass",
+        "variants": [],
+        "popularity_rank": 35
+      },
+      {
+        "display_text": "Americana",
+        "variants": [],
+        "popularity_rank": 36
+      },
+      {
+        "display_text": "Doo-wop",
+        "variants": [
+          "doowop",
+          "doo wop"
+        ],
+        "popularity_rank": 37
+      },
+      {
+        "display_text": "Surf Rock",
+        "variants": [
+          "surf",
+          "surf music"
+        ],
+        "popularity_rank": 38
+      },
+      {
+        "display_text": "Psychedelic Rock",
+        "variants": [
+          "psychedelic",
+          "psychedelia"
+        ],
+        "popularity_rank": 39
+      },
+      {
+        "display_text": "Progressive Rock",
+        "variants": [
+          "prog rock",
+          "prog"
+        ],
+        "popularity_rank": 40
+      },
+      {
+        "display_text": "Glam Rock",
+        "variants": [
+          "glam",
+          "glam metal"
+        ],
+        "popularity_rank": 41
+      },
+      {
+        "display_text": "Southern Rock",
+        "variants": [],
+        "popularity_rank": 42
+      },
+      {
+        "display_text": "Gothic Rock",
+        "variants": [
+          "goth rock",
+          "gothic"
+        ],
+        "popularity_rank": 43
+      },
+      {
+        "display_text": "Industrial",
+        "variants": [
+          "industrial music"
+        ],
+        "popularity_rank": 44
+      },
+      {
+        "display_text": "Nu Metal",
+        "variants": [
+          "nu-metal"
+        ],
+        "popularity_rank": 45
+      },
+      {
+        "display_text": "Death Metal",
+        "variants": [
+          "deathmetal"
+        ],
+        "popularity_rank": 46
+      },
+      {
+        "display_text": "Black Metal",
+        "variants": [
+          "blackmetal"
+        ],
+        "popularity_rank": 47
+      },
+      {
+        "display_text": "Thrash Metal",
+        "variants": [
+          "thrashmetal"
+        ],
+        "popularity_rank": 48
+      },
+      {
+        "display_text": "Power Metal",
+        "variants": [
+          "powermetal"
+        ],
+        "popularity_rank": 49
+      },
+      {
+        "display_text": "Post-Punk",
+        "variants": [
+          "post punk"
+        ],
+        "popularity_rank": 50
+      },
+      {
+        "display_text": "Shoegaze",
+        "variants": [],
+        "popularity_rank": 51
+      },
+      {
+        "display_text": "Britpop",
+        "variants": [],
+        "popularity_rank": 52
+      },
+      {
+        "display_text": "Emo",
+        "variants": [],
+        "popularity_rank": 53
+      },
+      {
+        "display_text": "Hardcore Punk",
+        "variants": [
+          "hardcore",
+          "hardcore music"
+        ],
+        "popularity_rank": 54
+      },
+      {
+        "display_text": "Dance-Pop",
+        "variants": [
+          "dance pop"
+        ],
+        "popularity_rank": 55
+      },
+      {
+        "display_text": "Synthwave",
+        "variants": [
+          "outrun"
+        ],
+        "popularity_rank": 56
+      },
+      {
+        "display_text": "Chiptune",
+        "variants": [
+          "8-bit music",
+          "video game music",
+          "chip music"
+        ],
+        "popularity_rank": 57
+      },
+      {
+        "display_text": "Afrobeat",
+        "variants": [],
+        "popularity_rank": 58
+      },
+      {
+        "display_text": "Reggaeton",
+        "variants": [],
+        "popularity_rank": 59
+      },
+      {
+        "display_text": "Cumbia",
+        "variants": [],
+        "popularity_rank": 60
+      },
+      {
+        "display_text": "Merengue",
+        "variants": [],
+        "popularity_rank": 61
+      },
+      {
+        "display_text": "Bachata",
+        "variants": [],
+        "popularity_rank": 62
+      },
+      {
+        "display_text": "Flamenco",
+        "variants": [],
+        "popularity_rank": 63
+      },
+      {
+        "display_text": "Zydeco",
+        "variants": [],
+        "popularity_rank": 64
+      },
+      {
+        "display_text": "Cajun",
+        "variants": [
+          "cajun music"
+        ],
+        "popularity_rank": 65
+      },
+      {
+        "display_text": "Mambo",
+        "variants": [],
+        "popularity_rank": 66
+      },
+      {
+        "display_text": "Fado",
+        "variants": [],
+        "popularity_rank": 67
+      },
+      {
+        "display_text": "Klezmer",
+        "variants": [],
+        "popularity_rank": 68
+      },
+      {
+        "display_text": "Gregorian Chant",
+        "variants": [
+          "chant",
+          "gregorian"
+        ],
+        "popularity_rank": 69
+      },
+      {
+        "display_text": "A Cappella",
+        "variants": [
+          "acapella",
+          "a capella"
+        ],
+        "popularity_rank": 70
+      },
+      {
+        "display_text": "J-Pop",
+        "variants": [
+          "jpop",
+          "japanese pop"
+        ],
+        "popularity_rank": 71
+      },
+      {
+        "display_text": "G-Funk",
+        "variants": [
+          "gfunk"
+        ],
+        "popularity_rank": 72
+      },
+      {
+        "display_text": "Trap",
+        "variants": [
+          "trap music"
+        ],
+        "popularity_rank": 73
+      },
+      {
+        "display_text": "Grime",
+        "variants": [
+          "grime music"
+        ],
+        "popularity_rank": 74
+      },
+      {
+        "display_text": "Drill",
+        "variants": [
+          "drill music"
+        ],
+        "popularity_rank": 75
+      },
+      {
+        "display_text": "Symphonic Metal",
+        "variants": [
+          "symphonic"
+        ],
+        "popularity_rank": 76
+      },
+      {
+        "display_text": "Viking Metal",
+        "variants": [
+          "viking"
+        ],
+        "popularity_rank": 77
+      },
+      {
+        "display_text": "Doom Metal",
+        "variants": [
+          "doom"
+        ],
+        "popularity_rank": 78
+      },
+      {
+        "display_text": "Stoner Rock",
+        "variants": [
+          "stoner metal",
+          "stoner"
+        ],
+        "popularity_rank": 79
+      },
+      {
+        "display_text": "Post-Rock",
+        "variants": [
+          "post rock"
+        ],
+        "popularity_rank": 80
+      },
+      {
+        "display_text": "Math Rock",
+        "variants": [
+          "mathrock"
+        ],
+        "popularity_rank": 81
+      },
+      {
+        "display_text": "Noise Rock",
+        "variants": [
+          "noise"
+        ],
+        "popularity_rank": 82
+      },
+      {
+        "display_text": "Ethereal Wave",
+        "variants": [
+          "ethereal"
+        ],
+        "popularity_rank": 83
+      },
+      {
+        "display_text": "Darkwave",
+        "variants": [],
+        "popularity_rank": 84
+      },
+      {
+        "display_text": "Electro-Industrial",
+        "variants": [
+          "electro industrial"
+        ],
+        "popularity_rank": 85
+      },
+      {
+        "display_text": "Futurepop",
+        "variants": [],
+        "popularity_rank": 86
+      },
+      {
+        "display_text": "EBM",
+        "variants": [
+          "electronic body music"
+        ],
+        "popularity_rank": 87
+      },
+      {
+        "display_text": "Synth-Pop",
+        "variants": [
+          "synthpop"
+        ],
+        "popularity_rank": 88
+      },
+      {
+        "display_text": "Italo Disco",
+        "variants": [
+          "italo"
+        ],
+        "popularity_rank": 89
+      },
+      {
+        "display_text": "Europop",
+        "variants": [
+          "euro pop"
+        ],
+        "popularity_rank": 90
+      },
+      {
+        "display_text": "Eurodance",
+        "variants": [
+          "euro dance"
+        ],
+        "popularity_rank": 91
+      },
+      {
+        "display_text": "Hi-NRG",
+        "variants": [
+          "hinrg"
+        ],
+        "popularity_rank": 92
+      },
+      {
+        "display_text": "Progressive House",
+        "variants": [
+          "prog house"
+        ],
+        "popularity_rank": 93
+      },
+      {
+        "display_text": "Deep House",
+        "variants": [
+          "deep house music"
+        ],
+        "popularity_rank": 94
+      },
+      {
+        "display_text": "Tech House",
+        "variants": [
+          "techhouse"
+        ],
+        "popularity_rank": 95
+      },
+      {
+        "display_text": "Minimal Techno",
+        "variants": [
+          "minimal"
+        ],
+        "popularity_rank": 96
+      },
+      {
+        "display_text": "Hardstyle",
+        "variants": [],
+        "popularity_rank": 97
+      },
+      {
+        "display_text": "Hardcore (Electronic)",
+        "variants": [
+          "hardcore techno",
+          "hardcore edm",
+          "gabba",
+          "gabber"
+        ],
+        "popularity_rank": 98
+      },
+      {
+        "display_text": "Jungle",
+        "variants": [
+          "jungle music"
+        ],
+        "popularity_rank": 99
+      },
+      {
+        "display_text": "Drum and Bass",
+        "variants": [
+          "dnb",
+          "drum & bass"
+        ],
+        "popularity_rank": 100
+      }
+    ],
+    "theme_slug": "MUSIC",
+    "answer_count_cache": 100,
+    "difficulty": null
+  }
+]

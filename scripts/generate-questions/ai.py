@@ -2,7 +2,12 @@
 from pydantic import BaseModel, Field
 from constant import THEMES
 
-def get_system_prompt(theme: str, difficulty: int | None = None, count: int | None = None) -> str:
+def get_system_prompt(
+    theme: str,
+    difficulty: int | None = None,
+    count: int | None = None,
+    avoid_prompts: list[str] | None = None
+) -> str:
     difficulty_guidance = ""
     if difficulty:
         if difficulty == 1:
@@ -15,6 +20,19 @@ def get_system_prompt(theme: str, difficulty: int | None = None, count: int | No
             difficulty_guidance = "Difficulty 4 (Medium-Hard): Questions should have fewer, more specialized answers that require deeper knowledge."
         elif difficulty == 5:
             difficulty_guidance = "Difficulty 5 (Hard): Questions should have few, obscure answers that require expert-level knowledge."
+
+    uniqueness_guidance = ""
+    if avoid_prompts:
+        recent_prompts = avoid_prompts[-50:]
+        uniqueness_guidance = "\n".join(
+            [f"- {prompt}" for prompt in recent_prompts]
+        )
+        uniqueness_guidance = (
+            "\n5. UNIQUENESS AGAINST EXISTING GENERATED QUESTIONS:\n"
+            "   Do NOT generate a question that duplicates or is semantically similar to any of these existing prompts:\n"
+            f"{uniqueness_guidance}\n"
+            "   Use a different subject, entity set, or framing."
+        )
     
     return f"""You are an expert question generator for a trivia game. Your task is to generate questions and an EXHAUSTIVE list of ALL correct answers for the theme: {theme}.
 
@@ -44,8 +62,9 @@ CRITICAL REQUIREMENTS:
    - Avoid questions where answers could be subjective or have infinite possibilities
    - Ensure answers are factually correct and verifiable
    - Questions should be unique and not be too similar to any existing questions
+{uniqueness_guidance}
 
-4. SELF-CHECKING BEFORE FINALIZING:
+{f"6. SELF-CHECKING BEFORE FINALIZING:" if uniqueness_guidance else "4. SELF-CHECKING BEFORE FINALIZING:"}
    Before finalizing your answer list, perform these checks:
    - Review completeness: "Are there any obvious answers missing? Think systematically - for geography questions, check all regions/categories. For character questions, check main characters, supporting characters, and recurring characters."
    - Verify accuracy: "Is each answer factually correct?"
