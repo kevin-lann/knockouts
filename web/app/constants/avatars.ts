@@ -6,7 +6,7 @@ export const AVATAR_BY_ID: Record<AvatarId, string> = {
   [AvatarId.NERD]: "🤓",
   [AvatarId.SMILE]: "😊",
   [AvatarId.PARTY]: "🥳",
-  [AvatarId.ROBOT]: "🤖",
+  [AvatarId.ROBOT]: "🤖"
   [AvatarId.ALIEN]: "👾",
   [AvatarId.GAMEPAD]: "🎮",
 }
