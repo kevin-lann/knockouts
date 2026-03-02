@@ -87,6 +87,7 @@ export enum ClientMessageType {
   START_GAME = "START_GAME",
   SUBMIT = "SUBMIT",
   NEXT_ROUND = "NEXT_ROUND",
+  START_NEW_LOBBY = "START_NEW_LOBBY",
 }
 
 export enum ServerMessageType {
@@ -109,6 +110,7 @@ export type ClientMessage =
   | { type: ClientMessageType.START_GAME, settings: RoomSettings }
   | { type: ClientMessageType.SUBMIT, answer: string }
   | { type: ClientMessageType.NEXT_ROUND }
+  | { type: ClientMessageType.START_NEW_LOBBY }
 
 export type ServerMessage =
   | {

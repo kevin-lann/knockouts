@@ -18,9 +18,14 @@ export default function GameEndView({ send }: GameEndViewProps) {
   const isCurrentPlayerHost = players.find(
     (player) => player.id === playerId
   )?.isHost
+  const onePlayerRemaining = players.length === 1
 
   const handleNewGame = () => {
     send({ type: ClientMessageType.START_GAME, settings })
+  }
+
+  const handleStartNewLobby = () => {
+    send({ type: ClientMessageType.START_NEW_LOBBY })
   }
 
   return (
@@ -104,19 +109,37 @@ export default function GameEndView({ send }: GameEndViewProps) {
             <h2 className="text-xl font-semibold text-white mb-4">
               Final Scores
             </h2>
-            <PlayerList players={[...players].sort((a, b) => b.score - a.score)} />
+            <PlayerList
+              players={[...players].sort((a, b) => b.score - a.score)}
+            />
           </div>
 
           {isCurrentPlayerHost && (
             <div>
-              <h2 className="text-xl font-semibold text-white mb-4">Settings</h2>
-              <RoomSettingsPanel settings={settings} onChange={setSettings} />
-              <button
-                onClick={handleNewGame}
-                className="w-full mt-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all"
-              >
-                New Game
-              </button>
+              {onePlayerRemaining ? (
+                <button
+                  onClick={handleStartNewLobby}
+                  className="w-full mt-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all"
+                >
+                  Start New Lobby
+                </button>
+              ) : (
+                <div>
+                  <h2 className="text-xl font-semibold text-white mb-4">
+                    Settings
+                  </h2>
+                  <RoomSettingsPanel
+                    settings={settings}
+                    onChange={setSettings}
+                  />
+                  <button
+                    onClick={handleNewGame}
+                    className="w-full mt-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all"
+                  >
+                    New Game
+                  </button>
+                </div>
+              )}
             </div>
           )}
 

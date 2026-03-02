@@ -177,6 +177,9 @@ export default class GameServer implements Party.Server {
       case ClientMessageType.LEAVE_ROOM:
         this.handleLeaveRoom(sender)
         break
+      case ClientMessageType.START_NEW_LOBBY:
+        this.handleStartNewLobby(sender)
+        break
     }
   }
 
@@ -186,6 +189,39 @@ export default class GameServer implements Party.Server {
     this.players.delete(sender.id)
     this.ensureConnectedHost(leavingPlayer?.isHost ?? false)
 
+    this.broadcastPlayerUpdate()
+    this.notifyRegistry()
+  }
+
+  private handleStartNewLobby(sender: Party.Connection) {
+    const player = this.players.get(sender.id)
+    if (!player?.isHost) {
+      sender.send(
+        JSON.stringify({
+          type: ServerMessageType.ERROR,
+          message: "Only host can start a new lobby",
+        } as ServerMessage)
+      )
+      return
+    }
+
+    this.clearTimerInterval()
+
+    for (const existingPlayer of this.players.values()) {
+      existingPlayer.score = 0
+      existingPlayer.isEliminated = false
+      existingPlayer.hasHighestScore = false
+      existingPlayer.hasSubmitted = false
+      existingPlayer.currentAnswer = undefined
+    }
+
+    this.currentQuestion = null
+    this.currentAnswers = []
+    this.timer = 0
+    this.countdownTimer = 3
+    this.gameState = GameState.LOBBY
+    this.round = 0
+    this.broadcastSync()
     this.broadcastPlayerUpdate()
     this.notifyRegistry()
   }
