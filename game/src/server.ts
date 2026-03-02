@@ -20,6 +20,7 @@ import { validateAnswer, findDuplicates } from "./utils/validation"
 import {
   DEFAULT_ROUND_DURATION,
   MAX_PLAYERS as MAX_PLAYERS_CONSTANT,
+  SCOREBOARD_NEXT_ROUND_COUNTDOWN_SECONDS
 } from "./constants/magic-numbers"
 import { isPublicRoomId } from "./utils/roomId"
 import { getAvatarById } from "./utils/avatar"
@@ -407,10 +408,12 @@ export default class GameServer implements Party.Server {
       return
     }
 
+    this.clearTimerInterval()
     this.startGame()
   }
 
   private async startGame() {
+    this.clearTimerInterval()
     this.gameState = GameState.FETCH_ROUND
     this.round++
 
@@ -499,20 +502,14 @@ export default class GameServer implements Party.Server {
       )
 
       if (this.timer <= 0) {
-        if (this.timerInterval) {
-          clearInterval(this.timerInterval)
-          this.timerInterval = null
-        }
+        this.clearTimerInterval()
         this.processRound()
       }
     }, 1000)
   }
 
   private async processRound() {
-    if (this.timerInterval) {
-      clearInterval(this.timerInterval)
-      this.timerInterval = null
-    }
+    this.clearTimerInterval()
 
     this.gameState = GameState.PROCESSING
 
@@ -631,7 +628,44 @@ export default class GameServer implements Party.Server {
       } as ServerMessage)
     )
 
+    this.startScoreboardCountdown()
     this.broadcastPlayerUpdate()
+  }
+
+  private startScoreboardCountdown() {
+    this.clearTimerInterval()
+    this.timer = SCOREBOARD_NEXT_ROUND_COUNTDOWN_SECONDS
+
+    this.room.broadcast(
+      JSON.stringify({
+        type: ServerMessageType.TICK,
+        time: this.timer,
+      } as ServerMessage)
+    )
+
+    this.timerInterval = setInterval(() => {
+      this.timer--
+      this.room.broadcast(
+        JSON.stringify({
+          type: ServerMessageType.TICK,
+          time: this.timer,
+        } as ServerMessage)
+      )
+
+      if (this.timer <= 0) {
+        this.clearTimerInterval()
+        if (this.gameState === GameState.SCOREBOARD) {
+          this.startGame()
+        }
+      }
+    }, 1000)
+  }
+
+  private clearTimerInterval() {
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval)
+      this.timerInterval = null
+    }
   }
 
   private isGameEnded(): boolean {

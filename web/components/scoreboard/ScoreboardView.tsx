@@ -13,8 +13,9 @@ interface ScoreboardViewProps {
 export default function ScoreboardView({
   send,
 }: ScoreboardViewProps) {
-  const { roundResults, correctAnswers, players, round, playerId } = useGameStore()
+  const { roundResults, correctAnswers, players, round, playerId, timer } = useGameStore()
   const isCurrentPlayerHost = players.find((player) => player.id === playerId)?.isHost
+  const countdownLabel = Math.max(timer, 0)
 
   const handleNextRound = () => {
     send({ type: ClientMessageType.NEXT_ROUND })
@@ -107,13 +108,13 @@ export default function ScoreboardView({
               onClick={handleNextRound}
               className="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all"
             >
-              Next Round
+              Next Round ({countdownLabel}s)
             </button>
           )}
 
           {!isCurrentPlayerHost && (
             <p className="text-white/70 text-center">
-              Waiting for host to start next round...
+              Waiting for host to start next round... ({countdownLabel}s)
             </p>
           )}
         </div>
