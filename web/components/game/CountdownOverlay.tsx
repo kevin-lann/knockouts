@@ -1,5 +1,6 @@
 "use client"
 
+import { HEADER_FONT } from "@/app/constants/font"
 import { useGameStore } from "@/lib/store"
 import { motion, AnimatePresence } from "framer-motion"
 
@@ -15,7 +16,7 @@ export default function CountdownOverlay() {
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 1.5, opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="text-9xl font-bold"
+          className={`text-9xl font-bold ${HEADER_FONT.className}`}
         >
           {timer > 0 ? timer : "GO!"}
         </motion.div>
