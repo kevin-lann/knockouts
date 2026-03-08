@@ -294,12 +294,29 @@ export default class GameServer implements Party.Server {
       return
     }
 
-    const joinClaims = await verifyJoinToken(msg.joinToken)
+    const roomJoinTokenSecret =
+      typeof this.room.env.JOIN_TOKEN_SECRET === "string"
+        ? this.room.env.JOIN_TOKEN_SECRET
+        : undefined
+    const joinClaims = await verifyJoinToken(msg.joinToken, roomJoinTokenSecret)
     if (
       !joinClaims ||
       joinClaims.roomId !== this.room.id ||
       joinClaims.clientId !== msg.clientId
     ) {
+      if (!joinClaims) {
+        console.error("Join token verification failed", {
+          roomId: this.room.id,
+          hasRoomJoinTokenSecret: Boolean(roomJoinTokenSecret),
+        })
+      } else {
+        console.error("Join token payload mismatch", {
+          expectedRoomId: this.room.id,
+          tokenRoomId: joinClaims.roomId,
+          expectedClientId: msg.clientId,
+          tokenClientId: joinClaims.clientId,
+        })
+      }
       sender.send(
         JSON.stringify({
           type: ServerMessageType.ERROR,

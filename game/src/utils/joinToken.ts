@@ -17,8 +17,8 @@ export interface JoinTokenPayload {
 const JOIN_TOKEN_TYP = "KNOCKOUTS_JOIN"
 const JOIN_TOKEN_ALG = "HS256"
 
-function getJoinTokenSecret() {
-  const secret = process.env.JOIN_TOKEN_SECRET?.trim()
+function getJoinTokenSecret(explicitSecret?: string) {
+  const secret = explicitSecret?.trim() || process.env.JOIN_TOKEN_SECRET?.trim()
   if (secret) {
     return secret
   }
@@ -68,7 +68,7 @@ function isAvatarId(value: string): value is AvatarId {
   return Object.values(AvatarId).includes(value as AvatarId)
 }
 
-export async function verifyJoinToken(token: string) {
+export async function verifyJoinToken(token: string, explicitSecret?: string) {
   const [encodedHeader, encodedPayload, signature] = token.split(".")
   if (!encodedHeader || !encodedPayload || !signature) {
     return null
@@ -103,7 +103,10 @@ export async function verifyJoinToken(token: string) {
     }
 
     const signingInput = `${encodedHeader}.${encodedPayload}`
-    const expectedSignature = await signHmacSha256(signingInput, getJoinTokenSecret())
+    const expectedSignature = await signHmacSha256(
+      signingInput,
+      getJoinTokenSecret(explicitSecret)
+    )
     if (expectedSignature !== signature) {
       return null
     }
