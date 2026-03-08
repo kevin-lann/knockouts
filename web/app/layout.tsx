@@ -21,7 +21,7 @@ export default function RootLayout({
         bg-[size:40px_40px]"
         />
         <main className="relative">{children}</main>
-        <Toaster position="top-center" />
+        <Toaster position="top-center" toastOptions={{ className: 'border-2' }} />
       </body>
     </html>
   )

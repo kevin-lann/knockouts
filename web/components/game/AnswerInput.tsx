@@ -30,7 +30,7 @@ export default function AnswerInput({
   return (
     <div className="flex flex-col gap-4">
       {submitted && (
-        <div className="bg-brand-cyan/30 border-2 border-black p-4">
+        <div className="bg-brand-cyan/30 border-2 border-[var(--foreground)] p-4">
           <p className="font-semibold text-center">Answer: {value}</p>
           <p className="text-sm text-center mt-2">
             You can modify your answer until time runs out

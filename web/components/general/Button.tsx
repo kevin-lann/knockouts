@@ -31,7 +31,7 @@ export default function Button({
     <button
       type={type}
       className={cn(
-        "border-2 border-black cursor-pointer shadow-[2px_2px_0_0_#000] font-semibold transition-all hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed",
+        "border-2 border-[var(--foreground)] cursor-pointer shadow-[2px_2px_0_0_var(--foreground)] font-semibold transition-all hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed",
         variantClasses[variant],
         className,
         css

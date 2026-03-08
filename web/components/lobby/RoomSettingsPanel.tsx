@@ -19,7 +19,7 @@ export default function RoomSettingsPanel({
   onChange,
 }: RoomSettingsPanelProps) {
   return (
-    <div className="space-y-4 bg-white border-2 border-black p-4 shadow-[2px_2px_0_0_#000]">
+    <div className="space-y-4 bg-white border-2 border-[var(--foreground)] p-4 shadow-[2px_2px_0_0_var(--foreground)]">
       <div>
         <label className="block mb-2">Bot</label>
         <div className="flex items-center gap-4">
@@ -46,7 +46,7 @@ export default function RoomSettingsPanel({
                 botDifficulty: e.target.value as BotDifficulty,
               })
             }
-            className="w-full px-3 py-2 bg-white border-2 border-black focus:outline-none focus:ring-2 focus:ring-black/20"
+            className="w-full px-3 py-2 bg-white border-2 border-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-black/20"
           >
             <option value={BotDifficulty.EASY}>Easy</option>
             <option value={BotDifficulty.MEDIUM}>Medium</option>

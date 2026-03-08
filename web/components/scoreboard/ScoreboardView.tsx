@@ -63,10 +63,10 @@ export default function ScoreboardView({ send }: ScoreboardViewProps) {
                         key={index}
                         className={`p-4 border-2 ${
                           result.isValid && !result.isDuplicate
-                            ? "bg-brand-cyan/30 border-black"
+                            ? "bg-brand-cyan/30 border-[var(--foreground)]"
                             : result.isDuplicate
-                            ? "bg-brand-pink/30 border-black"
-                            : "bg-background border-black"
+                            ? "bg-brand-pink/30 border-[var(--foreground)]"
+                            : "bg-background border-[var(--foreground)]"
                         }`}
                       >
                         <div className="flex justify-between items-center">
@@ -108,7 +108,7 @@ export default function ScoreboardView({ send }: ScoreboardViewProps) {
                 {correctAnswers.map((answer, index) => (
                   <span
                     key={index}
-                    className="px-3 py-1 bg-background border border-black text-sm"
+                    className="px-3 py-1 bg-background border border-[var(--foreground)] text-sm"
                   >
                     {answer}
                   </span>

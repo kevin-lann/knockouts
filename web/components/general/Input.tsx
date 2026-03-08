@@ -9,7 +9,7 @@ export default function Input({ css, className, ...props }: InputProps) {
   return (
     <input
       className={cn(
-        "w-full px-4 py-2 border-2 border-black bg-white focus:outline-none focus:ring-2 focus:ring-black/20",
+        "w-full px-4 py-2 border-2 border-[var(--foreground)] bg-white focus:outline-none focus:ring-2 focus:ring-black/20",
         className,
         css
       )}

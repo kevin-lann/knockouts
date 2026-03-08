@@ -9,7 +9,7 @@ export default function Card({ css, className, ...props }: CardProps) {
   return (
     <div
       className={cn(
-        "bg-white border-2 border-black shadow-[8px_8px_0_0_#000]",
+        "bg-white border-2 border-[var(--foreground)] shadow-[8px_8px_0_0_var(--foreground)]",
         className,
         css
       )}

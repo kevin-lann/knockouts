@@ -49,7 +49,7 @@ export default function GameView({ roomId, send }: GameViewProps) {
 
           {question && (
             <div className="mb-8">
-              <div className="bg-background border-2 border-black p-6 mb-4">
+              <div className="bg-background border-2 border-[var(--foreground)] p-6 mb-4">
                 <h2 className="text-2xl font-bold mb-2">{question.prompt}</h2>
                 <p>{question.answer_count_cache} possible answers</p>
               </div>

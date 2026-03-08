@@ -70,7 +70,7 @@ export default function JoinRoomForm({
                   className={`text-3xl p-2 cursor-pointer transition-all hover:scale-125 ${
                     avatarId === option.id
                       ? "bg-background scale-110 ring-2 ring-black"
-                      : "bg-background/40 border-2 border-black hover:bg-background"
+                      : "bg-background/40 border-2 border-[var(--foreground)] hover:bg-background"
                   }`}
                 >
                   {option.avatar}
