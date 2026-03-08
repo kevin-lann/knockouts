@@ -133,7 +133,7 @@ export default function RoomPage() {
 
   return (
     <div className="min-h-screen">
-      {gameState === GameState.LOBBY && (
+      {(gameState === GameState.LOBBY || gameState === GameState.FETCH_ROUND) && (
         <LobbyView roomId={roomId} send={send} />
       )}
       {gameState === GameState.COUNTDOWN && <CountdownOverlay />}

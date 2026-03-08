@@ -170,8 +170,29 @@ async function fetchRandomQuestion(
   _round: number,
   theme?: string
 ): Promise<QuestionWithAnswers> {
-  let query = `
-    SELECT q.*, 
+  const params: (string | number)[] = [alivePlayerCount]
+  let themeFilter = ""
+
+  if (theme) {
+    themeFilter = "AND q.theme_slug = $2"
+    params.push(theme)
+  }
+
+  const query = `
+    WITH selected_question AS (
+      SELECT q.id
+      FROM questions q
+      WHERE q.answer_count_cache >= $1
+      ${themeFilter}
+      AND EXISTS (
+        SELECT 1
+        FROM answers a
+        WHERE a.question_id = q.id
+      )
+      ORDER BY RANDOM()
+      LIMIT 1
+    )
+    SELECT q.*,
            COALESCE(json_agg(
              json_build_object(
                'id', a.id,
@@ -181,23 +202,10 @@ async function fetchRandomQuestion(
                'popularity_rank', a.popularity_rank
              )
            ) FILTER (WHERE a.id IS NOT NULL), '[]') as answers
-    FROM questions q
+    FROM selected_question sq
+    JOIN questions q ON q.id = sq.id
     LEFT JOIN answers a ON q.id = a.question_id
-    WHERE q.answer_count_cache >= $1
-  `
-
-  const params: (string | number)[] = [alivePlayerCount]
-
-  if (theme) {
-    query += ` AND q.theme_slug = $2`
-    params.push(theme)
-  }
-
-  query += `
     GROUP BY q.id
-    HAVING COUNT(a.id) > 0
-    ORDER BY RANDOM()
-    LIMIT 1
   `
 
   const rows = (await getSql().query(query, params)) as QuestionDbRow[]

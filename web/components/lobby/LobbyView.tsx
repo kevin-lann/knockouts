@@ -1,7 +1,7 @@
 "use client"
 
 import { useGameStore } from "@/lib/store"
-import { ClientMessageType, type ClientMessage } from "@shared/types"
+import { ClientMessageType, GameState, type ClientMessage } from "@shared/types"
 import PlayerList from "./PlayerList"
 import RoomSettingsPanel from "./RoomSettingsPanel"
 import { toast } from "react-hot-toast"
@@ -18,9 +18,10 @@ interface LobbyViewProps {
 }
 
 export default function LobbyView({ roomId, send }: LobbyViewProps) {
-  const { players, playerId } = useGameStore()
+  const { players, playerId, gameState } = useGameStore()
   const { settings, setSettings } = useRoomSettings()
   const isCurrentPlayerHost = players.find((p) => p.id === playerId)?.isHost
+  const isWaitingForFirstQuestion = gameState === GameState.FETCH_ROUND
 
   // Ensure players is always an array
   const playersArray = Array.isArray(players) ? players : []
@@ -64,11 +65,11 @@ export default function LobbyView({ roomId, send }: LobbyViewProps) {
                 <RoomSettingsPanel settings={settings} onChange={setSettings} />
                 <Button
                   onClick={handleStartGame}
-                  disabled={playersArray.length < 2}
+                  disabled={playersArray.length < 2 || isWaitingForFirstQuestion}
                   variant={ButtonVariant.YELLOW}
                   className="w-full mt-6 py-3"
                 >
-                  Start Game
+                  {isWaitingForFirstQuestion ? "Starting Game..." : "Start Game"}
                 </Button>
               </div>
             )}
@@ -82,6 +83,13 @@ export default function LobbyView({ roomId, send }: LobbyViewProps) {
               </div>
             )}
           </div>
+
+          {isWaitingForFirstQuestion && (
+            <div className="mt-8 text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[var(--foreground)] mx-auto mb-4"></div>
+              <p className="text-lg">Starting...</p>
+            </div>
+          )}
         </Card>
       </div>
     </div>
