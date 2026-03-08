@@ -55,8 +55,17 @@ jobs:
             exit 1
           fi
 
+      - name: Prepare deploy env file
+        run: |
+          cat > .env.local <<EOF
+          DATABASE_URL=$DATABASE_URL
+          JOIN_TOKEN_SECRET=$JOIN_TOKEN_SECRET
+          EOF
+
       - name: Deploy
         run: |
           npx partykit deploy \
+            --name game-server \
+            --with-env \
             --var "DATABASE_URL=$DATABASE_URL" \
             --var "JOIN_TOKEN_SECRET=$JOIN_TOKEN_SECRET"
