@@ -44,26 +44,6 @@ export default function ScoreboardView({ send }: ScoreboardViewProps) {
           <div className="absolute top-4 right-4">
             <LeaveRoomButton send={send} />
           </div>
-          <div className="absolute top-4 left-4">
-            {isCurrentPlayerHost && (
-              <Button
-                onClick={handleNextRound}
-                variant={ButtonVariant.YELLOW}
-                className="w-full px-4 py-2"
-                disabled={isStartingNextRound}
-              >
-                {isStartingNextRound
-                  ? "Starting next round..."
-                  : `Next Round (${countdownLabel}s)`}
-              </Button>
-            )}
-
-            {!isCurrentPlayerHost && (
-              <p className="text-left p-4 w-[70%] text-sm">
-                Waiting for host to start next round... ({countdownLabel}s)
-              </p>
-            )}
-          </div>
           <div className="flex w-full flex-col gap-4 p-2 md:flex-row">
             {roundResults && (
               <div className="mb-8 flex-1 min-w-0">
@@ -133,6 +113,27 @@ export default function ScoreboardView({ send }: ScoreboardViewProps) {
               </div>
             </div>
           )}
+
+          <div className="flex justify-center">
+            {isCurrentPlayerHost && (
+              <Button
+                onClick={handleNextRound}
+                variant={ButtonVariant.YELLOW}
+                className="w-full px-4 py-2"
+                disabled={isStartingNextRound}
+              >
+                {isStartingNextRound
+                  ? "Starting next round..."
+                  : `Next Round (${countdownLabel}s)`}
+              </Button>
+            )}
+
+            {!isCurrentPlayerHost && (
+              <p className="text-center p-4 w-[70%] text-sm">
+                Waiting for host to start next round... ({countdownLabel}s)
+              </p>
+            )}
+          </div>
         </Card>
       </div>
     </div>

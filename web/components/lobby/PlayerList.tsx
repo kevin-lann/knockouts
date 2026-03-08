@@ -9,7 +9,7 @@ interface PlayerListProps {
 
 export default function PlayerList({ players }: PlayerListProps) {
   return (
-    <div className="space-y-2">
+    <div className="max-h-80 space-y-2 overflow-y-auto pr-1">
       {players.map((player) => (
         <div
           key={player.id}
