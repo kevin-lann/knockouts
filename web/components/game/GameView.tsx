@@ -58,7 +58,7 @@ export default function GameView({ roomId, send }: GameViewProps) {
                 value={currentInput}
                 onChange={setInput}
                 onSubmit={handleSubmit}
-                disabled={hasSubmitted || isEliminated}
+                disabled={isEliminated}
                 submitted={hasSubmitted}
                 isEliminated={isEliminated}
               />

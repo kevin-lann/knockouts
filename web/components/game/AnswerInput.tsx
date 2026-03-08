@@ -27,29 +27,30 @@ export default function AnswerInput({
     }
   }
 
-  if (submitted) {
-    return (
-      <div className="bg-brand-cyan/30 border-2 border-black p-4">
-        <p className="font-semibold text-center">
-          Answer Submitted: {value}
-        </p>
-        <p className="text-sm text-center mt-2">
-          You can modify your answer until time runs out
-        </p>
-      </div>
-    )
-  }
-
   return (
-    <div>
+    <div className="flex flex-col gap-4">
+      {submitted && (
+        <div className="bg-brand-cyan/30 border-2 border-black p-4">
+          <p className="font-semibold text-center">Answer: {value}</p>
+          <p className="text-sm text-center mt-2">
+            You can modify your answer until time runs out
+          </p>
+        </div>
+      )}
       <Input
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onKeyPress={handleKeyPress}
-        placeholder={isEliminated ? "You are eliminated, you can only spectate" : "Type your answer..."}
+        placeholder={
+          isEliminated
+            ? "You are eliminated, you can only spectate"
+            : "Type your answer..."
+        }
         disabled={disabled}
-        className={`px-6 py-4 text-lg ${isEliminated ? "opacity-50 cursor-not-allowed" : ""}`}
+        className={`px-6 py-4 text-lg ${
+          isEliminated ? "opacity-50 cursor-not-allowed" : ""
+        }`}
         autoFocus
       />
       <Button

@@ -14,13 +14,16 @@ import {
   BotDifficulty,
   ClientMessageType,
   AvatarId,
+  DEFAULT_MAX_ROUNDS,
+  MAX_ROUNDS,
+  MIN_ROUNDS,
 } from "@shared/types"
 import { fetchQuestion, getBotAnswer } from "./db"
 import { validateAnswer, findDuplicates } from "./utils/validation"
 import {
   DEFAULT_ROUND_DURATION,
   MAX_PLAYERS as MAX_PLAYERS_CONSTANT,
-  SCOREBOARD_NEXT_ROUND_COUNTDOWN_SECONDS
+  SCOREBOARD_NEXT_ROUND_COUNTDOWN_SECONDS,
 } from "./constants/magic-numbers"
 import { isPublicRoomId } from "./utils/roomId"
 import { getAvatarById } from "./utils/avatar"
@@ -45,6 +48,7 @@ export default class GameServer implements Party.Server {
     botDifficulty: BotDifficulty.EASY,
     theme: null,
     speedMultiplier: 1.0,
+    maxRounds: DEFAULT_MAX_ROUNDS,
   }
 
   // Round state
@@ -54,10 +58,21 @@ export default class GameServer implements Party.Server {
   round: number = 0
   countdownTimer: number = 3
   timerInterval: ReturnType<typeof setInterval> | null = null
+  registryHeartbeatInterval: ReturnType<typeof setInterval> | null = null
 
   private static readonly MAX_PLAYERS = MAX_PLAYERS_CONSTANT
 
   constructor(readonly room: Party.Room) {}
+
+  private startRegistryHeartbeat() {
+    if (this.registryHeartbeatInterval) {
+      return
+    }
+
+    this.registryHeartbeatInterval = setInterval(() => {
+      void this.notifyRegistry()
+    }, 20000)
+  }
 
   /**
    * Notify registry server about room state
@@ -130,6 +145,7 @@ export default class GameServer implements Party.Server {
         this.gameState = GameState.LOBBY
         this.round = 0
         this.hostClientId = null
+        this.stopRegistryHeartbeat()
       }
 
       this.broadcastPlayerUpdate()
@@ -189,6 +205,10 @@ export default class GameServer implements Party.Server {
     this.players.delete(sender.id)
     this.ensureConnectedHost(leavingPlayer?.isHost ?? false)
 
+    if (this.players.size === 0) {
+      this.stopRegistryHeartbeat()
+    }
+
     this.broadcastPlayerUpdate()
     this.notifyRegistry()
   }
@@ -244,6 +264,9 @@ export default class GameServer implements Party.Server {
     const isFirstPlayer = this.players.size === 0
     if (isFirstPlayer) {
       this.isPublic = isPublicRoomId(this.room.id)
+      if (this.isPublic) {
+        this.startRegistryHeartbeat()
+      }
     }
 
     const existingClientIdForConnection = this.connectionClientIds.get(
@@ -380,7 +403,10 @@ export default class GameServer implements Party.Server {
       return
     }
 
-    this.settings = msg.settings
+    this.settings = {
+      ...msg.settings,
+      maxRounds: this.normalizeMaxRounds(msg.settings.maxRounds),
+    }
     this.round = 0
     this.startGame()
     this.notifyRegistry() // Game starting - room no longer available
@@ -618,8 +644,10 @@ export default class GameServer implements Party.Server {
       this.players.delete("bot")
     }
 
-    // If all players are eliminated, end the game
-    if (this.isGameEnded()) {
+    const roundCapReached = this.round >= this.settings.maxRounds
+
+    // End if all but one player is eliminated or we reached the configured round cap
+    if (this.isGameEnded() || roundCapReached) {
       this.handleGameEnded()
       this.notifyRegistry()
       this.room.broadcast(
@@ -694,11 +722,37 @@ export default class GameServer implements Party.Server {
     }
   }
 
+  private stopRegistryHeartbeat() {
+    if (!this.registryHeartbeatInterval) {
+      return
+    }
+
+    clearInterval(this.registryHeartbeatInterval)
+    this.registryHeartbeatInterval = null
+  }
+
   private isGameEnded(): boolean {
     const alivePlayers = Array.from(this.players.values()).filter(
       (p) => !p.isBot && !p.isEliminated
     )
-    return alivePlayers.length === 0
+    return alivePlayers.length <= 1
+  }
+
+  private normalizeMaxRounds(maxRounds: number | undefined): number {
+    if (typeof maxRounds !== "number" || !Number.isFinite(maxRounds)) {
+      return DEFAULT_MAX_ROUNDS
+    }
+
+    const normalized = Math.floor(maxRounds)
+    if (normalized < MIN_ROUNDS) {
+      return MIN_ROUNDS
+    }
+
+    if (normalized > MAX_ROUNDS) {
+      return MAX_ROUNDS
+    }
+
+    return normalized
   }
 
   /**
@@ -725,6 +779,7 @@ export default class GameServer implements Party.Server {
         timer: this.timer,
         question: this.currentQuestion || undefined,
         round: this.round,
+        settings: this.settings,
       } as ServerMessage)
     )
   }
@@ -803,6 +858,7 @@ export default class GameServer implements Party.Server {
         timer: this.countdownTimer,
         question: this.currentQuestion || undefined,
         round: this.round,
+        settings: this.settings,
       } as ServerMessage)
     )
   }

@@ -7,6 +7,7 @@ import PlayerList from "../lobby/PlayerList"
 import LeaveRoomButton from "../room/LeaveRoomButton"
 import Button, { ButtonVariant } from "../general/Button"
 import Card from "../general/Card"
+import { HEADER_FONT } from "@/app/constants/font"
 
 interface ScoreboardViewProps {
   roomId: string
@@ -38,7 +39,9 @@ export default function ScoreboardView({ send }: ScoreboardViewProps) {
     <div className="min-h-screen p-8">
       <div className="max-w-4xl mx-auto">
         <Card className="p-8 relative">
-          <h1 className="text-3xl font-bold mb-2 text-center">
+          <h1
+            className={`text-3xl font-bold mb-2 text-center ${HEADER_FONT.className}`}
+          >
             Round {round} Results
           </h1>
           <div className="absolute top-4 right-4">

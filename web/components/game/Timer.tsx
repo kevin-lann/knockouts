@@ -1,7 +1,9 @@
 "use client"
 
+import { HEADER_FONT } from "@/app/constants/font"
+
 interface TimerProps {
-  time: number;
+  time: number
 }
 
 export default function Timer({ time }: TimerProps) {
@@ -10,7 +12,7 @@ export default function Timer({ time }: TimerProps) {
 
   return (
     <div
-      className={`text-6xl font-bold transition-all ${
+      className={`text-6xl font-bold transition-all ${HEADER_FONT.className} ${
         isCritical
           ? "text-red-400 animate-pulse"
           : isLow

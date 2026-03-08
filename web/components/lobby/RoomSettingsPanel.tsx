@@ -1,6 +1,11 @@
 "use client"
 
-import { BotDifficulty, type RoomSettings } from "@shared/types"
+import {
+  BotDifficulty,
+  MAX_ROUNDS,
+  MIN_ROUNDS,
+  type RoomSettings,
+} from "@shared/types"
 import Checkbox from "@/components/general/Checkbox"
 import Slider from "@/components/general/Slider"
 
@@ -63,6 +68,25 @@ export default function RoomSettingsPanel({
             onChange({
               ...settings,
               speedMultiplier: parseFloat(e.target.value),
+            })
+          }
+          className="w-full"
+        />
+      </div>
+
+      <div>
+        <label className="block mb-2">
+          Max Rounds: {settings.maxRounds}
+        </label>
+        <Slider
+          min={MIN_ROUNDS.toString()}
+          max={MAX_ROUNDS.toString()}
+          step="1"
+          value={settings.maxRounds}
+          onChange={(e) =>
+            onChange({
+              ...settings,
+              maxRounds: parseInt(e.target.value, 10),
             })
           }
           className="w-full"

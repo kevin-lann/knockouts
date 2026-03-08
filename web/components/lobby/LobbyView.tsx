@@ -10,6 +10,7 @@ import { useRoomSettings } from "@/hooks/useRoomSettings"
 import Button, { ButtonVariant } from "../general/Button"
 import Card from "../general/Card"
 import CopyRoomLinkButton from "../general/CopyRoomLinkButton"
+import { HEADER_FONT } from "@/app/constants/font"
 
 interface LobbyViewProps {
   roomId: string
@@ -37,7 +38,9 @@ export default function LobbyView({ roomId, send }: LobbyViewProps) {
       <div className="max-w-4xl mx-auto">
         <Card className="p-8">
           <div className="flex justify-between items-center mb-8">
-            <h1 className="text-3xl font-bold">Room: {roomId}</h1>
+            <h1 className={`text-3xl font-bold ${HEADER_FONT.className}`}>
+              Room: {roomId}
+            </h1>
             <div className="flex gap-2">
               <CopyRoomLinkButton roomId={roomId} />
               <LeaveRoomButton send={send} />
@@ -53,21 +56,11 @@ export default function LobbyView({ roomId, send }: LobbyViewProps) {
                   Waiting for more players... ({playersArray.length}/2+)
                 </p>
               )}
-              {/* Debug info */}
-              {process.env.NODE_ENV === "development" && (
-                <p className="text-xs mt-2">
-                  Debug: players array length = {playersArray.length}, type ={" "}
-                  {typeof playersArray.length}, isArray ={" "}
-                  {Array.isArray(players).toString()}
-                </p>
-              )}
             </div>
 
             {isCurrentPlayerHost && (
               <div>
-                <h2 className="text-xl font-semibold mb-4">
-                  Settings
-                </h2>
+                <h2 className="text-xl font-semibold mb-4">Settings</h2>
                 <RoomSettingsPanel settings={settings} onChange={setSettings} />
                 <Button
                   onClick={handleStartGame}
@@ -85,9 +78,7 @@ export default function LobbyView({ roomId, send }: LobbyViewProps) {
                 <h2 className="text-xl font-semibold mb-4">
                   Waiting for host to start...
                 </h2>
-                <p>
-                  The host will start the game when ready.
-                </p>
+                <p>The host will start the game when ready.</p>
               </div>
             )}
           </div>

@@ -43,11 +43,16 @@ export enum IconId {
   ERROR = "ERROR",
 }
 
+export const DEFAULT_MAX_ROUNDS = 50
+export const MIN_ROUNDS = 1
+export const MAX_ROUNDS = 200
+
 export interface RoomSettings {
   botEnabled: boolean
   botDifficulty: BotDifficulty
   theme: string | null
   speedMultiplier: number
+  maxRounds: number
 }
 
 export interface Theme {
@@ -120,6 +125,7 @@ export type ServerMessage =
       timer: number
       question?: Question
       round: number
+      settings: RoomSettings
     }
   | { type: ServerMessageType.PLAYER_UPDATE, players: Player[] }
   | { type: ServerMessageType.TICK, time: number }

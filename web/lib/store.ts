@@ -97,6 +97,7 @@ export const useGameStore = create<GameStore>((set) => ({
           timer: msg.timer,
           question: msg.question || null,
           round: msg.round,
+          roomSettings: msg.settings,
         })
         break
       case ServerMessageType.PLAYER_UPDATE:
