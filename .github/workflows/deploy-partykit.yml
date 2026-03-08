@@ -21,6 +21,8 @@ jobs:
     env:
       PARTYKIT_LOGIN: ${{ secrets.PARTYKIT_LOGIN || vars.PARTYKIT_LOGIN }}
       PARTYKIT_TOKEN: ${{ secrets.PARTYKIT_TOKEN || vars.PARTYKIT_TOKEN }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL || vars.DATABASE_URL }}
+      JOIN_TOKEN_SECRET: ${{ secrets.JOIN_TOKEN_SECRET || vars.JOIN_TOKEN_SECRET }}
     defaults:
       run:
         working-directory: game
@@ -44,6 +46,17 @@ jobs:
             echo "::error::Missing PARTYKIT_LOGIN or PARTYKIT_TOKEN. Set them as GitHub Secrets (recommended) or Repository Variables."
             exit 1
           fi
+          if [ -z "$DATABASE_URL" ]; then
+            echo "::error::Missing DATABASE_URL. Set it in GitHub Secrets/Variables (or Environment Secrets) for this workflow environment."
+            exit 1
+          fi
 
       - name: Deploy
-        run: npx partykit deploy
+        run: |
+          if [ -n "$JOIN_TOKEN_SECRET" ]; then
+            npx partykit deploy \
+              --var "DATABASE_URL=$DATABASE_URL" \
+              --var "JOIN_TOKEN_SECRET=$JOIN_TOKEN_SECRET"
+          else
+            npx partykit deploy --var "DATABASE_URL=$DATABASE_URL"
+          fi
