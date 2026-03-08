@@ -19,10 +19,10 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     env:
-      PARTYKIT_LOGIN: ${{ secrets.PARTYKIT_LOGIN || vars.PARTYKIT_LOGIN }}
-      PARTYKIT_TOKEN: ${{ secrets.PARTYKIT_TOKEN || vars.PARTYKIT_TOKEN }}
-      DATABASE_URL: ${{ secrets.DATABASE_URL || vars.DATABASE_URL }}
-      JOIN_TOKEN_SECRET: ${{ secrets.JOIN_TOKEN_SECRET || vars.JOIN_TOKEN_SECRET }}
+      PARTYKIT_LOGIN: ${{ secrets.PARTYKIT_LOGIN }}
+      PARTYKIT_TOKEN: ${{ secrets.PARTYKIT_TOKEN }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      JOIN_TOKEN_SECRET: ${{ secrets.JOIN_TOKEN_SECRET }}
     defaults:
       run:
         working-directory: game
@@ -54,6 +54,13 @@ jobs:
             echo "::error::Missing JOIN_TOKEN_SECRET. It must match the Vercel JOIN_TOKEN_SECRET value."
             exit 1
           fi
+
+      - name: Debug env fingerprints
+        run: |
+          echo "JOIN_TOKEN_SECRET_LEN=${#JOIN_TOKEN_SECRET}"
+          echo "JOIN_TOKEN_SECRET_SHA256=$(printf '%s' \"$JOIN_TOKEN_SECRET\" | shasum -a 256 | cut -c1-12)"
+          echo "DATABASE_URL_LEN=${#DATABASE_URL}"
+          echo "DATABASE_URL_SHA256=$(printf '%s' \"$DATABASE_URL\" | shasum -a 256 | cut -c1-12)"
 
       - name: Prepare deploy env file
         run: |

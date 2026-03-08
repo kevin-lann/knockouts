@@ -129,7 +129,22 @@ export type ServerMessage =
     }
   | { type: ServerMessageType.PLAYER_UPDATE, players: Player[] }
   | { type: ServerMessageType.TICK, time: number }
-  | { type: ServerMessageType.ROUND_START, question: Question, answerCount: number }
-  | { type: ServerMessageType.ROUND_END, results: RoundResult[], correctAnswers: string[] }
+  | {
+      type: ServerMessageType.ROUND_START
+      question: Question
+      answerCount: number
+      round: number
+    }
+  | {
+      type: ServerMessageType.ROUND_END
+      results: RoundResult[]
+      correctAnswers: string[]
+      round: number
+    }
   | { type: ServerMessageType.ERROR, message: string }
-  | { type: ServerMessageType.GAME_ENDED, results: RoundResult[], correctAnswers: string[] }
+  | {
+      type: ServerMessageType.GAME_ENDED
+      results: RoundResult[]
+      correctAnswers: string[]
+      round: number
+    }

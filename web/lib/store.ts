@@ -121,6 +121,7 @@ export const useGameStore = create<GameStore>((set) => ({
           gameState: GameState.PLAYING,
           question: msg.question,
           answerCount: msg.answerCount,
+          round: msg.round,
           timer: DEFAULT_ROUND_DURATION,
           hasSubmitted: false,
           currentInput: "",
@@ -133,6 +134,7 @@ export const useGameStore = create<GameStore>((set) => ({
           gameState: GameState.SCOREBOARD,
           roundResults: msg.results,
           correctAnswers: msg.correctAnswers,
+          round: msg.round,
         })
         break
       case ServerMessageType.GAME_ENDED:
@@ -140,6 +142,7 @@ export const useGameStore = create<GameStore>((set) => ({
           gameState: GameState.GAME_ENDED,
           roundResults: msg.results,
           correctAnswers: msg.correctAnswers,
+          round: msg.round,
         })
         break
       case ServerMessageType.ERROR:

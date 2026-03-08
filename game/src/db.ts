@@ -1,7 +1,12 @@
 import { neon } from "@neondatabase/serverless"
 import type { Question, Answer } from "@shared/types"
-import { MEAN_END_MULTIPLIER, MEAN_START_MULTIPLIER, ROUNDS_UNTIL_MEAN_END } from "./constants/magic-numbers"
+import {
+  MEAN_END_MULTIPLIER,
+  MEAN_START_MULTIPLIER,
+  ROUNDS_UNTIL_MEAN_END,
+} from "./constants/magic-numbers"
 import { BotDifficulty } from "@shared/types"
+import { FEATURE_FLAGS } from "./constants/feature-flags"
 
 let sql: ReturnType<typeof neon> | null = null
 
@@ -51,6 +56,9 @@ export async function fetchQuestion(
   round: number,
   theme?: string
 ): Promise<QuestionWithAnswers> {
+  if (FEATURE_FLAGS.RANDOM_QUESTION_SELECTION) {
+    return fetchRandomQuestion(alivePlayerCount, round, theme)
+  }
   // First, filter out questions with insufficient answers
   // Build the questions here because we don't want to fetch the db twice per call to this function
   let query = `
@@ -146,6 +154,74 @@ export async function fetchQuestion(
   }
 }
 
+async function fetchRandomQuestion(
+  alivePlayerCount: number,
+  _round: number,
+  theme?: string
+): Promise<QuestionWithAnswers> {
+  let query = `
+    SELECT q.*, 
+           COALESCE(json_agg(
+             json_build_object(
+               'id', a.id,
+               'question_id', a.question_id,
+               'display_text', a.display_text,
+               'variants', a.variants,
+               'popularity_rank', a.popularity_rank
+             )
+           ) FILTER (WHERE a.id IS NOT NULL), '[]') as answers
+    FROM questions q
+    LEFT JOIN answers a ON q.id = a.question_id
+    WHERE q.answer_count_cache >= $1
+  `
+
+  const params: (string | number)[] = [alivePlayerCount]
+
+  if (theme) {
+    query += ` AND q.theme_slug = $2`
+    params.push(theme)
+  }
+
+  query += `
+    GROUP BY q.id
+    HAVING COUNT(a.id) > 0
+    ORDER BY RANDOM()
+    LIMIT 1
+  `
+
+  const rows = (await getSql().query(query, params)) as QuestionDbRow[]
+
+  if (rows.length === 0) {
+    throw new Error("No questions found matching criteria")
+  }
+
+  const row = rows[0]
+
+  let answersArray = row.answers
+  if (typeof answersArray === "string") {
+    answersArray = JSON.parse(answersArray)
+  }
+  if (!Array.isArray(answersArray)) {
+    answersArray = []
+  }
+
+  return {
+    question: {
+      id: row.id,
+      prompt: row.prompt,
+      theme_slug: row.theme_slug,
+      difficulty: row.difficulty,
+      answer_count_cache: row.answer_count_cache,
+    },
+    answers: answersArray.map((a: AnswerDbRow) => ({
+      id: a.id,
+      question_id: a.question_id,
+      display_text: a.display_text,
+      variants: Array.isArray(a.variants) ? a.variants : [],
+      popularity_rank: a.popularity_rank,
+    })),
+  }
+}
 /**
  * Get bot answer based on difficulty level
  */

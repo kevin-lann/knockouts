@@ -568,6 +568,7 @@ export default class GameServer implements Party.Server {
         type: ServerMessageType.ROUND_START,
         question: this.currentQuestion!,
         answerCount: this.currentQuestion!.answer_count_cache,
+        round: this.round,
       } as ServerMessage)
     )
 
@@ -682,6 +683,7 @@ export default class GameServer implements Party.Server {
           type: ServerMessageType.GAME_ENDED,
           results,
           correctAnswers,
+          round: this.round,
         } as ServerMessage)
       )
       return
@@ -708,6 +710,7 @@ export default class GameServer implements Party.Server {
         type: ServerMessageType.ROUND_END,
         results,
         correctAnswers,
+        round: this.round,
       } as ServerMessage)
     )
 
