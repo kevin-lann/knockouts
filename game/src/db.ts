@@ -3,7 +3,21 @@ import type { Question, Answer } from "@shared/types"
 import { MEAN_END_MULTIPLIER, MEAN_START_MULTIPLIER, ROUNDS_UNTIL_MEAN_END } from "./constants/magic-numbers"
 import { BotDifficulty } from "@shared/types"
 
-const sql = neon(process.env.DATABASE_URL!)
+let sql: ReturnType<typeof neon> | null = null
+
+function getSql() {
+  if (sql) {
+    return sql
+  }
+
+  const databaseUrl = process.env.DATABASE_URL
+  if (!databaseUrl) {
+    throw new Error("DATABASE_URL is not set")
+  }
+
+  sql = neon(databaseUrl)
+  return sql
+}
 
 export interface QuestionWithAnswers {
   question: Question
@@ -67,7 +81,7 @@ export async function fetchQuestion(
     HAVING COUNT(a.id) > 0
   `
 
-  const rows = (await sql.query(query, params)) as QuestionDbRow[]
+  const rows = (await getSql().query(query, params)) as QuestionDbRow[]
 
   if (rows.length === 0) {
     throw new Error("No questions found matching criteria")
@@ -168,11 +182,11 @@ export async function getBotAnswer(
     LIMIT 1
   `
 
-  const rows = (await sql.query(query, params)) as AnswerDbRow[]
+  const rows = (await getSql().query(query, params)) as AnswerDbRow[]
 
   if (rows.length === 0) {
     // Fallback: get any answer if no match
-    const fallbackRows = (await sql.query(
+    const fallbackRows = (await getSql().query(
       `SELECT id, question_id, display_text, variants, popularity_rank
        FROM answers
        WHERE question_id = $1
