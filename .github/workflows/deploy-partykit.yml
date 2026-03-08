@@ -17,6 +17,9 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      PARTYKIT_LOGIN: ${{ secrets.PARTYKIT_LOGIN || vars.PARTYKIT_LOGIN }}
+      PARTYKIT_TOKEN: ${{ secrets.PARTYKIT_TOKEN || vars.PARTYKIT_TOKEN }}
     defaults:
       run:
         working-directory: game
@@ -34,8 +37,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Validate PartyKit auth env
+        run: |
+          if [ -z "$PARTYKIT_LOGIN" ] || [ -z "$PARTYKIT_TOKEN" ]; then
+            echo "::error::Missing PARTYKIT_LOGIN or PARTYKIT_TOKEN. Set them as GitHub Secrets (recommended) or Repository Variables."
+            exit 1
+          fi
+
       - name: Deploy
-        env:
-          PARTYKIT_LOGIN: ${{ secrets.PARTYKIT_LOGIN }}
-          PARTYKIT_TOKEN: ${{ secrets.PARTYKIT_TOKEN }}
         run: npx partykit deploy
