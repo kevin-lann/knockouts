@@ -65,8 +65,20 @@ Visit `http://localhost:3000` to play.
 **Deploy PartyKit server**:
 ```bash
 cd game
-npm run deploy
+npx partykit deploy
 ```
+
+**Debug live after deployment**:
+```bash
+npx partykit tail
+```
+
+**Add environment variables**:
+```bash
+npx partykit env add API_KEY # will prompt for value
+npx partykit deploy
+```
+See [docs](https://docs.partykit.io/guides/managing-environment-variables) for more details
 
 **Deploy Next.js frontend**:
 ```bash
