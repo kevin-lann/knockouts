@@ -18,7 +18,16 @@ const JOIN_TOKEN_TYP = "KNOCKOUTS_JOIN"
 const JOIN_TOKEN_ALG = "HS256"
 
 function getJoinTokenSecret() {
-  return process.env.JOIN_TOKEN_SECRET || "dev-only-join-token-secret"
+  const secret = process.env.JOIN_TOKEN_SECRET?.trim()
+  if (secret) {
+    return secret
+  }
+
+  if (process.env.NODE_ENV !== "production") {
+    return "dev-only-join-token-secret"
+  }
+
+  throw new Error("JOIN_TOKEN_SECRET is not set")
 }
 
 function base64UrlToBase64(value: string) {
