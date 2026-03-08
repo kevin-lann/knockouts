@@ -9,13 +9,24 @@ import { BotDifficulty } from "@shared/types"
 import { FEATURE_FLAGS } from "./constants/feature-flags"
 
 let sql: ReturnType<typeof neon> | null = null
+let databaseUrlOverride: string | undefined
+
+export function configureDatabase(databaseUrl?: string) {
+  const normalized = databaseUrl?.trim()
+  if (databaseUrlOverride === normalized) {
+    return
+  }
+
+  databaseUrlOverride = normalized
+  sql = null
+}
 
 function getSql() {
   if (sql) {
     return sql
   }
 
-  const databaseUrl = process.env.DATABASE_URL
+  const databaseUrl = databaseUrlOverride || process.env.DATABASE_URL
   if (!databaseUrl) {
     throw new Error("DATABASE_URL is not set")
   }

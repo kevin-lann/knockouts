@@ -18,7 +18,7 @@ import {
   MAX_ROUNDS,
   MIN_ROUNDS,
 } from "@shared/types"
-import { fetchQuestion, getBotAnswer } from "./db"
+import { configureDatabase, fetchQuestion, getBotAnswer } from "./db"
 import { validateAnswer, findDuplicates } from "./utils/validation"
 import {
   DEFAULT_ROUND_DURATION,
@@ -70,7 +70,13 @@ export default class GameServer implements Party.Server {
 
   private static readonly MAX_PLAYERS = MAX_PLAYERS_CONSTANT
 
-  constructor(readonly room: Party.Room) {}
+  constructor(readonly room: Party.Room) {
+    const roomDatabaseUrl =
+      typeof room.env.DATABASE_URL === "string"
+        ? room.env.DATABASE_URL
+        : undefined
+    configureDatabase(roomDatabaseUrl)
+  }
 
   private startRegistryHeartbeat() {
     if (this.registryHeartbeatInterval) {

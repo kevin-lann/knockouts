@@ -1,10 +1,24 @@
 import { NextResponse } from "next/server"
 import { createPublicRoomId } from "@/lib/roomId"
 
-const PARTYKIT_HOST =
-  typeof process.env.NEXT_PUBLIC_PARTYKIT_HOST !== "undefined"
-    ? process.env.NEXT_PUBLIC_PARTYKIT_HOST
-    : "localhost:1999"
+function normalizePartykitBaseUrl(rawHost: string) {
+  const value = rawHost.trim()
+  if (!value) {
+    return null
+  }
+
+  if (value.startsWith("http://") || value.startsWith("https://")) {
+    return value.replace(/\/+$/, "")
+  }
+
+  if (value.startsWith("ws://") || value.startsWith("wss://")) {
+    const httpProtocol = value.startsWith("wss://") ? "https://" : "http://"
+    return `${httpProtocol}${value.replace(/^wss?:\/\//, "").replace(/\/+$/, "")}`
+  }
+
+  const protocol = value.startsWith("localhost") ? "http://" : "https://"
+  return `${protocol}${value.replace(/\/+$/, "")}`
+}
 
 interface RegistryRoom {
   roomId: string
@@ -17,10 +31,19 @@ interface RegistryResponse {
 }
 
 export async function GET() {
+  const configuredHost =
+    process.env.PARTYKIT_HOST?.trim() ||
+    process.env.NEXT_PUBLIC_PARTYKIT_HOST?.trim() ||
+    "localhost:1999"
+  const partykitBaseUrl = normalizePartykitBaseUrl(configuredHost)
+
   try {
-    const protocol = PARTYKIT_HOST.startsWith("localhost") ? "http" : "https"
-    const registryUrl = `${protocol}://${PARTYKIT_HOST}/parties/registry/main`
-    
+    if (!partykitBaseUrl) {
+      throw new Error("Partykit host is empty")
+    }
+
+    const registryUrl = `${partykitBaseUrl}/parties/registry/main`
+
     const response = await fetch(registryUrl, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
@@ -29,7 +52,7 @@ export async function GET() {
 
     if (response.ok) {
       const data = (await response.json()) as RegistryResponse
-      
+
       // Return the first available room (sorted by most recently updated)
       if (data.rooms && data.rooms.length > 0) {
         const room = data.rooms[0]
@@ -43,7 +66,10 @@ export async function GET() {
       }
     }
   } catch (error) {
-    console.error("Error querying registry:", error)
+    console.error("Error querying registry:", {
+      configuredHost,
+      error,
+    })
     // Fall through to create new room
   }
 
