@@ -50,13 +50,13 @@ jobs:
             echo "::error::Missing DATABASE_URL. Set it in GitHub Secrets/Variables (or Environment Secrets) for this workflow environment."
             exit 1
           fi
+          if [ -z "$JOIN_TOKEN_SECRET" ]; then
+            echo "::error::Missing JOIN_TOKEN_SECRET. It must match the Vercel JOIN_TOKEN_SECRET value."
+            exit 1
+          fi
 
       - name: Deploy
         run: |
-          if [ -n "$JOIN_TOKEN_SECRET" ]; then
-            npx partykit deploy \
-              --var "DATABASE_URL=$DATABASE_URL" \
-              --var "JOIN_TOKEN_SECRET=$JOIN_TOKEN_SECRET"
-          else
-            npx partykit deploy --var "DATABASE_URL=$DATABASE_URL"
-          fi
+          npx partykit deploy \
+            --var "DATABASE_URL=$DATABASE_URL" \
+            --var "JOIN_TOKEN_SECRET=$JOIN_TOKEN_SECRET"
