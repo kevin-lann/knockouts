@@ -1,3 +1,3 @@
 INSERT INTO themes (slug, display_name) VALUES
-  ('FLAGS', 'Flags'),
+  ('FLAGS', 'Flags')
 ON CONFLICT (slug) DO NOTHING;
