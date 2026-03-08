@@ -17,6 +17,7 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: production
     env:
       PARTYKIT_LOGIN: ${{ secrets.PARTYKIT_LOGIN || vars.PARTYKIT_LOGIN }}
       PARTYKIT_TOKEN: ${{ secrets.PARTYKIT_TOKEN || vars.PARTYKIT_TOKEN }}

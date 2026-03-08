@@ -35,6 +35,13 @@ interface LockedIdentity {
   avatarId: AvatarId
 }
 
+interface PrefetchedRound {
+  round: number
+  alivePlayerCount: number
+  theme: string | null
+  promise: Promise<{ question: Question, answers: Answer[] } | null>
+}
+
 export default class GameServer implements Party.Server {
   // Core state
   gameState: GameState = GameState.LOBBY
@@ -59,6 +66,7 @@ export default class GameServer implements Party.Server {
   countdownTimer: number = 3
   timerInterval: ReturnType<typeof setInterval> | null = null
   registryHeartbeatInterval: ReturnType<typeof setInterval> | null = null
+  prefetchedRound: PrefetchedRound | null = null
 
   private static readonly MAX_PLAYERS = MAX_PLAYERS_CONSTANT
 
@@ -241,6 +249,7 @@ export default class GameServer implements Party.Server {
     this.countdownTimer = 3
     this.gameState = GameState.LOBBY
     this.round = 0
+    this.clearPrefetchedRound()
     this.broadcastSync()
     this.broadcastPlayerUpdate()
     this.notifyRegistry()
@@ -408,6 +417,7 @@ export default class GameServer implements Party.Server {
       maxRounds: this.normalizeMaxRounds(msg.settings.maxRounds),
     }
     this.round = 0
+    this.clearPrefetchedRound()
     this.startGame()
     this.notifyRegistry() // Game starting - room no longer available
   }
@@ -473,14 +483,31 @@ export default class GameServer implements Party.Server {
       const alivePlayers = Array.from(this.players.values()).filter(
         (p) => !p.isBot && !p.isEliminated
       )
-      const { question, answers } = await fetchQuestion(
-        alivePlayers.length,
-        this.round,
-        this.settings.theme || undefined
-      )
+      const alivePlayerCount = alivePlayers.length
+      const prefetchedRound = this.prefetchedRound
+      let roundData: { question: Question, answers: Answer[] } | null = null
 
-      this.currentQuestion = question
-      this.currentAnswers = answers
+      if (
+        prefetchedRound &&
+        prefetchedRound.round === this.round &&
+        prefetchedRound.alivePlayerCount === alivePlayerCount &&
+        prefetchedRound.theme === this.settings.theme
+      ) {
+        roundData = await prefetchedRound.promise
+      }
+
+      this.clearPrefetchedRound()
+
+      if (!roundData) {
+        roundData = await fetchQuestion(
+          alivePlayerCount,
+          this.round,
+          this.settings.theme || undefined
+        )
+      }
+
+      this.currentQuestion = roundData.question
+      this.currentAnswers = roundData.answers
 
       // Reset player submission states
       for (const player of this.players.values()) {
@@ -660,6 +687,8 @@ export default class GameServer implements Party.Server {
       return
     }
 
+    this.prefetchNextRound()
+
     // Update players with the highest score
     const leadingPlayers = getHighestScoringPlayers(this.players)
     for (const player of leadingPlayers) {
@@ -731,6 +760,31 @@ export default class GameServer implements Party.Server {
     this.registryHeartbeatInterval = null
   }
 
+  private clearPrefetchedRound() {
+    this.prefetchedRound = null
+  }
+
+  private prefetchNextRound() {
+    const alivePlayerCount = Array.from(this.players.values()).filter(
+      (p) => !p.isBot && !p.isEliminated
+    ).length
+
+    const round = this.round + 1
+    const theme = this.settings.theme
+
+    this.prefetchedRound = {
+      round,
+      alivePlayerCount,
+      theme,
+      promise: fetchQuestion(alivePlayerCount, round, theme || undefined)
+        .then(({ question, answers }) => ({ question, answers }))
+        .catch((error) => {
+          console.error("Error prefetching next round question:", error)
+          return null
+        }),
+    }
+  }
+
   private isGameEnded(): boolean {
     const alivePlayers = Array.from(this.players.values()).filter(
       (p) => !p.isBot && !p.isEliminated
@@ -759,6 +813,7 @@ export default class GameServer implements Party.Server {
    * Clear all player states and reset the game
    */
   private async handleGameEnded() {
+    this.clearPrefetchedRound()
     for (const player of this.players.values()) {
       player.hasHighestScore = false
       player.isEliminated = false
