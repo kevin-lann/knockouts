@@ -15,7 +15,7 @@ export default function Timer({ time }: TimerProps) {
           ? "text-red-400 animate-pulse"
           : isLow
           ? "text-yellow-400"
-          : "text-white"
+          : "text-foreground"
       }`}
     >
       {time}

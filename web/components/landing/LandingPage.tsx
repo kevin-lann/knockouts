@@ -6,6 +6,10 @@ import { AVATAR_OPTIONS, DEFAULT_AVATAR_ID } from "@/app/constants/avatars"
 import { createPrivateRoomId, createPublicRoomId } from "@/lib/roomId"
 import { AvatarId } from "@shared/types"
 import { setStoredPlayerProfile } from "@/lib/playerProfile"
+import Logo from "../general/logo"
+import Button, { ButtonVariant } from "../general/Button"
+import Card from "../general/Card"
+import Input from "../general/Input"
 
 export default function LandingPage() {
   const [activeTab, setActiveTab] = useState<"public" | "private">("public")
@@ -56,33 +60,32 @@ export default function LandingPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4">
-      <h1 className="text-4xl font-bold text-center text-white mb-8">
-        Knockouts
-      </h1>
-      <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 w-full max-w-md">
+    <div
+      className="min-h-screen flex flex-col items-center justify-center p-4"
+    >
+      <Logo />
+      <Card className="p-8 w-full max-w-md">
         <div className="mb-6">
-          <label className="block text-white mb-2">Your Name</label>
-          <input
+          <label className="block  mb-2">Who are you?</label>
+          <Input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter your name"
-            className="w-full px-4 py-2 rounded-lg bg-white/20 text-white placeholder-white/60 border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50"
           />
         </div>
 
         <div className="mb-6">
-          <label className="block text-white mb-2">Choose Avatar</label>
+          <label className="block  mb-2">What do you look like?</label>
           <div className="flex gap-2 flex-wrap">
             {AVATAR_OPTIONS.map((option) => (
               <button
                 key={option.id}
                 onClick={() => setAvatarId(option.id)}
-                className={`text-3xl p-2 rounded-lg transition-all ${
+                className={`text-3xl p-2 cursor-pointer transition-all hover:scale-125 ${
                   avatarId === option.id
-                    ? "bg-white/30 scale-110 ring-2 ring-white"
-                    : "bg-white/10 hover:bg-white/20"
+                    ? "bg-background scale-110 ring-2 ring-black"
+                    : "bg-background/40 border-2 border-black hover:bg-background"
                 }`}
               >
                 {option.avatar}
@@ -92,66 +95,71 @@ export default function LandingPage() {
         </div>
 
         <div className="mb-6">
-          <div className="flex gap-2 mb-4">
-            <button
+          <div className="flex gap-4 mb-4">
+            <Button
               onClick={() => setActiveTab("public")}
-              className={`flex-1 py-2 rounded-lg transition-all ${
+              variant={ButtonVariant.BACKGROUND}
+              className={`flex-1 py-2 ${
                 activeTab === "public"
-                  ? "bg-white/30 text-white font-semibold"
-                  : "bg-white/10 text-white/70 hover:bg-white/20"
+                  ? "font-semibold"
+                  : "opacity-60 hover:opacity-100"
               }`}
             >
               Public
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => setActiveTab("private")}
-              className={`flex-1 py-2 rounded-lg transition-all ${
+              variant={ButtonVariant.BACKGROUND}
+              className={`flex-1 py-2 ${
                 activeTab === "private"
-                  ? "bg-white/30 text-white font-semibold"
-                  : "bg-white/10 text-white/70 hover:bg-white/20"
+                  ? "font-semibold"
+                  : "opacity-60 hover:opacity-100"
               }`}
             >
               Private
-            </button>
+            </Button>
           </div>
 
           {activeTab === "public" ? (
-            <button
+            <Button
               onClick={handlePublicPlay}
               disabled={!name.trim() || isSearching}
-              className="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              variant={ButtonVariant.YELLOW}
+              className="w-full py-3"
             >
               {isSearching ? "Finding room..." : "Play"}
-            </button>
+            </Button>
           ) : (
             <div className="space-y-3">
-              <button
+              <Button
                 onClick={handleCreatePrivate}
                 disabled={!name.trim()}
-                className="w-full py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-cyan-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                variant={ButtonVariant.YELLOW}
+                className="w-full py-3"
               >
                 Create Room
-              </button>
+              </Button>
               <div className="flex gap-2">
-                <input
+                <Input
                   type="text"
                   value={roomCode}
                   onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
                   placeholder="Room Code"
-                  className="flex-1 px-4 py-2 rounded-lg bg-white/20 text-white placeholder-white/60 border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50"
+                  className="flex-1"
                 />
-                <button
+                <Button
                   onClick={handleJoinPrivate}
                   disabled={!name.trim() || !roomCode.trim()}
-                  className="px-6 py-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-semibold rounded-lg hover:from-green-600 hover:to-emerald-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                  variant={ButtonVariant.CYAN}
+                  className="px-6 py-2"
                 >
                   Join
-                </button>
+                </Button>
               </div>
             </div>
           )}
         </div>
-      </div>
+      </Card>
     </div>
   )
 }

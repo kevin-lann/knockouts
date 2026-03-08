@@ -137,7 +137,7 @@ export default function RoomPage() {
         <LobbyView roomId={roomId} send={send} />
       )}
       {gameState === GameState.COUNTDOWN && <CountdownOverlay />}
-      {gameState === GameState.PLAYING && <GameView send={send} />}
+      {gameState === GameState.PLAYING && <GameView roomId={roomId} send={send} />}
       {gameState === GameState.PROCESSING && <ProcessingView />}
       {gameState === GameState.SCOREBOARD && (
         <ScoreboardView roomId={roomId} send={send} />

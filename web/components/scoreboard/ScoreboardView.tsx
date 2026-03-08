@@ -1,93 +1,131 @@
 "use client"
 
+import { useState } from "react"
 import { useGameStore } from "@/lib/store"
 import { ClientMessageType, type ClientMessage } from "@shared/types"
 import PlayerList from "../lobby/PlayerList"
 import LeaveRoomButton from "../room/LeaveRoomButton"
+import Button, { ButtonVariant } from "../general/Button"
+import Card from "../general/Card"
 
 interface ScoreboardViewProps {
   roomId: string
   send: (message: ClientMessage) => void
 }
 
-export default function ScoreboardView({
-  send,
-}: ScoreboardViewProps) {
-  const { roundResults, correctAnswers, players, round, playerId, timer } = useGameStore()
-  const isCurrentPlayerHost = players.find((player) => player.id === playerId)?.isHost
+export default function ScoreboardView({ send }: ScoreboardViewProps) {
+  const { roundResults, correctAnswers, players, round, playerId, timer } =
+    useGameStore()
+  const [isStartingNextRound, setIsStartingNextRound] = useState(false)
+  const isCurrentPlayerHost = players.find(
+    (player) => player.id === playerId
+  )?.isHost
   const countdownLabel = Math.max(timer, 0)
+  const eliminatedPlayers = players
+    .filter((player) => player.isEliminated)
+    .map((player) => player.id)
 
   const handleNextRound = () => {
+    if (isStartingNextRound) {
+      return
+    }
+
+    setIsStartingNextRound(true)
     send({ type: ClientMessageType.NEXT_ROUND })
   }
 
   return (
     <div className="min-h-screen p-8">
       <div className="max-w-4xl mx-auto">
-        <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 relative">
-          <h1 className="text-3xl font-bold text-white mb-2 text-center">
+        <Card className="p-8 relative">
+          <h1 className="text-3xl font-bold mb-2 text-center">
             Round {round} Results
           </h1>
           <div className="absolute top-4 right-4">
             <LeaveRoomButton send={send} />
           </div>
+          <div className="absolute top-4 left-4">
+            {isCurrentPlayerHost && (
+              <Button
+                onClick={handleNextRound}
+                variant={ButtonVariant.YELLOW}
+                className="w-full px-4 py-2"
+                disabled={isStartingNextRound}
+              >
+                {isStartingNextRound
+                  ? "Starting next round..."
+                  : `Next Round (${countdownLabel}s)`}
+              </Button>
+            )}
 
-          {roundResults && (
-            <div className="mb-8">
-              <h2 className="text-xl font-semibold text-white mb-4">Answers</h2>
-              <div className="space-y-2">
-                {roundResults.map((result, index) => (
-                  <div
-                    key={index}
-                    className={`p-4 rounded-lg ${
-                      result.isValid && !result.isDuplicate
-                        ? "bg-green-500/20 border-2 border-green-500"
-                        : result.isDuplicate
-                        ? "bg-red-500/20 border-2 border-red-500"
-                        : "bg-gray-500/20 border-2 border-gray-500"
-                    }`}
-                  >
-                    <div className="flex justify-between items-center">
-                      <div>
-                        <span className="text-white font-semibold">
-                          {result.playerName}
-                        </span>
-                        <span className="text-white/70 ml-2">
-                          {result.answer}
-                        </span>
+            {!isCurrentPlayerHost && (
+              <p className="text-left p-4 w-[70%] text-sm">
+                Waiting for host to start next round... ({countdownLabel}s)
+              </p>
+            )}
+          </div>
+          <div className="flex w-full flex-col gap-4 p-2 md:flex-row">
+            {roundResults && (
+              <div className="mb-8 flex-1 min-w-0">
+                <h2 className="text-xl font-semibold mb-4">Answers</h2>
+                <div className="space-y-2">
+                  {roundResults
+                    .filter(
+                      (result) =>
+                        result.answer ||
+                        !eliminatedPlayers.includes(result.playerId)
+                    )
+                    .map((result, index) => (
+                      <div
+                        key={index}
+                        className={`p-4 border-2 ${
+                          result.isValid && !result.isDuplicate
+                            ? "bg-brand-cyan/30 border-black"
+                            : result.isDuplicate
+                            ? "bg-brand-pink/30 border-black"
+                            : "bg-background border-black"
+                        }`}
+                      >
+                        <div className="flex justify-between items-center">
+                          <div>
+                            <span className="font-semibold">
+                              {result.playerName}
+                            </span>
+                            <span className="ml-2">{result.answer}</span>
+                          </div>
+                          <div className="flex items-center gap-4">
+                            {result.isDuplicate && (
+                              <span className="text-sm">Duplicate</span>
+                            )}
+                            {!result.isValid && (
+                              <span className="text-sm">Wrong</span>
+                            )}
+                            {result.isValid && !result.isDuplicate && (
+                              <span className="text-sm font-bold">
+                                +{result.points} point
+                              </span>
+                            )}
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-4">
-                        {result.isDuplicate && (
-                          <span className="text-red-300 text-sm">
-                            Duplicate
-                          </span>
-                        )}
-                        {!result.isValid && (
-                          <span className="text-gray-300 text-sm">Wrong</span>
-                        )}
-                        {result.isValid && !result.isDuplicate && (
-                          <span className="text-green-300 text-sm font-bold">
-                            +{result.points} point
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                    ))}
+                </div>
               </div>
+            )}
+            <div className="flex-1 min-w-0">
+              <h2 className="text-xl font-semibold mb-4">Leaderboard</h2>
+              <PlayerList players={players.sort((a, b) => b.score - a.score)} />
             </div>
-          )}
+          </div>
 
           {correctAnswers && correctAnswers.length > 0 && (
             <div className="mb-8">
-              <h2 className="text-xl font-semibold text-white mb-4">
-                All Valid Answers
-              </h2>
+              <h2 className="text-xl font-semibold mb-4">All Valid Answers</h2>
               <div className="flex flex-wrap gap-2">
                 {correctAnswers.map((answer, index) => (
                   <span
                     key={index}
-                    className="px-3 py-1 bg-white/20 text-white rounded-lg text-sm"
+                    className="px-3 py-1 bg-background border border-black text-sm"
                   >
                     {answer}
                   </span>
@@ -95,29 +133,7 @@ export default function ScoreboardView({
               </div>
             </div>
           )}
-
-          <div className="mb-8">
-            <h2 className="text-xl font-semibold text-white mb-4">
-              Current Scores
-            </h2>
-            <PlayerList players={players.sort((a, b) => b.score - a.score)} />
-          </div>
-
-          {isCurrentPlayerHost && (
-            <button
-              onClick={handleNextRound}
-              className="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all"
-            >
-              Next Round ({countdownLabel}s)
-            </button>
-          )}
-
-          {!isCurrentPlayerHost && (
-            <p className="text-white/70 text-center">
-              Waiting for host to start next round... ({countdownLabel}s)
-            </p>
-          )}
-        </div>
+        </Card>
       </div>
     </div>
   )

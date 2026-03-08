@@ -1,6 +1,6 @@
 import { ClientMessage, ClientMessageType } from "@shared/types"
 import { useRouter } from "next/navigation"
-
+import Button, { ButtonVariant } from "../general/Button"
 
 export default function LeaveRoomButton({ send }: { send: (message: ClientMessage) => void }) {
   const router = useRouter()
@@ -9,11 +9,12 @@ export default function LeaveRoomButton({ send }: { send: (message: ClientMessag
     router.push("/")
   }
   return (
-    <button
+    <Button
       onClick={handleLeaveRoom}
-      className="px-4 py-2 bg-red-400 text-white rounded-lg hover:bg-red-500 transition-all cursor-pointer"
+      variant={ButtonVariant.PINK}
+      className="px-4 py-2"
     >
       Leave Room
-    </button>
+    </Button>
   )
 }

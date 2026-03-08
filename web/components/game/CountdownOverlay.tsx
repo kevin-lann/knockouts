@@ -7,7 +7,7 @@ export default function CountdownOverlay() {
   const { timer } = useGameStore()
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-500">
+    <div className="fixed inset-0 flex items-center justify-center z-500">
       <AnimatePresence mode="wait">
         <motion.div
           key={timer}
@@ -15,7 +15,7 @@ export default function CountdownOverlay() {
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 1.5, opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="text-9xl font-bold text-white"
+          className="text-9xl font-bold"
         >
           {timer > 0 ? timer : "GO!"}
         </motion.div>

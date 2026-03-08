@@ -230,16 +230,6 @@ export default class GameServer implements Party.Server {
     msg: Extract<ClientMessage, { type: ClientMessageType.JOIN_ROOM }>,
     sender: Party.Connection
   ) {
-    if (this.gameState !== GameState.LOBBY) {
-      sender.send(
-        JSON.stringify({
-          type: ServerMessageType.ERROR,
-          message: "Game already in progress",
-        } as ServerMessage)
-      )
-      return
-    }
-
     if (this.players.size >= GameServer.MAX_PLAYERS) {
       sender.send(
         JSON.stringify({

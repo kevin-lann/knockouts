@@ -6,6 +6,8 @@ import PlayerList from "../lobby/PlayerList"
 import LeaveRoomButton from "../room/LeaveRoomButton"
 import RoomSettingsPanel from "../lobby/RoomSettingsPanel"
 import { useRoomSettings } from "@/hooks/useRoomSettings"
+import Button, { ButtonVariant } from "../general/Button"
+import Card from "../general/Card"
 
 interface GameEndViewProps {
   roomId: string
@@ -31,8 +33,8 @@ export default function GameEndView({ send }: GameEndViewProps) {
   return (
     <div className="min-h-screen p-8">
       <div className="max-w-4xl mx-auto">
-        <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 relative">
-          <h1 className="text-3xl font-bold text-white mb-2 text-center">
+        <Card className="p-8 relative">
+          <h1 className="text-3xl font-bold mb-2 text-center">
             Game Ended
           </h1>
           <div className="absolute top-4 right-4">
@@ -41,41 +43,41 @@ export default function GameEndView({ send }: GameEndViewProps) {
 
           {roundResults && (
             <div className="mb-8">
-              <h2 className="text-xl font-semibold text-white mb-4">
+              <h2 className="text-xl font-semibold mb-4">
                 Final Round Answers
               </h2>
               <div className="space-y-2">
                 {roundResults.map((result, index) => (
                   <div
                     key={index}
-                    className={`p-4 rounded-lg ${
+                    className={`p-4 border-2 ${
                       result.isValid && !result.isDuplicate
-                        ? "bg-green-500/20 border-2 border-green-500"
+                        ? "bg-brand-cyan/30 border-black"
                         : result.isDuplicate
-                        ? "bg-red-500/20 border-2 border-red-500"
-                        : "bg-gray-500/20 border-2 border-gray-500"
+                        ? "bg-brand-pink/30 border-black"
+                        : "bg-background border-black"
                     }`}
                   >
                     <div className="flex justify-between items-center">
                       <div>
-                        <span className="text-white font-semibold">
+                        <span className="font-semibold">
                           {result.playerName}
                         </span>
-                        <span className="text-white/70 ml-2">
+                        <span className="ml-2">
                           {result.answer}
                         </span>
                       </div>
                       <div className="flex items-center gap-4">
                         {result.isDuplicate && (
-                          <span className="text-red-300 text-sm">
+                          <span className="text-sm">
                             Duplicate
                           </span>
                         )}
                         {!result.isValid && (
-                          <span className="text-gray-300 text-sm">Wrong</span>
+                          <span className="text-sm">Wrong</span>
                         )}
                         {result.isValid && !result.isDuplicate && (
-                          <span className="text-green-300 text-sm font-bold">
+                          <span className="text-sm font-bold">
                             +{result.points} point
                           </span>
                         )}
@@ -89,14 +91,14 @@ export default function GameEndView({ send }: GameEndViewProps) {
 
           {correctAnswers && correctAnswers.length > 0 && (
             <div className="mb-8">
-              <h2 className="text-xl font-semibold text-white mb-4">
+              <h2 className="text-xl font-semibold mb-4">
                 All Valid Answers
               </h2>
               <div className="flex flex-wrap gap-2">
                 {correctAnswers.map((answer, index) => (
                   <span
                     key={index}
-                    className="px-3 py-1 bg-white/20 text-white rounded-lg text-sm"
+                    className="px-3 py-1 bg-background border border-black text-sm"
                   >
                     {answer}
                   </span>
@@ -106,7 +108,7 @@ export default function GameEndView({ send }: GameEndViewProps) {
           )}
 
           <div className="mb-8">
-            <h2 className="text-xl font-semibold text-white mb-4">
+            <h2 className="text-xl font-semibold mb-4">
               Final Scores
             </h2>
             <PlayerList
@@ -117,38 +119,40 @@ export default function GameEndView({ send }: GameEndViewProps) {
           {isCurrentPlayerHost && (
             <div>
               {onePlayerRemaining ? (
-                <button
+                <Button
                   onClick={handleStartNewLobby}
-                  className="w-full mt-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all"
+                  variant={ButtonVariant.YELLOW}
+                  className="w-full mt-6 py-3"
                 >
                   Start New Lobby
-                </button>
+                </Button>
               ) : (
                 <div>
-                  <h2 className="text-xl font-semibold text-white mb-4">
+                  <h2 className="text-xl font-semibold mb-4">
                     Settings
                   </h2>
                   <RoomSettingsPanel
                     settings={settings}
                     onChange={setSettings}
                   />
-                  <button
+                  <Button
                     onClick={handleNewGame}
-                    className="w-full mt-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all"
+                    variant={ButtonVariant.YELLOW}
+                    className="w-full mt-6 py-3"
                   >
                     New Game
-                  </button>
+                  </Button>
                 </div>
               )}
             </div>
           )}
 
           {!isCurrentPlayerHost && (
-            <p className="text-white/70 text-center">
+            <p className="text-center">
               Waiting for host to start new game...
             </p>
           )}
-        </div>
+        </Card>
       </div>
     </div>
   )

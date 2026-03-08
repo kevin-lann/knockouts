@@ -7,6 +7,9 @@ import RoomSettingsPanel from "./RoomSettingsPanel"
 import { toast } from "react-hot-toast"
 import LeaveRoomButton from "../room/LeaveRoomButton"
 import { useRoomSettings } from "@/hooks/useRoomSettings"
+import Button, { ButtonVariant } from "../general/Button"
+import Card from "../general/Card"
+import CopyRoomLinkButton from "../general/CopyRoomLinkButton"
 
 interface LobbyViewProps {
   roomId: string
@@ -29,41 +32,30 @@ export default function LobbyView({ roomId, send }: LobbyViewProps) {
     send({ type: ClientMessageType.START_GAME, settings })
   }
 
-  const copyRoomLink = () => {
-    const url = `${window.location.origin}/room/${roomId}`
-    navigator.clipboard.writeText(url)
-    toast.success("Room link copied!")
-  }
-
   return (
     <div className="min-h-screen p-8">
       <div className="max-w-4xl mx-auto">
-        <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8">
+        <Card className="p-8">
           <div className="flex justify-between items-center mb-8">
-            <h1 className="text-3xl font-bold text-white">Room: {roomId}</h1>
+            <h1 className="text-3xl font-bold">Room: {roomId}</h1>
             <div className="flex gap-2">
-              <button
-                onClick={copyRoomLink}
-                className="px-4 py-2 bg-white/20 text-white rounded-lg hover:bg-white/30 transition-all cursor-pointer"
-              >
-                Copy Link
-              </button>
+              <CopyRoomLinkButton roomId={roomId} />
               <LeaveRoomButton send={send} />
             </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h2 className="text-xl font-semibold text-white mb-4">Players</h2>
+              <h2 className="text-xl font-semibold mb-4">Players</h2>
               <PlayerList players={playersArray} />
               {playersArray.length < 2 && (
-                <p className="text-white/70 mt-4">
+                <p className="mt-4">
                   Waiting for more players... ({playersArray.length}/2+)
                 </p>
               )}
               {/* Debug info */}
               {process.env.NODE_ENV === "development" && (
-                <p className="text-xs text-white/50 mt-2">
+                <p className="text-xs mt-2">
                   Debug: players array length = {playersArray.length}, type ={" "}
                   {typeof playersArray.length}, isArray ={" "}
                   {Array.isArray(players).toString()}
@@ -73,32 +65,33 @@ export default function LobbyView({ roomId, send }: LobbyViewProps) {
 
             {isCurrentPlayerHost && (
               <div>
-                <h2 className="text-xl font-semibold text-white mb-4">
+                <h2 className="text-xl font-semibold mb-4">
                   Settings
                 </h2>
                 <RoomSettingsPanel settings={settings} onChange={setSettings} />
-                <button
+                <Button
                   onClick={handleStartGame}
                   disabled={playersArray.length < 2}
-                  className="w-full mt-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                  variant={ButtonVariant.YELLOW}
+                  className="w-full mt-6 py-3"
                 >
                   Start Game
-                </button>
+                </Button>
               </div>
             )}
 
             {!isCurrentPlayerHost && (
               <div>
-                <h2 className="text-xl font-semibold text-white mb-4">
+                <h2 className="text-xl font-semibold mb-4">
                   Waiting for host to start...
                 </h2>
-                <p className="text-white/70">
+                <p>
                   The host will start the game when ready.
                 </p>
               </div>
             )}
           </div>
-        </div>
+        </Card>
       </div>
     </div>
   )

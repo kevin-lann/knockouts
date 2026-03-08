@@ -1,10 +1,12 @@
 "use client"
 
 import { BotDifficulty, type RoomSettings } from "@shared/types"
+import Checkbox from "@/components/general/Checkbox"
+import Slider from "@/components/general/Slider"
 
 interface RoomSettingsPanelProps {
-  settings: RoomSettings;
-  onChange: (settings: RoomSettings) => void;
+  settings: RoomSettings
+  onChange: (settings: RoomSettings) => void
 }
 
 export default function RoomSettingsPanel({
@@ -12,18 +14,16 @@ export default function RoomSettingsPanel({
   onChange,
 }: RoomSettingsPanelProps) {
   return (
-    <div className="space-y-4 bg-white/5 p-4 rounded-lg">
+    <div className="space-y-4 bg-white border-2 border-black p-4 shadow-[2px_2px_0_0_#000]">
       <div>
-        <label className="block text-white mb-2">Bot</label>
+        <label className="block mb-2">Bot</label>
         <div className="flex items-center gap-4">
-          <label className="flex items-center gap-2 text-white">
-            <input
-              type="checkbox"
+          <label className="flex items-center gap-2">
+            <Checkbox
               checked={settings.botEnabled}
               onChange={(e) =>
                 onChange({ ...settings, botEnabled: e.target.checked })
               }
-              className="w-4 h-4"
             />
             Enable Bot
           </label>
@@ -32,7 +32,7 @@ export default function RoomSettingsPanel({
 
       {settings.botEnabled && (
         <div>
-          <label className="block text-white mb-2">Bot Difficulty</label>
+          <label className="block mb-2">Bot Difficulty</label>
           <select
             value={settings.botDifficulty}
             onChange={(e) =>
@@ -41,7 +41,7 @@ export default function RoomSettingsPanel({
                 botDifficulty: e.target.value as BotDifficulty,
               })
             }
-            className="w-full px-3 py-2 bg-white/20 text-white rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50"
+            className="w-full px-3 py-2 bg-white border-2 border-black focus:outline-none focus:ring-2 focus:ring-black/20"
           >
             <option value={BotDifficulty.EASY}>Easy</option>
             <option value={BotDifficulty.MEDIUM}>Medium</option>
@@ -51,11 +51,10 @@ export default function RoomSettingsPanel({
       )}
 
       <div>
-        <label className="block text-white mb-2">
+        <label className="block mb-2">
           Speed: {settings.speedMultiplier}x
         </label>
-        <input
-          type="range"
+        <Slider
           min="0.5"
           max="2"
           step="0.1"
