@@ -11,7 +11,8 @@ export enum GameState {
 export interface Player {
   id: string
   name: string
-  avatar: string
+  avatarId: AvatarId
+  avatarImagePath: string
   score: number
   isHost: boolean
   isBot: boolean
@@ -37,6 +38,66 @@ export enum AvatarId {
   ALIEN = "ALIEN",
   GAMEPAD = "GAMEPAD",
 }
+
+export interface AvatarOption {
+  id: AvatarId
+  imagePath: string
+  fallback: string
+  alt: string
+}
+
+export const AVATAR_OPTIONS: ReadonlyArray<AvatarOption> = [
+  {
+    id: AvatarId.GRIN,
+    imagePath: "/avatars/grin.png",
+    fallback: "😀",
+    alt: "Grinning avatar",
+  },
+  {
+    id: AvatarId.COOL,
+    imagePath: "/avatars/cool.png",
+    fallback: "😎",
+    alt: "Cool avatar",
+  },
+  {
+    id: AvatarId.NERD,
+    imagePath: "/avatars/nerd.png",
+    fallback: "🤓",
+    alt: "Nerd avatar",
+  },
+  {
+    id: AvatarId.SMILE,
+    imagePath: "/avatars/smile.png",
+    fallback: "😊",
+    alt: "Smiling avatar",
+  },
+  {
+    id: AvatarId.PARTY,
+    imagePath: "/avatars/party.png",
+    fallback: "🥳",
+    alt: "Party avatar",
+  },
+  {
+    id: AvatarId.ROBOT,
+    imagePath: "/avatars/robot.png",
+    fallback: "🤖",
+    alt: "Robot avatar",
+  },
+  {
+    id: AvatarId.ALIEN,
+    imagePath: "/avatars/alien.png",
+    fallback: "👾",
+    alt: "Alien avatar",
+  },
+  {
+    id: AvatarId.GAMEPAD,
+    imagePath: "/avatars/gamepad.png",
+    fallback: "🎮",
+    alt: "Gamepad avatar",
+  },
+]
+
+export const DEFAULT_AVATAR_ID = AvatarId.GRIN
 
 export enum IconId {
   CROWN = "CROWN",

@@ -1,25 +1,16 @@
-import { AvatarId } from "@shared/types"
+import { AVATAR_OPTIONS, AvatarId, DEFAULT_AVATAR_ID } from "@shared/types"
 
-const AVATAR_BY_ID: Record<AvatarId, string> = {
-  [AvatarId.GRIN]: "😀",
-  [AvatarId.COOL]: "😎",
-  [AvatarId.NERD]: "🤓",
-  [AvatarId.SMILE]: "😊",
-  [AvatarId.PARTY]: "🥳",
-  [AvatarId.ROBOT]: "🤖",
-  [AvatarId.ALIEN]: "👾",
-  [AvatarId.GAMEPAD]: "🎮",
-}
-
-const DEFAULT_AVATAR_ID = AvatarId.GRIN
+const AVATAR_IMAGE_PATH_BY_ID: Record<AvatarId, string> = Object.fromEntries(
+  AVATAR_OPTIONS.map((option) => [option.id, option.imagePath])
+) as Record<AvatarId, string>
 
 function isAvatarId(value: string): value is AvatarId {
   return Object.values(AvatarId).includes(value as AvatarId)
 }
 
-export function getAvatarById(avatarId: string) {
+export function getAvatarImagePathById(avatarId: string) {
   if (!isAvatarId(avatarId)) {
-    return AVATAR_BY_ID[DEFAULT_AVATAR_ID]
+    return AVATAR_IMAGE_PATH_BY_ID[DEFAULT_AVATAR_ID]
   }
-  return AVATAR_BY_ID[avatarId]
+  return AVATAR_IMAGE_PATH_BY_ID[avatarId]
 }

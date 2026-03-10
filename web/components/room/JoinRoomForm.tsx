@@ -8,6 +8,7 @@ import Button, { ButtonVariant } from "../general/Button"
 import Card from "../general/Card"
 import Input from "../general/Input"
 import Logo from "../general/logo"
+import AvatarImage from "../general/AvatarImage"
 
 interface JoinRoomFormProps {
   roomId: string
@@ -66,14 +67,20 @@ export default function JoinRoomForm({
               {AVATAR_OPTIONS.map((option) => (
                 <button
                   key={option.id}
+                  type="button"
                   onClick={() => setAvatarId(option.id)}
-                  className={`text-3xl p-2 cursor-pointer transition-all hover:scale-125 ${
+                  className={`cursor-pointer rounded-full p-1 transition-all hover:scale-110 ${
                     avatarId === option.id
-                      ? "bg-background scale-110 ring-2 ring-black"
-                      : "bg-background/40 border-2 border-[var(--foreground)] hover:bg-background"
+                      ? "scale-105 ring-2 ring-[var(--foreground)]"
+                      : "opacity-75 hover:opacity-100"
                   }`}
                 >
-                  {option.avatar}
+                  <AvatarImage
+                    imagePath={option.imagePath}
+                    fallback={option.fallback}
+                    alt={option.alt}
+                    className="h-14 w-14"
+                  />
                 </button>
               ))}
             </div>

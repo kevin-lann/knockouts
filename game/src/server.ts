@@ -26,7 +26,7 @@ import {
   SCOREBOARD_NEXT_ROUND_COUNTDOWN_SECONDS,
 } from "./constants/magic-numbers"
 import { isPublicRoomId } from "./utils/roomId"
-import { getAvatarById } from "./utils/avatar"
+import { getAvatarImagePathById } from "./utils/avatar"
 import { verifyJoinToken } from "./utils/joinToken"
 import { getHighestScoringPlayers } from "./utils/playerRanking"
 
@@ -380,7 +380,8 @@ export default class GameServer implements Party.Server {
     const player: Player = {
       id: sender.id,
       name: identity.name,
-      avatar: getAvatarById(identity.avatarId),
+      avatarId: identity.avatarId,
+      avatarImagePath: getAvatarImagePathById(identity.avatarId),
       score: 0,
       isHost: shouldBeHost,
       isBot: false,
@@ -627,7 +628,8 @@ export default class GameServer implements Party.Server {
         const botPlayer: Player = {
           id: "bot",
           name: "Bot",
-          avatar: "🤖",
+          avatarId: AvatarId.ROBOT,
+          avatarImagePath: getAvatarImagePathById(AvatarId.ROBOT),
           score: 0,
           isHost: false,
           isBot: true,
