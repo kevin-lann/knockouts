@@ -30,7 +30,7 @@ export default function PlayerList({ players }: PlayerListProps) {
               imagePath={player.avatarImagePath}
               fallback={avatarFallback}
               alt={avatarAlt}
-              className="h-10 w-10"
+              className="h-16 w-16"
               fallbackClassName="text-lg"
             />
             <div className="flex-1">

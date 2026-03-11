@@ -19,7 +19,7 @@ export default function AvatarImage({
   return (
     <div
       className={cn(
-        "relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border-2 border-[var(--foreground)] bg-background",
+        "relative inline-flex h-16 w-16 items-center justify-center overflow-hidden rounded-full border-2 border-[var(--foreground)] bg-background",
         className
       )}
       aria-label={alt}
@@ -31,8 +31,8 @@ export default function AvatarImage({
         src={imagePath}
         alt={alt}
         fill
-        sizes="56px"
-        className="absolute inset-0 object-cover"
+        sizes="90px"
+        className="absolute inset-0 object-contain p-1"
         onError={(event) => {
           event.currentTarget.style.display = "none"
         }}

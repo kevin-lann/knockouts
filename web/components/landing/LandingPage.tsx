@@ -12,6 +12,15 @@ import Card from "../general/Card"
 import Input from "../general/Input"
 import AvatarImage from "../general/AvatarImage"
 
+const VISIBLE_AVATAR_COUNT = 4
+const AVATAR_ITEM_WIDTH_PX = 64
+const AVATAR_ITEM_GAP_PX = 8
+const AVATAR_VIEWPORT_PADDING_PX = 4
+const AVATAR_VIEWPORT_WIDTH_PX =
+  VISIBLE_AVATAR_COUNT * AVATAR_ITEM_WIDTH_PX +
+  (VISIBLE_AVATAR_COUNT - 1) * AVATAR_ITEM_GAP_PX +
+  AVATAR_VIEWPORT_PADDING_PX * 2
+
 export default function LandingPage() {
   const [activeTab, setActiveTab] = useState<"public" | "private">("public")
   const [name, setName] = useState("")
@@ -19,6 +28,29 @@ export default function LandingPage() {
   const [roomCode, setRoomCode] = useState("")
   const [isSearching, setIsSearching] = useState(false)
   const router = useRouter()
+  const selectedAvatarIndex = Math.max(
+    AVATAR_OPTIONS.findIndex((option) => option.id === avatarId),
+    0
+  )
+  const maxAvatarTrackStartIndex = Math.max(
+    AVATAR_OPTIONS.length - VISIBLE_AVATAR_COUNT,
+    0
+  )
+  const avatarTrackStartIndex = Math.min(
+    Math.max(selectedAvatarIndex - Math.floor(VISIBLE_AVATAR_COUNT / 2), 0),
+    maxAvatarTrackStartIndex
+  )
+
+  const handlePreviousAvatar = () => {
+    const previousIndex =
+      (selectedAvatarIndex - 1 + AVATAR_OPTIONS.length) % AVATAR_OPTIONS.length
+    setAvatarId(AVATAR_OPTIONS[previousIndex].id)
+  }
+
+  const handleNextAvatar = () => {
+    const nextIndex = (selectedAvatarIndex + 1) % AVATAR_OPTIONS.length
+    setAvatarId(AVATAR_OPTIONS[nextIndex].id)
+  }
 
   const persistProfile = () => {
     setStoredPlayerProfile({
@@ -78,26 +110,82 @@ export default function LandingPage() {
 
         <div className="mb-6">
           <label className="block  mb-2">What do you look like?</label>
-          <div className="flex gap-2 flex-wrap">
-            {AVATAR_OPTIONS.map((option) => (
+          <div className="rounded-xl border-2 border-[var(--foreground)] bg-background/60 px-3 py-4">
+            <div className="mb-3 flex items-center justify-between gap-2">
               <button
-                key={option.id}
                 type="button"
-                onClick={() => setAvatarId(option.id)}
-                className={`cursor-pointer rounded-full p-1 transition-all hover:scale-110 ${
-                  avatarId === option.id
-                    ? "scale-105 ring-2 ring-[var(--foreground)]"
-                    : "opacity-75 hover:opacity-100"
-                }`}
+                onClick={handlePreviousAvatar}
+                className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-[var(--foreground)] bg-white text-xl font-bold transition-transform hover:scale-105"
+                aria-label="Previous avatar"
               >
-                <AvatarImage
-                  imagePath={option.imagePath}
-                  fallback={option.fallback}
-                  alt={option.alt}
-                  className="h-14 w-14"
-                />
+                ←
               </button>
-            ))}
+
+              <div
+                className="overflow-hidden px-1 py-1"
+                style={{ width: `${AVATAR_VIEWPORT_WIDTH_PX}px` }}
+              >
+                <div
+                  className="flex gap-2 transition-transform duration-300 ease-out"
+                  style={{
+                    transform: `translateX(-${
+                      avatarTrackStartIndex *
+                      (AVATAR_ITEM_WIDTH_PX + AVATAR_ITEM_GAP_PX)
+                    }px)`,
+                  }}
+                >
+                  {AVATAR_OPTIONS.map((option) => (
+                    <div
+                      key={option.id}
+                      className="shrink-0"
+                    >
+                      <button
+                        type="button"
+                        onClick={() => setAvatarId(option.id)}
+                        className={`cursor-pointer rounded-full p-1 transition-all hover:scale-105 ${
+                          avatarId === option.id
+                            ? "scale-105 ring-2 ring-[var(--foreground)]"
+                            : "opacity-70 hover:opacity-100"
+                        }`}
+                        aria-label={`Select ${option.alt}`}
+                      >
+                        <AvatarImage
+                          imagePath={option.imagePath}
+                          fallback={option.fallback}
+                          alt={option.alt}
+                          className="h-14 w-14"
+                        />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={handleNextAvatar}
+                className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-[var(--foreground)] bg-white text-xl font-bold transition-transform hover:scale-105"
+                aria-label="Next avatar"
+              >
+                →
+              </button>
+            </div>
+
+            <div className="flex items-center justify-center gap-2">
+              {AVATAR_OPTIONS.map((option) => (
+                <button
+                  key={option.id}
+                  type="button"
+                  onClick={() => setAvatarId(option.id)}
+                  className={`h-2.5 w-2.5 rounded-full border border-[var(--foreground)] ${
+                    avatarId === option.id
+                      ? "bg-[var(--foreground)]"
+                      : "bg-white opacity-50"
+                  }`}
+                  aria-label={`Select ${option.alt}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
 

@@ -37,6 +37,9 @@ export enum AvatarId {
   ROBOT = "ROBOT",
   ALIEN = "ALIEN",
   GAMEPAD = "GAMEPAD",
+  PANDA = "PANDA",
+  SKULL = "SKULL",
+  SQUIDWARD = "SQUIDWARD",
 }
 
 export interface AvatarOption {
@@ -49,51 +52,63 @@ export interface AvatarOption {
 export const AVATAR_OPTIONS: ReadonlyArray<AvatarOption> = [
   {
     id: AvatarId.GRIN,
-    imagePath: "/avatars/grin.png",
-    fallback: "😀",
-    alt: "Grinning avatar",
+    imagePath: "/avatars/avacado.png",
+    fallback: "🥑",
+    alt: "Avacado avatar",
   },
   {
     id: AvatarId.COOL,
-    imagePath: "/avatars/cool.png",
-    fallback: "😎",
-    alt: "Cool avatar",
+    imagePath: "/avatars/cold.png",
+    fallback: "🥶",
+    alt: "Cold avatar",
   },
   {
     id: AvatarId.NERD,
+    imagePath: "/avatars/hot.png",
+    fallback: "🥵",
+    alt: "Hot avatar",
+  },
+  {
+    id: AvatarId.SMILE,
+    imagePath: "/avatars/hush.png",
+    fallback: "🤭",
+    alt: "Shush avatar",
+  },
+  {
+    id: AvatarId.PARTY,
+    imagePath: "/avatars/laugh.png",
+    fallback: "😂",
+    alt: "Laughing avatar",
+  },
+  {
+    id: AvatarId.ROBOT,
+    imagePath: "/avatars/monster.png",
+    fallback: "😈",
+    alt: "Monster avatar",
+  },
+  {
+    id: AvatarId.ALIEN,
     imagePath: "/avatars/nerd.png",
     fallback: "🤓",
     alt: "Nerd avatar",
   },
   {
-    id: AvatarId.SMILE,
-    imagePath: "/avatars/smile.png",
-    fallback: "😊",
-    alt: "Smiling avatar",
+    id: AvatarId.PANDA,
+    imagePath: "/avatars/panda.png",
+    fallback: "🐼",
+    alt: "Panda avatar",
   },
   {
-    id: AvatarId.PARTY,
-    imagePath: "/avatars/party.png",
-    fallback: "🥳",
-    alt: "Party avatar",
+    id: AvatarId.SKULL,
+    imagePath: "/avatars/skull.png",
+    fallback: "�",
+    alt: "Skull avatar",
   },
   {
-    id: AvatarId.ROBOT,
-    imagePath: "/avatars/robot.png",
-    fallback: "🤖",
-    alt: "Robot avatar",
-  },
-  {
-    id: AvatarId.ALIEN,
-    imagePath: "/avatars/alien.png",
-    fallback: "👾",
-    alt: "Alien avatar",
-  },
-  {
-    id: AvatarId.GAMEPAD,
-    imagePath: "/avatars/gamepad.png",
-    fallback: "🎮",
-    alt: "Gamepad avatar",
+    id: AvatarId.SQUIDWARD,
+    imagePath: "/avatars/squidward.png",
+    fallback: "🦑",
+    alt: "Squidward avatar",
   },
 ]
 
