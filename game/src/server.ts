@@ -14,6 +14,9 @@ import {
   BotDifficulty,
   ClientMessageType,
   AvatarId,
+  DEFAULT_BOT_COUNT,
+  MAX_BOT_COUNT,
+  MIN_BOT_COUNT,
   DEFAULT_MAX_ROUNDS,
   MAX_ROUNDS,
   MIN_ROUNDS,
@@ -42,6 +45,16 @@ interface PrefetchedRound {
   promise: Promise<{ question: Question; answers: Answer[] } | null>
 }
 
+const BOT_ID_PREFIX = "bot_"
+const BOT_NAME_PREFIX = "Bot "
+const BOT_AVATAR_IDS: ReadonlyArray<AvatarId> = [
+  AvatarId.NERD,
+  AvatarId.MONSTER,
+  AvatarId.PANDA,
+  AvatarId.SKULL,
+  AvatarId.SQUIDWARD,
+]
+
 export default class GameServer implements Party.Server {
   // Core state
   gameState: GameState = GameState.LOBBY
@@ -52,6 +65,7 @@ export default class GameServer implements Party.Server {
   isPublic: boolean = false // Track if room is public or private
   settings: RoomSettings = {
     botEnabled: true,
+    botCount: DEFAULT_BOT_COUNT,
     botDifficulty: BotDifficulty.EASY,
     themes: null,
     speedMultiplier: 1.0,
@@ -106,7 +120,7 @@ export default class GameServer implements Party.Server {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           roomId: this.room.id,
-          playerCount: this.players.size,
+          playerCount: this.getHumanPlayerCount(),
           maxPlayers: GameServer.MAX_PLAYERS,
           gameState: this.gameState,
         }),
@@ -122,11 +136,11 @@ export default class GameServer implements Party.Server {
       // Check if room is available for public joining
       const isAvailable =
         this.gameState === GameState.LOBBY &&
-        this.players.size < GameServer.MAX_PLAYERS
+        this.getHumanPlayerCount() < GameServer.MAX_PLAYERS
       return new Response(
         JSON.stringify({
           available: isAvailable,
-          playerCount: this.players.size,
+          playerCount: this.getHumanPlayerCount(),
           maxPlayers: GameServer.MAX_PLAYERS,
           gameState: this.gameState,
         }),
@@ -140,7 +154,7 @@ export default class GameServer implements Party.Server {
 
   onConnect(conn: Party.Connection, _ctx: Party.ConnectionContext) {
     console.log(
-      `Player connected: ${conn.id} to room ${this.room.id}, current players: ${this.players.size}`
+      `Player connected: ${conn.id} to room ${this.room.id}, current human players: ${this.getHumanPlayerCount()}`
     )
     // Don't send SYNC here - wait for JOIN_ROOM message to be processed
     // The JOIN_ROOM handler will send SYNC after adding the player to ensure they see themselves
@@ -152,10 +166,11 @@ export default class GameServer implements Party.Server {
     const player = this.players.get(conn.id)
     if (player) {
       this.players.delete(conn.id)
+      this.removeAllBotsIfNoHumans()
       this.ensureConnectedHost()
 
       // If in lobby and no players left, reset
-      if (this.players.size === 0 && this.gameState === GameState.LOBBY) {
+      if (this.getHumanPlayerCount() === 0 && this.gameState === GameState.LOBBY) {
         this.gameState = GameState.LOBBY
         this.round = 0
         this.hostClientId = null
@@ -217,9 +232,10 @@ export default class GameServer implements Party.Server {
     const leavingPlayer = this.players.get(sender.id)
     this.connectionClientIds.delete(sender.id)
     this.players.delete(sender.id)
+    this.removeAllBotsIfNoHumans()
     this.ensureConnectedHost(leavingPlayer?.isHost ?? false)
 
-    if (this.players.size === 0) {
+    if (this.getHumanPlayerCount() === 0) {
       this.stopRegistryHeartbeat()
     }
 
@@ -265,7 +281,7 @@ export default class GameServer implements Party.Server {
     msg: Extract<ClientMessage, { type: ClientMessageType.JOIN_ROOM }>,
     sender: Party.Connection
   ) {
-    if (this.players.size >= GameServer.MAX_PLAYERS) {
+    if (this.getHumanPlayerCount() >= GameServer.MAX_PLAYERS) {
       sender.send(
         JSON.stringify({
           type: ServerMessageType.ERROR,
@@ -276,7 +292,7 @@ export default class GameServer implements Party.Server {
     }
 
     // Set room type on first player join from room ID, not client input
-    const isFirstPlayer = this.players.size === 0
+    const isFirstPlayer = this.getHumanPlayerCount() === 0
     if (isFirstPlayer) {
       this.isPublic = isPublicRoomId(this.room.id)
       if (this.isPublic) {
@@ -368,7 +384,7 @@ export default class GameServer implements Party.Server {
     const shouldBeHost =
       this.hostClientId === msg.clientId ||
       (!existingHostConnectionId &&
-        (this.hostClientId === null || this.players.size === 0))
+        (this.hostClientId === null || this.getHumanPlayerCount() === 0))
 
     if (shouldBeHost) {
       this.hostClientId = msg.clientId
@@ -392,7 +408,7 @@ export default class GameServer implements Party.Server {
 
     this.players.set(sender.id, player)
     console.log(
-      `Player ${sender.id} (${identity.name}) joined. Total players: ${this.players.size}`
+      `Player ${sender.id} (${identity.name}) joined. Total human players: ${this.getHumanPlayerCount()}`
     )
     console.log(
       `Room has ${
@@ -426,7 +442,11 @@ export default class GameServer implements Party.Server {
       return
     }
 
-    if (this.players.size < 2) {
+    const humanPlayerCount = this.getHumanPlayerCount()
+    const normalizedBotCount = this.normalizeBotCount(msg.settings.botCount)
+    const botCount = msg.settings.botEnabled ? normalizedBotCount : MIN_BOT_COUNT
+
+    if (humanPlayerCount + botCount < 2) {
       sender.send(
         JSON.stringify({
           type: ServerMessageType.ERROR,
@@ -438,8 +458,10 @@ export default class GameServer implements Party.Server {
 
     this.settings = {
       ...msg.settings,
+      botCount: normalizedBotCount,
       maxRounds: this.normalizeMaxRounds(msg.settings.maxRounds),
     }
+    this.syncBotsToSettings()
     this.round = 0
     this.clearPrefetchedRound()
     this.startGame()
@@ -505,7 +527,7 @@ export default class GameServer implements Party.Server {
 
     try {
       const alivePlayers = Array.from(this.players.values()).filter(
-        (p) => !p.isBot && !p.isEliminated
+        (p) => !p.isEliminated
       )
       const alivePlayerCount = alivePlayers.length
       const prefetchedRound = this.prefetchedRound
@@ -534,7 +556,7 @@ export default class GameServer implements Party.Server {
 
       // Reset player submission states
       for (const player of this.players.values()) {
-        if (!player.isBot && !player.isEliminated) {
+        if (!player.isEliminated) {
           player.hasSubmitted = false
           player.currentAnswer = undefined
         }
@@ -616,34 +638,7 @@ export default class GameServer implements Party.Server {
 
     this.gameState = GameState.PROCESSING
 
-    // Inject bot answer if enabled
-    if (this.settings.botEnabled && this.currentQuestion) {
-      try {
-        const botAnswer = await getBotAnswer(
-          this.currentQuestion.id,
-          this.settings.botDifficulty
-        )
-
-        const botPlayer: Player = {
-          id: "bot",
-          name: "Bot",
-          avatarId: AvatarId.NERD,
-          avatarImagePath: getAvatarImagePathById(AvatarId.NERD),
-          score: 0,
-          isHost: false,
-          isBot: true,
-          isEliminated: false,
-          hasHighestScore: false,
-          currentAnswer: botAnswer.display_text,
-          hasSubmitted: true,
-        }
-
-        // Add bot to players temporarily for scoring
-        this.players.set("bot", botPlayer)
-      } catch (error) {
-        console.error("Error getting bot answer:", error)
-      }
-    }
+    await this.assignBotAnswers()
 
     // Collect all submissions
     const submissions = new Map<string, string>()
@@ -689,11 +684,6 @@ export default class GameServer implements Party.Server {
         isDuplicate,
         points,
       })
-    }
-
-    // Remove bot from players after scoring
-    if (this.settings.botEnabled) {
-      this.players.delete("bot")
     }
 
     const roundCapReached = this.round >= this.settings.maxRounds
@@ -791,9 +781,134 @@ export default class GameServer implements Party.Server {
     this.prefetchedRound = null
   }
 
+  private getHumanPlayerCount() {
+    return Array.from(this.players.values()).filter((player) => !player.isBot)
+      .length
+  }
+
+  private getBotPlayers() {
+    return Array.from(this.players.entries())
+      .filter(([, player]) => player.isBot)
+      .sort(([aId], [bId]) => this.getBotIndex(aId) - this.getBotIndex(bId))
+  }
+
+  private getBotIndex(botId: string) {
+    if (!botId.startsWith(BOT_ID_PREFIX)) {
+      return Number.MAX_SAFE_INTEGER
+    }
+
+    const index = Number.parseInt(botId.slice(BOT_ID_PREFIX.length), 10)
+    if (Number.isNaN(index)) {
+      return Number.MAX_SAFE_INTEGER
+    }
+
+    return index
+  }
+
+  private getDesiredBotCount(settings: RoomSettings) {
+    if (!settings.botEnabled) {
+      return MIN_BOT_COUNT
+    }
+    return this.normalizeBotCount(settings.botCount)
+  }
+
+  private normalizeBotCount(botCount: number | undefined): number {
+    if (typeof botCount !== "number" || !Number.isFinite(botCount)) {
+      return DEFAULT_BOT_COUNT
+    }
+
+    const normalized = Math.floor(botCount)
+    if (normalized < MIN_BOT_COUNT) {
+      return MIN_BOT_COUNT
+    }
+
+    if (normalized > MAX_BOT_COUNT) {
+      return MAX_BOT_COUNT
+    }
+
+    return normalized
+  }
+
+  private removeAllBotsIfNoHumans() {
+    if (this.getHumanPlayerCount() > 0) {
+      return
+    }
+
+    for (const [playerId, player] of this.players.entries()) {
+      if (player.isBot) {
+        this.players.delete(playerId)
+      }
+    }
+  }
+
+  private syncBotsToSettings() {
+    const desiredBotCount = this.getDesiredBotCount(this.settings)
+    const existingBots = this.getBotPlayers()
+
+    if (existingBots.length > desiredBotCount) {
+      const botsToRemove = existingBots.slice(desiredBotCount)
+      for (const [botId] of botsToRemove) {
+        this.players.delete(botId)
+      }
+    }
+
+    for (let index = 1; index <= desiredBotCount; index++) {
+      const botId = `${BOT_ID_PREFIX}${index}`
+      const existingBot = this.players.get(botId)
+      if (existingBot) {
+        existingBot.isEliminated = false
+        existingBot.hasSubmitted = false
+        existingBot.currentAnswer = undefined
+        continue
+      }
+
+      const avatarId = BOT_AVATAR_IDS[(index - 1) % BOT_AVATAR_IDS.length]
+      this.players.set(botId, {
+        id: botId,
+        name: `${BOT_NAME_PREFIX}${index}`,
+        avatarId,
+        avatarImagePath: getAvatarImagePathById(avatarId),
+        score: 0,
+        isHost: false,
+        isBot: true,
+        isEliminated: false,
+        hasHighestScore: false,
+        hasSubmitted: false,
+      })
+    }
+  }
+
+  private async assignBotAnswers() {
+    if (!this.currentQuestion) {
+      return
+    }
+
+    const botPlayers = this.getBotPlayers()
+    if (botPlayers.length === 0) {
+      return
+    }
+
+    await Promise.all(
+      botPlayers.map(async ([, botPlayer]) => {
+        try {
+          const botAnswer = await getBotAnswer(
+            this.currentQuestion!.id,
+            this.settings.botDifficulty
+          )
+          botPlayer.currentAnswer = botAnswer.display_text
+          botPlayer.hasSubmitted = true
+        } catch (error) {
+          botPlayer.currentAnswer = undefined
+          botPlayer.hasSubmitted = false
+          console.error(`Error getting answer for ${botPlayer.name}:`, error)
+        }
+      })
+    )
+  }
+
   private prefetchNextRound() {
     const alivePlayerCount = Array.from(this.players.values()).filter(
-      (p) => !p.isBot && !p.isEliminated
+      (p) => !p.isEliminated
     ).length
 
     const round = this.round + 1
@@ -813,9 +928,14 @@ export default class GameServer implements Party.Server {
   }
 
   private isGameEnded(): boolean {
-    const alivePlayers = Array.from(this.players.values()).filter(
-      (p) => !p.isBot && !p.isEliminated
+    const humanPlayers = Array.from(this.players.values()).filter(
+      (p) => !p.isBot
     )
+    if (humanPlayers.length <= 1) {
+      return false
+    }
+
+    const alivePlayers = humanPlayers.filter((p) => !p.isEliminated)
     return alivePlayers.length <= 1
   }
 
@@ -870,12 +990,16 @@ export default class GameServer implements Party.Server {
    * If a player reconnects and is the room's original host, they should be promoted back to host.
    */
   private ensureConnectedHost(forceFallback = false) {
-    if (this.players.size === 0) {
+    const humanPlayers = Array.from(this.players.entries()).filter(
+      ([, player]) => !player.isBot
+    )
+
+    if (humanPlayers.length === 0) {
       this.hostClientId = null
       return
     }
 
-    const currentHost = Array.from(this.players.values()).find((p) => p.isHost)
+    const currentHost = humanPlayers.find(([, player]) => player.isHost)?.[1]
     if (currentHost) {
       const hostClientId = this.connectionClientIds.get(currentHost.id)
       if (hostClientId) {
@@ -898,7 +1022,7 @@ export default class GameServer implements Party.Server {
       return
     }
 
-    const [fallbackConnId, fallbackHost] = Array.from(this.players.entries())[0]
+    const [fallbackConnId, fallbackHost] = humanPlayers[0]
     for (const player of this.players.values()) {
       player.isHost = false
     }

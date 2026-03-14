@@ -2,12 +2,15 @@
 
 import {
   BotDifficulty,
+  MAX_BOT_COUNT,
   MAX_ROUNDS,
+  MIN_BOT_COUNT,
   MIN_ROUNDS,
   type RoomSettings,
 } from "@shared/types"
 import Checkbox from "@/components/general/Checkbox"
 import Slider from "@/components/general/Slider"
+import Input from "@/components/general/Input"
 import { THEMES } from "@shared/types"
 import { useState } from "react"
 import { X } from "lucide-react"
@@ -46,22 +49,46 @@ export default function RoomSettingsPanel({
       </div>
 
       {settings.botEnabled && (
-        <div>
-          <label className="block mb-2">Bot Difficulty</label>
-          <select
-            value={settings.botDifficulty}
-            onChange={(e) =>
-              onChange({
-                ...settings,
-                botDifficulty: e.target.value as BotDifficulty,
-              })
-            }
-            className="w-full px-3 py-2 bg-white border-2 border-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-black/20"
-          >
-            <option value={BotDifficulty.EASY}>Easy</option>
-            <option value={BotDifficulty.MEDIUM}>Medium</option>
-            <option value={BotDifficulty.CHAOS}>Chaos</option>
-          </select>
+        <div className="space-y-4">
+          <div>
+            <label className="block mb-2">Bot Count</label>
+            <Input
+              type="number"
+              min={MIN_BOT_COUNT}
+              max={MAX_BOT_COUNT}
+              value={settings.botCount}
+              onChange={(e) =>
+                onChange({
+                  ...settings,
+                  botCount: Math.max(
+                    MIN_BOT_COUNT,
+                    Math.min(
+                      MAX_BOT_COUNT,
+                      Number.parseInt(e.target.value || "0", 10) || 0
+                    )
+                  ),
+                })
+              }
+            />
+          </div>
+
+          <div>
+            <label className="block mb-2">Bot Difficulty</label>
+            <select
+              value={settings.botDifficulty}
+              onChange={(e) =>
+                onChange({
+                  ...settings,
+                  botDifficulty: e.target.value as BotDifficulty,
+                })
+              }
+              className="w-full px-3 py-2 bg-white border-2 border-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-black/20"
+            >
+              <option value={BotDifficulty.EASY}>Easy</option>
+              <option value={BotDifficulty.MEDIUM}>Medium</option>
+              <option value={BotDifficulty.CHAOS}>Chaos</option>
+            </select>
+          </div>
         </div>
       )}
 

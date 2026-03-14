@@ -28,6 +28,10 @@ export enum BotDifficulty {
   CHAOS = "chaos",
 }
 
+export const DEFAULT_BOT_COUNT = 1
+export const MIN_BOT_COUNT = 0
+export const MAX_BOT_COUNT = 10
+
 export enum AvatarId {
   AVACADO = "AVACADO",
   COLD = "COLD",
@@ -124,6 +128,7 @@ export const MAX_ROUNDS = 200
 
 export interface RoomSettings {
   botEnabled: boolean
+  botCount: number
   botDifficulty: BotDifficulty
   themes: string[] | null // list of slugs
   speedMultiplier: number
