@@ -38,8 +38,8 @@ interface LockedIdentity {
 interface PrefetchedRound {
   round: number
   alivePlayerCount: number
-  theme: string | null
-  promise: Promise<{ question: Question, answers: Answer[] } | null>
+  themes: string[] | null // list of slugs
+  promise: Promise<{ question: Question; answers: Answer[] } | null>
 }
 
 export default class GameServer implements Party.Server {
@@ -53,7 +53,7 @@ export default class GameServer implements Party.Server {
   settings: RoomSettings = {
     botEnabled: true,
     botDifficulty: BotDifficulty.EASY,
-    theme: null,
+    themes: null,
     speedMultiplier: 1.0,
     maxRounds: DEFAULT_MAX_ROUNDS,
   }
@@ -509,13 +509,12 @@ export default class GameServer implements Party.Server {
       )
       const alivePlayerCount = alivePlayers.length
       const prefetchedRound = this.prefetchedRound
-      let roundData: { question: Question, answers: Answer[] } | null = null
+      let roundData: { question: Question; answers: Answer[] } | null = null
 
       if (
         prefetchedRound &&
         prefetchedRound.round === this.round &&
-        prefetchedRound.alivePlayerCount === alivePlayerCount &&
-        prefetchedRound.theme === this.settings.theme
+        prefetchedRound.alivePlayerCount === alivePlayerCount
       ) {
         roundData = await prefetchedRound.promise
       }
@@ -526,7 +525,7 @@ export default class GameServer implements Party.Server {
         roundData = await fetchQuestion(
           alivePlayerCount,
           this.round,
-          this.settings.theme || undefined
+          this.settings.themes || undefined
         )
       }
 
@@ -798,13 +797,13 @@ export default class GameServer implements Party.Server {
     ).length
 
     const round = this.round + 1
-    const theme = this.settings.theme
+    const themes = this.settings.themes
 
     this.prefetchedRound = {
       round,
       alivePlayerCount,
-      theme,
-      promise: fetchQuestion(alivePlayerCount, round, theme || undefined)
+      themes,
+      promise: fetchQuestion(alivePlayerCount, round, themes ?? undefined)
         .then(({ question, answers }) => ({ question, answers }))
         .catch((error) => {
           console.error("Error prefetching next round question:", error)

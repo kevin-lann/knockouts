@@ -7,7 +7,7 @@ import {
 export const DEFAULT_SETTINGS: RoomSettings = {
   botEnabled: true,
   botDifficulty: BotDifficulty.MEDIUM,
-  theme: null,
+  themes: null,
   speedMultiplier: 1.0,
   maxRounds: DEFAULT_MAX_ROUNDS,
 }

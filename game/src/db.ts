@@ -65,10 +65,10 @@ interface WeightedQuestion extends QuestionDbRow {
 export async function fetchQuestion(
   alivePlayerCount: number,
   round: number,
-  theme?: string
+  themes?: string[]
 ): Promise<QuestionWithAnswers> {
   if (FEATURE_FLAGS.RANDOM_QUESTION_SELECTION) {
-    return fetchRandomQuestion(alivePlayerCount, round, theme)
+    return fetchRandomQuestion(alivePlayerCount, round, themes)
   }
   // First, filter out questions with insufficient answers
   // Build the questions here because we don't want to fetch the db twice per call to this function
@@ -88,11 +88,12 @@ export async function fetchQuestion(
     WHERE q.answer_count_cache >= $1
   `
 
-  const params: (string | number)[] = [alivePlayerCount]
+  const params: (string | number | string[])[] = [alivePlayerCount]
 
-  if (theme) {
-    query += ` AND q.theme_slug = $2`
-    params.push(theme)
+  if (themes && themes.length > 0) {
+    const paramIndex = params.length + 1
+    query += ` AND q.theme_slug = ANY($${paramIndex}::text[])`
+    params.push(themes)
   }
 
   query += `
@@ -168,14 +169,15 @@ export async function fetchQuestion(
 async function fetchRandomQuestion(
   alivePlayerCount: number,
   _round: number,
-  theme?: string
+  themes?: string[]
 ): Promise<QuestionWithAnswers> {
-  const params: (string | number)[] = [alivePlayerCount]
+  const params: (string | number | string[])[] = [alivePlayerCount]
   let themeFilter = ""
 
-  if (theme) {
-    themeFilter = "AND q.theme_slug = $2"
-    params.push(theme)
+  if (themes && themes.length > 0) {
+    const paramIndex = params.length + 1
+    themeFilter = `AND q.theme_slug = ANY($${paramIndex}::text[])`
+    params.push(themes)
   }
 
   const query = `
@@ -255,17 +257,17 @@ export async function getBotAnswer(
     case BotDifficulty.EASY:
       // Popular answers (rank 20-50)
       rankFilter = "AND popularity_rank BETWEEN $2 AND $3"
-      params.push(20, 50)
+      params.push(20, 100)
       break
     case BotDifficulty.MEDIUM:
       // Medium popularity (rank 5-20)
       rankFilter = "AND popularity_rank BETWEEN $2 AND $3"
-      params.push(5, 20)
+      params.push(5, 30)
       break
     case BotDifficulty.CHAOS:
       // Most common answer (rank 1)
-      rankFilter = "AND popularity_rank = $2"
-      params.push(1)
+      rankFilter = "AND popularity_rank BETWEEN $2 AND $1"
+      params.push(1, 5)
       break
   }
 

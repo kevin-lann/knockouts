@@ -125,10 +125,28 @@ export const MAX_ROUNDS = 200
 export interface RoomSettings {
   botEnabled: boolean
   botDifficulty: BotDifficulty
-  theme: string | null
+  themes: string[] | null // list of slugs
   speedMultiplier: number
   maxRounds: number
 }
+
+export const THEMES: ReadonlyArray<string> = [
+  'MOVIES_AND_TV',
+  'MUSIC',
+  'VIDEO_GAMES',
+  'BOOKS',
+  'INTERNET_AND_SOCIAL_MEDIA',
+  'TECH',
+  'BRANDS_AND_BUSINESSES',
+  'FOOD_AND_DRINK',
+  'SPORTS',
+  'GEOGRAPHY',
+  'HISTORY',
+  'SCIENCE_AND_NATURE',
+  'ANIMALS',
+  'LANGUAGE_AND_WORDS',
+  'FLAGS'
+]
 
 export interface Theme {
   id: number

@@ -15,7 +15,8 @@ import AvatarImage from "../general/AvatarImage"
 const VISIBLE_AVATAR_COUNT = 4
 const AVATAR_ITEM_WIDTH_PX = 64
 const AVATAR_ITEM_GAP_PX = 8
-const AVATAR_VIEWPORT_PADDING_PX = 4
+const AVATAR_TRAILING_DUMMY_COUNT = 1
+const AVATAR_VIEWPORT_PADDING_PX = 8
 const AVATAR_VIEWPORT_WIDTH_PX =
   VISIBLE_AVATAR_COUNT * AVATAR_ITEM_WIDTH_PX +
   (VISIBLE_AVATAR_COUNT - 1) * AVATAR_ITEM_GAP_PX +
@@ -33,7 +34,9 @@ export default function LandingPage() {
     0
   )
   const maxAvatarTrackStartIndex = Math.max(
-    AVATAR_OPTIONS.length - VISIBLE_AVATAR_COUNT,
+    AVATAR_OPTIONS.length +
+      AVATAR_TRAILING_DUMMY_COUNT -
+      VISIBLE_AVATAR_COUNT,
     0
   )
   const avatarTrackStartIndex = Math.min(
@@ -122,7 +125,7 @@ export default function LandingPage() {
               </button>
 
               <div
-                className="overflow-hidden px-1 py-1"
+                className="overflow-hidden px-2 py-1"
                 style={{ width: `${AVATAR_VIEWPORT_WIDTH_PX}px` }}
               >
                 <div
@@ -158,6 +161,10 @@ export default function LandingPage() {
                       </button>
                     </div>
                   ))}
+                  <div
+                    aria-hidden="true"
+                    className="shrink-0 h-16 w-16 opacity-0 pointer-events-none"
+                  />
                 </div>
               </div>
 
