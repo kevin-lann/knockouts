@@ -628,8 +628,8 @@ export default class GameServer implements Party.Server {
         const botPlayer: Player = {
           id: "bot",
           name: "Bot",
-          avatarId: AvatarId.ROBOT,
-          avatarImagePath: getAvatarImagePathById(AvatarId.ROBOT),
+          avatarId: AvatarId.NERD,
+          avatarImagePath: getAvatarImagePathById(AvatarId.NERD),
           score: 0,
           isHost: false,
           isBot: true,
