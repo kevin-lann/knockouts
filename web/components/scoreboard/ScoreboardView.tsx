@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useGameStore } from "@/lib/store"
 import { ClientMessageType, type ClientMessage } from "@shared/types"
 import PlayerList from "../lobby/PlayerList"
@@ -26,14 +26,33 @@ export default function ScoreboardView({ send }: ScoreboardViewProps) {
     .filter((player) => player.isEliminated)
     .map((player) => player.id)
 
-  const handleNextRound = () => {
+  const handleNextRound = useCallback(() => {
     if (isStartingNextRound) {
       return
     }
 
     setIsStartingNextRound(true)
     send({ type: ClientMessageType.NEXT_ROUND })
-  }
+  }, [isStartingNextRound, send])
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Enter" || event.repeat) {
+        return
+      }
+
+      if (!isCurrentPlayerHost || isStartingNextRound) {
+        return
+      }
+
+      handleNextRound()
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [handleNextRound, isCurrentPlayerHost, isStartingNextRound])
 
   return (
     <div className="min-h-screen p-8">

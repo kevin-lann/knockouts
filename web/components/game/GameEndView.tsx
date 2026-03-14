@@ -20,7 +20,7 @@ export default function GameEndView({ send }: GameEndViewProps) {
   const isCurrentPlayerHost = players.find(
     (player) => player.id === playerId
   )?.isHost
-  const onePlayerRemaining = players.length === 1
+  const onePlayerRemaining = players.filter((player) => !player.isBot).length === 1
 
   const handleNewGame = () => {
     send({ type: ClientMessageType.START_GAME, settings })

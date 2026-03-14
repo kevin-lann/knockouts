@@ -1,7 +1,12 @@
 "use client"
 
 import { useGameStore } from "@/lib/store"
-import { ClientMessageType, GameState, type ClientMessage } from "@shared/types"
+import {
+  ClientMessageType,
+  GameState,
+  MIN_BOT_COUNT,
+  type ClientMessage,
+} from "@shared/types"
 import PlayerList from "./PlayerList"
 import RoomSettingsPanel from "./RoomSettingsPanel"
 import { toast } from "react-hot-toast"
@@ -25,9 +30,15 @@ export default function LobbyView({ roomId, send }: LobbyViewProps) {
 
   // Ensure players is always an array
   const playersArray = Array.isArray(players) ? players : []
+  const humanPlayerCount = playersArray.filter((player) => !player.isBot).length
+  const configuredBotCount = settings.botEnabled
+    ? Math.max(MIN_BOT_COUNT, settings.botCount)
+    : 0
+  const totalContenderCount = humanPlayerCount + configuredBotCount
+  const canStartGame = totalContenderCount >= 2 && !isWaitingForFirstQuestion
 
   const handleStartGame = () => {
-    if (playersArray.length < 2) {
+    if (totalContenderCount < 2) {
       toast.error("Need at least 2 players to start")
       return
     }
@@ -36,7 +47,7 @@ export default function LobbyView({ roomId, send }: LobbyViewProps) {
 
   return (
     <div className="min-h-screen p-8">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <Card className="p-8">
           <div className="flex justify-between items-center mb-8">
             <h1 className={`text-3xl font-bold ${HEADER_FONT.className}`}>
@@ -52,9 +63,9 @@ export default function LobbyView({ roomId, send }: LobbyViewProps) {
             <div>
               <h2 className="text-xl font-semibold mb-4">Players</h2>
               <PlayerList players={playersArray} />
-              {playersArray.length < 2 && (
+              {totalContenderCount < 2 && (
                 <p className="mt-4">
-                  Waiting for more players... ({playersArray.length}/2+)
+                  Waiting for more players... ({totalContenderCount}/2+)
                 </p>
               )}
             </div>
@@ -65,7 +76,7 @@ export default function LobbyView({ roomId, send }: LobbyViewProps) {
                 <RoomSettingsPanel settings={settings} onChange={setSettings} />
                 <Button
                   onClick={handleStartGame}
-                  disabled={playersArray.length < 2 || isWaitingForFirstQuestion}
+                  disabled={!canStartGame}
                   variant={ButtonVariant.YELLOW}
                   className="w-full mt-6 py-3"
                 >

@@ -67,7 +67,7 @@ export default function GameView({ roomId, send }: GameViewProps) {
 
           <div className="mt-8">
             <h3 className="text-lg font-semibold mb-4">
-              Players ({players.filter((p) => p.hasSubmitted).length}/
+              Players ({players.filter((p) => !p.isBot && p.hasSubmitted).length}/
               {players.filter((p) => !p.isBot).length} submitted)
             </h3>
             <PlayerList players={players} />

@@ -4,6 +4,7 @@ import { IconId, type Player } from "@shared/types"
 import { AVATAR_OPTIONS } from "@/app/constants/avatars"
 import { getIconById } from "../../lib/icon"
 import AvatarImage from "../general/AvatarImage"
+import { useGameStore } from "@/lib/store"
 
 interface PlayerListProps {
   players: Player[]
@@ -13,6 +14,7 @@ export default function PlayerList({ players }: PlayerListProps) {
   const avatarOptionById = Object.fromEntries(
     AVATAR_OPTIONS.map((option) => [option.id, option])
   )
+  const playerId = useGameStore((state) => state.playerId)
 
   return (
     <div className="max-h-80 space-y-2 overflow-y-auto pr-1">
@@ -30,7 +32,7 @@ export default function PlayerList({ players }: PlayerListProps) {
               imagePath={player.avatarImagePath}
               fallback={avatarFallback}
               alt={avatarAlt}
-              className="h-16 w-16"
+              className={`h-16 w-16 ${player.id === playerId ? "border-brand-yellow" : ""}`}
               fallbackClassName="text-lg"
             />
             <div className="flex-1">

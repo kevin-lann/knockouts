@@ -28,15 +28,18 @@ export enum BotDifficulty {
   CHAOS = "chaos",
 }
 
+export const DEFAULT_BOT_COUNT = 1
+export const MIN_BOT_COUNT = 0
+export const MAX_BOT_COUNT = 10
+
 export enum AvatarId {
-  GRIN = "GRIN",
-  COOL = "COOL",
+  AVACADO = "AVACADO",
+  COLD = "COLD",
+  HOT = "HOT",
+  HUSH = "HUSH",
+  LAUGH = "LAUGH",
+  MONSTER = "MONSTER",
   NERD = "NERD",
-  SMILE = "SMILE",
-  PARTY = "PARTY",
-  ROBOT = "ROBOT",
-  ALIEN = "ALIEN",
-  GAMEPAD = "GAMEPAD",
   PANDA = "PANDA",
   SKULL = "SKULL",
   SQUIDWARD = "SQUIDWARD",
@@ -51,43 +54,43 @@ export interface AvatarOption {
 
 export const AVATAR_OPTIONS: ReadonlyArray<AvatarOption> = [
   {
-    id: AvatarId.GRIN,
+    id: AvatarId.AVACADO,
     imagePath: "/avatars/avacado.png",
     fallback: "🥑",
     alt: "Avacado avatar",
   },
   {
-    id: AvatarId.COOL,
+    id: AvatarId.COLD,
     imagePath: "/avatars/cold.png",
     fallback: "🥶",
     alt: "Cold avatar",
   },
   {
-    id: AvatarId.NERD,
+    id: AvatarId.HOT,
     imagePath: "/avatars/hot.png",
     fallback: "🥵",
     alt: "Hot avatar",
   },
   {
-    id: AvatarId.SMILE,
+    id: AvatarId.HUSH,
     imagePath: "/avatars/hush.png",
     fallback: "🤭",
     alt: "Shush avatar",
   },
   {
-    id: AvatarId.PARTY,
+    id: AvatarId.LAUGH,
     imagePath: "/avatars/laugh.png",
     fallback: "😂",
     alt: "Laughing avatar",
   },
   {
-    id: AvatarId.ROBOT,
+    id: AvatarId.MONSTER,
     imagePath: "/avatars/monster.png",
     fallback: "😈",
     alt: "Monster avatar",
   },
   {
-    id: AvatarId.ALIEN,
+    id: AvatarId.NERD,
     imagePath: "/avatars/nerd.png",
     fallback: "🤓",
     alt: "Nerd avatar",
@@ -112,7 +115,7 @@ export const AVATAR_OPTIONS: ReadonlyArray<AvatarOption> = [
   },
 ]
 
-export const DEFAULT_AVATAR_ID = AvatarId.GRIN
+export const DEFAULT_AVATAR_ID = AvatarId.AVACADO
 
 export enum IconId {
   CROWN = "CROWN",
@@ -125,11 +128,30 @@ export const MAX_ROUNDS = 200
 
 export interface RoomSettings {
   botEnabled: boolean
+  botCount: number
   botDifficulty: BotDifficulty
-  theme: string | null
+  themes: string[] | null // list of slugs
   speedMultiplier: number
   maxRounds: number
 }
+
+export const THEMES: ReadonlyArray<string> = [
+  'MOVIES_AND_TV',
+  'MUSIC',
+  'VIDEO_GAMES',
+  'BOOKS',
+  'INTERNET_AND_SOCIAL_MEDIA',
+  'TECH',
+  'BRANDS_AND_BUSINESSES',
+  'FOOD_AND_DRINK',
+  'SPORTS',
+  'GEOGRAPHY',
+  'HISTORY',
+  'SCIENCE_AND_NATURE',
+  'ANIMALS',
+  'LANGUAGE_AND_WORDS',
+  'FLAGS'
+]
 
 export interface Theme {
   id: number
