@@ -16,6 +16,7 @@ import Button, { ButtonVariant } from "../general/Button"
 import Card from "../general/Card"
 import CopyRoomLinkButton from "../general/CopyRoomLinkButton"
 import { HEADER_FONT } from "@/app/constants/font"
+import useDevice from "@/hooks/useDevice"
 
 interface LobbyViewProps {
   roomId: string
@@ -36,6 +37,7 @@ export default function LobbyView({ roomId, send }: LobbyViewProps) {
     : 0
   const totalContenderCount = humanPlayerCount + configuredBotCount
   const canStartGame = totalContenderCount >= 2 && !isWaitingForFirstQuestion
+  const { isMobile } = useDevice()
 
   const handleStartGame = () => {
     if (totalContenderCount < 2) {
@@ -49,7 +51,7 @@ export default function LobbyView({ roomId, send }: LobbyViewProps) {
     <div className="min-h-screen p-8">
       <div className="max-w-6xl mx-auto">
         <Card className="p-8">
-          <div className="flex justify-between items-center mb-8">
+          <div className={`flex justify-between items-center mb-8 ${isMobile ? "flex-col gap-2" : ""}`}>
             <h1 className={`text-3xl font-bold ${HEADER_FONT.className}`}>
               Room: {roomId}
             </h1>

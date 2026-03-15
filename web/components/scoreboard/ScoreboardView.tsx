@@ -8,6 +8,7 @@ import LeaveRoomButton from "../room/LeaveRoomButton"
 import Button, { ButtonVariant } from "../general/Button"
 import Card from "../general/Card"
 import { HEADER_FONT } from "@/app/constants/font"
+import useDevice from "@/hooks/useDevice"
 
 interface ScoreboardViewProps {
   roomId: string
@@ -21,6 +22,7 @@ export default function ScoreboardView({ send }: ScoreboardViewProps) {
   const isCurrentPlayerHost = players.find(
     (player) => player.id === playerId
   )?.isHost
+  const { isMobile } = useDevice()
   const countdownLabel = Math.max(timer, 0)
   const humanPlayerIdSet = useMemo(
     () => new Set(players.filter((player) => !player.isBot).map((player) => player.id)),
@@ -75,7 +77,7 @@ export default function ScoreboardView({ send }: ScoreboardViewProps) {
       <div className="max-w-4xl mx-auto">
         <Card className="p-8 relative">
           <h1
-            className={`text-3xl font-bold mb-2 text-center ${HEADER_FONT.className}`}
+            className={`text-3xl font-bold mb-2 ${isMobile ? "text-left" : "text-center"} ${HEADER_FONT.className}`}
           >
             Round {round} Results
           </h1>
