@@ -14,6 +14,7 @@ export interface Player {
   avatarId: AvatarId
   avatarImagePath: string
   score: number
+  streak: number
   isHost: boolean
   isBot: boolean
   isEliminated: boolean

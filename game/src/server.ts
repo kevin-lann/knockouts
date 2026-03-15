@@ -259,6 +259,7 @@ export default class GameServer implements Party.Server {
 
     for (const existingPlayer of this.players.values()) {
       existingPlayer.score = 0
+      existingPlayer.streak = 0
       existingPlayer.isEliminated = false
       existingPlayer.hasHighestScore = false
       existingPlayer.hasSubmitted = false
@@ -399,6 +400,7 @@ export default class GameServer implements Party.Server {
       avatarId: identity.avatarId,
       avatarImagePath: getAvatarImagePathById(identity.avatarId),
       score: 0,
+      streak: 0,
       isHost: shouldBeHost,
       isBot: false,
       isEliminated: false,
@@ -669,8 +671,10 @@ export default class GameServer implements Party.Server {
       const isDuplicate = duplicates.has(playerId)
       const isValid = validated !== null && validated !== undefined
       const points = isValid && !isDuplicate ? 1 : 0
+      const didAnswerCorrectly = isValid && !isDuplicate
 
       player.score += points
+      player.streak = didAnswerCorrectly ? player.streak + 1 : 0
 
       if (!player.isBot && isDuplicate) {
         player.isEliminated = true
@@ -869,6 +873,7 @@ export default class GameServer implements Party.Server {
         avatarId,
         avatarImagePath: getAvatarImagePathById(avatarId),
         score: 0,
+        streak: 0,
         isHost: false,
         isBot: true,
         isEliminated: false,
@@ -967,6 +972,7 @@ export default class GameServer implements Party.Server {
       player.hasSubmitted = false
       player.currentAnswer = undefined
       player.score = 0
+      player.streak = 0
     }
     this.round = 0
     this.gameState = GameState.GAME_ENDED
