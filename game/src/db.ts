@@ -257,12 +257,12 @@ export async function getBotAnswer(
     case BotDifficulty.EASY:
       // Popular answers (rank 20-50)
       rankFilter = "AND popularity_rank BETWEEN $2 AND $3"
-      params.push(20, 100)
+      params.push(1, 100)
       break
     case BotDifficulty.MEDIUM:
       // Medium popularity (rank 5-20)
       rankFilter = "AND popularity_rank BETWEEN $2 AND $3"
-      params.push(5, 30)
+      params.push(1, 30)
       break
     case BotDifficulty.CHAOS:
       // Most common answer (rank 1)
