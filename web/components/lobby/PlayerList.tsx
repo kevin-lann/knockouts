@@ -8,9 +8,15 @@ import { useGameStore } from "@/lib/store"
 
 interface PlayerListProps {
   players: Player[]
+  pulsingStreakPlayerIds?: ReadonlySet<string>
+  streakPulseRound?: number
 }
 
-export default function PlayerList({ players }: PlayerListProps) {
+export default function PlayerList({
+  players,
+  pulsingStreakPlayerIds,
+  streakPulseRound,
+}: PlayerListProps) {
   const avatarOptionById = Object.fromEntries(
     AVATAR_OPTIONS.map((option) => [option.id, option])
   )
@@ -22,6 +28,12 @@ export default function PlayerList({ players }: PlayerListProps) {
         const avatarOption = avatarOptionById[player.avatarId]
         const avatarFallback = avatarOption?.fallback ?? "🙂"
         const avatarAlt = avatarOption?.alt ?? "Player avatar"
+        const shouldPulseStreak = pulsingStreakPlayerIds?.has(player.id) ?? false
+        const pulseAnimationClass = shouldPulseStreak
+          ? streakPulseRound && streakPulseRound % 2 === 0
+            ? "animate-[pulse_600ms_ease-in-out_3]"
+            : "animate-[pulse_700ms_ease-in-out_3]"
+          : ""
 
         return (
           <div
@@ -39,6 +51,20 @@ export default function PlayerList({ players }: PlayerListProps) {
               <div className="flex items-center gap-2">
                 <span className="font-medium">{player.name}</span>
                 {player.hasHighestScore && getIconById(IconId.CROWN)}
+                {!player.isBot && player.streak > 0 && (
+                  <span
+                    className={`relative inline-flex h-6 w-6 items-center justify-center ${pulseAnimationClass}`}
+                    title={`Current streak: ${player.streak}`}
+                    aria-label={`${player.streak} correct answers in a row`}
+                  >
+                    <span className="text-xl leading-none" aria-hidden>
+                      🔥
+                    </span>
+                    <span className="flex text-[var(--foreground)] items-center justify-center text-[10px] font-bold">
+                      {player.streak}
+                    </span>
+                  </span>
+                )}
                 {player.isHost && (
                   <span className="text-xs bg-brand-yellow border-2 border-[var(--foreground)] px-2 py-1">
                     Host

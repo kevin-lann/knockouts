@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import { useGameStore } from "@/lib/store"
 import { ClientMessageType, type ClientMessage } from "@shared/types"
 import PlayerList from "../lobby/PlayerList"
@@ -22,9 +22,25 @@ export default function ScoreboardView({ send }: ScoreboardViewProps) {
     (player) => player.id === playerId
   )?.isHost
   const countdownLabel = Math.max(timer, 0)
+  const humanPlayerIdSet = useMemo(
+    () => new Set(players.filter((player) => !player.isBot).map((player) => player.id)),
+    [players]
+  )
   const eliminatedPlayers = players
     .filter((player) => player.isEliminated)
     .map((player) => player.id)
+  const pulsingStreakPlayerIds = useMemo(
+    () =>
+      new Set(
+        (roundResults ?? [])
+          .filter(
+            (result) =>
+              result.points > 0 && humanPlayerIdSet.has(result.playerId)
+          )
+          .map((result) => result.playerId)
+      ),
+    [humanPlayerIdSet, roundResults]
+  )
 
   const handleNextRound = useCallback(() => {
     if (isStartingNextRound) {
@@ -116,7 +132,11 @@ export default function ScoreboardView({ send }: ScoreboardViewProps) {
             )}
             <div className="flex-1 min-w-0">
               <h2 className="text-xl font-semibold mb-4">Leaderboard</h2>
-              <PlayerList players={players.sort((a, b) => b.score - a.score)} />
+              <PlayerList
+                players={[...players].sort((a, b) => b.score - a.score)}
+                pulsingStreakPlayerIds={pulsingStreakPlayerIds}
+                streakPulseRound={round}
+              />
             </div>
           </div>
 
