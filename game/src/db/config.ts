@@ -4,6 +4,8 @@ const DEFAULT_SUPABASE_QUERY_TIMEOUT_MS = 10000
 
 let supabaseClient: SupabaseClient | null = null
 let databaseUrlOverride: string | undefined
+let supabaseUrlOverride: string | undefined
+let supabaseKeyOverride: string | undefined
 
 function parseSupabaseProjectRefFromDatabaseUrl(
   databaseUrl?: string
@@ -27,7 +29,7 @@ function parseSupabaseProjectRefFromDatabaseUrl(
 }
 
 function getSupabaseUrl(databaseUrl?: string): string {
-  const explicitUrl = process.env.SUPABASE_URL?.trim()
+  const explicitUrl = supabaseUrlOverride || process.env.SUPABASE_URL?.trim()
   if (explicitUrl) {
     return explicitUrl
   }
@@ -43,7 +45,8 @@ function getSupabaseUrl(databaseUrl?: string): string {
 }
 
 function getSupabaseKey(): string {
-  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim()
+  const serviceRoleKey =
+    supabaseKeyOverride || process.env.SUPABASE_SERVICE_ROLE_KEY?.trim()
   if (serviceRoleKey) {
     return serviceRoleKey
   }
@@ -106,14 +109,25 @@ export async function executeSupabase<T>(
 
 export function configureDatabase(
   databaseUrl?: string,
-  _databaseProvider?: string
+  _databaseProvider?: string,
+  supabaseUrl?: string,
+  supabaseKey?: string
 ) {
   const normalizedUrl = databaseUrl?.trim()
-  if (databaseUrlOverride === normalizedUrl) {
+  const normalizedSupabaseUrl = supabaseUrl?.trim()
+  const normalizedSupabaseKey = supabaseKey?.trim()
+
+  if (
+    databaseUrlOverride === normalizedUrl &&
+    supabaseUrlOverride === normalizedSupabaseUrl &&
+    supabaseKeyOverride === normalizedSupabaseKey
+  ) {
     return
   }
 
   databaseUrlOverride = normalizedUrl
+  supabaseUrlOverride = normalizedSupabaseUrl
+  supabaseKeyOverride = normalizedSupabaseKey
   supabaseClient = null
 }
 

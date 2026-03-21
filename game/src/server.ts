@@ -91,7 +91,20 @@ export default class GameServer implements Party.Server {
       typeof room.env.DATABASE_URL === "string"
         ? room.env.DATABASE_URL
         : undefined
-    configureDatabase(roomDatabaseUrl)
+    const roomSupabaseUrl =
+      typeof room.env.SUPABASE_URL === "string"
+        ? room.env.SUPABASE_URL
+        : undefined
+    const roomSupabaseServiceRoleKey =
+      typeof room.env.SUPABASE_SERVICE_ROLE_KEY === "string"
+        ? room.env.SUPABASE_SERVICE_ROLE_KEY
+        : undefined
+    configureDatabase(
+      roomDatabaseUrl,
+      undefined,
+      roomSupabaseUrl,
+      roomSupabaseServiceRoleKey
+    )
   }
 
   private startRegistryHeartbeat() {
