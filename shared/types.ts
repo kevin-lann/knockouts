@@ -18,6 +18,7 @@ export interface Player {
   name: string
   avatarId: AvatarId
   avatarImagePath: string
+  lives: number
   score: number
   streak: number
   isHost: boolean
@@ -27,6 +28,8 @@ export interface Player {
   currentAnswer?: string
   hasSubmitted: boolean
 }
+
+export const DEFAULT_PLAYER_LIVES = 3
 
 export enum BotDifficulty {
   EASY = "easy",

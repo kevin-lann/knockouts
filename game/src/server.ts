@@ -20,6 +20,7 @@ import {
   DEFAULT_MAX_ROUNDS,
   MAX_ROUNDS,
   MIN_ROUNDS,
+  DEFAULT_PLAYER_LIVES,
 } from "@shared/types"
 import { configureDatabase, fetchQuestion, getBotAnswer } from "./db"
 import { validateAnswer, findDuplicates } from "./utils/validation"
@@ -399,6 +400,7 @@ export default class GameServer implements Party.Server {
       name: identity.name,
       avatarId: identity.avatarId,
       avatarImagePath: getAvatarImagePathById(identity.avatarId),
+      lives: DEFAULT_PLAYER_LIVES,
       score: 0,
       streak: 0,
       isHost: shouldBeHost,
@@ -676,8 +678,11 @@ export default class GameServer implements Party.Server {
       player.score += points
       player.streak = didAnswerCorrectly ? player.streak + 1 : 0
 
-      if (!player.isBot && isDuplicate) {
-        player.isEliminated = true
+      if (!player.isBot && !player.isEliminated && isDuplicate) {
+        player.lives = Math.max(player.lives - 1, 0)
+        if (player.lives === 0) {
+          player.isEliminated = true
+        }
       }
 
       results.push({
@@ -860,6 +865,7 @@ export default class GameServer implements Party.Server {
       const botId = `${BOT_ID_PREFIX}${index}`
       const existingBot = this.players.get(botId)
       if (existingBot) {
+        existingBot.lives = DEFAULT_PLAYER_LIVES
         existingBot.isEliminated = false
         existingBot.hasSubmitted = false
         existingBot.currentAnswer = undefined
@@ -872,6 +878,7 @@ export default class GameServer implements Party.Server {
         name: `${BOT_NAME_PREFIX}${index}`,
         avatarId,
         avatarImagePath: getAvatarImagePathById(avatarId),
+        lives: DEFAULT_PLAYER_LIVES,
         score: 0,
         streak: 0,
         isHost: false,
@@ -967,6 +974,7 @@ export default class GameServer implements Party.Server {
   private async handleGameEnded() {
     this.clearPrefetchedRound()
     for (const player of this.players.values()) {
+      player.lives = DEFAULT_PLAYER_LIVES
       player.hasHighestScore = false
       player.isEliminated = false
       player.hasSubmitted = false
