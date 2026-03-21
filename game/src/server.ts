@@ -6,24 +6,18 @@ import {
   type ServerMessage,
   type Question,
   type Answer,
-  type RoundResult,
 } from "@shared/types"
 import {
   GameState,
   ServerMessageType,
   BotDifficulty,
   ClientMessageType,
-  AvatarId,
   DEFAULT_BOT_COUNT,
-  MAX_BOT_COUNT,
   MIN_BOT_COUNT,
   DEFAULT_MAX_ROUNDS,
-  MAX_ROUNDS,
-  MIN_ROUNDS,
   DEFAULT_PLAYER_LIVES,
 } from "@shared/types"
-import { configureDatabase, fetchQuestion, getBotAnswer } from "./db"
-import { validateAnswer, findDuplicates } from "./utils/validation"
+import { configureDatabase, fetchQuestion } from "./db"
 import {
   DEFAULT_ROUND_DURATION,
   MAX_PLAYERS as MAX_PLAYERS_CONSTANT,
@@ -33,29 +27,33 @@ import { isPublicRoomId } from "./utils/roomId"
 import { getAvatarImagePathById } from "./utils/avatar"
 import { verifyJoinToken } from "./utils/joinToken"
 import { getHighestScoringPlayers } from "./utils/playerRanking"
-import { POINTS_PER_ANSWER } from "@shared/types"
-
-interface LockedIdentity {
-  name: string
-  avatarId: AvatarId
-}
-
-interface PrefetchedRound {
-  round: number
-  alivePlayerCount: number
-  themes: string[] | null // list of slugs
-  promise: Promise<{ question: Question; answers: Answer[] } | null>
-}
-
-const BOT_ID_PREFIX = "bot_"
-const BOT_NAME_PREFIX = "Bot "
-const BOT_AVATAR_IDS: ReadonlyArray<AvatarId> = [
-  AvatarId.NERD,
-  AvatarId.MONSTER,
-  AvatarId.PANDA,
-  AvatarId.SKULL,
-  AvatarId.SQUIDWARD,
-]
+import type { LockedIdentity, PrefetchedRound } from "./server/server-types"
+import {
+  getHumanPlayerCount as getHumanPlayerCountUtil,
+  isGameEnded as isGameEndedUtil,
+  normalizeBotCount as normalizeBotCountUtil,
+  normalizeMaxRounds as normalizeMaxRoundsUtil,
+} from "./server/player-utils"
+import {
+  removeAllBotsIfNoHumans as removeAllBotsIfNoHumansUtil,
+  syncBotsToSettings as syncBotsToSettingsUtil,
+  assignBotAnswers as assignBotAnswersUtil,
+} from "./server/bot-manager"
+import {
+  resetAllSubmissions,
+  resetRoundSubmissions,
+  processRoundSubmissions,
+} from "./server/round-engine"
+import {
+  broadcastPlayerUpdateMessage,
+  broadcastSyncMessage,
+  sendSyncMessage,
+} from "./server/room-sync"
+import {
+  notifyRegistry as notifyRegistryExternal,
+  startRegistryHeartbeat as startRegistryHeartbeatExternal,
+  stopRegistryHeartbeat as stopRegistryHeartbeatExternal,
+} from "./server/registry"
 
 export default class GameServer implements Party.Server {
   // Core state
@@ -108,42 +106,25 @@ export default class GameServer implements Party.Server {
   }
 
   private startRegistryHeartbeat() {
-    if (this.registryHeartbeatInterval) {
-      return
-    }
-
-    this.registryHeartbeatInterval = setInterval(() => {
-      void this.notifyRegistry()
-    }, 20000)
+    this.registryHeartbeatInterval = startRegistryHeartbeatExternal(
+      () => {
+        void this.notifyRegistry()
+      },
+      this.registryHeartbeatInterval
+    )
   }
 
   /**
    * Notify registry server about room state
    */
   private async notifyRegistry() {
-    // Only notify registry for public rooms
-    if (!this.isPublic) {
-      return
-    }
-
-    try {
-      const registryParty = this.room.context.parties.registry
-      const registryRoom = registryParty.get("main")
-
-      await registryRoom.fetch({
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          roomId: this.room.id,
-          playerCount: this.getHumanPlayerCount(),
-          maxPlayers: GameServer.MAX_PLAYERS,
-          gameState: this.gameState,
-        }),
-      })
-    } catch (error) {
-      // Silently fail - registry might not be available in dev
-      console.error("Failed to notify registry:", error)
-    }
+    await notifyRegistryExternal({
+      room: this.room,
+      isPublic: this.isPublic,
+      gameState: this.gameState,
+      playerCount: this.getHumanPlayerCount(),
+      maxPlayers: GameServer.MAX_PLAYERS,
+    })
   }
 
   async onRequest(request: Party.Request) {
@@ -572,13 +553,7 @@ export default class GameServer implements Party.Server {
       this.currentQuestion = roundData.question
       this.currentAnswers = roundData.answers
 
-      // Reset player submission states
-      for (const player of this.players.values()) {
-        if (!player.isEliminated) {
-          player.hasSubmitted = false
-          player.currentAnswer = undefined
-        }
-      }
+      resetRoundSubmissions(this.players)
 
       if (this.round === 1) {
         this.startCountdown()
@@ -658,56 +633,10 @@ export default class GameServer implements Party.Server {
 
     await this.assignBotAnswers()
 
-    // Collect all submissions
-    const submissions = new Map<string, string>()
-    for (const [playerId, player] of this.players.entries()) {
-      if (player.currentAnswer) {
-        submissions.set(playerId, player.currentAnswer)
-      }
-    }
-
-    // Validate answers
-    const validatedAnswers = new Map<string, Answer | null>()
-    for (const [playerId, answer] of submissions.entries()) {
-      validatedAnswers.set(
-        playerId,
-        validateAnswer(answer, this.currentAnswers)
-      )
-    }
-
-    // Find duplicates
-    const duplicates = findDuplicates(validatedAnswers)
-
-    // Calculate scores and build results
-    const results: RoundResult[] = []
-    const correctAnswers = this.currentAnswers.map((a) => a.display_text)
-
-    for (const [playerId, player] of this.players.entries()) {
-      const validated = validatedAnswers.get(playerId)
-      const isDuplicate = duplicates.has(playerId)
-      const isValid = validated !== null && validated !== undefined
-      const points = isValid && !isDuplicate ? POINTS_PER_ANSWER : 0
-      const didAnswerCorrectly = isValid && !isDuplicate
-
-      player.score += points
-      player.streak = didAnswerCorrectly ? player.streak + 1 : 0
-
-      if (!player.isBot && !player.isEliminated && isDuplicate) {
-        player.lives = Math.max(player.lives - 1, 0)
-        if (player.lives === 0) {
-          player.isEliminated = true
-        }
-      }
-
-      results.push({
-        playerId,
-        playerName: player.name,
-        answer: player.currentAnswer || "",
-        isValid,
-        isDuplicate,
-        points,
-      })
-    }
+    const { results, correctAnswers } = processRoundSubmissions(
+      this.players,
+      this.currentAnswers
+    )
 
     const roundCapReached = this.round >= this.settings.maxRounds
 
@@ -734,11 +663,7 @@ export default class GameServer implements Party.Server {
       player.hasHighestScore = true
     }
 
-    // Reset submission states
-    for (const player of this.players.values()) {
-      player.hasSubmitted = false
-      player.currentAnswer = undefined
-    }
+    resetAllSubmissions(this.players)
 
     this.gameState = GameState.SCOREBOARD
 
@@ -792,12 +717,9 @@ export default class GameServer implements Party.Server {
   }
 
   private stopRegistryHeartbeat() {
-    if (!this.registryHeartbeatInterval) {
-      return
-    }
-
-    clearInterval(this.registryHeartbeatInterval)
-    this.registryHeartbeatInterval = null
+    this.registryHeartbeatInterval = stopRegistryHeartbeatExternal(
+      this.registryHeartbeatInterval
+    )
   }
 
   private clearPrefetchedRound() {
@@ -805,130 +727,26 @@ export default class GameServer implements Party.Server {
   }
 
   private getHumanPlayerCount() {
-    return Array.from(this.players.values()).filter((player) => !player.isBot)
-      .length
-  }
-
-  private getBotPlayers() {
-    return Array.from(this.players.entries())
-      .filter(([, player]) => player.isBot)
-      .sort(([aId], [bId]) => this.getBotIndex(aId) - this.getBotIndex(bId))
-  }
-
-  private getBotIndex(botId: string) {
-    if (!botId.startsWith(BOT_ID_PREFIX)) {
-      return Number.MAX_SAFE_INTEGER
-    }
-
-    const index = Number.parseInt(botId.slice(BOT_ID_PREFIX.length), 10)
-    if (Number.isNaN(index)) {
-      return Number.MAX_SAFE_INTEGER
-    }
-
-    return index
-  }
-
-  private getDesiredBotCount(settings: RoomSettings) {
-    if (!settings.botEnabled) {
-      return MIN_BOT_COUNT
-    }
-    return this.normalizeBotCount(settings.botCount)
+    return getHumanPlayerCountUtil(this.players)
   }
 
   private normalizeBotCount(botCount: number | undefined): number {
-    if (typeof botCount !== "number" || !Number.isFinite(botCount)) {
-      return DEFAULT_BOT_COUNT
-    }
-
-    const normalized = Math.floor(botCount)
-    if (normalized < MIN_BOT_COUNT) {
-      return MIN_BOT_COUNT
-    }
-
-    if (normalized > MAX_BOT_COUNT) {
-      return MAX_BOT_COUNT
-    }
-
-    return normalized
+    return normalizeBotCountUtil(botCount)
   }
 
   private removeAllBotsIfNoHumans() {
-    if (this.getHumanPlayerCount() > 0) {
-      return
-    }
-
-    for (const [playerId, player] of this.players.entries()) {
-      if (player.isBot) {
-        this.players.delete(playerId)
-      }
-    }
+    removeAllBotsIfNoHumansUtil(this.players)
   }
 
   private syncBotsToSettings() {
-    const desiredBotCount = this.getDesiredBotCount(this.settings)
-    const existingBots = this.getBotPlayers()
-
-    if (existingBots.length > desiredBotCount) {
-      const botsToRemove = existingBots.slice(desiredBotCount)
-      for (const [botId] of botsToRemove) {
-        this.players.delete(botId)
-      }
-    }
-
-    for (let index = 1; index <= desiredBotCount; index++) {
-      const botId = `${BOT_ID_PREFIX}${index}`
-      const existingBot = this.players.get(botId)
-      if (existingBot) {
-        existingBot.lives = DEFAULT_PLAYER_LIVES
-        existingBot.isEliminated = false
-        existingBot.hasSubmitted = false
-        existingBot.currentAnswer = undefined
-        continue
-      }
-
-      const avatarId = BOT_AVATAR_IDS[(index - 1) % BOT_AVATAR_IDS.length]
-      this.players.set(botId, {
-        id: botId,
-        name: `${BOT_NAME_PREFIX}${index}`,
-        avatarId,
-        avatarImagePath: getAvatarImagePathById(avatarId),
-        lives: DEFAULT_PLAYER_LIVES,
-        score: 0,
-        streak: 0,
-        isHost: false,
-        isBot: true,
-        isEliminated: false,
-        hasHighestScore: false,
-        hasSubmitted: false,
-      })
-    }
+    syncBotsToSettingsUtil(this.players, this.settings)
   }
 
   private async assignBotAnswers() {
-    if (!this.currentQuestion) {
-      return
-    }
-
-    const botPlayers = this.getBotPlayers()
-    if (botPlayers.length === 0) {
-      return
-    }
-
-    await Promise.all(
-      botPlayers.map(async ([, botPlayer]) => {
-        try {
-          const botAnswer = await getBotAnswer(
-            this.currentQuestion!.id,
-            this.settings.botDifficulty
-          )
-          botPlayer.currentAnswer = botAnswer.display_text
-          botPlayer.hasSubmitted = true
-        } catch (error) {
-          botPlayer.currentAnswer = undefined
-          botPlayer.hasSubmitted = false
-          console.error(`Error getting answer for ${botPlayer.name}:`, error)
-        }
-      })
+    await assignBotAnswersUtil(
+      this.players,
+      this.currentQuestion,
+      this.settings.botDifficulty
     )
   }
 
@@ -954,36 +772,11 @@ export default class GameServer implements Party.Server {
   }
 
   private isGameEnded(): boolean {
-    const humanPlayers = Array.from(this.players.values()).filter(
-      (p) => !p.isBot
-    )
-
-    const alivePlayers = humanPlayers.filter((p) => !p.isEliminated)
-
-    // single player - game is ended if the player is eliminated
-    if (humanPlayers.length === 1) {
-      return alivePlayers.length < 1
-    }
-
-    // multi player - game is ended if there is one or less alive player
-    return alivePlayers.length <= 1
+    return isGameEndedUtil(this.players)
   }
 
   private normalizeMaxRounds(maxRounds: number | undefined): number {
-    if (typeof maxRounds !== "number" || !Number.isFinite(maxRounds)) {
-      return DEFAULT_MAX_ROUNDS
-    }
-
-    const normalized = Math.floor(maxRounds)
-    if (normalized < MIN_ROUNDS) {
-      return MIN_ROUNDS
-    }
-
-    if (normalized > MAX_ROUNDS) {
-      return MAX_ROUNDS
-    }
-
-    return normalized
+    return normalizeMaxRoundsUtil(maxRounds)
   }
 
   /**
@@ -1005,17 +798,14 @@ export default class GameServer implements Party.Server {
   }
 
   private sendSync(conn: Party.Connection) {
-    conn.send(
-      JSON.stringify({
-        type: ServerMessageType.SYNC,
-        state: this.gameState,
-        players: Array.from(this.players.values()),
-        timer: this.timer,
-        question: this.currentQuestion || undefined,
-        round: this.round,
-        settings: this.settings,
-      } as ServerMessage)
-    )
+    sendSyncMessage(conn, {
+      gameState: this.gameState,
+      players: this.players,
+      timer: this.timer,
+      question: this.currentQuestion,
+      round: this.round,
+      settings: this.settings,
+    })
   }
 
   /**
@@ -1066,39 +856,21 @@ export default class GameServer implements Party.Server {
    * Broadcast the current player list to all connections in the room.
    */
   private broadcastPlayerUpdate() {
-    const playerList = Array.from(this.players.values())
-    const message = JSON.stringify({
-      type: ServerMessageType.PLAYER_UPDATE,
-      players: playerList,
-    } as ServerMessage)
-
-    console.log(
-      `Broadcasting PLAYER_UPDATE to all connections. Players: ${playerList.length}`,
-      playerList.map((p) => p.name)
-    )
-    console.log(
-      `Room connections count: ${Array.from(this.room.getConnections()).length}`
-    )
-
-    // Broadcast to all connections in the room (includes all connected clients)
-    this.room.broadcast(message)
+    broadcastPlayerUpdateMessage(this.room, this.players)
   }
 
   /**
    * Broadcast the current room state to all connections in the room.
    */
   private broadcastSync() {
-    this.room.broadcast(
-      JSON.stringify({
-        type: ServerMessageType.SYNC,
-        state: this.gameState,
-        players: Array.from(this.players.values()),
-        timer: this.countdownTimer,
-        question: this.currentQuestion || undefined,
-        round: this.round,
-        settings: this.settings,
-      } as ServerMessage)
-    )
+    broadcastSyncMessage(this.room, {
+      gameState: this.gameState,
+      players: this.players,
+      timer: this.countdownTimer,
+      question: this.currentQuestion,
+      round: this.round,
+      settings: this.settings,
+    })
   }
 }
 
