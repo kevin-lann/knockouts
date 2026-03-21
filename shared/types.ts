@@ -31,6 +31,8 @@ export interface Player {
 
 export const DEFAULT_PLAYER_LIVES = 3
 
+export const POINTS_PER_ANSWER = 1000
+
 export enum BotDifficulty {
   EASY = "easy",
   MEDIUM = "medium",

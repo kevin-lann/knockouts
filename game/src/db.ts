@@ -266,7 +266,7 @@ export async function getBotAnswer(
       break
     case BotDifficulty.CHAOS:
       // Most common answer (rank 1)
-      rankFilter = "AND popularity_rank BETWEEN $2 AND $1"
+      rankFilter = "AND popularity_rank BETWEEN $2 AND $3"
       params.push(1, 5)
       break
   }
@@ -280,6 +280,8 @@ export async function getBotAnswer(
   `
 
   const rows = (await getSql().query(query, params)) as AnswerDbRow[]
+
+  console.log('>>> rows', rows)
 
   if (rows.length === 0) {
     // Fallback: get any answer if no match

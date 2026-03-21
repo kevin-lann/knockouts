@@ -33,6 +33,7 @@ import { isPublicRoomId } from "./utils/roomId"
 import { getAvatarImagePathById } from "./utils/avatar"
 import { verifyJoinToken } from "./utils/joinToken"
 import { getHighestScoringPlayers } from "./utils/playerRanking"
+import { POINTS_PER_ANSWER } from "@shared/types"
 
 interface LockedIdentity {
   name: string
@@ -672,7 +673,7 @@ export default class GameServer implements Party.Server {
       const validated = validatedAnswers.get(playerId)
       const isDuplicate = duplicates.has(playerId)
       const isValid = validated !== null && validated !== undefined
-      const points = isValid && !isDuplicate ? 1 : 0
+      const points = isValid && !isDuplicate ? POINTS_PER_ANSWER : 0
       const didAnswerCorrectly = isValid && !isDuplicate
 
       player.score += points
