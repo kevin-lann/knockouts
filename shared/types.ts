@@ -1,3 +1,8 @@
+export enum RoomIdPrefix {
+  PUBLIC = "P",
+  PRIVATE = "X",
+}
+
 export enum GameState {
   LOBBY = "LOBBY",
   FETCH_ROUND = "FETCH_ROUND",
