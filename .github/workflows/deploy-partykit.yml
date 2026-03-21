@@ -23,6 +23,8 @@ jobs:
       PARTYKIT_TOKEN: ${{ secrets.PARTYKIT_TOKEN }}
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       JOIN_TOKEN_SECRET: ${{ secrets.JOIN_TOKEN_SECRET }}
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
     defaults:
       run:
         working-directory: game
@@ -54,19 +56,22 @@ jobs:
             echo "::error::Missing JOIN_TOKEN_SECRET. It must match the Vercel JOIN_TOKEN_SECRET value."
             exit 1
           fi
-
-      - name: Debug env fingerprints
-        run: |
-          echo "JOIN_TOKEN_SECRET_LEN=${#JOIN_TOKEN_SECRET}"
-          echo "JOIN_TOKEN_SECRET_SHA256=$(printf '%s' \"$JOIN_TOKEN_SECRET\" | shasum -a 256 | cut -c1-12)"
-          echo "DATABASE_URL_LEN=${#DATABASE_URL}"
-          echo "DATABASE_URL_SHA256=$(printf '%s' \"$DATABASE_URL\" | shasum -a 256 | cut -c1-12)"
+          if [ -z "$SUPABASE_URL" ]; then
+            echo "::error::Missing SUPABASE_URL. Set it in GitHub Secrets/Variables (or Environment Secrets) for this workflow environment."
+            exit 1
+          fi
+          if [ -z "$SUPABASE_SERVICE_ROLE_KEY" ]; then
+            echo "::error::Missing SUPABASE_SERVICE_ROLE_KEY. Set it in GitHub Secrets/Variables (or Environment Secrets) for this workflow environment."
+            exit 1
+          fi
 
       - name: Prepare deploy env file
         run: |
           cat > .env.local <<EOF
           DATABASE_URL=$DATABASE_URL
           JOIN_TOKEN_SECRET=$JOIN_TOKEN_SECRET
+          SUPABASE_URL=$SUPABASE_URL
+          SUPABASE_SERVICE_ROLE_KEY=$SUPABASE_SERVICE_ROLE_KEY
           EOF
 
       - name: Deploy
@@ -75,4 +80,6 @@ jobs:
             --name game-server \
             --with-env \
             --var "DATABASE_URL=$DATABASE_URL" \
-            --var "JOIN_TOKEN_SECRET=$JOIN_TOKEN_SECRET"
+            --var "JOIN_TOKEN_SECRET=$JOIN_TOKEN_SECRET" \
+            --var "SUPABASE_URL=$SUPABASE_URL" \
+            --var "SUPABASE_SERVICE_ROLE_KEY=$SUPABASE_SERVICE_ROLE_KEY"

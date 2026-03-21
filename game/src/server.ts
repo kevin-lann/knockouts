@@ -944,11 +944,15 @@ export default class GameServer implements Party.Server {
     const humanPlayers = Array.from(this.players.values()).filter(
       (p) => !p.isBot
     )
-    if (humanPlayers.length <= 1) {
-      return false
-    }
 
     const alivePlayers = humanPlayers.filter((p) => !p.isEliminated)
+
+    // single player - game is ended if the player is eliminated
+    if (humanPlayers.length === 1) {
+      return alivePlayers.length < 1
+    }
+
+    // multi player - game is ended if there is one or less alive player
     return alivePlayers.length <= 1
   }
 

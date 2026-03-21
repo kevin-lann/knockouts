@@ -19,8 +19,7 @@ import argparse
 import json
 import os
 from pathlib import Path
-from urllib.parse import urlparse
-from typing import Any, Iterable
+from typing import Any
 load_dotenv()
 
 
@@ -48,7 +47,11 @@ def _open_db(database_url: str):
     try:
         import psycopg  # type: ignore
 
-        return psycopg.connect(database_url)
+        # Supabase pooler (PgBouncer) can error on named prepared statements
+        # across reused backend connections. Disable auto-prepare for compatibility.
+        conn = psycopg.connect(database_url, prepare_threshold=None)
+        conn.prepare_threshold = None
+        return conn
     except ImportError:
         import psycopg2  # type: ignore
 
@@ -204,13 +207,46 @@ def backfill(
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Backfill questions into Neon/Postgres.")
-    parser.add_argument("input", type=Path, help="Path to questions JSON file")
+    parser.add_argument("input", type=Path, nargs="?", help="Path to questions JSON file")
+    parser.add_argument(
+        "--all",
+        action="store_true",
+        help="Run for all JSON files in --input-dir",
+    )
+    parser.add_argument(
+        "--input-dir",
+        type=Path,
+        default=Path("../generate-questions/results"),
+        help="Directory used by --all (default: ../generate-questions/results)",
+    )
     parser.add_argument("--replace-answers", action="store_true", help="Replace answers for matching questions")
     parser.add_argument("--dry-run", action="store_true", help="Validate input without writing to DB")
     parser.add_argument("--database-url", help="Override DATABASE_URL")
     args = parser.parse_args()
 
+    if args.all and args.input is not None:
+        raise SystemExit("Use either a single input file or --all, not both.")
+
+    if not args.all and args.input is None:
+        raise SystemExit("Provide an input JSON file or pass --all.")
+
     database_url = _load_database_url(args.database_url)
+
+    if args.all:
+        input_dir = args.input_dir
+        if not input_dir.exists() or not input_dir.is_dir():
+            raise SystemExit(f"Input directory not found: {input_dir}")
+
+        json_files = sorted(path for path in input_dir.iterdir() if path.is_file() and path.suffix == ".json")
+        if not json_files:
+            raise SystemExit(f"No JSON files found in: {input_dir}")
+
+        print(f"Processing {len(json_files)} JSON files from {input_dir}")
+        for index, json_file in enumerate(json_files, start=1):
+            print(f"\n[{index}/{len(json_files)}] {json_file}")
+            backfill(database_url, json_file, args.replace_answers, args.dry_run)
+        return
+
     backfill(database_url, args.input, args.replace_answers, args.dry_run)
 
 

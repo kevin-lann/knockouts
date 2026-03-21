@@ -122,7 +122,7 @@ export default function ScoreboardView({ send }: ScoreboardViewProps) {
                             )}
                             {result.isValid && !result.isDuplicate && (
                               <span className="text-sm font-bold">
-                                +{result.points} point
+                                +{result.points} points
                               </span>
                             )}
                           </div>

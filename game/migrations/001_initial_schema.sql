@@ -48,53 +48,53 @@ INSERT INTO themes (slug, display_name) VALUES
 ON CONFLICT (slug) DO NOTHING;
 
 -- Sample questions
-INSERT INTO questions (theme_slug, prompt, difficulty, answer_count_cache) VALUES
-  ('geography', 'Name a country that has the letter J in its name', 2, 5),
-  ('geography', 'Name a country in North America', 1, 3),
-ON CONFLICT DO NOTHING;
+-- INSERT INTO questions (theme_slug, prompt, difficulty, answer_count_cache) VALUES
+--   ('GEOGRAPHY', 'Name a country that has the letter J in its name', 2, 5),
+--   ('GEOGRAPHY', 'Name a country in North America', 1, 3)
+-- ON CONFLICT DO NOTHING;
 
 -- Sample answers
-INSERT INTO answers (question_id, display_text, variants, popularity_rank)
-SELECT 
-  q.id,
-  'Japan',
-  '["japan", "jp", "nippon"]'::jsonb,
-  1
-FROM questions q WHERE q.prompt = 'Name a country that has the letter J in its name'
-ON CONFLICT DO NOTHING;
+-- INSERT INTO answers (question_id, display_text, variants, popularity_rank)
+-- SELECT 
+--   q.id,
+--   'Japan',
+--   '["japan", "jp", "nippon"]'::jsonb,
+--   1
+-- FROM questions q WHERE q.prompt = 'Name a country that has the letter J in its name'
+-- ON CONFLICT DO NOTHING;
 
-INSERT INTO answers (question_id, display_text, variants, popularity_rank)
-SELECT 
-  q.id,
-  'Jordan',
-  '["jordan", "hashemite kingdom"]'::jsonb,
-  2
-FROM questions q WHERE q.prompt = 'Name a country that has the letter J in its name'
-ON CONFLICT DO NOTHING;
+-- INSERT INTO answers (question_id, display_text, variants, popularity_rank)
+-- SELECT 
+--   q.id,
+--   'Jordan',
+--   '["jordan", "hashemite kingdom"]'::jsonb,
+--   2
+-- FROM questions q WHERE q.prompt = 'Name a country that has the letter J in its name'
+-- ON CONFLICT DO NOTHING;
 
-INSERT INTO answers (question_id, display_text, variants, popularity_rank)
-SELECT 
-  q.id,
-  'USA',
-  '["usa", "united states", "america", "us"]'::jsonb,
-  1
-FROM questions q WHERE q.prompt = 'Name a country in North America'
-ON CONFLICT DO NOTHING;
+-- INSERT INTO answers (question_id, display_text, variants, popularity_rank)
+-- SELECT 
+--   q.id,
+--   'USA',
+--   '["usa", "united states", "america", "us"]'::jsonb,
+--   1
+-- FROM questions q WHERE q.prompt = 'Name a country in North America'
+-- ON CONFLICT DO NOTHING;
 
-INSERT INTO answers (question_id, display_text, variants, popularity_rank)
-SELECT 
-  q.id,
-  'Canada',
-  '["canada", "can"]'::jsonb,
-  2
-FROM questions q WHERE q.prompt = 'Name a country in North America'
-ON CONFLICT DO NOTHING;
+-- INSERT INTO answers (question_id, display_text, variants, popularity_rank)
+-- SELECT 
+--   q.id,
+--   'Canada',
+--   '["canada", "can"]'::jsonb,
+--   2
+-- FROM questions q WHERE q.prompt = 'Name a country in North America'
+-- ON CONFLICT DO NOTHING;
 
-INSERT INTO answers (question_id, display_text, variants, popularity_rank)
-SELECT 
-  q.id,
-  'Mexico',
-  '["mexico", "mex"]'::jsonb,
-  3
-FROM questions q WHERE q.prompt = 'Name a country in North America'
-ON CONFLICT DO NOTHING;
+-- INSERT INTO answers (question_id, display_text, variants, popularity_rank)
+-- SELECT 
+--   q.id,
+--   'Mexico',
+--   '["mexico", "mex"]'::jsonb,
+--   3
+-- FROM questions q WHERE q.prompt = 'Name a country in North America'
+-- ON CONFLICT DO NOTHING;
