@@ -27,7 +27,7 @@ export default function GameView({ roomId, send }: GameViewProps) {
   } = useGameStore()
   const { isMobile } = useDevice()
   const handleSubmit = () => {
-    if (!currentInput.trim() || hasSubmitted) return
+    if (!currentInput.trim()) return
     send({ type: ClientMessageType.SUBMIT, answer: currentInput.trim() })
   }
 
