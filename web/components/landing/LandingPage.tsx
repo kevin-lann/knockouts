@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { AVATAR_OPTIONS, DEFAULT_AVATAR_ID } from "@/app/constants/avatars"
 import { createPrivateRoomId, createPublicRoomId } from "@/lib/roomId"
@@ -11,6 +11,7 @@ import Button, { ButtonVariant } from "../general/Button"
 import Card from "../general/Card"
 import Input from "../general/Input"
 import AvatarImage from "../general/AvatarImage"
+import { usePlayerDetails } from "@/hooks/usePlayerDetails"
 
 const VISIBLE_AVATAR_COUNT = 4
 const AVATAR_ITEM_WIDTH_PX = 64
@@ -24,11 +25,23 @@ const AVATAR_VIEWPORT_WIDTH_PX =
 
 export default function LandingPage() {
   const [activeTab, setActiveTab] = useState<"public" | "private">("public")
-  const [name, setName] = useState("")
-  const [avatarId, setAvatarId] = useState<AvatarId>(DEFAULT_AVATAR_ID)
+  const {name: storedName, avatarId: storedAvatarId} = usePlayerDetails()
+  const [name, setName] = useState(storedName ?? "")
+  const [avatarId, setAvatarId] = useState<AvatarId>(storedAvatarId ?? DEFAULT_AVATAR_ID)
   const [roomCode, setRoomCode] = useState("")
   const [isSearching, setIsSearching] = useState(false)
   const router = useRouter()
+
+  useEffect(() => {
+    if (storedName && !name.trim()) {
+      setName(storedName)
+    }
+
+    if (storedAvatarId && avatarId === DEFAULT_AVATAR_ID) {
+      setAvatarId(storedAvatarId)
+    }
+  }, [storedName, storedAvatarId, name, avatarId])
+
   const selectedAvatarIndex = Math.max(
     AVATAR_OPTIONS.findIndex((option) => option.id === avatarId),
     0
