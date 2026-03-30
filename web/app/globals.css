@@ -89,3 +89,38 @@ body {
     @apply bg-brand-cyan text-white;
   }
 }
+@keyframes promotion-avatar-fall {
+  0% {
+    transform: translate(-50%, -16vh);
+  }
+  100% {
+    transform: translate(-50%, 16vh);
+  }
+}
+
+@keyframes promotion-avatar-spin {
+  0% {
+    transform: rotate(var(--start-rotation, 0deg));
+  }
+  100% {
+    transform: rotate(
+      calc(var(--start-rotation, 0deg) + var(--spin-rotation, 360deg))
+    );
+  }
+}
+
+.promotion-avatar-fall {
+  animation-name: promotion-avatar-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  will-change: transform;
+}
+
+.promotion-avatar-spin {
+  animation-name: promotion-avatar-spin;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  transform-origin: center;
+  will-change: transform;
+}
