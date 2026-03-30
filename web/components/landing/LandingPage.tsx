@@ -13,6 +13,7 @@ import Input from "../general/Input"
 import AvatarImage from "../general/AvatarImage"
 import { usePlayerDetails } from "@/hooks/usePlayerDetails"
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react"
+import { MONO_FONT } from "@/app/constants/font"
 
 const VISIBLE_AVATAR_COUNT = 4
 const AVATAR_ITEM_WIDTH_PX = 64
@@ -27,9 +28,11 @@ const AVATAR_VIEWPORT_WIDTH_PX =
 export default function LandingPage() {
   const [activeTab, setActiveTab] = useState<"public" | "private">("public")
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false)
-  const {name: storedName, avatarId: storedAvatarId} = usePlayerDetails()
+  const { name: storedName, avatarId: storedAvatarId } = usePlayerDetails()
   const [name, setName] = useState(storedName ?? "")
-  const [avatarId, setAvatarId] = useState<AvatarId>(storedAvatarId ?? DEFAULT_AVATAR_ID)
+  const [avatarId, setAvatarId] = useState<AvatarId>(
+    storedAvatarId ?? DEFAULT_AVATAR_ID
+  )
   const [roomCode, setRoomCode] = useState("")
   const [isSearching, setIsSearching] = useState(false)
   const router = useRouter()
@@ -49,9 +52,7 @@ export default function LandingPage() {
     0
   )
   const maxAvatarTrackStartIndex = Math.max(
-    AVATAR_OPTIONS.length +
-      AVATAR_TRAILING_DUMMY_COUNT -
-      VISIBLE_AVATAR_COUNT,
+    AVATAR_OPTIONS.length + AVATAR_TRAILING_DUMMY_COUNT - VISIBLE_AVATAR_COUNT,
     0
   )
   const avatarTrackStartIndex = Math.min(
@@ -111,9 +112,7 @@ export default function LandingPage() {
   }
 
   return (
-    <div
-      className="min-h-screen flex flex-col items-center justify-center p-4"
-    >
+    <div className="min-h-screen flex flex-col items-center justify-center p-4">
       <Logo />
       <Card className="p-8 w-full max-w-md">
         <div className="mb-6">
@@ -153,10 +152,7 @@ export default function LandingPage() {
                   }}
                 >
                   {AVATAR_OPTIONS.map((option) => (
-                    <div
-                      key={option.id}
-                      className="shrink-0"
-                    >
+                    <div key={option.id} className="shrink-0">
                       <button
                         type="button"
                         onClick={() => setAvatarId(option.id)}
@@ -280,23 +276,24 @@ export default function LandingPage() {
         <div className="border-t-2 border-[var(--foreground)] pt-4">
           <button
             type="button"
-            onClick={() => setIsHowToPlayOpen((previousValue) => !previousValue)}
+            onClick={() =>
+              setIsHowToPlayOpen((previousValue) => !previousValue)
+            }
             className="flex w-full items-center justify-between text-left font-semibold"
             aria-expanded={isHowToPlayOpen}
             aria-controls="how-to-play-content"
           >
             <span>How to play</span>
-            <span className="text-lg leading-none">{isHowToPlayOpen ? (
-              <ChevronUpIcon className="w-4 h-4" />
-            ) : (
-              <ChevronDownIcon className="w-4 h-4" />
-            )}</span>
+            <span className="text-lg leading-none">
+              {isHowToPlayOpen ? (
+                <ChevronUpIcon className="w-4 h-4" />
+              ) : (
+                <ChevronDownIcon className="w-4 h-4" />
+              )}
+            </span>
           </button>
           {isHowToPlayOpen && (
-            <div
-              id="how-to-play-content"
-              className="mt-3 text-sm opacity-80"
-            >
+            <div id="how-to-play-content" className="mt-3 text-sm opacity-80">
               <p>1. Each round gives a question.</p>
               <p>2. Submit one correct answer before time runs out.</p>
               <p>3. Unique answers get points.</p>
@@ -305,6 +302,18 @@ export default function LandingPage() {
           )}
         </div>
       </Card>
+
+      <div className={`${MONO_FONT.className} my-8 text-md`}>
+        Built by{" "}
+        <a
+          className={`hover:text-brand-cyan`}
+          href="https://x.com/kevinlann_"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          @kevinlann_
+        </a>
+      </div>
     </div>
   )
 }

@@ -83,3 +83,9 @@ body {
 .player-row-eliminated-anim {
   animation: player-row-eliminated-flash 900ms ease-out 2;
 }
+
+@layer base {
+  ::selection {
+    @apply bg-brand-cyan text-white;
+  }
+}
