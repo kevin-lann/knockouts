@@ -10,7 +10,7 @@ import {
 } from "@shared/types"
 import Checkbox from "@/components/general/Checkbox"
 import Slider from "@/components/general/Slider"
-import Input from "@/components/general/Input"
+import NumberInput from "@/components/general/NumberInput"
 import { THEMES } from "@shared/types"
 import { useState } from "react"
 import { X } from "lucide-react"
@@ -52,21 +52,15 @@ export default function RoomSettingsPanel({
         <div className="space-y-4">
           <div>
             <label className="block mb-2">Bot Count</label>
-            <Input
-              type="number"
+            <NumberInput
+              key={`bot-count-${settings.botCount}`}
+              value={settings.botCount}
               min={MIN_BOT_COUNT}
               max={MAX_BOT_COUNT}
-              value={settings.botCount}
-              onChange={(e) =>
+              onValueCommit={(value) =>
                 onChange({
                   ...settings,
-                  botCount: Math.max(
-                    MIN_BOT_COUNT,
-                    Math.min(
-                      MAX_BOT_COUNT,
-                      Number.parseInt(e.target.value || "0", 10) || 0
-                    )
-                  ),
+                  botCount: value,
                 })
               }
             />
