@@ -129,7 +129,15 @@ export default function PlayerList({
 
   return (
     <div className="max-h-80 space-y-2 overflow-y-auto pr-1">
-      {players.map((player) => {
+      {players.sort((a, b) => {
+        if (a.isBot && !b.isBot) {
+          return 1
+        }
+        if (!a.isBot && b.isBot) {
+          return -1
+        }
+        return 0
+      }).map((player) => {
         const avatarOption = avatarOptionById[player.avatarId]
         const avatarFallback = avatarOption?.fallback ?? "🙂"
         const avatarAlt = avatarOption?.alt ?? "Player avatar"
