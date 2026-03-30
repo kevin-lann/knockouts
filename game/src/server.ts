@@ -352,28 +352,11 @@ export default class GameServer implements Party.Server {
     }
 
     this.connectionClientIds.set(sender.id, msg.clientId)
-    const lockedIdentity = this.clientIdentities.get(msg.clientId)
-    if (
-      lockedIdentity &&
-      (lockedIdentity.name !== joinClaims.name ||
-        lockedIdentity.avatarId !== joinClaims.avatarId)
-    ) {
-      sender.send(
-        JSON.stringify({
-          type: ServerMessageType.ERROR,
-          message: "Identity is locked for this room",
-        } as ServerMessage)
-      )
-      return
-    }
-
-    const identity = lockedIdentity ?? {
+    const identity = {
       name: joinClaims.name,
       avatarId: joinClaims.avatarId,
     }
-    if (!lockedIdentity) {
-      this.clientIdentities.set(msg.clientId, identity)
-    }
+    this.clientIdentities.set(msg.clientId, identity)
 
     const existingHostConnectionId = Array.from(this.players.entries()).find(
       ([, p]) => p.isHost
