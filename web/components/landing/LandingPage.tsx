@@ -12,6 +12,7 @@ import Card from "../general/Card"
 import Input from "../general/Input"
 import AvatarImage from "../general/AvatarImage"
 import { usePlayerDetails } from "@/hooks/usePlayerDetails"
+import { ChevronDownIcon, ChevronUpIcon } from "lucide-react"
 
 const VISIBLE_AVATAR_COUNT = 4
 const AVATAR_ITEM_WIDTH_PX = 64
@@ -25,6 +26,7 @@ const AVATAR_VIEWPORT_WIDTH_PX =
 
 export default function LandingPage() {
   const [activeTab, setActiveTab] = useState<"public" | "private">("public")
+  const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false)
   const {name: storedName, avatarId: storedAvatarId} = usePlayerDetails()
   const [name, setName] = useState(storedName ?? "")
   const [avatarId, setAvatarId] = useState<AvatarId>(storedAvatarId ?? DEFAULT_AVATAR_ID)
@@ -271,6 +273,34 @@ export default function LandingPage() {
                   Join
                 </Button>
               </div>
+            </div>
+          )}
+        </div>
+
+        <div className="border-t-2 border-[var(--foreground)] pt-4">
+          <button
+            type="button"
+            onClick={() => setIsHowToPlayOpen((previousValue) => !previousValue)}
+            className="flex w-full items-center justify-between text-left font-semibold"
+            aria-expanded={isHowToPlayOpen}
+            aria-controls="how-to-play-content"
+          >
+            <span>How to play</span>
+            <span className="text-lg leading-none">{isHowToPlayOpen ? (
+              <ChevronUpIcon className="w-4 h-4" />
+            ) : (
+              <ChevronDownIcon className="w-4 h-4" />
+            )}</span>
+          </button>
+          {isHowToPlayOpen && (
+            <div
+              id="how-to-play-content"
+              className="mt-3 text-sm opacity-80"
+            >
+              <p>1. Each round gives a question.</p>
+              <p>2. Submit one correct answer before time runs out.</p>
+              <p>3. Unique answers get points.</p>
+              <p>4. Duplicate answers get 0 points.</p>
             </div>
           )}
         </div>

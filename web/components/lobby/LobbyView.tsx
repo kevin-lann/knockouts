@@ -48,10 +48,14 @@ export default function LobbyView({ roomId, send }: LobbyViewProps) {
   }
 
   return (
-    <div className="min-h-screen p-8">
+    <div className="min-h-screen p-8 relative">
       <div className="max-w-6xl mx-auto">
         <Card className="p-8">
-          <div className={`flex justify-between items-center mb-8 ${isMobile ? "flex-col gap-2" : ""}`}>
+          <div
+            className={`flex justify-between items-center mb-8 ${
+              isMobile ? "flex-col gap-2" : ""
+            }`}
+          >
             <h1 className={`text-3xl font-bold ${HEADER_FONT.className}`}>
               Room: {roomId}
             </h1>
@@ -82,7 +86,9 @@ export default function LobbyView({ roomId, send }: LobbyViewProps) {
                   variant={ButtonVariant.YELLOW}
                   className="w-full mt-6 py-3"
                 >
-                  {isWaitingForFirstQuestion ? "Starting Game..." : "Start Game"}
+                  {isWaitingForFirstQuestion
+                    ? "Starting Game..."
+                    : "Start Game"}
                 </Button>
               </div>
             )}
