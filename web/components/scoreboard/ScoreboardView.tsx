@@ -16,8 +16,15 @@ interface ScoreboardViewProps {
 }
 
 export default function ScoreboardView({ send }: ScoreboardViewProps) {
-  const { roundResults, correctAnswers, players, round, playerId, timer } =
-    useGameStore()
+  const {
+    question,
+    roundResults,
+    correctAnswers,
+    players,
+    round,
+    playerId,
+    timer,
+  } = useGameStore()
   const [isStartingNextRound, setIsStartingNextRound] = useState(false)
   const isCurrentPlayerHost = players.find(
     (player) => player.id === playerId
@@ -25,7 +32,10 @@ export default function ScoreboardView({ send }: ScoreboardViewProps) {
   const { isMobile } = useDevice()
   const countdownLabel = Math.max(timer, 0)
   const humanPlayerIdSet = useMemo(
-    () => new Set(players.filter((player) => !player.isBot).map((player) => player.id)),
+    () =>
+      new Set(
+        players.filter((player) => !player.isBot).map((player) => player.id)
+      ),
     [players]
   )
   const eliminatedPlayers = players
@@ -77,13 +87,20 @@ export default function ScoreboardView({ send }: ScoreboardViewProps) {
       <div className="max-w-4xl mx-auto">
         <Card className="p-8 relative">
           <h1
-            className={`text-3xl font-bold mb-2 ${isMobile ? "text-left" : "text-center"} ${HEADER_FONT.className}`}
+            className={`text-3xl font-bold mb-2 ${
+              isMobile ? "text-left" : "text-center"
+            } ${HEADER_FONT.className}`}
           >
             Round {round} Results
           </h1>
           <div className="absolute top-4 right-4">
             <LeaveRoomButton send={send} />
           </div>
+          {question && (
+            <div className="my-8 items-center w-full text-center">
+              <p className="text-lg">{question.prompt}</p>
+            </div>
+          )}
           <div className="flex w-full flex-col gap-4 p-2 md:flex-row">
             {roundResults && (
               <div className="mb-8 flex-1 min-w-0">
