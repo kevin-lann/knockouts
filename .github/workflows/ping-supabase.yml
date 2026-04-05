@@ -2,26 +2,48 @@ name: Ping Supabase to Prevent Pausing
 
 on:
   schedule:
-    # 9:00am (`0, 9`), every day (`*`), every month (`*`), monday and thursday (`1, 4`)
-    - cron: '0 9 * * 1,4'
+    # 9:00am, 5:00pm, every day
+    - cron: '0 9,17 * * *'
   workflow_dispatch:
 
 jobs:
   ping:
     runs-on: ubuntu-latest
-
+    environment: production
     steps:
       - name: Ping Supabase via PostgREST
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: |
-          response=$(curl -s \
+          if [ -z "${SUPABASE_URL}" ]; then
+            echo "Error: missing SUPABASE_URL secret" >&2
+            exit 1
+          fi
+
+          if [ -z "${SUPABASE_SERVICE_ROLE_KEY}" ]; then
+            echo "Error: missing SUPABASE_SERVICE_ROLE_KEY secret" >&2
+            exit 1
+          fi
+
+          response_file=$(mktemp)
+          http_code=$(curl -sS -o "$response_file" -w "%{http_code}" \
             -X GET "${SUPABASE_URL}/rest/v1/" \
             -H "apikey: ${SUPABASE_SERVICE_ROLE_KEY}" \
             -H "Authorization: Bearer ${SUPABASE_SERVICE_ROLE_KEY}")
-          if [ -z "$response" ]; then
-            echo "Error: empty response when pinging." >&2
+
+          response=$(cat "$response_file")
+          rm -f "$response_file"
+
+          if [ "$http_code" -lt 200 ] || [ "$http_code" -ge 300 ]; then
+            echo "Error: ping failed with HTTP ${http_code}" >&2
+            echo "Response: $response" >&2
             exit 1
           fi
-          echo "Successful ping: $response"
+
+          if [ -z "$response" ]; then
+            echo "Error: empty response when pinging (HTTP ${http_code})" >&2
+            exit 1
+          fi
+
+          echo "Successful ping (HTTP ${http_code})"
