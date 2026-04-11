@@ -2,6 +2,8 @@
 
 A real-time multiplayer trivia game built with PartyKit, Next.js, and Tailwind CSS.
 
+![Banner](/imgs/banner.png)
+
 ## Architecture
 
 - **Frontend**: Next.js 16 with Tailwind CSS v4

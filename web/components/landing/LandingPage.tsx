@@ -294,10 +294,10 @@ export default function LandingPage() {
           </button>
           {isHowToPlayOpen && (
             <div id="how-to-play-content" className="mt-3 text-sm opacity-80">
-              <p>1. Each round gives a question.</p>
-              <p>2. Submit one correct answer before time runs out.</p>
-              <p>3. Unique answers get points.</p>
-              <p>4. Duplicate answers get 0 points.</p>
+              <p>1. Each round will ask a question.</p>
+              <p>2. Correct answers get points.</p>
+              <p>3. Duplicate answers get you knocked out</p>
+              <p> Good Luck! </p>
             </div>
           )}
         </div>
