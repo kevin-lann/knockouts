@@ -2,11 +2,13 @@
 
 A real-time multiplayer trivia game built with PartyKit, Next.js, and Tailwind CSS.
 
+![Banner](/imgs/banner.png)
+
 ## Architecture
 
 - **Frontend**: Next.js 16 with Tailwind CSS v4
 - **Backend**: PartyKit (Cloudflare Workers / Durable Objects)
-- **Database**: Neon PostgreSQL (serverless)
+- **Database**: PostgreSQL (serverless on Supabase)
 
 ## Setup
 
