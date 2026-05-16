@@ -3,7 +3,7 @@ import "./globals.css"
 import { Toaster } from "react-hot-toast"
 
 export const metadata: Metadata = {
-  title: "Knockouts - Party Game",
+  title: "Knockouts!",
   description: "A real-time multiplayer trivia game",
 }
 
