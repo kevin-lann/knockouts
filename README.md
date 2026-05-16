@@ -1,5 +1,7 @@
 # Knockouts - Party Game
 
+Play: https://knockouts.vercel.app/
+
 A real-time multiplayer trivia game built with PartyKit, Next.js, and Tailwind CSS.
 
 ![Banner](/imgs/banner.png)
