@@ -3,12 +3,15 @@ from pathlib import Path
 from pydantic import BaseModel, Field
 from google import genai
 from dotenv import load_dotenv
+import multiprocessing
+import time
 import json
 import os
 
 load_dotenv()
 
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+MODEL_NAME = "gemini-2.5-flash"
 
 def get_filter_prompt(prompt_text: str, difficulty: int) -> str:
     return f"""
@@ -222,7 +225,7 @@ def generate_answers(batch_size: int, questions: list[Question_response], file_o
                 print(f"[WARNING] Question '{q.get('prompt')}' has only {answer_count} answers (minimum 8 required). Retrying...")
                 # Retry this question with stricter prompt
                 retry_response = generate_content_with_retry(
-                    get_answer_prompt([Question_response.model_validate(q)], theme) + "\n\nIMPORTANT: This question MUST have at least 8 answers.",
+                    get_answer_prompt([Question.model_validate(q)], theme) + "\n\nIMPORTANT: This question MUST have at least 8 reasonably distinct answers, modify the question if needed to get more answers.",
                     get_array_schema(),
                     MODEL_NAME
                 )
@@ -262,6 +265,20 @@ def generate_answers_from_file(file_input: str, dir_output: str):
 
     generate_answers(5, question_list, file_output, theme)
 
+def get_hms_from_s(elapsed_time: float) -> tuple[int, int, int]:
+    """
+    Given an amount in seconds, returns time in format of hours, minutes, seconds.
+    Truncates the output seconds to int.
+    """
+    elapsed_time = end_time - start_time
+    hours = int(elapsed_time // 3600)
+    elapsed_time %= 3600
+    minutes = int(elapsed_time // 60)
+    elapsed_time %= 60
+    seconds = int(elapsed_time)
+    return hours, minutes, seconds
+
+
 if __name__ == "__main__":
 
     # file_input = 'results/test/questions_INTERNET.json'
@@ -272,6 +289,8 @@ if __name__ == "__main__":
     print("Enter output json directory location: (WARNING: This may override files in the directory)")
     dir_output = input()
 
+    start_time = time.perf_counter()
+
     if not Path(dir_output).is_dir:
         print("[ERROR] Enter valid output directory.")
         sys.exit(0)
@@ -280,8 +299,21 @@ if __name__ == "__main__":
     if input_path.is_file():
         generate_answers_from_file(input_path, dir_output)
     elif input_path.is_dir():
-        for file in input_path.iterdir():
+        args = []
+        for file in input_path.iterdir():   
             if file.is_file() and file.suffix == ".json":
-                generate_answers_from_file(file, dir_output)
+                args.append((file, dir_output))
+                # generate_answers_from_file(file, dir_output)
+        
+        with multiprocessing.Pool() as pool:
+            pool.starmap(generate_answers_from_file, args)
+        print(f"Finished fixing all JSON files in {input_path_str}, new files are at {dir_output}")
+
     else:
         print("[ERROR] Input path does not exist or is a special type (link/device)")
+
+    end_time = time.perf_counter()
+
+    h, m, s = get_hms_from_s(end_time - start_time)
+    
+    print(f"Done in {h}h {m}m {s}s.")
