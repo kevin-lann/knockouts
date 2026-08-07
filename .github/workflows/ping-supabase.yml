@@ -2,8 +2,8 @@ name: Ping Supabase to Prevent Pausing
 
 on:
   schedule:
-    # Every 4 days. Supabase pauses db after 7 days of inactivity.
-    - cron: '0 0 */4 * *'
+    # Every day. Supabase pauses db after 7 days of inactivity.
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 jobs:
